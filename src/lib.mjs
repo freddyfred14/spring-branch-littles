@@ -224,6 +224,7 @@ export function validate(data, now = today()) {
   const warn = (where, msg) => warnings.push(`${where}: ${msg}`);
   const checkCommon = (where, x) => {
     checkImage(x, where, err);
+    if (x.area != null && !AREAS[x.area]) err(where, `area must be one of ${Object.keys(AREAS).join(", ")}`);
     if (!x.id || !ID_RE.test(x.id)) err(where, "id must be lowercase letters, digits and dashes");
     if (!Array.isArray(x.ages) || !x.ages.length || x.ages.some((a) => !AGES[a])) err(where, `ages must be a non-empty list from ${Object.keys(AGES).join(", ")}`);
     if (typeof x.free !== "boolean") err(where, "free must be true or false");
@@ -313,6 +314,10 @@ export function validate(data, now = today()) {
     if (!AREAS[r.area]) err(w, `area must be one of ${Object.keys(AREAS).join(", ")}`);
     if (!Array.isArray(r.perks) || !r.perks.length || r.perks.some((p) => !PERKS[p])) err(w, `perks must be a non-empty list from ${Object.keys(PERKS).join(", ")}`);
     if (!["$", "$$", "$$$"].includes(r.price)) err(w, 'price must be "$", "$$" or "$$$"');
+    if (r.logo != null) {
+      if (!/^\/img\/eats\/logos\/[a-z0-9-]+\.(png|jpe?g|webp|svg)$/.test(r.logo)) err(w, "logo must be a file in public/img/eats/logos/, written like /img/eats/logos/feges-bbq.png");
+      else if (!existsSync(join(ROOT, "public", r.logo))) err(w, `logo file public${r.logo} doesn't exist`);
+    }
     if (!r.description || r.description.length > 400) err(w, "description is required and must be under 400 characters");
     if (!/^https:\/\//.test(r.url || "")) err(w, "url must start with https://");
     if (r.lastVerified == null) warn(w, "never verified");

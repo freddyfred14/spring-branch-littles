@@ -73,6 +73,7 @@ npm run social             # make this weekend's carousel in social/
 - **Add or fix a listing:** edit `data/events.json`, `data/recurring.json` or `data/places.json` (formats are in `AGENTS.md`), then commit. The site redeploys on every push.
 - **Write the newsletter intro yourself:** create `data/drafts/YYYY-MM-DD.json` for the Thursday date. The agent won't overwrite one that's already there unless it's asked to.
 - **Add a photo:** the easiest way is to send it to Claude in chat with the credit line. To do it yourself, save a JPG (about 1400px wide) in `public/img/<news|events|places|eats|gallery>/`, then add `"image": "/img/places/haden-park.jpg"`, `"imageAlt"` (what's in the photo) and `"imageCredit"` (whose photo it is) to that item. For the homepage photo strip, add entries to `data/gallery.json` with `image`, `imageAlt`, `imageCredit` and a short `caption`; it appears once there are 3 or more.
+- **Add a restaurant logo:** save it (PNG or SVG, square-ish, at least 200px) in `public/img/eats/logos/`, then add `"logo": "/img/eats/logos/feges-bbq.png"` to that restaurant in `data/restaurants.json`. Use the logo from the restaurant's own website or social profile. Until then, cards show a badge with the restaurant's initials.
 - **Change what the agent does:** edit `AGENTS.md`. It's plain English.
 - **Pause automation:** in **Actions**, open a workflow and choose **Disable workflow**.
 

@@ -265,5 +265,27 @@
       "https://www.memorialparkconservancy.org/visit/things_to_do/playgrounds/"
     ],
     "lastVerified": null
+  },
+  {
+    "id": "bunny-hive-houston",
+    "name": "The Bunny Hive Houston",
+    "type": "indoor-play",
+    "area": "houston",
+    "address": "1526 Heights Blvd, Houston, TX 77008",
+    "url": "https://www.thebunnyhive.com/houston",
+    "ages": [
+      "baby",
+      "toddler",
+      "preschool"
+    ],
+    "free": false,
+    "cost": "Classes by drop-in, pack or membership",
+    "indoor": true,
+    "description": "A social club for little ones (2 weeks to kindergarten) and their grownups, in a renovated Heights bungalow, with daily classes and birthday parties.",
+    "tip": "Try the two-week intro offer to sample different classes before committing.",
+    "sources": [
+      "https://www.thebunnyhive.com/houston"
+    ],
+    "lastVerified": "2026-10-25"
   }
 ]

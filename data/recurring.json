@@ -138,5 +138,37 @@
     ],
     "lastVerified": "2026-10-24",
     "frequency": "Mondays, Nov 2–16"
+  },
+  {
+    "id": "bunny-hive-houston-classes",
+    "title": "Grownup & me classes at The Bunny Hive",
+    "placeId": "bunny-hive-houston",
+    "area": "houston",
+    "days": [
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat"
+    ],
+    "startTime": null,
+    "endTime": null,
+    "ages": [
+      "baby",
+      "toddler",
+      "preschool"
+    ],
+    "free": false,
+    "cost": "Drop-in, class packs or membership",
+    "indoor": true,
+    "description": "30-minute classes for little ones and their grownups in a cozy Heights bungalow: sensory play, ballet, culinary exploration, storytime and baby massage. Times change week to week.",
+    "registration": "Book on The Bunny Hive's site. A two-week intro offer is available.",
+    "url": "https://www.thebunnyhive.com/houston",
+    "sources": [
+      "https://www.thebunnyhive.com/houston",
+      "https://communityimpact.com/houston/heights-river-oaks-montrose/business/2024/03/11/the-bunny-hive-brings-social-club-for-parents-children-to-the-heights/"
+    ],
+    "lastVerified": "2026-10-25"
   }
 ]

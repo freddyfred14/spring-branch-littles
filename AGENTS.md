@@ -116,6 +116,7 @@ All dates are `YYYY-MM-DD`, times are 24-hour `HH:MM`. Ages use these keys: `bab
 }
 ```
 - `perks` come from: `play-area`, `indoor-play`, `patio`, `lawn`, `kids-menu`, `free-treat`. Only list a perk you've seen confirmed (photos, the restaurant's site, or recent reviews).
+- Weekly programs elsewhere in Houston (like classes at The Bunny Hive in the Heights) go in `recurring.json` with `"area": "houston"`; they show in the Surrounding Houston row.
 - `price` is `$`, `$$` or `$$$`. Use `null` for `address` if you can't confirm it. `url` should be the restaurant's own website; never guess one, and replace Yelp or blog links when you find the real site.
 - Remove restaurants that have closed or lost their play area.
 
@@ -202,7 +203,7 @@ The newsletter ("The Littles List") goes out automatically Thursday morning, but
 
 ## Photos
 
-Never download or add photos yourself. Photos are added only by the site owner, who makes sure we have permission. If an item already has `image`, `imageAlt` and `imageCredit`, keep them unless the item is removed. When you notice a great photo opportunity (a new playground opening, a festival), mention it in the agent log so the owner can ask for one.
+Never download or add photos or logos yourself. Photos are added only by the site owner, who makes sure we have permission. If an item already has `image`, `imageAlt` and `imageCredit`, keep them unless the item is removed. When you notice a great photo opportunity (a new playground opening, a festival), mention it in the agent log so the owner can ask for one.
 
 ## If something goes wrong
 

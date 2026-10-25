@@ -143,7 +143,7 @@ function eventCard(data, x, i, wk) {
       ${THEME_ICONS[theme]()}
     </div>
     <h3><a href="${esc(x.url)}" rel="noopener">${esc(x.title)}</a></h3>
-    ${x.kind === "recurring" ? `<span class="weekly-pill">Every ${esc(x.days.map((d) => WEEK_LONG[d].slice(0, 3)).join(" & "))}</span>` : ""}
+    ${x.kind === "recurring" ? `<span class="weekly-pill">${x.days.length >= 5 ? `${esc(x.days[0])}–${esc(x.days[x.days.length - 1])} every week` : `Every ${esc(x.days.map((d) => WEEK_LONG[d].slice(0, 3)).join(" & "))}`}</span>` : ""}
     <p class="meta">${CLOCK}<span>${fmtTimeRange(x.startTime, x.endTime)}</span></p>
     <p class="meta">${PIN}<span>${whereLink(data, x)}</span></p>
     <p class="desc clamp-2">${esc(x.description)}</p>
@@ -297,11 +297,19 @@ function dealBoard(data, now, { compact = false } = {}) {
     .join("")}</div>`;
 }
 
+// The restaurant's logo when we have one; otherwise a round badge with its initials.
+function restaurantBadge(r, i) {
+  if (r.logo) return `<span class="rbadge logo"><img src="${esc(r.logo)}" alt="${esc(r.name)} logo" loading="lazy"></span>`;
+  const words = r.name.replace(/^the\s+/i, "").split(/[\s–-]+/).filter((w) => /^[a-z0-9]/i.test(w));
+  const initials = (words[0]?.[0] || "") + (words[1]?.[0] || "");
+  return `<span class="rbadge m${i % 4}" aria-hidden="true">${esc(initials.toUpperCase())}</span>`;
+}
+
 function restaurantCard(data, r, i) {
   const deals = activeDeals(data, "0000-00-00").filter((d) => d.restaurantId === r.id);
   return `<article class="rcard c${i % 4}${r.image ? " has-photo" : ""}" data-perks="${r.perks.join(" ")}">
     ${photo(r)}
-    <div class="rcard-head"><h3><a href="${esc(r.url)}" rel="noopener">${esc(r.name)}</a></h3><span class="price">${esc(r.price)}</span></div>
+    <div class="rcard-head">${restaurantBadge(r, i)}<h3><a href="${esc(r.url)}" rel="noopener">${esc(r.name)}</a></h3><span class="price">${esc(r.price)}</span></div>
     <p class="meta">${PIN}<span>${esc(r.address || r.neighborhood)}</span></p>
     <p class="desc clamp-3">${esc(r.description)}</p>
     ${r.tip ? `<p class="tip"><b>Parent tip:</b> ${esc(r.tip)}</p>` : ""}
@@ -362,7 +370,7 @@ export function homePage(data, now) {
   const regular = data.recurring.filter((r) => !r.frequency || r.from);
   for (const r of recurringBetween(regular, now, weekEnd)) if (!seen.has(r.id) && seen.add(r.id)) weekly.push(r);
   const region = (area) => {
-    const list = [...soon[area], ...(area === "local" ? weekly : [])].sort((a, b) => a.date.localeCompare(b.date) || (a.startTime || "99").localeCompare(b.startTime || "99"));
+    const list = [...soon[area], ...weekly.filter((r) => areaOf(data, r) === area)].sort((a, b) => a.date.localeCompare(b.date) || (a.startTime || "99").localeCompare(b.startTime || "99"));
     const more = later[area].length ? `<a class="more" href="/events/#${area}">${later[area].length} more coming up →</a>` : "";
     return `<section class="band region" id="${area}" data-group><div class="wrap">
       ${regionHead(area, more)}
