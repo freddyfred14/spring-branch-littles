@@ -9,5 +9,7 @@
   "timezone": "America/Chicago",
   "area": "Spring Branch and Memorial, plus nearby favorites: Memorial City, CityCentre, the Memorial Villages (Hedwig, Hunters Creek, Bunker Hill, Piney Point, Spring Valley), Memorial Park and the Houston Arboretum, and the Energy Corridor's Terry Hershey Park",
   "newsletterName": "The Littles List",
-  "newsletterBlurb": "Your weekly kid-friendly finds"
+  "newsletterBlurb": "Your weekly kid-friendly finds",
+  "appName": "SB Littles",
+  "oneSignalAppId": ""
 }

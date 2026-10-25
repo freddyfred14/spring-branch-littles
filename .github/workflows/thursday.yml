@@ -1,4 +1,5 @@
-# Thursday morning: make the Instagram carousel, send the newsletter, publish both, then post to Instagram.
+# Thursday morning: make the Instagram carousel, send the newsletter, publish both, then post to Instagram
+# and send the app alert.
 name: Thursday newsletter + Instagram
 
 on:
@@ -69,3 +70,19 @@ jobs:
           git config user.email "bot@users.noreply.github.com"
           git add social
           git diff --cached --quiet || { git commit -m "Record Instagram post"; git push; }
+
+  # App alert with the weekend's picks, once the site is updated. Does nothing until OneSignal is set up.
+  alert:
+    needs: deploy
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: ${{ github.event.repository.default_branch }}
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+      - name: Send the weekend alert
+        env:
+          ONESIGNAL_API_KEY: ${{ secrets.ONESIGNAL_API_KEY }}
+        run: node scripts/push.mjs

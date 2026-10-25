@@ -67,6 +67,15 @@ Every upcoming event and weekly program without a photo gets an AI illustration 
 
 To redo one image, delete its file in `public/img/events/` and its `image`, `imageAlt` and `imageCredit` lines in the data file, edit its `imagePrompt` if you like, then run the workflow again. A real photo you add yourself always wins: items with an `image` are skipped.
 
+### 7. The app and alerts
+The site installs as a phone app from **springbranchlittles.com/app/** (iPhone: Share → Add to Home Screen; Android: Install). It works offline for pages you've opened. Alerts (push notifications) go through OneSignal, which is free at this size:
+1. Make sure **Enforce HTTPS** is ticked in **Settings → Pages**. Alerts only work over https.
+2. Sign up at onesignal.com and create an app. Choose **Web**, then **Typical Site**. Enter the site URL `https://springbranchlittles.com`, upload `public/icons/icon-192.png` as the default icon, and leave the prompt settings off (the site has its own "Turn on alerts" button). Turn on **Safari web push** if it's offered as a separate option.
+3. Copy the **App ID** into `oneSignalAppId` in `site.config.json` (it's public, not a secret) and commit. Or send it to Claude.
+4. In OneSignal, under **Settings → Keys & IDs**, create an **API key** and add it to GitHub as the repository secret `ONESIGNAL_API_KEY`.
+
+Every Thursday, after the newsletter, everyone with alerts on gets the weekend's picks. To send your own alert (a rain plan, a last-minute event), use **Actions → Send app alert → Run workflow**. Keep them rare, about one a week, so people keep alerts on.
+
 ---
 
 ## Working on it yourself

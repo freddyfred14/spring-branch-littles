@@ -172,7 +172,9 @@ const store = {
   set: (k, v) => { try { localStorage.setItem(k, v); } catch { /* private mode */ } },
 };
 document.querySelectorAll(".signup-form").forEach((f) => f.addEventListener("submit", () => store.set("sbl-subscribed", "1")));
-if (pop && typeof pop.showModal === "function") {
+// Inside the installed app, people already follow along: skip the newsletter pop-up there.
+const inApp = matchMedia("(display-mode: standalone)").matches || navigator.standalone === true;
+if (pop && typeof pop.showModal === "function" && !inApp) {
   const snoozed = Number(store.get("sbl-pop-snoozed") || 0) > Date.now() - 30 * 864e5;
   if (!store.get("sbl-subscribed") && !snoozed) {
     // After 5 seconds, or sooner once someone has scrolled a bit (people on phones scroll right away).
@@ -197,3 +199,72 @@ if (pop && typeof pop.showModal === "function") {
     if (e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom) close();
   });
 }
+
+// ---------- The app: offline support, install, alerts ----------
+if ("serviceWorker" in navigator) navigator.serviceWorker.register("/OneSignalSDKWorker.js").catch(() => {});
+
+const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+const isAndroid = /android/i.test(navigator.userAgent);
+const show = (sel, on) => document.querySelectorAll(sel).forEach((el) => (el.hidden = !on));
+
+// /app/: show only the install steps that fit this phone.
+if (document.querySelector("[data-install-step]")) {
+  show("[data-installed]", inApp);
+  show("[data-install-step]", !inApp);
+  show("[data-install-ios]", isIOS || !isAndroid);
+  show("[data-install-android]", isAndroid || !isIOS);
+  show("[data-push-ios-note]", isIOS && !inApp);
+}
+// Chrome and Edge offer a one-tap install.
+let installEvent = null;
+addEventListener("beforeinstallprompt", (e) => {
+  e.preventDefault();
+  installEvent = e;
+  show("[data-install]", true);
+  show("[data-install-manual]", false);
+  show("[data-install-android]", true);
+});
+document.querySelectorAll("[data-install]").forEach((b) => b.addEventListener("click", async () => {
+  if (!installEvent) return;
+  installEvent.prompt();
+  await installEvent.userChoice;
+  installEvent = null;
+  show("[data-install]", false);
+}));
+
+// Alerts, through OneSignal (only on pages where it's set up).
+const withOneSignal = (fn) => window.OneSignalDeferred && window.OneSignalDeferred.push(fn);
+const pushStatus = (text) => document.querySelectorAll("[data-push-status]").forEach((el) => (el.textContent = text));
+function refreshPush(OneSignal) {
+  const on = OneSignal.Notifications.permission && OneSignal.User.PushSubscription.optedIn;
+  document.querySelectorAll("[data-push-on]").forEach((b) => {
+    b.disabled = !!on;
+    b.textContent = on ? "Alerts are on ✓" : b.closest("[data-app-prompt]") ? "Turn on" : "Turn on alerts";
+  });
+  if (on) show("[data-app-prompt]", false);
+  if (!OneSignal.Notifications.isPushSupported()) {
+    pushStatus(isIOS && !inApp ? "First add the app to your home screen (step 1), then open it from there and tap this button." : "This browser can't show alerts. Try Chrome, Safari or Edge.");
+    document.querySelectorAll("[data-push-on]").forEach((b) => (b.disabled = true));
+  } else if (OneSignal.Notifications.permissionNative === "denied") {
+    pushStatus("Alerts are blocked for this site. Allow notifications for Spring Branch Littles in your phone's settings, then try again.");
+  } else {
+    pushStatus(on ? "You'll get the weekend's picks every Thursday." : "");
+  }
+}
+withOneSignal((OneSignal) => {
+  refreshPush(OneSignal);
+  OneSignal.Notifications.addEventListener("permissionChange", () => refreshPush(OneSignal));
+  OneSignal.User.PushSubscription.addEventListener("change", () => refreshPush(OneSignal));
+  // In the installed app, nudge once (until dismissed) if alerts aren't on yet.
+  const dismissed = store.get("sbl-app-prompt-closed");
+  if (inApp && !dismissed && OneSignal.Notifications.isPushSupported() && OneSignal.Notifications.permissionNative === "default") show("[data-app-prompt]", true);
+});
+document.querySelectorAll("[data-push-on]").forEach((b) => b.addEventListener("click", () => withOneSignal(async (OneSignal) => {
+  await OneSignal.Notifications.requestPermission();
+  if (OneSignal.Notifications.permission) await OneSignal.User.PushSubscription.optIn();
+  refreshPush(OneSignal);
+})));
+document.querySelectorAll("[data-app-prompt-close]").forEach((b) => b.addEventListener("click", () => {
+  store.set("sbl-app-prompt-closed", "1");
+  show("[data-app-prompt]", false);
+}));

@@ -796,3 +796,30 @@ body { background-image: none; }
   .sub-pop[open] { animation: pop-in .25s ease-out; }
   @keyframes pop-in { from { opacity: 0; transform: translateY(16px) scale(.97); } }
 }
+
+/* ---------- the app ---------- */
+.app-cta { display: flex; align-items: center; gap: 20px 30px; flex-wrap: wrap; background: var(--pink-soft); border-radius: var(--r-lg); padding-block: 26px; }
+.app-cta > div { flex: 1 1 300px; display: grid; gap: 6px; min-width: 0; }
+.app-cta p:last-child { color: var(--muted); }
+.app-cta-icon { width: 96px; height: 96px; border-radius: 22px; box-shadow: 0 6px 16px rgba(36, 30, 26, .15); flex: none; }
+.app-head { display: flex !important; gap: 22px 30px; align-items: center; flex-wrap: wrap; }
+.app-head .head-copy { flex: 1 1 320px; }
+.app-icon { width: 128px; height: 128px; border-radius: 30px; box-shadow: 0 10px 26px rgba(36, 30, 26, .18); flex: none; }
+.app-steps { display: grid; gap: 18px; }
+.app-step { display: flex; gap: 18px; background: var(--card); border: 2px solid var(--line); border-radius: var(--r-lg); padding: 22px 24px; }
+.app-step > div { display: grid; gap: 10px; min-width: 0; flex: 1; }
+.app-step h2 { font-size: clamp(22px, 3vw, 26px); }
+.app-num { flex: none; width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; background: var(--dino-deep); color: #fff; font-family: var(--display); font-weight: 700; font-size: 20px; }
+.app-howto { margin: 0; padding-left: 22px; display: grid; gap: 6px; }
+.ios-share { display: inline-grid; place-items: center; width: 26px; height: 26px; vertical-align: -7px; color: #0a7aff; }
+.ios-share svg { width: 22px; height: 22px; }
+.push-status { font-weight: 700; color: var(--dino-deep); }
+.push-status:empty { display: none; }
+.btn:disabled { opacity: .75; cursor: default; transform: none; }
+.app-prompt { background: var(--pink-soft); border-bottom: 2px solid var(--line); }
+.app-prompt .wrap { display: flex; align-items: center; gap: 10px; padding-block: 10px; }
+.app-prompt span { flex: 1; font-weight: 700; font-size: 15px; }
+.app-prompt .btn { padding: 8px 16px; font-size: 15px; flex: none; }
+.app-prompt-close { flex: none; width: 40px; height: 40px; border: 0; border-radius: 50%; background: transparent; font-size: 24px; color: var(--muted); cursor: pointer; }
+/* In the installed app there's no browser bar, so leave room for the phone's status bar. */
+@media (display-mode: standalone) { .site-header { padding-top: env(safe-area-inset-top, 0px); } }

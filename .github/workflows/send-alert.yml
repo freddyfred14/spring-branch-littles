@@ -1,0 +1,35 @@
+# Send your own app alert to everyone who turned alerts on: Actions → Send app alert → Run workflow.
+# Good for a rain plan, a sold-out warning or a last-minute event. Keep it rare so people keep alerts on.
+name: Send app alert
+
+on:
+  workflow_dispatch:
+    inputs:
+      title:
+        description: "Title (short, e.g. Rain plan for Saturday ☔)"
+        required: true
+      message:
+        description: "Message (one or two sentences)"
+        required: true
+      link:
+        description: "Page it opens (optional, e.g. https://springbranchlittles.com/events/). Leave blank for the homepage."
+        required: false
+
+permissions:
+  contents: read
+
+jobs:
+  send:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+      - name: Send
+        env:
+          ONESIGNAL_API_KEY: ${{ secrets.ONESIGNAL_API_KEY }}
+          PUSH_TITLE: ${{ inputs.title }}
+          PUSH_MESSAGE: ${{ inputs.message }}
+          PUSH_URL: ${{ inputs.link }}
+        run: node scripts/push.mjs

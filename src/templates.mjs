@@ -34,6 +34,7 @@ const NAV = [
 const NAV_MORE = [
   ["/news/", "Neighborhood news"],
   ["/newsletter/", "Newsletter archive"],
+  ["/app/", "Get the app"],
   ["/search/", "Search"],
   ["/about/", "About us"],
 ];
@@ -88,6 +89,16 @@ export function layout(config, { title, description, path, body, now }) {
 <meta property="og:image" content="${esc(config.url)}/og.png">
 <link rel="icon" href="/favicon.png" type="image/png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="${esc(config.appName)}">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">${config.oneSignalAppId ? `
+<script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+<script>
+  window.OneSignalDeferred = window.OneSignalDeferred || [];
+  OneSignalDeferred.push((OneSignal) => OneSignal.init({ appId: "${esc(config.oneSignalAppId)}", serviceWorkerPath: "OneSignalSDKWorker.js", notifyButton: { enable: false } }));
+</script>` : ""}
 <meta name="theme-color" content="#fbf6ec">
 <link rel="alternate" type="application/rss+xml" title="${esc(config.name)} newsletter" href="/feed.xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -114,6 +125,7 @@ ${WATERCOLOR_DEFS}
   </div>
 </div></header>
 <main id="main">
+${config.oneSignalAppId ? `<div class="app-prompt" data-app-prompt hidden><div class="wrap"><span>🔔 Get the weekend's best picks as an alert every Thursday.</span><button class="btn btn-pink" type="button" data-push-on>Turn on</button><button class="app-prompt-close" type="button" aria-label="Not now" data-app-prompt-close>×</button></div></div>` : ""}
 ${body}
 </main>
 ${path === "/join/" || path === "/thanks/" ? "" : subscribePopup(config)}
@@ -517,6 +529,16 @@ export function homePage(data, now) {
     <div class="gallery">${data.gallery.slice(0, 7).map((g, i) => `<figure class="g${i}"><img src="${esc(g.image)}" alt="${esc(g.imageAlt)}" loading="lazy"><figcaption>${esc(g.caption)}</figcaption></figure>`).join("")}</div>
   </div></section>` : ""}
 
+  <section class="band"><div class="wrap app-cta">
+    <img class="app-cta-icon" src="/icons/icon-192.png" alt="" width="192" height="192">
+    <div>
+      <p class="label">On your phone</p>
+      <h2>Get the <span class="script">Littles</span> app</h2>
+      <p>Put this week's plans on your home screen, and get a Thursday alert with the weekend's best picks. Free, no app store needed.</p>
+    </div>
+    <a class="btn" href="/app/">Get the app</a>
+  </div></section>
+
   <section class="band zone"><div class="wrap ig-cta">
     <div class="ig-art">${toddlerIllo()}<img class="ig-dino" src="/img/dino-head.png" alt="" width="512" height="512"></div>
     <div>
@@ -787,6 +809,73 @@ export function searchPage(data, now) {
     <noscript><p class="quiet">Search needs JavaScript. You can also browse <a href="/">This week</a> or the <a href="/events/">Calendar</a>.</p></noscript>
   </div></section>`;
   return layout(data.config, { title: "Search", path: "/search/", body, now, description: "Search kid-friendly events, places, restaurants and news in Spring Branch and Memorial." });
+}
+
+// How to install the app and turn on alerts. site.js shows the steps that fit the visitor's phone.
+export function appPage(data, now) {
+  const { config } = data;
+  const push = !!config.oneSignalAppId;
+  const body = `
+  <section class="page-head"><div class="wrap narrow app-head">
+    <img class="app-icon" src="/icons/icon-512.png" alt="The ${esc(config.appName)} app icon" width="512" height="512">
+    <div class="head-copy">
+      <p class="label">The app</p>
+      <h1>Spring Branch Littles on your <span class="script pink">phone</span></h1>
+      <p class="lede">This week's plans on your home screen, and an alert every Thursday with the weekend's best picks. Free, and no app store needed.</p>
+    </div>
+  </div></section>
+
+  <section class="band"><div class="wrap narrow app-steps">
+    <div class="app-step" data-installed hidden>
+      <span class="app-num">✓</span>
+      <div><h2>You're using the app</h2><p>Nice! It's on your home screen.</p></div>
+    </div>
+
+    <div class="app-step" data-install-step>
+      <span class="app-num">1</span>
+      <div>
+        <h2>Add it to your home screen</h2>
+        <div data-install-ios>
+          <p><b>On iPhone or iPad</b>, in <b>Safari</b>:</p>
+          <ol class="app-howto">
+            <li>Tap the <b>Share</b> button <span class="ios-share" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3v12M7.5 7.5 12 3l4.5 4.5M5 11v8a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span> at the bottom of the screen (top right on iPad).</li>
+            <li>Scroll down and tap <b>Add to Home Screen</b>.</li>
+            <li>Tap <b>Add</b>. Then open <b>${esc(config.appName)}</b> from your home screen.</li>
+          </ol>
+          <p class="quiet">Using Chrome on iPhone? Tap the Share button next to the address bar, then Add to Home Screen.</p>
+        </div>
+        <div data-install-android>
+          <p><b>On Android</b>, in Chrome:</p>
+          <p><button class="btn" type="button" data-install hidden>Install the app</button></p>
+          <ol class="app-howto" data-install-manual>
+            <li>Tap the <b>⋮</b> menu at the top right.</li>
+            <li>Tap <b>Add to Home screen</b> (or <b>Install app</b>), then <b>Install</b>.</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+
+    <div class="app-step">
+      <span class="app-num">2</span>
+      <div>
+        <h2>Turn on alerts</h2>
+        <p>One alert on Thursday mornings with the weekend's best picks, and now and then a heads-up about a big event. You can turn them off anytime in your phone's settings.</p>
+        ${push
+          ? `<p><button class="btn btn-pink" type="button" data-push-on>Turn on alerts</button></p>
+        <p class="push-status" data-push-status aria-live="polite"></p>
+        <p class="quiet" data-push-ios-note hidden>On iPhone, alerts work once you've added the app to your home screen (step 1) and opened it from there.</p>`
+          : `<p class="quiet">Alerts are coming very soon. Add the app now and you'll be ready.</p>`}
+      </div>
+    </div>
+  </div></section>`;
+  return layout(config, { title: "Get the app", path: "/app/", body, now, description: "Install Spring Branch Littles on your phone and get a Thursday alert with the weekend's best kid-friendly plans." });
+}
+
+// Shown by the app when you're offline and the page wasn't saved yet.
+export function offlinePage(data, now) {
+  const { config } = data;
+  const body = `<section class="page-head"><div class="wrap narrow"><img class="nf-dino" src="/img/dino-head.png" alt="" width="512" height="512"><h1>You're offline</h1><p class="lede">This page isn't saved on your phone yet. Pages you've opened before still work. Try <a href="/">this week's list</a>, or check your connection and try again.</p></div></section>`;
+  return layout(config, { title: "Offline", path: "/offline/", body, now });
 }
 
 export function thanksPage(data, now) {

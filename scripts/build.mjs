@@ -4,7 +4,7 @@ import { mkdirSync, writeFileSync, rmSync, cpSync, existsSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { ROOT, loadAll, validate, today, fmtLong, addDays, areaOf, currentNews, PLACE_TYPES, PERKS } from "../src/lib.mjs";
 import { eventPath, nextOccurrence, icsFile } from "../src/calendar.mjs";
-import { homePage, eventsPage, placesPage, eatsPage, newsPage, newsletterPage, joinPage, eventPage, searchPage, thanksPage, issuePage, aboutPage, notFoundPage, esc } from "../src/templates.mjs";
+import { homePage, eventsPage, placesPage, eatsPage, newsPage, newsletterPage, joinPage, eventPage, searchPage, thanksPage, appPage, offlinePage, issuePage, aboutPage, notFoundPage, esc } from "../src/templates.mjs";
 
 const data = loadAll();
 const now = today(data.config.timezone);
@@ -39,6 +39,8 @@ const pages = {
   "join/index.html": joinPage(data, now),
   "search/index.html": searchPage(data, now),
   "thanks/index.html": thanksPage(data, now),
+  "app/index.html": appPage(data, now),
+  "offline/index.html": offlinePage(data, now),
   "about/index.html": aboutPage(data, now),
   "404.html": notFoundPage(data, now),
 };
@@ -68,8 +70,30 @@ const index = [
 write("search.json", JSON.stringify(index));
 
 const { url, name, description } = data.config;
-const urls = Object.keys(pages).filter((p) => p !== "404.html").map((p) => `${url}/${p.replace(/index\.html$/, "")}`);
+const urls = Object.keys(pages).filter((p) => p !== "404.html" && !p.startsWith("offline/")).map((p) => `${url}/${p.replace(/index\.html$/, "")}`);
 write("sitemap.xml", `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.map((u) => `  <url><loc>${u}</loc><lastmod>${now}</lastmod></url>`).join("\n")}\n</urlset>\n`);
+// Lets phones install the site as an app.
+write("manifest.webmanifest", JSON.stringify({
+  name,
+  short_name: data.config.appName,
+  description,
+  id: "/",
+  start_url: "/?source=app",
+  scope: "/",
+  display: "standalone",
+  background_color: "#fbf6ec",
+  theme_color: "#fbf6ec",
+  icons: [
+    { src: "/icons/icon-192.png", sizes: "192x192", type: "image/png" },
+    { src: "/icons/icon-512.png", sizes: "512x512", type: "image/png" },
+    { src: "/icons/maskable-512.png", sizes: "512x512", type: "image/png", purpose: "maskable" },
+  ],
+  shortcuts: [
+    { name: "This week", url: "/?source=app" },
+    { name: "Calendar", url: "/events/?source=app" },
+    { name: "Kid-friendly eats", url: "/eats/?source=app" },
+  ],
+}, null, 2));
 write("robots.txt", `User-agent: *\nAllow: /\nSitemap: ${url}/sitemap.xml\n`);
 write("feed.xml", `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0"><channel>
