@@ -18,7 +18,10 @@
     "sources": [
       "https://ma.to/event/christmas-in-july-story-time-20-july-2026"
     ],
-    "lastVerified": null
+    "lastVerified": null,
+    "image": "/img/places/spring-branch-memorial-library.jpg",
+    "imageAlt": "The front steps and sign of Spring Branch Memorial Library, with the playground next door",
+    "imageCredit": "Photo: public image"
   },
   {
     "id": "ring-library",
@@ -39,7 +42,10 @@
     "sources": [
       "https://calendar.houstonlibrary.org/event/13532046"
     ],
-    "lastVerified": null
+    "lastVerified": null,
+    "image": "/img/places/ring-library.jpg",
+    "imageAlt": "The glass entrance canopy and RING sign at Ring Neighborhood Library",
+    "imageCredit": "Photo: public image"
   },
   {
     "id": "hillendahl-library",

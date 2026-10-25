@@ -136,7 +136,7 @@ const host = (u) => { try { return new URL(u).hostname.replace(/^www\./, ""); } 
 const moreInfo = (url) => `<a class="moreinfo" href="${esc(url)}" target="_blank" rel="noopener" title="Opens ${esc(host(url))}">More info <span aria-hidden="true">↗</span><span class="sr"> (opens ${esc(host(url))})</span></a>`;
 // A photo across the top of a card, with its credit.
 function photo(x, cls = "cphoto") {
-  if (!x.image) return "";
+  if (!x?.image) return "";
   const small = x.image.replace(/(\.\w+)$/, "-800$1");
   const srcset = existsSync(join(ROOT, "public", small)) ? ` srcset="${esc(small)} 800w, ${esc(x.image)} 1400w" sizes="(max-width: 860px) 100vw, 640px"` : "";
   return `<figure class="${cls}"><img src="${esc(x.image)}"${srcset} alt="${esc(x.imageAlt)}" loading="lazy"><figcaption>${esc(x.imageCredit)}</figcaption></figure>`;
@@ -167,10 +167,18 @@ function dateTile(x, wk) {
   return `<div class="datetile"><span class="dt-dow">${dow}</span><span class="dt-day${day.length > 3 ? " small" : ""}">${day}</span><span class="dt-mon">${mon}</span></div>`;
 }
 
+// An event without its own photo uses its place's photo, when we have one.
+function eventPhoto(data, x) {
+  if (x.image) return x;
+  const place = x.placeId && placeById(data, x.placeId);
+  return place?.image ? place : null;
+}
+
 function eventCard(data, x, i, wk) {
   const theme = themeOf(x);
-  return `<article class="ecard${x.image ? " has-photo" : ""}" ${dataAttrs(x)}>
-    ${photo(x)}
+  const pic = eventPhoto(data, x);
+  return `<article class="ecard${pic ? " has-photo" : ""}" ${dataAttrs(x)}>
+    ${photo(pic)}
     <div class="ecard-top">
       ${dateTile(x, wk)}
       ${THEME_ICONS[theme]()}
@@ -188,7 +196,9 @@ function eventCard(data, x, i, wk) {
 // A weekly program, listed once, with the days it runs lit up.
 function weeklyCard(data, r, i) {
   const week = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
-  return `<article class="wcard" ${dataAttrs(r)}>
+  const pic = eventPhoto(data, r);
+  return `<article class="wcard${pic ? " has-photo" : ""}" ${dataAttrs(r)}>
+    ${photo(pic)}
     <div class="dots" aria-label="${esc(r.days.join(", "))}">${week.map((d) => `<span class="${r.days.includes(d) ? "on" : ""}" aria-hidden="true">${d[0]}</span>`).join("")}</div>
     <h3><a class="card-link" href="${eventPath(r)}">${esc(r.title)}</a></h3>
     <p class="meta">${CLOCK}<span>${r.frequency ? `${esc(r.frequency)} · ` : ""}${fmtTimeRange(r.startTime, r.endTime)}</span></p>
@@ -201,9 +211,12 @@ function weeklyCard(data, r, i) {
 
 function filterBar(id) {
   return `<div class="filters" data-filter-for="${id}" role="group" aria-label="Filter listings">
-    <button class="chip" type="button" data-age="all" aria-pressed="true">All ages</button>
-    ${Object.entries(AGES).map(([k, v]) => `<button class="chip" type="button" data-age="${k}" aria-pressed="false">${v.label} <small>${v.range}</small></button>`).join("")}
-    <span class="filters-sep" aria-hidden="true"></span>
+    <label class="age-pick"><span class="sr">Ages</span>
+      <select data-age-select>
+        <option value="all">All ages</option>
+        ${Object.entries(AGES).map(([k, v]) => `<option value="${k}">${v.label} (${v.range})</option>`).join("")}
+      </select>
+    </label>
     <button class="chip" type="button" data-flag="free" aria-pressed="false">Free</button>
     <button class="chip" type="button" data-flag="indoor" aria-pressed="false">Indoors</button>
   </div>`;
@@ -462,7 +475,7 @@ export function homePage(data, now) {
   </div></section>` : ""}
 
   ${data.deals.length ? `<section class="band"><div class="wrap">
-    <div class="sec-head"><div><p class="label">Dinner's sorted</p><h2>Kids eat free ${SPARK_PINK}</h2></div><a class="more" href="/eats/">All kid-friendly eats →</a></div>
+    <div class="sec-head"><div><p class="label">Eat with the family</p><h2>Kid-friendly restaurants ${SPARK_PINK}</h2></div><a class="more" href="/eats/">All kid-friendly eats →</a></div>
     ${dealCarousel(data, now)}
   </div></section>` : ""}
 
@@ -703,7 +716,7 @@ export function eventPage(data, x, now) {
   <section class="page-head event-head"><div class="wrap">
     <p class="label crumbs"><a href="/">This week</a> · <a href="/events/">Calendar</a> · ${esc(AREAS[areaOf(data, x)].title)}</p>
     <div class="event-grid">
-      <div class="event-art">${x.image ? photo(x, "event-photo") : `<div class="event-icon">${dateTile(item, wk)}${THEME_ICONS[themeOf(x)]()}</div>`}</div>
+      <div class="event-art">${eventPhoto(data, x) ? photo(eventPhoto(data, x), "event-photo") : `<div class="event-icon">${dateTile(item, wk)}${THEME_ICONS[themeOf(x)]()}</div>`}</div>
       <div class="event-copy">
         <h1>${esc(x.title)}</h1>
         <ul class="event-facts">

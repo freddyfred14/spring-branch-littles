@@ -750,3 +750,20 @@ body { background-image: none; }
 .dcarousel { scrollbar-color: var(--dino) transparent; }
 .story-band { padding-block: 8px 48px; }
 @media (max-width: 860px) { .story-band { padding-bottom: 34px; } }
+
+/* age filter: a dropdown instead of a row of chips */
+.age-pick { position: relative; display: inline-flex; flex: none; }
+.age-pick select { appearance: none; -webkit-appearance: none; min-height: 44px; font-family: var(--display); font-size: 15.5px; font-weight: 600; color: var(--ink); background: var(--card); border: 2px solid var(--line); border-radius: 999px; padding: 0 42px 0 16px; cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='m6 9 6 6 6-6' fill='none' stroke='%23241e1a' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 14px center; background-size: 16px; }
+.age-pick select:hover { border-color: var(--dino); }
+.age-pick select:focus-visible { outline: 3px solid var(--sun); outline-offset: 2px; }
+.age-pick select.on { background-color: var(--dino-deep); border-color: var(--dino-deep); color: #fff;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='m6 9 6 6 6-6' fill='none' stroke='%23ffffff' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); }
+.age-pick select option { color: var(--ink); background: #fff; }
+
+/* photos on weekly program cards */
+.wcard { overflow: hidden; }
+.wcard .cphoto { margin: -16px -18px 4px; border-radius: calc(var(--r-md) - 2px) calc(var(--r-md) - 2px) 0 0; }
+.wcard .cphoto img { aspect-ratio: 16 / 9; }
+.ecard .cphoto figcaption { top: 8px; bottom: auto; }
