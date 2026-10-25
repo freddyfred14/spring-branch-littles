@@ -1,7 +1,7 @@
 # Makes an AI illustration (OpenAI image API) for each upcoming event and weekly program without an image.
 # Runs after every research agent run, and by hand from Actions → Event images → Run workflow.
 # Needs the repository secret OPENAI_API_KEY; without it, it does nothing.
-# Optional repository variables: OPENAI_IMAGE_MODEL (default gpt-image-1), OPENAI_IMAGE_QUALITY (low|medium|high), MAX_IMAGES.
+# Optional repository variables: OPENAI_IMAGE_MODEL (default: the newest image model on the account), OPENAI_IMAGE_QUALITY (low|medium|high), MAX_IMAGES.
 name: Event images
 
 on:
@@ -21,10 +21,10 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           ref: ${{ github.event.repository.default_branch }}
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v5
         with:
           node-version: 22
 

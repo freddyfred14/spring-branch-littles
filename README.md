@@ -63,7 +63,7 @@ Every upcoming event and weekly program without a photo gets an AI illustration 
 1. At platform.openai.com, create an API key and add a few dollars of credit (each image costs roughly 4–20¢). You may need to verify your organization before image models are available. Set a monthly budget limit there.
 2. Add it as the repository secret `OPENAI_API_KEY`.
 3. Run it the first time by hand: **Actions → Event images → Run workflow**. It makes up to 30 images per run and redeploys the site.
-4. Optional repository variables: `OPENAI_IMAGE_MODEL` (default `gpt-image-1`), `OPENAI_IMAGE_QUALITY` (`low`, `medium` or `high`; default `medium`) and `MAX_IMAGES`.
+4. Optional repository variables: `OPENAI_IMAGE_MODEL` (by default it uses the newest image model your account has), `OPENAI_IMAGE_QUALITY` (`low`, `medium` or `high`; default `medium`) and `MAX_IMAGES`.
 
 To redo one image, delete its file in `public/img/events/` and its `image`, `imageAlt` and `imageCredit` lines in the data file, edit its `imagePrompt` if you like, then run the workflow again. A real photo you add yourself always wins: items with an `image` are skipped.
 
