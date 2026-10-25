@@ -16,16 +16,20 @@ document.querySelectorAll(".filters").forEach((bar) => {
         (!state.indoor || el.dataset.indoor === "1");
       el.hidden = !ok;
     });
-    // Hide a whole day (or section) when the filters leave nothing in it.
-    let anyShown = false;
+    // Hide a whole day or month when the filters leave nothing in it.
     target.querySelectorAll("[data-day]").forEach((day) => {
       const items = [...day.querySelectorAll("[data-ages]")];
-      const shown = !items.length || items.some((i) => !i.hidden);
-      day.hidden = !shown;
-      if (items.some((i) => !i.hidden)) anyShown = true;
+      day.hidden = items.length > 0 && items.every((i) => i.hidden);
+    });
+    // In a section, say so when the filters leave it empty.
+    const groups = target.matches("[data-group]") ? [target] : [...target.querySelectorAll("[data-group]")];
+    groups.forEach((g) => {
+      const items = [...g.querySelectorAll("[data-ages]")];
+      const msg = g.querySelector(".group-empty");
+      if (msg) msg.hidden = !items.length || items.some((i) => !i.hidden);
     });
     const msg = target.querySelector(".empty-filter");
-    if (msg) msg.hidden = anyShown || !target.querySelector("[data-ages]");
+    if (msg) msg.hidden = [...target.querySelectorAll("[data-ages]")].some((i) => !i.hidden);
   }
   bar.addEventListener("click", (e) => {
     const b = e.target.closest("button");

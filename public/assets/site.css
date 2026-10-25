@@ -249,3 +249,64 @@ p { margin: 0; }
   .peek-dino { animation: peek 4s ease-in-out infinite; transform-origin: 50% 100%; }
   @keyframes peek { 0%, 100% { transform: rotate(8deg); } 50% { transform: rotate(2deg) translateY(-3px); } }
 }
+
+/* ---------- event cards (tear-off calendar tiles) ---------- */
+.whatson { padding-bottom: 8px; }
+.whatson .filters { margin-bottom: 0; }
+.region { padding-block: 28px; }
+.region + .region { border-top: 3px dotted var(--line); }
+.region-head { display: flex; align-items: center; gap: 14px 22px; flex-wrap: wrap; margin-bottom: 20px; }
+.region-head > div:nth-child(2) { flex: 1 1 260px; display: grid; gap: 2px; min-width: 0; }
+.region-art { width: 92px; flex: none; }
+.region-head .more { margin-left: auto; }
+.regulars { background: var(--sky-soft); border-radius: var(--r-lg); margin-inline: auto; max-width: 1180px; margin-top: 14px; }
+.ecards { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 20px; }
+.ecard { position: relative; display: flex; flex-direction: column; gap: 8px; background: var(--card); border: 2px solid var(--line); border-radius: var(--r-lg); padding: 18px 20px 18px; box-shadow: 0 6px 0 var(--dino-soft); transition: transform .2s, box-shadow .2s; }
+.ecard:hover { transform: translateY(-3px) rotate(-.4deg); box-shadow: 0 9px 0 var(--dino-soft); }
+.ecard.c1 { box-shadow: 0 6px 0 var(--sky-soft); } .ecard.c2 { box-shadow: 0 6px 0 var(--sun-soft); } .ecard.c3 { box-shadow: 0 6px 0 var(--peach); }
+.ecard-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 4px; }
+.datetile { display: grid; justify-items: center; width: 78px; border-radius: 16px; overflow: hidden; background: var(--paper); border: 2px solid var(--line); transform: rotate(-3deg); font-family: var(--display); line-height: 1; }
+.ecard.c1 .datetile { transform: rotate(2deg); } .ecard.c2 .datetile { transform: rotate(-1.5deg); } .ecard.c3 .datetile { transform: rotate(3deg); }
+.dt-dow { width: 100%; text-align: center; background: var(--dino); color: var(--ink); font-size: 13px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; padding: 5px 0 4px; }
+.ecard.c1 .dt-dow { background: var(--sky); color: #fff; } .ecard.c2 .dt-dow { background: var(--sun); } .ecard.c3 .dt-dow { background: #e9a487; }
+.dt-day { font-size: 34px; font-weight: 700; padding: 6px 0 0; }
+.dt-day.small { font-size: 24px; padding-top: 10px; }
+.dt-mon { font-size: 13px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); padding: 2px 0 7px; }
+.ticon { width: 58px; height: 58px; }
+.ecard h3 { font-size: 21px; font-weight: 600; line-height: 1.2; }
+.ecard h3 a, .wcard h3 a { color: var(--ink); text-decoration: none; }
+.ecard h3 a:hover, .wcard h3 a:hover { color: var(--sky-deep); text-decoration: underline; }
+.meta { display: flex; gap: 8px; align-items: flex-start; font-size: 15.5px; font-weight: 700; color: var(--ink); }
+.meta .mi { width: 16px; height: 16px; flex: none; margin-top: 4px; color: var(--dino-deep); }
+.desc { color: var(--muted); font-size: 15.5px; }
+.ecard .tags, .wcard .tags { justify-content: flex-start; margin-top: auto; padding-top: 6px; }
+.ribbon { position: absolute; top: 14px; right: -8px; background: var(--sky); color: #fff; font-family: var(--display); font-weight: 600; font-size: 13.5px; padding: 5px 14px 5px 12px; border-radius: 8px 0 0 8px; box-shadow: 0 3px 0 var(--sky-deep); }
+.ribbon::after { content: ""; position: absolute; right: 0; bottom: -8px; border-left: 8px solid var(--sky-deep); border-bottom: 8px solid transparent; }
+.ecard:has(.ribbon) .ticon { margin-top: 26px; }
+.month { margin-bottom: 26px; }
+.month-head { font-family: var(--script); font-weight: 700; font-size: 34px; color: var(--sky); margin-bottom: 10px; }
+.ecards.strip { grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: minmax(250px, calc((100% - 60px) / 4)); overflow-x: auto; scroll-snap-type: x mandatory; padding: 4px 4px 18px; margin-inline: -4px; scrollbar-width: thin; scrollbar-color: var(--dino) transparent; }
+.ecards.strip > .ecard { scroll-snap-align: start; }
+.ecards.strip > .ecard[hidden] { display: none !important; }
+.group-empty { color: var(--muted); font-style: italic; padding: 6px 4px; }
+
+/* weekly regulars */
+.wcards { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; }
+.wcard { display: flex; flex-direction: column; gap: 7px; background: var(--card); border-radius: var(--r-md); padding: 16px 18px; border: 2px solid transparent; }
+.wcard:hover { border-color: var(--sky); }
+.wcard h3 { font-size: 19px; font-weight: 600; }
+.dots { display: flex; gap: 4px; }
+.dots span { width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center; font-family: var(--display); font-size: 12.5px; font-weight: 700; background: var(--paper-2); color: var(--muted); opacity: .7; }
+.dots span.on { background: var(--dino); color: var(--ink); opacity: 1; }
+.wcard.c1 .dots span.on { background: var(--sky); color: #fff; } .wcard.c2 .dots span.on { background: var(--sun); } .wcard.c3 .dots span.on { background: #e9a487; }
+
+.jump { display: flex; flex-wrap: wrap; gap: 8px; }
+.jump a { font-family: var(--display); font-weight: 600; text-decoration: none; background: var(--card); border: 2px solid var(--line); color: var(--ink); padding: 6px 14px; border-radius: 999px; font-size: 15px; }
+.jump a:hover { border-color: var(--dino); }
+
+@media (max-width: 860px) {
+  .region-art { width: 70px; }
+  .region-head .more { margin-left: 0; }
+  .regulars { border-radius: 0; }
+}
+@media (prefers-reduced-motion: reduce) { .ecard, .ecard:hover { transition: none; transform: none; } }

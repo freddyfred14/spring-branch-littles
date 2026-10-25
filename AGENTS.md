@@ -7,7 +7,7 @@ You keep the Spring Branch Littles calendar accurate. Parents plan their weekend
 1. **Check the date.** Run `date` and work in Houston time (America/Chicago).
 2. **Clean up.** Delete events from `data/events.json` that ended more than 2 days ago.
 3. **Re-verify what's listed.** For each upcoming event in the next 3 weeks, open its `url` and confirm the date, time, place and cost. Fix anything that changed. Set `lastVerified` to today only if you actually confirmed it on that page this run.
-4. **Find new events** for the next 6 weeks using the sources below. Aim for at least 8–12 dated events in the next 3 weeks, including at least 2 on the coming weekend. Holidays, school breaks and seasonal events (Halloween, Thanksgiving week, Santa visits, tree lightings, spring festivals) are what parents search for most.
+4. **Find new events** for the next 6 weeks using the sources below. Aim for at least 8–12 Spring Branch & Memorial events in the next 3 weeks (at least 2 on the coming weekend), plus 3–6 Surrounding Houston events. Holidays, school breaks and seasonal events (Halloween, Thanksgiving week, Santa visits, tree lightings, spring festivals) are what parents search for most.
 5. **Keep weekly programs and places fresh.** Re-check any entry in `data/recurring.json` or `data/places.json` whose `lastVerified` is null or older than 30 days. Limit it to about 5 per run so every run stays short. If a weekly program has ended or moved, update or remove it.
 6. **On Wednesdays only, write the newsletter intro** (see below).
 7. **Run `npm run check`** and fix every error. Warnings are fine.
@@ -18,7 +18,7 @@ Only edit files in `data/`. Never edit code, templates or workflows.
 ## What belongs
 
 - **Audience:** families with kids from babies through elementary school (about ages 0–11).
-- **Area:** Spring Branch and Memorial, Houston. Roughly I-10 to US-290 from Loop 610 west to Hwy 6, plus everything south of I-10 to Buffalo Bayou / Westheimer: the Memorial area, Memorial City, CityCentre / Town & Country, the Memorial Villages (Hedwig, Hunters Creek, Bunker Hill, Piney Point, Spring Valley), Memorial Park and the Houston Arboretum, Briar Forest, and Terry Hershey Park / the Energy Corridor. Big citywide events (Children's Museum free days, Zoo Lights) are fine when they're truly major; start the description with "Worth the drive:".
+- **Area:** Spring Branch and Memorial, Houston. Roughly I-10 to US-290 from Loop 610 west to Hwy 6, plus everything south of I-10 to Buffalo Bayou / Westheimer: the Memorial area, Memorial City, CityCentre / Town & Country, the Memorial Villages (Hedwig, Hunters Creek, Bunker Hill, Piney Point, Spring Valley), Memorial Park and the Houston Arboretum, Briar Forest, and Terry Hershey Park / the Energy Corridor. Events elsewhere in Houston go in the separate **Surrounding Houston** section (`"area": "houston"`): pick the big, genuinely family-worthy ones (Children's Museum, Zoo, Botanic Garden, Discovery Green, Miller Outdoor Theatre, major holiday events, kids' shows).
 - **Good fits:** library storytimes and kids' programs, park and nature programs, festivals, holiday events, school-break camps, free indoor play, kids' classes with drop-in sessions, church or school events open to the public, farmers markets with kids' activities.
 - **Leave out:** anything adults-only, multi-week classes that need a long commitment (unless it's a notable registration deadline), private parties, MLM/vendor pitches, events with no public source page.
 
@@ -77,10 +77,12 @@ All dates are `YYYY-MM-DD`, times are 24-hour `HH:MM`. Ages use these keys: `bab
   "url": "https://example.com/the-organizers-page",
   "status": "confirmed",
   "featured": false,
+  "area": "local",
   "lastVerified": "2026-11-30"
 }
 ```
 - `kind` is `"event"` or `"school-break"` (district holidays; these show as notices).
+- `area` is `"local"` (Spring Branch, Memorial and the Villages; see "What belongs") or `"houston"` (everywhere else). The site shows them in separate sections.
 - Use `placeId` when the venue is in `data/places.json`; otherwise set `placeId` to `null` and put the venue name and street in `location`.
 - `cost` is a short string like `"$5 per child"` when `free` is false.
 - Set `featured: true` on the 1–2 best picks each weekend. They lead the newsletter and the Instagram carousel.

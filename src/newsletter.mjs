@@ -3,7 +3,7 @@
 import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import {
-  ROOT, AGES, addDays, weekendOf, eventsBetween, recurringBetween, fmtDateRange,
+  ROOT, AGES, areaOf, addDays, weekendOf, eventsBetween, recurringBetween, fmtDateRange,
   fmtTimeRange, fmtShort, whereText, placeById,
 } from "./lib.mjs";
 
@@ -40,13 +40,23 @@ export function buildIssue(data, date, draft = loadDraft(date)) {
   const wk = weekendOf(date);
   const sections = [];
 
-  let weekend = eventsBetween(data.events.filter((e) => e.kind === "event"), wk.start, wk.end);
+  const local = data.events.filter((e) => e.kind === "event" && areaOf(data, e) === "local");
+  const houston = data.events.filter((e) => e.kind === "event" && areaOf(data, e) === "houston");
+  let weekend = eventsBetween(local, wk.start, wk.end);
   if (draft.picks?.length) weekend = draft.picks.map((id) => weekend.find((e) => e.id === id)).filter(Boolean);
   weekend.sort((a, b) => Number(!!b.featured) - Number(!!a.featured));
   if (weekend.length) {
     sections.push({
       heading: `This weekend · ${fmtShort(wk.start)}–${fmtShort(wk.end)}`,
       items: weekend.slice(0, 6).map((e) => item(data, e, `${fmtDateRange(e.date, e.endDate)} · ${fmtTimeRange(e.startTime, e.endTime)}`)),
+    });
+  }
+
+  const drive = eventsBetween(houston, wk.start, addDays(wk.end, 14));
+  if (drive.length) {
+    sections.push({
+      heading: "Worth the drive",
+      items: drive.slice(0, 4).map((e) => item(data, e, `${fmtDateRange(e.date, e.endDate)} · ${fmtTimeRange(e.startTime, e.endTime)}`)),
     });
   }
 
@@ -70,7 +80,7 @@ export function buildIssue(data, date, draft = loadDraft(date)) {
     });
   }
 
-  const later = eventsBetween(data.events, addDays(wk.end, 1), addDays(wk.end, 35));
+  const later = eventsBetween(data.events.filter((e) => areaOf(data, e) === "local"), addDays(wk.end, 1), addDays(wk.end, 35));
   if (later.length) {
     sections.push({
       heading: "Coming up",

@@ -1,9 +1,9 @@
 // HTML templates. Every page is plain HTML with one shared stylesheet and a small script for filters.
 import {
-  AGES, PLACE_TYPES, DAYS, addDays, fmtDate, fmtDateRange, fmtTimeRange, fmtLong, fmtShort,
-  weekdayLong, agenda, eventsBetween, placeById, whereText, weekendOf,
+  AGES, AREAS, PLACE_TYPES, addDays, fmtDateRange, fmtTimeRange, fmtLong, fmtShort, fmtMonth, dateParts,
+  eventsBetween, placeById, whereText, weekendOf, areaOf,
 } from "./lib.mjs";
-import { WATERCOLOR_DEFS, playgroundScene, readerIllo, kiteIllo, bubblesIllo, toddlerIllo, AGE_ILLOS } from "./illustrations.mjs";
+import { WATERCOLOR_DEFS, readerIllo, kiteIllo, bubblesIllo, toddlerIllo, AGE_ILLOS, THEME_ICONS, themeOf } from "./illustrations.mjs";
 
 export const esc = (s) =>
   String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
@@ -94,22 +94,50 @@ const flagChips = (x) =>
   `${x.free ? '<span class="tag t-free">Free</span>' : `<span class="tag t-paid">${esc(x.cost || "Paid")}</span>`}${x.indoor ? '<span class="tag t-in">Indoors</span>' : ""}${x.status === "tentative" ? '<span class="tag t-tent">Date not final</span>' : ""}`;
 const dataAttrs = (x) => `data-ages="${x.ages.join(" ")}" data-free="${x.free ? 1 : 0}" data-indoor="${x.indoor ? 1 : 0}"`;
 
-function eventRow(data, x, { showDate = false } = {}) {
-  const where = whereText(data, x);
+const CLOCK = `<svg class="mi" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M8 4.5V8l2.5 1.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>`;
+const PIN = `<svg class="mi" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 15s5-4.6 5-8.5A5 5 0 0 0 3 6.5C3 10.4 8 15 8 15z" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="8" cy="6.5" r="1.8" fill="currentColor"/></svg>`;
+
+function whereLink(data, x) {
   const place = x.placeId && placeById(data, x.placeId);
-  const when =
-    x.kind === "recurring"
-      ? `${x.frequency ? esc(x.frequency) + " · " : ""}${fmtTimeRange(x.startTime, x.endTime)}`
-      : `${showDate ? fmtDateRange(x.date, x.endDate) + " · " : ""}${fmtTimeRange(x.startTime, x.endTime)}`;
-  return `<li class="ev" ${dataAttrs(x)}>
-    <div class="ev-time">${when}</div>
-    <div class="ev-body">
-      <h3><a href="${esc(x.url)}" rel="noopener">${esc(x.title)}</a>${x.kind === "recurring" ? ' <span class="weekly">Weekly</span>' : ""}</h3>
-      <p>${esc(x.description)}</p>
-      <p class="ev-where">${place ? `<a href="/places/#${esc(place.id)}">${esc(where)}</a>` : esc(where)}${x.registration ? ` · ${esc(x.registration)}` : ""}</p>
+  const where = whereText(data, x);
+  return place ? `<a href="/places/#${esc(place.id)}">${esc(where)}</a>` : esc(where);
+}
+
+// A dated event as a card with a tear-off-calendar date tile.
+function eventCard(data, x, i, wk) {
+  const a = dateParts(x.date);
+  const multi = x.endDate && x.endDate !== x.date;
+  const b = multi ? dateParts(x.endDate) : null;
+  const day = multi ? (a.mon === b.mon ? `${a.day}–${b.day}` : `${a.day}`) : `${a.day}`;
+  const dow = multi ? `${a.dow}–${b.dow}` : a.dow;
+  const mon = multi && a.mon !== b.mon ? `${a.mon}–${b.mon}` : a.mon;
+  const thisWeekend = (x.endDate || x.date) >= wk.start && x.date <= wk.end;
+  const theme = themeOf(x);
+  return `<article class="ecard c${i % 4}" ${dataAttrs(x)}>
+    ${thisWeekend ? '<span class="ribbon">This weekend</span>' : ""}
+    <div class="ecard-top">
+      <div class="datetile"><span class="dt-dow">${dow}</span><span class="dt-day${day.length > 3 ? " small" : ""}">${day}</span><span class="dt-mon">${mon}</span></div>
+      ${THEME_ICONS[theme]()}
     </div>
+    <h3><a href="${esc(x.url)}" rel="noopener">${esc(x.title)}</a></h3>
+    <p class="meta">${CLOCK}<span>${fmtTimeRange(x.startTime, x.endTime)}</span></p>
+    <p class="meta">${PIN}<span>${whereLink(data, x)}</span></p>
+    <p class="desc">${esc(x.description)}</p>
     <div class="tags">${ageChips(x.ages)}${flagChips(x)}</div>
-  </li>`;
+  </article>`;
+}
+
+// A weekly program, listed once, with the days it runs lit up.
+function weeklyCard(data, r, i) {
+  const week = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+  return `<article class="wcard c${i % 4}" ${dataAttrs(r)}>
+    <div class="dots" aria-label="${esc(r.days.join(", "))}">${week.map((d) => `<span class="${r.days.includes(d) ? "on" : ""}" aria-hidden="true">${d[0]}</span>`).join("")}</div>
+    <h3><a href="${esc(r.url)}" rel="noopener">${esc(r.title)}</a></h3>
+    <p class="meta">${CLOCK}<span>${r.frequency ? `${esc(r.frequency)} · ` : ""}${fmtTimeRange(r.startTime, r.endTime)}</span></p>
+    <p class="meta">${PIN}<span>${whereLink(data, r)}</span></p>
+    ${r.registration ? `<p class="desc">${esc(r.registration)}</p>` : ""}
+    <div class="tags">${ageChips(r.ages)}${flagChips(r)}</div>
+  </article>`;
 }
 
 function filterBar(id) {
@@ -129,33 +157,57 @@ function breakNotices(data, start, end) {
     .join("");
 }
 
-// Only days with something on them; a quiet day just doesn't appear.
-function dayGroups(data, byDay) {
-  const days = [...byDay.entries()].filter(([, items]) => items.length);
-  if (!days.length) return emptyWeek();
-  return days
-    .map(([d, items], i) => `<section class="day" data-day>
-      <h3 class="day-head c${i % 4}"><span>${weekdayLong(d)}</span> <em>${fmtShort(d)}</em></h3>
-      <ul class="evs">${items.map((x) => eventRow(data, x)).join("")}</ul>
-    </section>`)
-    .join("");
-}
-
-function emptyWeek() {
-  return `<div class="empty-state">${readerIllo()}<div><h3>A quiet week so far</h3><p>New events are added every Monday and Wednesday. Until then, <a href="/places/">pick a favorite park or library</a>.</p></div></div>`;
-}
-
-// Shown by site.js when the filters hide everything.
+// Places page: shown by site.js when the filters hide everything.
 const emptyFilter = `<div class="empty-state empty-filter" hidden>${bubblesIllo()}<div><h3>Nothing matches those filters</h3><p>Try another age group, or turn off Free or Indoors.</p></div></div>`;
+const groupEmpty = `<p class="group-empty" hidden>Nothing here matches those filters. Try another age, or turn off Free or Indoors.</p>`;
+const REGION_ART = { local: () => bubblesIllo(), houston: () => kiteIllo() };
+const REGION_BLURB = {
+  local: "Close-to-home plans in Spring Branch, Memorial and the Villages.",
+  houston: "Bigger outings around Houston that are worth the drive.",
+};
+
+function regionHead(area, extra = "") {
+  return `<div class="region-head">
+    <div class="region-art">${REGION_ART[area]()}</div>
+    <div><p class="label">${esc(AREAS[area].label)}</p><h2>${esc(AREAS[area].title)}</h2><p class="quiet">${esc(REGION_BLURB[area])}</p></div>
+    ${extra}
+  </div>`;
+}
+
+function upcomingByArea(data, now, days) {
+  const all = eventsBetween(data.events.filter((e) => e.kind === "event"), now, addDays(now, days));
+  return { local: all.filter((e) => areaOf(data, e) === "local"), houston: all.filter((e) => areaOf(data, e) === "houston") };
+}
+
+function weeklySection(data) {
+  if (!data.recurring.length) return "";
+  const order = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+  const list = [...data.recurring].sort((a, b) => order.indexOf(a.days[0]) - order.indexOf(b.days[0]) || (a.startTime || "").localeCompare(b.startTime || ""));
+  return `<section class="band region regulars" id="every-week" data-group><div class="wrap">
+    <div class="region-head">
+      <div class="region-art">${readerIllo()}</div>
+      <div><p class="label">The regulars</p><h2>Every week</h2><p class="quiet">Storytimes and open play you can count on. Times change now and then, so check the link before you head out.</p></div>
+    </div>
+    <div class="wcards">${list.map((r, i) => weeklyCard(data, r, i)).join("")}</div>${groupEmpty}
+  </div></section>`;
+}
 
 // ---------- pages ----------
 
 export function homePage(data, now) {
   const { config } = data;
-  const end = addDays(now, 6);
-  const byDay = agenda(data, now, end);
-  const later = eventsBetween(data.events.filter((e) => e.kind === "event"), addDays(end, 1), addDays(now, 45));
   const wk = weekendOf(now);
+  const soon = upcomingByArea(data, now, 21);
+  const later = upcomingByArea(data, now, 120);
+  const pick = (area) => (soon[area].length >= 2 ? soon[area] : later[area].slice(0, 3)).slice(0, 6);
+  const region = (area) => {
+    const list = pick(area);
+    const more = later[area].length > list.length ? `<a class="more" href="/events/#${area}">All ${later[area].length} →</a>` : "";
+    return `<section class="band region" id="${area}" data-group><div class="wrap">
+      ${regionHead(area, more)}
+      ${list.length ? `<div class="ecards strip">${list.map((x, i) => eventCard(data, x, i, wk)).join("")}</div>${groupEmpty}` : `<p class="quiet">New events are added every Monday and Wednesday.</p>`}
+    </div></section>`;
+  };
   const week = Math.floor(Date.parse(`${now}T12:00:00Z`) / (7 * 864e5));
   const spot = [0, 1, 2].map((i) => data.places[(week * 3 + i) % data.places.length]).filter((p, i, a) => a.indexOf(p) === i);
   const body = `
@@ -172,22 +224,18 @@ export function homePage(data, now) {
     </div>
     </div>
   </div></section>
-  <div class="scene-band">${playgroundScene()}</div>
+  ${GRASS}
 
-  <section class="band"><div class="wrap">
-    <div class="sec-head">
-      <div><p class="label">${fmtShort(now)} – ${fmtShort(end)}</p><h2>This week ${SPARK}</h2></div>
-      <a class="more" href="/events/">Full calendar →</a>
-    </div>
-    ${breakNotices(data, now, addDays(now, 13))}
-    ${filterBar("week")}
-    <div id="week" class="filterable">${dayGroups(data, byDay)}${emptyFilter}</div>
+  <section class="band whatson"><div class="wrap">
+    <div class="sec-head"><div><p class="label">The next few weeks</p><h2>What's on ${SPARK}</h2></div><a class="more" href="/events/">Full calendar →</a></div>
+    ${breakNotices(data, now, addDays(now, 21))}
+    ${filterBar("listings")}
   </div></section>
-
-  ${later.length ? `<section class="band"><div class="wrap">
-    <div class="sec-head"><div><p class="label">Plan ahead</p><h2>Coming up ${SPARK}</h2></div></div>
-    <ul class="evs card-list">${later.map((x) => eventRow(data, x, { showDate: true })).join("")}</ul>
-  </div></section>` : ""}
+  <div id="listings" class="filterable">
+    ${region("local")}
+    ${region("houston")}
+    ${weeklySection(data)}
+  </div>
 
   <section class="band"><div class="wrap">
     <div class="sec-head"><div><p class="label">Worth a visit</p><h2>Places to try this weekend ${SPARK}</h2></div><a class="more" href="/places/">All places →</a></div>
@@ -213,33 +261,39 @@ export function homePage(data, now) {
 
 export function eventsPage(data, now) {
   const { config } = data;
-  const dated = eventsBetween(data.events.filter((e) => e.kind === "event"), now, addDays(now, 120));
-  const byWeekday = DAYS.slice(1).concat("Sun").map((d) => [d, data.recurring.filter((r) => r.days.includes(d))]);
+  const wk = weekendOf(now);
+  const later = upcomingByArea(data, now, 120);
+  const region = (area) => {
+    const months = new Map();
+    for (const e of later[area]) {
+      const m = fmtMonth(e.date < now ? now : e.date);
+      if (!months.has(m)) months.set(m, []);
+      months.get(m).push(e);
+    }
+    return `<section class="band region" id="${area}" data-group><div class="wrap">
+      ${regionHead(area)}
+      ${months.size
+        ? [...months.entries()].map(([m, list]) => `<div class="month" data-day><h3 class="month-head">${esc(m)}</h3><div class="ecards">${list.map((x, i) => eventCard(data, x, i, wk)).join("")}</div></div>`).join("") + groupEmpty
+        : `<p class="quiet">New events are added every Monday and Wednesday.</p>`}
+    </div></section>`;
+  };
   const body = `
   <section class="page-head"><div class="wrap head-art"><div class="head-copy">
     <p class="label">Calendar</p>
     <h1>Kids' events in Spring Branch & Memorial ${SPARK}</h1>
-    <p class="lede">Dated events for the next few months, plus the storytimes and open-play times that happen every week.</p>
+    <p class="lede">Everything coming up, close to home and around Houston, plus the storytimes and open play that happen every week.</p>
+    <p class="jump"><a href="#local">Spring Branch & Memorial</a><a href="#houston">Surrounding Houston</a><a href="#every-week">Every week</a></p>
   </div>${kiteIllo()}</div></section>
-  <section class="band"><div class="wrap">
-    ${filterBar("calendar")}
-    <div id="calendar" class="filterable">${emptyFilter}
-      ${breakNotices(data, now, addDays(now, 120))}
-      <section class="day" data-day>
-        <h2 class="day-head c1"><span>Upcoming events</span></h2>
-        ${dated.length ? `<ul class="evs">${dated.map((x) => eventRow(data, x, { showDate: true })).join("")}</ul>` : '<p class="quiet">New events are added every week.</p>'}
-      </section>
-      <h2 class="sub">Every week</h2>
-      ${byWeekday
-        .filter(([, list]) => list.length)
-        .map(([d, list], i) => `<section class="day" data-day>
-          <h3 class="day-head c${i % 4}"><span>${{ Mon: "Mondays", Tue: "Tuesdays", Wed: "Wednesdays", Thu: "Thursdays", Fri: "Fridays", Sat: "Saturdays", Sun: "Sundays" }[d]}</span></h3>
-          <ul class="evs">${list.map((r) => eventRow(data, { ...r, kind: "recurring" })).join("")}</ul>
-        </section>`)
-        .join("")}
-    </div>
-  </div></section>`;
-  return layout(config, { title: "Calendar", path: "/events/", body, now, description: "Upcoming kids' events, storytimes and open play in Spring Branch and Memorial, Houston, filterable by age." });
+  <section class="band whatson"><div class="wrap">
+    ${breakNotices(data, now, addDays(now, 120))}
+    ${filterBar("listings")}
+  </div></section>
+  <div id="listings" class="filterable">
+    ${region("local")}
+    ${region("houston")}
+    ${weeklySection(data)}
+  </div>`;
+  return layout(config, { title: "Calendar", path: "/events/", body, now, description: "Upcoming kids' events in Spring Branch, Memorial and around Houston, plus weekly storytimes and open play, filterable by age." });
 }
 
 function placeCard(p) {

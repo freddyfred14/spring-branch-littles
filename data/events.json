@@ -19,7 +19,8 @@
     "url": "https://www.springbranchisd.com/events/",
     "status": "confirmed",
     "featured": false,
-    "lastVerified": "2026-10-24"
+    "lastVerified": "2026-10-24",
+    "area": "local"
   },
   {
     "id": "2026-citycentre-holiday-in-the-plaza",
@@ -43,7 +44,8 @@
     "url": "https://houston.kidsoutandabout.com/content/101-ideas-holiday-family-fun-houston",
     "status": "tentative",
     "featured": true,
-    "lastVerified": "2026-10-24"
+    "lastVerified": "2026-10-24",
+    "area": "local"
   },
   {
     "id": "2026-sbisd-winter-break",
@@ -65,7 +67,8 @@
     "url": "https://www.springbranchisd.com/events/",
     "status": "confirmed",
     "featured": false,
-    "lastVerified": "2026-10-24"
+    "lastVerified": "2026-10-24",
+    "area": "local"
   },
   {
     "kind": "event",
@@ -89,7 +92,8 @@
       "elementary"
     ],
     "description": "A costume-friendly Halloween party at the library for ages 4–8. Confirm with the branch before you go.",
-    "url": "https://juliesheets.com/blog/memorial-celebrates-halloween-before-halloween-this-year-the-october-calendar-weekend-by-weekend"
+    "url": "https://juliesheets.com/blog/memorial-celebrates-halloween-before-halloween-this-year-the-october-calendar-weekend-by-weekend",
+    "area": "local"
   },
   {
     "kind": "event",
@@ -115,7 +119,8 @@
       "elementary"
     ],
     "description": "Costumes on! Kids trick-or-treat store to store, then everyone gathers on the Plaza for spooky tunes and a Halloween show.",
-    "url": "https://juliesheets.com/blog/memorial-celebrates-halloween-before-halloween-this-year-the-october-calendar-weekend-by-weekend"
+    "url": "https://juliesheets.com/blog/memorial-celebrates-halloween-before-halloween-this-year-the-october-calendar-weekend-by-weekend",
+    "area": "local"
   },
   {
     "kind": "event",
@@ -140,7 +145,8 @@
       "elementary"
     ],
     "description": "The Memorial Villages Police Department's trunk-or-treat, with a haunted house for braver kids.",
-    "url": "https://juliesheets.com/blog/memorial-celebrates-halloween-before-halloween-this-year-the-october-calendar-weekend-by-weekend"
+    "url": "https://juliesheets.com/blog/memorial-celebrates-halloween-before-halloween-this-year-the-october-calendar-weekend-by-weekend",
+    "area": "local"
   },
   {
     "kind": "event",
@@ -165,7 +171,8 @@
       "elementary"
     ],
     "description": "A free, themed nature scavenger hunt for the whole family on the Arboretum trails.",
-    "url": "https://houstonarboretum.org/events/"
+    "url": "https://houstonarboretum.org/events/",
+    "area": "local"
   },
   {
     "kind": "event",
@@ -190,7 +197,138 @@
       "preschool",
       "elementary"
     ],
-    "description": "Worth the drive: free admission all weekend at one of the best kids' museums in the country. Go early, it gets busy.",
+    "description": "Free admission all weekend at one of the best kids' museums in the country. Go early, it gets busy.",
+    "url": "https://www.cmhouston.org/events",
+    "area": "houston"
+  },
+  {
+    "kind": "event",
+    "endDate": null,
+    "startTime": null,
+    "endTime": null,
+    "placeId": null,
+    "location": "Children's Museum Houston, 1500 Binz St",
+    "free": false,
+    "cost": "Museum admission",
+    "indoor": true,
+    "registration": null,
+    "status": "confirmed",
+    "featured": false,
+    "area": "houston",
+    "lastVerified": "2026-10-24",
+    "id": "2026-11-01-cmh-dia-de-los-muertos",
+    "title": "Día de los Muertos celebration",
+    "date": "2026-11-01",
+    "ages": [
+      "toddler",
+      "preschool",
+      "elementary"
+    ],
+    "description": "Crafts, music and stories celebrating Día de los Muertos at the Children's Museum.",
     "url": "https://www.cmhouston.org/events"
+  },
+  {
+    "kind": "event",
+    "endDate": null,
+    "startTime": null,
+    "endTime": null,
+    "placeId": null,
+    "location": "Children's Museum Houston, 1500 Binz St",
+    "free": false,
+    "cost": "Museum admission",
+    "indoor": true,
+    "registration": null,
+    "status": "confirmed",
+    "featured": false,
+    "area": "houston",
+    "lastVerified": "2026-10-24",
+    "id": "2026-11-05-cmh-diwali",
+    "title": "Diwali celebration",
+    "date": "2026-11-05",
+    "ages": [
+      "toddler",
+      "preschool",
+      "elementary"
+    ],
+    "description": "Celebrate the festival of lights with hands-on activities at the Children's Museum.",
+    "url": "https://www.cmhouston.org/events"
+  },
+  {
+    "kind": "event",
+    "endDate": null,
+    "startTime": "09:00",
+    "endTime": "16:00",
+    "placeId": null,
+    "location": "Houston Botanic Garden, 1 Botanic Ln",
+    "free": false,
+    "cost": "See listing for cost",
+    "indoor": false,
+    "registration": null,
+    "status": "confirmed",
+    "featured": false,
+    "area": "houston",
+    "lastVerified": "2026-10-24",
+    "id": "2026-11-08-hbg-standing-tall",
+    "title": "Standing Tall tree festival",
+    "date": "2026-11-08",
+    "ages": [
+      "toddler",
+      "preschool",
+      "elementary"
+    ],
+    "description": "A kids' zone with tree-themed crafts and activities, plus guided walks to meet the garden's native trees.",
+    "url": "https://hbg.org/event/standing-tall/"
+  },
+  {
+    "kind": "event",
+    "endDate": null,
+    "startTime": "18:00",
+    "endTime": null,
+    "placeId": null,
+    "location": "Bayou Music Center, 520 Texas Ave",
+    "free": false,
+    "cost": "Tickets required",
+    "indoor": true,
+    "registration": null,
+    "status": "confirmed",
+    "featured": false,
+    "area": "houston",
+    "lastVerified": "2026-10-24",
+    "id": "2026-11-13-elmos-got-the-moves",
+    "title": "Sesame Street Live: Elmo's Got the Moves",
+    "date": "2026-11-13",
+    "ages": [
+      "toddler",
+      "preschool"
+    ],
+    "description": "Elmo and friends sing and dance on stage. A great first show for toddlers and preschoolers.",
+    "url": "https://www.ticketmaster.com/discover/houston?categoryId=family"
+  },
+  {
+    "kind": "event",
+    "endDate": null,
+    "startTime": "17:00",
+    "endTime": "20:00",
+    "placeId": null,
+    "location": "Houston City Hall, 901 Bagby St",
+    "free": true,
+    "cost": null,
+    "indoor": false,
+    "registration": null,
+    "status": "tentative",
+    "featured": false,
+    "area": "houston",
+    "lastVerified": "2026-10-24",
+    "id": "2026-12-05-deck-the-hall",
+    "title": "Mayor's Deck the Hall tree lighting",
+    "date": "2026-12-05",
+    "ages": [
+      "baby",
+      "toddler",
+      "preschool",
+      "elementary"
+    ],
+    "description": "Downtown's big tree lighting with a concert. Past years had a Winter Wonderland kids' zone.",
+    "url": "https://www.houstontx.gov/specialevents/event-planned-routes.pdf"
   }
 ]

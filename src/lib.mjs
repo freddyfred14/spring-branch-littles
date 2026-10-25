@@ -18,6 +18,11 @@ export const PLACE_TYPES = {
   nature: "Nature",
   attraction: "Out & about",
 };
+// Where an event is. "local" is our home turf; "houston" is the rest of the city.
+export const AREAS = {
+  local: { title: "Spring Branch & Memorial", label: "Close to home" },
+  houston: { title: "Surrounding Houston", label: "Worth the drive" },
+};
 export const DAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 const DAY_NAMES = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
@@ -62,6 +67,15 @@ export const fmtDate = (d) => {
 export const fmtShort = (d) => {
   const x = toUtc(d);
   return `${MONTHS[x.getUTCMonth()]} ${x.getUTCDate()}`;
+};
+const MONTH_NAMES = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+export const fmtMonth = (d) => {
+  const x = toUtc(d);
+  return `${MONTH_NAMES[x.getUTCMonth()]} ${x.getUTCFullYear()}`;
+};
+export const dateParts = (d) => {
+  const x = toUtc(d);
+  return { dow: DAYS[x.getUTCDay()], day: x.getUTCDate(), mon: MONTHS[x.getUTCMonth()] };
 };
 export const fmtLong = (d) => {
   const x = toUtc(d);
@@ -127,6 +141,9 @@ export function agenda(data, start, end) {
 }
 
 export const placeById = (data, id) => data.places.find((p) => p.id === id);
+export function areaOf(data, item) {
+  return item.area || (item.placeId && placeById(data, item.placeId)?.area) || "local";
+}
 export function whereText(data, item) {
   const p = item.placeId && placeById(data, item.placeId);
   return p ? p.name : item.location || "";
@@ -168,6 +185,7 @@ export function validate(data, now = today()) {
     if (!p.name) err(w, "name is required");
     if (!PLACE_TYPES[p.type]) err(w, `type must be one of ${Object.keys(PLACE_TYPES).join(", ")}`);
     if (!p.address) err(w, "address is required");
+    if (p.area != null && !AREAS[p.area]) err(w, `area must be one of ${Object.keys(AREAS).join(", ")}`);
   });
   const placeIds = new Set(data.places.map((p) => p.id));
 
@@ -197,6 +215,7 @@ export function validate(data, now = today()) {
     if (!e.placeId && !e.location) err(w, "needs a placeId or a location");
     if (!e.url) err(w, "url (the source a parent can check) is required");
     if (!["confirmed", "tentative"].includes(e.status)) err(w, 'status must be "confirmed" or "tentative"');
+    if (e.area != null && !AREAS[e.area]) err(w, `area must be one of ${Object.keys(AREAS).join(", ")}`);
     if (e.lastVerified == null) err(w, "dated events must have lastVerified");
     if ((e.endDate || e.date) < addDays(now, -14)) warn(w, "ended more than two weeks ago; remove it");
   });

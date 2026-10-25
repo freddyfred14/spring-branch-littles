@@ -193,3 +193,26 @@ export function playgroundScene() {
 }
 
 export const AGE_ILLOS = { baby: babyIllo, toddler: toddlerIllo, preschool: bubblesIllo, elementary: kiteIllo };
+
+// ---------- little theme icons for event cards (64 × 64) ----------
+
+const icon = (label, inner) => `<svg class="ticon" viewBox="0 0 64 64" role="img" aria-label="${label}"><g filter="url(#wc)">${inner}</g></svg>`;
+export const THEME_ICONS = {
+  halloween: () => icon("Halloween", `<ellipse cx="32" cy="38" rx="22" ry="18" fill="${P.sun}"/><path d="M22 24 Q32 18 42 24" stroke="${P.coral}" stroke-width="3" fill="none" opacity=".6"/><path d="M32 22 q-1 -8 5 -12" stroke="${P.sageDeep}" stroke-width="4" stroke-linecap="round" fill="none"/><path d="M24 36 l4 -4 l4 4 M36 36 l4 -4 l4 4 M25 45 q7 5 14 0" stroke="${P.ink}" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>`),
+  holiday: () => icon("Holiday", `<path d="M32 8 L50 50 H14Z" fill="${P.sage}"/><path d="M32 8 L44 36 H20Z" fill="${P.sageDeep}" opacity=".35"/><rect x="28" y="50" width="8" height="8" rx="2" fill="${P.bark}"/><circle cx="26" cy="38" r="3" fill="${P.coral}"/><circle cx="38" cy="30" r="3" fill="${P.sun}"/><circle cx="36" cy="44" r="3" fill="${P.sky}"/><path d="M32 3 l2 4 4 1 -3 3 1 4 -4 -2 -4 2 1 -4 -3 -3 4 -1z" fill="${P.sun}"/>`),
+  story: () => icon("Storytime", `<path d="M32 18 Q20 12 8 16 L8 50 Q20 46 32 52Z" fill="${P.cream}" stroke="${P.sky}" stroke-width="3" stroke-linejoin="round"/><path d="M32 18 Q44 12 56 16 L56 50 Q44 46 32 52Z" fill="${P.cream}" stroke="${P.sky}" stroke-width="3" stroke-linejoin="round"/><circle cx="20" cy="32" r="5" fill="${P.coral}" opacity=".8"/><path d="M38 28 h12 M38 35 h10 M38 42 h11" stroke="${P.sageDeep}" stroke-width="2.4" stroke-linecap="round"/>`),
+  nature: () => icon("Nature", `<path d="M12 52 Q10 20 46 10 Q56 44 22 50Z" fill="${P.sage}"/><path d="M14 52 Q26 34 42 18" stroke="${P.sageDeep}" stroke-width="3" fill="none" stroke-linecap="round"/><circle cx="48" cy="48" r="6" fill="${P.sun}" opacity=".8"/>`),
+  museum: () => icon("Museum", `<path d="M8 24 L32 10 L56 24Z" fill="${P.coral}"/><rect x="12" y="26" width="40" height="5" rx="2" fill="${P.sky}"/><path d="M17 33 v15 M27 33 v15 M37 33 v15 M47 33 v15" stroke="${P.sky}" stroke-width="5" stroke-linecap="round"/><rect x="10" y="50" width="44" height="5" rx="2" fill="${P.skyDeep}"/>`),
+  show: () => icon("Show", `<path d="M26 44 V16 L48 10 V38" stroke="${P.skyDeep}" stroke-width="4" fill="none" stroke-linejoin="round"/><ellipse cx="20" cy="45" rx="8" ry="6" fill="${P.coral}"/><ellipse cx="42" cy="39" rx="8" ry="6" fill="${P.coral}"/>`),
+  party: () => icon("Fun", `<ellipse cx="30" cy="24" rx="15" ry="17" fill="${P.coral}"/><path d="M27 41 l3 -3 l3 3z" fill="${P.coral}"/><path d="M30 41 q-6 8 2 16" stroke="${P.ink}" stroke-width="1.8" fill="none" opacity=".6"/><path d="M23 16 q3 -6 9 -6" stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round" opacity=".8"/><circle cx="50" cy="16" r="3" fill="${P.sun}"/><circle cx="48" cy="34" r="2.5" fill="${P.sky}"/><circle cx="12" cy="40" r="2.5" fill="${P.sage}"/>`),
+};
+export function themeOf(e) {
+  const t = `${e.title} ${e.description}`.toLowerCase();
+  if (/hallowe|trick-or|trunk-or|pumpkin|costume|boo\b/.test(t)) return "halloween";
+  if (/santa|christmas|holiday|tree lighting|hanukkah|menorah|deck the/.test(t)) return "holiday";
+  if (/story|librar|book|read/.test(t)) return "story";
+  if (/nature|hike|arboretum|garden|scavenger|bird|trail|park/.test(t)) return "nature";
+  if (/museum|science|exhibit/.test(t)) return "museum";
+  if (/concert|music|show|theat|perform|elmo|sing/.test(t)) return "show";
+  return "party";
+}
