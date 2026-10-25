@@ -1,0 +1,67 @@
+# Twice a week, a Claude agent researches upcoming kids' events in Spring Branch and updates data/.
+# Guardrails: the agent can only search, read and edit files; only changes under data/ are committed;
+# nothing is committed unless `npm run check` passes. A failed run emails the repo owner (GitHub default).
+name: Research agent
+
+on:
+  schedule:
+    - cron: "13 12 * * 1" # Monday ~7 am Houston: refresh the calendar
+    - cron: "13 12 * * 3" # Wednesday ~7 am Houston: final check + write Thursday's newsletter intro
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: content
+  cancel-in-progress: false
+
+jobs:
+  research:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Run research agent
+        uses: anthropics/claude-code-action@v1
+        with:
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          prompt: |
+            You are the research editor for Spring Branch Littles. Today is ${{ github.event.schedule == '13 12 * * 3' && 'Wednesday (newsletter day is tomorrow)' || 'a calendar refresh day' }}.
+            Read AGENTS.md and follow it exactly. Only edit files under data/. When you are done, run `npm run check` and fix any errors it reports.
+          claude_args: >-
+            --model claude-sonnet-5-5
+            --max-turns 120
+            --allowedTools "WebSearch,WebFetch,Read,Write,Edit,Glob,Grep,Bash(npm run check),Bash(node scripts/newsletter.mjs*),Bash(date*)"
+
+      - name: Validate
+        run: npm run check
+
+      - name: Commit data changes
+        id: commit
+        run: |
+          git config user.name "Spring Branch Littles bot"
+          git config user.email "bot@users.noreply.github.com"
+          git add data/
+          if git diff --cached --quiet; then
+            echo "No data changes."
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            git commit -m "Weekly listings update $(date -u +%F)"
+            git push
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+    outputs:
+      changed: ${{ steps.commit.outputs.changed }}
+
+  deploy:
+    needs: research
+    if: needs.research.outputs.changed == 'true'
+    uses: ./.github/workflows/deploy.yml

@@ -1,0 +1,71 @@
+# Thursday morning: make the Instagram carousel, send the newsletter, publish both, then post to Instagram.
+name: Thursday newsletter + Instagram
+
+on:
+  schedule:
+    - cron: "47 11 * * 4" # Thursday ~6:47 am Houston (5:47 am in winter)
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: content
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+
+      - name: Make Instagram carousel
+        continue-on-error: true
+        run: npm run social
+
+      - name: Send newsletter
+        env:
+          BUTTONDOWN_API_KEY: ${{ secrets.BUTTONDOWN_API_KEY }}
+          NEWSLETTER_STATUS: ${{ vars.NEWSLETTER_STATUS || 'about_to_send' }}
+        run: npm run newsletter:send
+
+      - name: Commit issue archive and slides
+        run: |
+          git config user.name "Spring Branch Littles bot"
+          git config user.email "bot@users.noreply.github.com"
+          git add data/issues social
+          git diff --cached --quiet || { git commit -m "Newsletter and carousel $(date -u +%F)"; git push; }
+
+  deploy:
+    needs: publish
+    uses: ./.github/workflows/deploy.yml
+
+  instagram:
+    needs: deploy
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.repository.default_branch }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Post carousel
+        env:
+          IG_USER_ID: ${{ secrets.IG_USER_ID }}
+          IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
+        run: npm run instagram:post
+      - name: Record the post
+        run: |
+          git config user.name "Spring Branch Littles bot"
+          git config user.email "bot@users.noreply.github.com"
+          git add social
+          git diff --cached --quiet || { git commit -m "Record Instagram post"; git push; }

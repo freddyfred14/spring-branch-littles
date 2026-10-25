@@ -1,0 +1,21 @@
+{
+  "name": "spring-branch-littles",
+  "private": true,
+  "type": "module",
+  "description": "Website, newsletter and Instagram content for Spring Branch Littles.",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "check": "node scripts/build.mjs --check",
+    "build": "node scripts/build.mjs",
+    "serve": "node scripts/serve.mjs",
+    "newsletter:preview": "node scripts/newsletter.mjs",
+    "newsletter:send": "node scripts/newsletter.mjs --send",
+    "social": "node scripts/social.mjs",
+    "instagram:post": "node scripts/instagram.mjs"
+  },
+  "devDependencies": {
+    "playwright": "1.63.0"
+  }
+}
