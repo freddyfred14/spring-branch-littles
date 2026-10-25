@@ -2,6 +2,7 @@
 // email Markdown (sent through Buttondown) and to an archive page on the site.
 import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
+import { eventPath } from "./calendar.mjs";
 import {
   ROOT, AGES, areaOf, currentNews, featuredStory, activeDeals, addDays, weekendOf, eventsBetween, recurringBetween, fmtDateRange,
   fmtTimeRange, fmtShort, whereText, placeById,
@@ -11,6 +12,7 @@ const ageText = (ages) => ages.map((a) => AGES[a].label).join(", ");
 const costText = (x) => x.cost || (x.free ? "Free" : "Paid");
 
 function item(data, x, when) {
+  const ours = x.kind === "event" || x.kind === "recurring" || x.days;
   return {
     title: x.title,
     when,
@@ -18,7 +20,7 @@ function item(data, x, when) {
     ages: ageText(x.ages),
     cost: costText(x),
     description: x.description,
-    url: x.url,
+    url: ours ? `${data.config.url}${eventPath(x)}` : x.url,
     tentative: x.status === "tentative",
   };
 }

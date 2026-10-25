@@ -3,7 +3,11 @@ import {
   AGES, AREAS, PLACE_TYPES, addDays, fmtDateRange, fmtTimeRange, fmtLong, fmtShort, fmtMonth, dateParts,
   eventsBetween, recurringBetween, placeById, whereText, weekendOf, areaOf, NEWS_CATEGORIES, currentNews, featuredStory, PERKS, activeDeals, weekday,
 } from "./lib.mjs";
-import { WATERCOLOR_DEFS, readerIllo, kiteIllo, bubblesIllo, toddlerIllo, AGE_ILLOS, THEME_ICONS, themeOf, NEWS_ICONS, iceCreamIllo } from "./illustrations.mjs";
+import { existsSync } from "node:fs";
+import { join } from "node:path";
+import { ROOT } from "./lib.mjs";
+import { eventPath, addressOf, mapsUrl, nextOccurrence, googleCalendarUrl } from "./calendar.mjs";
+import { WATERCOLOR_DEFS, babyIllo, readerIllo, kiteIllo, bubblesIllo, toddlerIllo, AGE_ILLOS, THEME_ICONS, themeOf, NEWS_ICONS, iceCreamIllo } from "./illustrations.mjs";
 
 export const esc = (s) =>
   String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
@@ -13,6 +17,9 @@ const LOGO = `<img class="logo" src="/img/logo-sm.webp" alt="Spring Branch Littl
 export const SPARK_PINK = `<svg class="spark pink" viewBox="0 0 32 32" aria-hidden="true"><path d="M8 3l3 8M20 6l-5 8M29 15l-9 3" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" fill="none"/></svg>`;
 export const SPARK = `<svg class="spark" viewBox="0 0 32 32" aria-hidden="true"><path d="M8 3l3 8M20 6l-5 8M29 15l-9 3" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" fill="none"/></svg>`;
 const GRASS = `<div class="grass" aria-hidden="true"></div>`;
+
+const ICON_SEARCH = `<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="M15.5 15.5 21 21" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>`;
+const ICON_MENU = `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>`;
 
 const NAV = [
   ["/", "This week"],
@@ -63,7 +70,12 @@ ${WATERCOLOR_DEFS}
 <a class="skip" href="#main">Skip to content</a>
 <header class="site-header"><div class="wrap">
   <a class="brand" href="/">${LOGO}</a>
-  <nav aria-label="Main"><ul>${NAV.map(([href, label]) => `<li><a href="${href}"${href === path ? ' aria-current="page"' : ""}>${label}</a></li>`).join("")}</ul></nav>
+  <nav id="site-nav" aria-label="Main"><ul>${NAV.map(([href, label]) => `<li><a href="${href}"${href === path ? ' aria-current="page"' : ""}>${label}</a></li>`).join("")}</ul></nav>
+  <div class="header-actions">
+    <a class="icon-btn" href="/search/" aria-label="Search">${ICON_SEARCH}</a>
+    <a class="btn btn-pink nav-cta" href="/join/">Subscribe</a>
+    <button class="icon-btn menu-btn" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Menu">${ICON_MENU}</button>
+  </div>
 </div></header>
 <main id="main">
 ${body}
@@ -108,8 +120,12 @@ const ageChips = (ages) => `<span class="tag t-age">${esc(ageText(ages))}</span>
 const host = (u) => { try { return new URL(u).hostname.replace(/^www\./, ""); } catch { return "the organizer's site"; } };
 const moreInfo = (url) => `<a class="moreinfo" href="${esc(url)}" target="_blank" rel="noopener" title="Opens ${esc(host(url))}">More info <span aria-hidden="true">↗</span><span class="sr"> (opens ${esc(host(url))})</span></a>`;
 // A photo across the top of a card, with its credit.
-const photo = (x, cls = "cphoto") =>
-  x.image ? `<figure class="${cls}"><img src="${esc(x.image)}" alt="${esc(x.imageAlt)}" loading="lazy"><figcaption>${esc(x.imageCredit)}</figcaption></figure>` : "";
+function photo(x, cls = "cphoto") {
+  if (!x.image) return "";
+  const small = x.image.replace(/(\.\w+)$/, "-800$1");
+  const srcset = existsSync(join(ROOT, "public", small)) ? ` srcset="${esc(small)} 800w, ${esc(x.image)} 1400w" sizes="(max-width: 860px) 100vw, 640px"` : "";
+  return `<figure class="${cls}"><img src="${esc(x.image)}"${srcset} alt="${esc(x.imageAlt)}" loading="lazy"><figcaption>${esc(x.imageCredit)}</figcaption></figure>`;
+}
 const flagChips = (x) =>
   `${x.free ? '<span class="tag t-free">Free</span>' : `<span class="tag t-paid">${esc(x.cost || "Paid")}</span>`}${x.indoor ? '<span class="tag t-in">Indoors</span>' : ""}${x.status === "tentative" ? '<span class="tag t-tent" title="The organizer hasn&#39;t announced a final date yet, or sources disagree. We&#39;ll update it when it&#39;s set.">Date may change</span>' : ""}`;
 const dataAttrs = (x) => `data-ages="${x.ages.join(" ")}" data-free="${x.free ? 1 : 0}" data-indoor="${x.indoor ? 1 : 0}"`;
@@ -124,25 +140,29 @@ function whereLink(data, x) {
 }
 
 // A dated event as a card with a tear-off-calendar date tile.
-function eventCard(data, x, i, wk) {
+// The tear-off calendar tile: weekday, big date, month. Ongoing events show "On now · until 31 Oct".
+function dateTile(x, wk) {
   const a = dateParts(x.date);
   const multi = x.endDate && x.endDate !== x.date;
   const b = multi ? dateParts(x.endDate) : null;
-  // Already running (e.g. a month-long festival): show "On now · until 31 Oct".
   const ongoing = multi && wk.now && x.date < wk.now;
   const day = ongoing ? `${b.day}` : multi ? (a.mon === b.mon ? `${a.day}–${b.day}` : `${a.day}`) : `${a.day}`;
   const dow = ongoing ? "On now" : multi ? `${a.dow}–${b.dow}` : a.dow;
   const mon = ongoing ? `until ${b.mon}` : multi && a.mon !== b.mon ? `${a.mon}–${b.mon}` : a.mon;
+  return `<div class="datetile"><span class="dt-dow">${dow}</span><span class="dt-day${day.length > 3 ? " small" : ""}">${day}</span><span class="dt-mon">${mon}</span></div>`;
+}
+
+function eventCard(data, x, i, wk) {
   const thisWeekend = (x.endDate || x.date) >= wk.start && x.date <= wk.end;
   const theme = themeOf(x);
   return `<article class="ecard c${i % 4}${x.image ? " has-photo" : ""}" ${dataAttrs(x)}>
     ${thisWeekend ? '<span class="ribbon">This weekend</span>' : ""}
     ${photo(x)}
     <div class="ecard-top">
-      <div class="datetile"><span class="dt-dow">${dow}</span><span class="dt-day${day.length > 3 ? " small" : ""}">${day}</span><span class="dt-mon">${mon}</span></div>
+      ${dateTile(x, wk)}
       ${THEME_ICONS[theme]()}
     </div>
-    <h3><a href="${esc(x.url)}" rel="noopener">${esc(x.title)}</a></h3>
+    <h3><a class="card-link" href="${eventPath(x)}">${esc(x.title)}</a></h3>
     ${x.kind === "recurring" ? `<span class="weekly-pill">${x.days.length >= 5 ? `${esc(x.days[0])}–${esc(x.days[x.days.length - 1])} every week` : `Every ${esc(x.days.map((d) => WEEK_LONG[d].slice(0, 3)).join(" & "))}`}</span>` : ""}
     <p class="meta">${CLOCK}<span>${fmtTimeRange(x.startTime, x.endTime)}</span></p>
     <p class="meta">${PIN}<span>${whereLink(data, x)}</span></p>
@@ -157,7 +177,7 @@ function weeklyCard(data, r, i) {
   const week = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
   return `<article class="wcard c${i % 4}" ${dataAttrs(r)}>
     <div class="dots" aria-label="${esc(r.days.join(", "))}">${week.map((d) => `<span class="${r.days.includes(d) ? "on" : ""}" aria-hidden="true">${d[0]}</span>`).join("")}</div>
-    <h3><a href="${esc(r.url)}" rel="noopener">${esc(r.title)}</a></h3>
+    <h3><a class="card-link" href="${eventPath(r)}">${esc(r.title)}</a></h3>
     <p class="meta">${CLOCK}<span>${r.frequency ? `${esc(r.frequency)} · ` : ""}${fmtTimeRange(r.startTime, r.endTime)}</span></p>
     <p class="meta">${PIN}<span>${whereLink(data, r)}</span></p>
     ${r.registration ? `<p class="desc">${esc(r.registration)}</p>` : ""}
@@ -188,10 +208,10 @@ const emptyFilter = `<div class="empty-state empty-filter" hidden>${bubblesIllo(
 const groupEmpty = `<p class="group-empty" hidden>Nothing here matches those filters. Try another age, or turn off Free or Indoors.</p>`;
 const REGION_ART = { local: () => bubblesIllo(), houston: () => kiteIllo() };
 
-function regionHead(area, extra = "") {
+function regionHead(area, extra = "", count = 0) {
   return `<div class="region-head">
     <div class="region-art">${REGION_ART[area]()}</div>
-    <div><p class="label">${esc(AREAS[area].label)}</p><h2>${esc(AREAS[area].title)}</h2></div>
+    <div><p class="label">${esc(AREAS[area].label)}${count ? ` · ${count} this week` : ""}</p><h2>${esc(AREAS[area].title)}</h2></div>
     ${extra}
   </div>`;
 }
@@ -373,12 +393,13 @@ export function homePage(data, now) {
     const list = [...soon[area], ...weekly.filter((r) => areaOf(data, r) === area)].sort((a, b) => a.date.localeCompare(b.date) || (a.startTime || "99").localeCompare(b.startTime || "99"));
     const more = later[area].length ? `<a class="more" href="/events/#${area}">${later[area].length} more coming up →</a>` : "";
     return `<section class="band region" id="${area}" data-group><div class="wrap">
-      ${regionHead(area, more)}
+      ${regionHead(area, more, list.length)}
       ${list.length
         ? `<div class="ecards strip">${list.map((x, i) => eventCard(data, x, i, wk)).join("")}</div>${groupEmpty}`
         : `<p class="quiet">Nothing listed for this week yet${later[area].length ? `. <a href="/events/#${area}">See what's coming up</a>.` : ", but new events are added every Monday and Wednesday."}</p>`}
     </div></section>`;
   };
+  const weekCount = soon.local.length + soon.houston.length + weekly.length;
   const story = featuredStory(data, now);
   const news = currentNews(data, now, 45).filter((n) => n !== story).slice(0, 3);
   const week = Math.floor(Date.parse(`${now}T12:00:00Z`) / (7 * 864e5));
@@ -398,10 +419,9 @@ export function homePage(data, now) {
     </div>
   </div></section>
   ${GRASS}
-  ${story ? storyBanner(story) : ""}
 
   <section class="band whatson"><div class="wrap">
-    <div class="sec-head"><div><p class="label">${fmtShort(now)} – ${fmtShort(weekEnd)}</p><h2>This week ${SPARK}</h2></div><a class="more" href="/events/">Coming up →</a></div>
+    <div class="sec-head"><div><p class="label">${fmtShort(now)} – ${fmtShort(weekEnd)} · ${weekCount} things to do</p><h2>This week ${SPARK}</h2></div><a class="more" href="/events/">Coming up →</a></div>
     ${breakNotices(data, now, weekEnd)}
     ${filterBar("listings")}
   </div></section>
@@ -409,6 +429,17 @@ export function homePage(data, now) {
     ${region("local")}
     ${region("houston")}
   </div>
+
+  <section class="band midsignup"><div class="wrap"><div class="mid-card">
+    <div class="mid-art">${bubblesIllo()}</div>
+    <div class="mid-copy">
+      <h2>Like this? Get it every week.</h2>
+      <p>${esc(config.newsletterName)} brings the best kid-friendly plans to your inbox once a week. Free, and short enough for nap time.</p>
+      ${signupForm(config, "mid")}
+    </div>
+  </div></div></section>
+
+  ${story ? storyBanner(story) : ""}
 
   ${news.length ? `<section class="band news-band"><div class="wrap">
     <div class="sec-head"><div><p class="label">What parents should know</p><h2>Neighborhood news ${SPARK_PINK}</h2></div><a class="more" href="/news/">All news →</a></div>
@@ -616,6 +647,11 @@ export function aboutPage(data, now) {
     <p class="lede">${esc(config.name)} is a free guide for Spring Branch and Memorial families with kids from babies through elementary school. It started with the question every parent asks by midweek: what are we doing this weekend?</p>
   </div>${toddlerIllo()}</div></section>
   <section class="band"><div class="wrap narrow prose">
+    <h2>Who's behind it</h2>
+    <div class="founder">
+      ${config.founderPhoto ? `<img src="${esc(config.founderPhoto)}" alt="${esc(config.founderName || "The founder")}" width="160" height="160">` : `<div class="founder-art">${babyIllo()}</div>`}
+      <p>${config.founderName ? `Hi, I'm ${esc(config.founderName)}! ` : ""}${esc(config.founderBlurb || "Spring Branch Littles is made by a Spring Branch mom of littles who got tired of piecing together library calendars, Facebook groups and Instagram stories every week. Now it's all in one place, checked against the organizers' own sites, for every family in the neighborhood.")}</p>
+    </div>
     <h2>What we cover</h2>
     <p>${esc(config.area)}. That means library storytimes, city and county parks, nature programs, festivals, holiday events, school-break ideas and indoor spots for Houston's rainy and 100° days.</p>
     <h2>How listings work</h2>
@@ -626,6 +662,93 @@ export function aboutPage(data, now) {
     <p>Find us on Instagram at <a href="https://instagram.com/${esc(config.instagram)}">@${esc(config.instagram)}</a>.</p>
   </div></section>`;
   return layout(config, { title: "About", path: "/about/", body, now, description: `About ${config.name}, a weekly guide for Spring Branch families.` });
+}
+
+// ---------- event pages ----------
+
+const CAL_ICON = `<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="3" fill="none" stroke="currentColor" stroke-width="2"/><path d="M3.5 10h17M8 3v4M16 3v4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>`;
+const MAP_ICON = `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s7-6.4 7-11.5a7 7 0 0 0-14 0C5 14.6 12 21 12 21z" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="9.5" r="2.5" fill="currentColor"/></svg>`;
+const SHARE_ICON = `<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="12" r="2.6" fill="currentColor"/><circle cx="18" cy="6" r="2.6" fill="currentColor"/><circle cx="18" cy="18" r="2.6" fill="currentColor"/><path d="M8.3 10.8 15.7 7.2M8.3 13.2l7.4 3.6" stroke="currentColor" stroke-width="2"/></svg>`;
+
+export function eventPage(data, x, now) {
+  const { config } = data;
+  const weekly = x.kind === "recurring" || !!x.days;
+  const date = weekly ? nextOccurrence(x, now) || now : x.date;
+  const item = weekly ? { ...x, kind: "recurring", date } : x;
+  const path = eventPath(x);
+  const pageUrl = `${config.url}${path}`;
+  const address = addressOf(data, x);
+  const when = weekly
+    ? `${x.frequency || `Every ${x.days.map((d) => WEEK_LONG[d]).join(", ")}`}${date ? ` · next: ${fmtLong(date)}` : ""}`
+    : x.endDate && x.endDate !== x.date ? `${fmtLong(x.date)} – ${fmtLong(x.endDate)}` : fmtLong(x.date);
+  const wk = { ...weekendOf(now), now };
+  const related = eventsBetween(data.events.filter((e) => e.kind === "event" && e.id !== x.id && areaOf(data, e) === areaOf(data, x)), now, addDays(now, 45)).slice(0, 3);
+  const shareText = `${x.title} · ${when}`;
+  const body = `
+  <section class="page-head event-head"><div class="wrap">
+    <p class="label crumbs"><a href="/">This week</a> · <a href="/events/">Calendar</a> · ${esc(AREAS[areaOf(data, x)].title)}</p>
+    <div class="event-grid">
+      <div class="event-art">${x.image ? photo(x, "event-photo") : `<div class="event-icon c${themeOf(x).length % 4}">${dateTile(item, wk)}${THEME_ICONS[themeOf(x)]()}</div>`}</div>
+      <div class="event-copy">
+        <h1>${esc(x.title)}</h1>
+        <ul class="event-facts">
+          <li>${CAL_ICON}<span>${esc(when)}</span></li>
+          <li>${CLOCK}<span>${fmtTimeRange(x.startTime, x.endTime)}</span></li>
+          ${address ? `<li>${MAP_ICON}<span>${esc(address)}</span></li>` : ""}
+        </ul>
+        <div class="tags">${ageChips(x.ages)}${flagChips(x)}</div>
+        <p class="event-desc">${esc(x.description)}</p>
+        ${x.registration ? `<p class="event-reg"><b>Before you go:</b> ${esc(x.registration)}</p>` : ""}
+        <div class="event-actions">
+          <a class="btn btn-red" href="${esc(x.url)}" target="_blank" rel="noopener">More info at ${esc(host(x.url))} ↗</a>
+          <a class="btn btn-soft" href="${esc(googleCalendarUrl(data, x, date, pageUrl))}" target="_blank" rel="noopener">${CAL_ICON} Google Calendar</a>
+          <a class="btn btn-soft" href="${path}event.ics" download>${CAL_ICON} Apple / Outlook</a>
+          ${address ? `<a class="btn btn-soft" href="${esc(mapsUrl(address))}" target="_blank" rel="noopener">${MAP_ICON} Directions</a>` : ""}
+          <button class="btn btn-soft" type="button" data-share data-title="${esc(x.title)}" data-text="${esc(shareText)}" data-url="${esc(pageUrl)}">${SHARE_ICON} Share</button>
+          <a class="btn btn-soft" href="sms:?&body=${encodeURIComponent(`${shareText} ${pageUrl}`)}">Text a friend</a>
+        </div>
+        <p class="share-note" hidden>Link copied!</p>
+        <p class="quiet">Details can change, so check with the organizer before you head out.</p>
+      </div>
+    </div>
+  </div></section>
+  ${related.length ? `<section class="band"><div class="wrap">
+    <div class="sec-head"><div><p class="label">More nearby</p><h2>You might also like ${SPARK_PINK}</h2></div><a class="more" href="/events/">Full calendar →</a></div>
+    <div class="ecards">${related.map((e, i) => eventCard(data, e, i, wk)).join("")}</div>
+  </div></section>` : ""}
+  <section class="band"><div class="wrap narrow"><div class="signup-card">
+    <h2>Get plans like this every week</h2>
+    <p>${esc(config.newsletterName)}: free, once a week, short enough for nap time.</p>
+    ${signupForm(config, "event")}
+  </div></div></section>`;
+  return layout(config, { title: x.title, path, body, now, description: `${when}. ${x.description}` });
+}
+
+export function searchPage(data, now) {
+  const body = `
+  <section class="page-head"><div class="wrap narrow">
+    <p class="label">Search</p>
+    <h1>Find something to <span class="script pink">do</span></h1>
+    <label class="sr" for="q">Search events, places, restaurants and news</label>
+    <input id="q" class="search-input" type="search" placeholder="Try “storytime”, “free”, “Memorial Park”, “pizza”…" autocomplete="off" autofocus>
+    <p class="quiet search-count" aria-live="polite"></p>
+    <ul class="search-results" id="results"></ul>
+    <noscript><p class="quiet">Search needs JavaScript. You can also browse <a href="/">This week</a> or the <a href="/events/">Calendar</a>.</p></noscript>
+  </div></section>`;
+  return layout(data.config, { title: "Search", path: "/search/", body, now, description: "Search kid-friendly events, places, restaurants and news in Spring Branch and Memorial." });
+}
+
+export function thanksPage(data, now) {
+  const { config } = data;
+  const body = `
+  <section class="page-head"><div class="wrap narrow head-art"><div class="head-copy">
+    <p class="label">${esc(config.newsletterName)}</p>
+    <h1>You're in! <span class="script pink">Welcome</span> 🦕</h1>
+    <p class="lede">Check your inbox for a quick confirmation email (peek in Promotions if you don't see it). Your first issue arrives this week.</p>
+    <p class="event-actions"><a class="btn" href="/">See this week's plans</a><a class="btn btn-soft" href="https://instagram.com/${esc(config.instagram)}">Follow @${esc(config.instagram)}</a></p>
+    <p class="quiet">Know a parent who'd love this? Send them <span class="select">${esc(config.url.replace("https://", ""))}/join</span></p>
+  </div>${toddlerIllo()}</div></section>`;
+  return layout(config, { title: "Thanks for subscribing", path: "/thanks/", body, now });
 }
 
 export function notFoundPage(data, now) {

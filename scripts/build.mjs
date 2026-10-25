@@ -2,8 +2,9 @@
 // Usage: node scripts/build.mjs [--check]   (--check validates only)
 import { mkdirSync, writeFileSync, rmSync, cpSync, existsSync } from "node:fs";
 import { join, dirname } from "node:path";
-import { ROOT, loadAll, validate, today, fmtLong } from "../src/lib.mjs";
-import { homePage, eventsPage, placesPage, eatsPage, newsPage, newsletterPage, joinPage, issuePage, aboutPage, notFoundPage, esc } from "../src/templates.mjs";
+import { ROOT, loadAll, validate, today, fmtLong, addDays, areaOf, currentNews, PLACE_TYPES, PERKS } from "../src/lib.mjs";
+import { eventPath, nextOccurrence, icsFile } from "../src/calendar.mjs";
+import { homePage, eventsPage, placesPage, eatsPage, newsPage, newsletterPage, joinPage, eventPage, searchPage, thanksPage, issuePage, aboutPage, notFoundPage, esc } from "../src/templates.mjs";
 
 const data = loadAll();
 const now = today(data.config.timezone);
@@ -36,11 +37,35 @@ const pages = {
   "news/index.html": newsPage(data, now),
   "newsletter/index.html": newsletterPage(data, now),
   "join/index.html": joinPage(data, now),
+  "search/index.html": searchPage(data, now),
+  "thanks/index.html": thanksPage(data, now),
   "about/index.html": aboutPage(data, now),
   "404.html": notFoundPage(data, now),
 };
 for (const issue of data.issues) pages[`newsletter/${issue.date}/index.html`] = issuePage(data, issue, now);
+
+// A page and an "Add to calendar" file for every upcoming event and weekly program.
+const stamp = new Date().toISOString().replace(/[-:]/g, "").replace(/\.\d+/, "");
+const listed = [
+  ...data.events.filter((e) => e.kind === "event" && (e.endDate || e.date) >= now && e.date <= addDays(now, 150)),
+  ...data.recurring,
+];
+for (const x of listed) {
+  const path = eventPath(x).slice(1);
+  pages[`${path}index.html`] = eventPage(data, x, now);
+  const date = x.days ? nextOccurrence(x, now) || now : x.date;
+  write(`${path}event.ics`, icsFile(data, x, date, `${data.config.url}/${path}`, stamp));
+}
 for (const [path, html] of Object.entries(pages)) write(path, html);
+
+// Search index for /search/.
+const index = [
+  ...listed.map((x) => ({ t: x.days ? "Weekly" : "Event", title: x.title, sub: x.days ? (x.frequency || `Every ${x.days.join(", ")}`) : fmtLong(x.date), text: `${x.description} ${x.location || ""} ${x.placeId || ""} ${x.free ? "free" : ""} ${x.indoor ? "indoor" : ""} ${x.ages.join(" ")}`, url: eventPath(x) })),
+  ...data.places.map((p) => ({ t: PLACE_TYPES[p.type], title: p.name, sub: p.address, text: `${p.description} ${p.tip || ""} ${p.ages.join(" ")}`, url: `/places/#${p.id}` })),
+  ...data.restaurants.map((r) => ({ t: "Eats", title: r.name, sub: r.neighborhood, text: `${r.description} ${r.perks.map((k) => PERKS[k]).join(" ")} restaurant food dinner lunch`, url: "/eats/#restaurants" })),
+  ...currentNews(data, now, 90).map((n) => ({ t: "News", title: n.title, sub: n.source, text: n.summary, url: `/news/#${n.id}` })),
+];
+write("search.json", JSON.stringify(index));
 
 const { url, name, description } = data.config;
 const urls = Object.keys(pages).filter((p) => p !== "404.html").map((p) => `${url}/${p.replace(/index\.html$/, "")}`);

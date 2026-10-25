@@ -40,6 +40,9 @@ Buy `springbranchlittles.com` (Cloudflare Registrar, Namecheap or Porkbun, about
 4. In GitHub, go to **Settings → Secrets and variables → Actions → New repository secret** and add `BUTTONDOWN_API_KEY`.
 5. Optional review mode: add a repository **variable** (not a secret) `NEWSLETTER_STATUS` = `draft`. The Thursday email then lands in Buttondown as a draft for you to send. Delete the variable to go fully automatic.
 
+6. **Send new subscribers to your own thank-you page:** in Buttondown, open the subscribing settings and set the page people see after subscribing (the "redirect" or "after subscribing" URL) to `https://springbranchlittles.com/thanks/`.
+7. **Make `hello@springbranchlittles.com` work:** the address is shown on the site. Set up free email forwarding to your Gmail, either in GoDaddy (Email Forwarding, if your plan includes it) or with a free forwarding service such as ImprovMX, which gives you two MX records to add in GoDaddy's DNS.
+
 ### 4. The research agent (Claude)
 1. Create an API key at console.anthropic.com and add some credit. A twice-weekly research run should cost a few dollars a month. Set a monthly spend limit in the console to be safe.
 2. Add it as the repository secret `ANTHROPIC_API_KEY`.

@@ -62,3 +62,85 @@ document.querySelectorAll(".perk-filters").forEach((bar) => {
     });
   });
 });
+
+// Phone menu.
+const menuBtn = document.querySelector(".menu-btn");
+if (menuBtn) {
+  menuBtn.addEventListener("click", () => {
+    const open = document.querySelector(".site-header").classList.toggle("nav-open");
+    menuBtn.setAttribute("aria-expanded", String(open));
+  });
+}
+
+// Arrow buttons for sideways-scrolling rows (shown on larger screens when there's more to see).
+document.querySelectorAll(".ecards.strip, .dcarousel").forEach((row) => {
+  const wrap = document.createElement("div");
+  wrap.className = "scroller";
+  row.parentNode.insertBefore(wrap, row);
+  wrap.appendChild(row);
+  const mk = (dir, label) => {
+    const b = document.createElement("button");
+    b.type = "button";
+    b.className = `scroll-btn ${dir}`;
+    b.setAttribute("aria-label", label);
+    b.textContent = dir === "prev" ? "‹" : "›";
+    b.addEventListener("click", () => row.scrollBy({ left: (dir === "prev" ? -1 : 1) * row.clientWidth * 0.85, behavior: "smooth" }));
+    wrap.appendChild(b);
+    return b;
+  };
+  const prev = mk("prev", "Scroll back");
+  const next = mk("next", "Scroll for more");
+  const update = () => {
+    const max = row.scrollWidth - row.clientWidth - 4;
+    prev.hidden = row.scrollLeft <= 4;
+    next.hidden = row.scrollLeft >= max;
+  };
+  row.addEventListener("scroll", update, { passive: true });
+  window.addEventListener("resize", update);
+  update();
+});
+
+// Share buttons: the phone's share sheet when available, otherwise copy the link.
+document.querySelectorAll("[data-share]").forEach((b) => {
+  b.addEventListener("click", async () => {
+    const { title, text, url } = b.dataset;
+    if (navigator.share) {
+      try { await navigator.share({ title, text, url }); } catch { /* closed */ }
+      return;
+    }
+    try {
+      await navigator.clipboard.writeText(url);
+      const note = document.querySelector(".share-note");
+      if (note) { note.hidden = false; setTimeout(() => (note.hidden = true), 2500); }
+    } catch { window.prompt("Copy this link:", url); }
+  });
+});
+
+// Search page.
+const q = document.getElementById("q");
+if (q) {
+  const out = document.getElementById("results");
+  const count = document.querySelector(".search-count");
+  const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
+  let index = [];
+  const run = () => {
+    const words = q.value.toLowerCase().split(/\s+/).filter(Boolean);
+    if (!words.length) { out.innerHTML = ""; count.textContent = ""; return; }
+    const hits = index
+      .map((x) => {
+        const title = x.title.toLowerCase();
+        const all = `${title} ${x.sub} ${x.text} ${x.t}`.toLowerCase();
+        if (!words.every((w) => all.includes(w))) return null;
+        return { x, score: words.filter((w) => title.includes(w)).length };
+      })
+      .filter(Boolean)
+      .sort((a, b) => b.score - a.score)
+      .slice(0, 40);
+    count.textContent = hits.length ? `${hits.length} result${hits.length === 1 ? "" : "s"}` : "Nothing found. Try a simpler word, like “park” or “story”.";
+    out.innerHTML = hits.map(({ x }) => `<li><a href="${esc(x.url)}"><span class="tag t-age">${esc(x.t)}</span><b>${esc(x.title)}</b><span class="quiet">${esc(x.sub || "")}</span></a></li>`).join("");
+  };
+  const initial = new URLSearchParams(location.search).get("q");
+  if (initial) q.value = initial;
+  q.addEventListener("input", run);
+  fetch("/search.json").then((r) => r.json()).then((d) => { index = d; run(); });
+}
