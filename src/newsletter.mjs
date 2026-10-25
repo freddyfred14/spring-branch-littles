@@ -120,7 +120,7 @@ export function toMarkdown(issue, config) {
   for (const s of issue.sections) {
     out.push(`## ${s.heading}`, "");
     for (const i of s.items) {
-      out.push(`**[${i.title}](${i.url})**${i.tentative ? " _(not yet confirmed, check before you go)_" : ""}  `);
+      out.push(`**[${i.title}](${i.url})**${i.tentative ? " _(date may change)_" : ""}  `);
       if (i.news) out.push(`_${i.when}_  `);
       else if (i.deal) out.push(`${i.when}${i.where ? ` · ${i.where}` : ""}  `);
       else {

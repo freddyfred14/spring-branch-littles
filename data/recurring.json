@@ -22,6 +22,28 @@
     "lastVerified": null
   },
   {
+    "id": "sbm-tiny-tykes",
+    "title": "Tiny Tykes storytime",
+    "placeId": "spring-branch-memorial-library",
+    "days": [
+      "Thu"
+    ],
+    "startTime": "10:15",
+    "endTime": "10:45",
+    "ages": [
+      "toddler"
+    ],
+    "free": true,
+    "indoor": true,
+    "description": "An interactive weekly storytime for new walkers and their grown-ups: stories, songs and finger plays. Some weeks it moves outside to the Reading Garden.",
+    "registration": null,
+    "url": "https://hcpl.bibliocommons.com/events/6a024547c7d3cd5800588782",
+    "sources": [
+      "https://hcpl.bibliocommons.com/events/6a024547c7d3cd5800588782"
+    ],
+    "lastVerified": "2026-10-25"
+  },
+  {
     "id": "hillendahl-toddler-storytime",
     "title": "Toddler storytime",
     "placeId": "hillendahl-library",

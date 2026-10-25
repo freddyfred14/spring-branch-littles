@@ -2,6 +2,12 @@
 
 Newest first. The research agent adds an entry each run.
 
+## 2026-10-25 · Tiny Tykes added, confirmation rules relaxed
+
+- Added Tiny Tykes (Spring Branch Memorial Library, Thursdays 10:15–10:45, new walkers). The time comes from the library's own event page, as checked by the site owner. Some search listings show 11:15, so re-check it.
+- Events listed on a reputable calendar now count as confirmed. Only Holiday in the Plaza stays tentative ("Date may change"), because sources disagree on its 2026 date.
+- Still to confirm and add: Hillendahl Library Baby Storytime (10:30–11:30, ages 0–18 months) and Explore and Play Toddler Playtime (11:00–11:30). The days weren't in the listings found.
+
 ## 2026-10-24 · neighborhood news added
 
 - New `data/news.json` with 3 items: Greenside opening at Memorial City, Memorial Park's Camp Logan Playground (late 2027), and a heads-up about canceled library storytimes.

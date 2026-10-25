@@ -6,7 +6,7 @@ You keep the Spring Branch Littles calendar accurate. Parents plan their weekend
 
 1. **Check the date.** Run `date` and work in Houston time (America/Chicago).
 2. **Clean up.** Delete events from `data/events.json` that ended more than 2 days ago.
-3. **Re-verify what's listed.** For each upcoming event in the next 3 weeks, open its `url` and confirm the date, time, place and cost. Fix anything that changed. Set `lastVerified` to today only if you actually confirmed it on that page this run.
+3. **Re-verify what's listed, and catch what's missing.** Open each library branch's own calendar (HCPL Spring Branch Memorial; HPL Ring and Hillendahl) and make sure every kids' program on it is in `events.json` or `recurring.json`. For each upcoming event in the next 3 weeks, open its `url` and confirm the date, time, place and cost. Fix anything that changed. Set `lastVerified` to today only if you actually confirmed it on that page this run.
 4. **Find new events** for the next 6 weeks using the sources below. Aim for at least 8–12 Spring Branch & Memorial events in the next 3 weeks (at least 2 on the coming weekend), plus 3–6 Surrounding Houston events. Holidays, school breaks and seasonal events (Halloween, Thanksgiving week, Santa visits, tree lightings, spring festivals) are what parents search for most.
 5. **Keep weekly programs and places fresh.** Re-check any entry in `data/recurring.json` or `data/places.json` whose `lastVerified` is null or older than 30 days. Limit it to about 5 per run so every run stays short. If a weekly program has ended or moved, update or remove it.
 6. **Check kids' deals and restaurants** in `data/deals.json` and `data/restaurants.json` (see "Kid-friendly eats" below). Re-verify every deal at least every 2 weeks, and add new ones you find.
@@ -49,7 +49,7 @@ Search ideas: "Memorial Houston kids events [month year]", "Spring Branch Housto
 
 - **Never invent details.** If you can't find a start time, use `null` for `startTime`; the site shows "See listing for times." Don't guess an age range. Map what the organizer says.
 - `url` must be a page where a parent can confirm the details: the organizer's page if it exists, otherwise the most specific listing page.
-- Use `"status": "tentative"` when the date comes only from a third-party listing, or the organizer says "TBA" / "subject to change". Use `"confirmed"` only when the organizer's own page shows the date.
+- Use `"status": "confirmed"` when the event is listed with a date by the organizer **or** by a reputable calendar or local publication (library and city calendars, Eventbrite, Mommy Poppins, Houston on the Cheap, Kids Out and About, The Buzz, neighborhood blogs). Use `"tentative"` only when the date itself is uncertain: the organizer says "TBA", sources give different dates, or it's a yearly event whose new date hasn't been announced. The site shows tentative events as "Date may change".
 - If something is cancelled, remove it.
 - If sources disagree, trust the organizer's page and note the conflict in the agent log.
 - Don't copy marketing text. Write a fresh, plain description of under 300 characters: what kids actually do, and anything a parent needs (tickets, registration, parking, what to bring).
@@ -139,7 +139,7 @@ All dates are `YYYY-MM-DD`, times are 24-hour `HH:MM`. Ages use these keys: `bab
 }
 ```
 - Use `restaurantId` when the restaurant is in `restaurants.json`. For chains, set `restaurantId` to `null`, put the chain in `restaurantName` and say which locations in `where` ("All Houston-area locations").
-- `"status": "confirmed"` only when the restaurant itself shows the deal; otherwise `"tentative"`.
+- `"status": "confirmed"` when the restaurant or a reputable, current deals roundup lists it; `"tentative"` when the only evidence is old or conflicting.
 - Seasonal or limited-time promos (summer kids-eat-free, holiday specials) get an `expires` date.
 - Prefer deals with a Spring Branch or Memorial location. Aim to have something on every day of the week.
 - Remove a deal if you can't find any current evidence of it.

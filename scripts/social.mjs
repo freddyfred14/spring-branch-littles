@@ -63,7 +63,7 @@ const slide = (it, i, total) => {
     <h2 class="fred" style="font-size:${it.title.length > 30 ? 84 : 100}px;line-height:1.05;margin:40px 0 30px">${esc(it.title)}</h2>
     <p style="font-size:40px;line-height:1.42;color:${C.muted};font-weight:600">${esc(it.description)}</p>
     <p style="font-size:38px;font-weight:800;margin-top:36px;color:${C.ink}">📍 ${esc(it.where)}</p>
-    <div style="margin-top:30px">${it.ages.split(", ").map((a) => `<span class="tag" style="background:${C.sunSoft};color:#7a4d17">${esc(a)}</span>`).join("")}<span class="tag" style="background:${C.dinoSoft};color:${C.dinoDeep}">${esc(it.cost)}</span>${it.tentative ? `<span class="tag" style="border:3px dashed ${C.sun};color:#a2522a">Not yet confirmed</span>` : ""}</div>
+    <div style="margin-top:30px">${it.ages.split(", ").map((a) => `<span class="tag" style="background:${C.sunSoft};color:#7a4d17">${esc(a)}</span>`).join("")}<span class="tag" style="background:${C.dinoSoft};color:${C.dinoDeep}">${esc(it.cost)}</span>${it.tentative ? `<span class="tag" style="border:3px dashed ${C.sun};color:#a2522a">Date may change</span>` : ""}</div>
   </div>
   <img src="${DINO}" style="position:absolute;right:70px;top:50px;width:150px;transform:rotate(8deg)">
   <div class="handle">@${esc(config.instagram)}</div><div class="count">${i}/${total}</div>${grassRow}`);

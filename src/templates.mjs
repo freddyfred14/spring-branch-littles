@@ -93,7 +93,7 @@ ${body}
 
 const ageChips = (ages) => ages.map((a) => `<span class="tag t-age">${AGES[a].label}</span>`).join("");
 const flagChips = (x) =>
-  `${x.free ? '<span class="tag t-free">Free</span>' : `<span class="tag t-paid">${esc(x.cost || "Paid")}</span>`}${x.indoor ? '<span class="tag t-in">Indoors</span>' : ""}${x.status === "tentative" ? '<span class="tag t-tent" title="We found this on a community calendar, not the organizer&#39;s own site. Double-check before you go.">Not yet confirmed</span>' : ""}`;
+  `${x.free ? '<span class="tag t-free">Free</span>' : `<span class="tag t-paid">${esc(x.cost || "Paid")}</span>`}${x.indoor ? '<span class="tag t-in">Indoors</span>' : ""}${x.status === "tentative" ? '<span class="tag t-tent" title="The organizer hasn&#39;t announced a final date yet, or sources disagree. We&#39;ll update it when it&#39;s set.">Date may change</span>' : ""}`;
 const dataAttrs = (x) => `data-ages="${x.ages.join(" ")}" data-free="${x.free ? 1 : 0}" data-indoor="${x.indoor ? 1 : 0}"`;
 
 const CLOCK = `<svg class="mi" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M8 4.5V8l2.5 1.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>`;
@@ -176,8 +176,8 @@ function regionHead(area, extra = "") {
   </div>`;
 }
 
-function upcomingByArea(data, now, days) {
-  const all = eventsBetween(data.events.filter((e) => e.kind === "event"), now, addDays(now, days));
+function upcomingByArea(data, from, to) {
+  const all = eventsBetween(data.events.filter((e) => e.kind === "event"), from, to);
   return { local: all.filter((e) => areaOf(data, e) === "local"), houston: all.filter((e) => areaOf(data, e) === "houston") };
 }
 
@@ -288,15 +288,17 @@ export function eatsPage(data, now) {
 export function homePage(data, now) {
   const { config } = data;
   const wk = weekendOf(now);
-  const soon = upcomingByArea(data, now, 21);
-  const later = upcomingByArea(data, now, 120);
-  const pick = (area) => (soon[area].length >= 2 ? soon[area] : later[area].slice(0, 3)).slice(0, 6);
+  const weekEnd = addDays(now, 6);
+  const soon = upcomingByArea(data, now, weekEnd);
+  const later = upcomingByArea(data, addDays(now, 7), addDays(now, 120));
   const region = (area) => {
-    const list = pick(area);
-    const more = later[area].length > list.length ? `<a class="more" href="/events/#${area}">All ${later[area].length} →</a>` : "";
+    const list = soon[area];
+    const more = later[area].length ? `<a class="more" href="/events/#${area}">${later[area].length} more coming up →</a>` : "";
     return `<section class="band region" id="${area}" data-group><div class="wrap">
       ${regionHead(area, more)}
-      ${list.length ? `<div class="ecards strip">${list.map((x, i) => eventCard(data, x, i, wk)).join("")}</div>${groupEmpty}` : `<p class="quiet">New events are added every Monday and Wednesday.</p>`}
+      ${list.length
+        ? `<div class="ecards strip">${list.map((x, i) => eventCard(data, x, i, wk)).join("")}</div>${groupEmpty}`
+        : `<p class="quiet">Nothing listed for this week yet${later[area].length ? `. <a href="/events/#${area}">See what's coming up</a>.` : ", but new events are added every Monday and Wednesday."}</p>`}
     </div></section>`;
   };
   const news = currentNews(data, now, 45).slice(0, 3);
@@ -319,8 +321,8 @@ export function homePage(data, now) {
   ${GRASS}
 
   <section class="band whatson"><div class="wrap">
-    <div class="sec-head"><div><p class="label">The next few weeks</p><h2>What's on ${SPARK}</h2></div><a class="more" href="/events/">Full calendar →</a></div>
-    ${breakNotices(data, now, addDays(now, 21))}
+    <div class="sec-head"><div><p class="label">${fmtShort(now)} – ${fmtShort(weekEnd)}</p><h2>This week ${SPARK}</h2></div><a class="more" href="/events/">Coming up →</a></div>
+    ${breakNotices(data, now, weekEnd)}
     ${filterBar("listings")}
   </div></section>
   <div id="listings" class="filterable">
@@ -364,11 +366,12 @@ export function homePage(data, now) {
 export function eventsPage(data, now) {
   const { config } = data;
   const wk = weekendOf(now);
-  const later = upcomingByArea(data, now, 120);
+  const start = addDays(now, 7);
+  const later = upcomingByArea(data, start, addDays(now, 150));
   const region = (area) => {
     const months = new Map();
     for (const e of later[area]) {
-      const m = fmtMonth(e.date < now ? now : e.date);
+      const m = fmtMonth(e.date < start ? start : e.date);
       if (!months.has(m)) months.set(m, []);
       months.get(m).push(e);
     }
@@ -376,26 +379,25 @@ export function eventsPage(data, now) {
       ${regionHead(area)}
       ${months.size
         ? [...months.entries()].map(([m, list]) => `<div class="month" data-day><h3 class="month-head">${esc(m)}</h3><div class="ecards">${list.map((x, i) => eventCard(data, x, i, wk)).join("")}</div></div>`).join("") + groupEmpty
-        : `<p class="quiet">New events are added every Monday and Wednesday.</p>`}
+        : `<p class="quiet">Nothing listed after this week yet. New events are added every Monday and Wednesday.</p>`}
     </div></section>`;
   };
   const body = `
   <section class="page-head"><div class="wrap head-art"><div class="head-copy">
-    <p class="label">Calendar</p>
-    <h1>Kids' events in Spring Branch & Memorial ${SPARK}</h1>
-    <p class="lede">Everything coming up, close to home and around Houston, plus the storytimes and open play that happen every week.</p>
-    <p class="jump"><a href="#local">Spring Branch & Memorial</a><a href="#houston">Surrounding Houston</a><a href="#every-week">Every week</a></p>
+    <p class="label">Calendar · from ${fmtShort(start)}</p>
+    <h1>Coming up for <span class="script">littles</span> ${SPARK}</h1>
+    <p class="lede">Everything after this week, close to home and around Houston, so you can plan ahead. Looking for the next few days or weekly storytimes? They're on <a href="/">This week</a>.</p>
+    <p class="jump"><a href="#local">Spring Branch & Memorial</a><a href="#houston">Surrounding Houston</a><a href="/#every-week">Weekly storytimes</a></p>
   </div>${kiteIllo()}</div></section>
   <section class="band whatson"><div class="wrap">
-    ${breakNotices(data, now, addDays(now, 120))}
+    ${breakNotices(data, start, addDays(now, 150))}
     ${filterBar("listings")}
   </div></section>
   <div id="listings" class="filterable">
     ${region("local")}
     ${region("houston")}
-    ${weeklySection(data)}
   </div>`;
-  return layout(config, { title: "Calendar", path: "/events/", body, now, description: "Upcoming kids' events in Spring Branch, Memorial and around Houston, plus weekly storytimes and open play, filterable by age." });
+  return layout(config, { title: "Calendar", path: "/events/", body, now, description: "Plan ahead: upcoming kids' events in Spring Branch, Memorial and around Houston, month by month, filterable by age." });
 }
 
 function placeCard(p) {
@@ -474,7 +476,7 @@ export function issuePage(data, issue, now) {
   <section class="band"><div class="wrap narrow issue">
     ${issue.sections
       .map((s) => `<h2>${esc(s.heading)}</h2><ul class="issue-items">${s.items
-        .map((i) => `<li><h3><a href="${esc(i.url)}" rel="noopener">${esc(i.title)}</a>${i.tentative ? ' <span class="tag t-tent" title="We found this on a community calendar, not the organizer&#39;s own site. Double-check before you go.">Not yet confirmed</span>' : ""}</h3>${i.news ? `<p class="quiet">${esc(i.when)}</p>` : i.deal ? `<p class="ev-where">${esc(i.when)}${i.where ? ` · ${esc(i.where)}` : ""}</p>` : `<p class="ev-where">${esc(i.when)} · ${esc(i.where)}</p><p class="quiet">${esc(i.ages)} · ${esc(i.cost)}</p>`}<p>${esc(i.description)}</p></li>`)
+        .map((i) => `<li><h3><a href="${esc(i.url)}" rel="noopener">${esc(i.title)}</a>${i.tentative ? ' <span class="tag t-tent" title="The organizer hasn&#39;t announced a final date yet, or sources disagree. We&#39;ll update it when it&#39;s set.">Date may change</span>' : ""}</h3>${i.news ? `<p class="quiet">${esc(i.when)}</p>` : i.deal ? `<p class="ev-where">${esc(i.when)}${i.where ? ` · ${esc(i.where)}` : ""}</p>` : `<p class="ev-where">${esc(i.when)} · ${esc(i.where)}</p><p class="quiet">${esc(i.ages)} · ${esc(i.cost)}</p>`}<p>${esc(i.description)}</p></li>`)
         .join("")}</ul>`)
       .join("")}
     <div class="signup-card"><h2>Get it in your inbox</h2>${signupForm(config, "issue")}</div>
@@ -494,7 +496,7 @@ export function aboutPage(data, now) {
     <h2>What we cover</h2>
     <p>${esc(config.area)}. That means library storytimes, city and county parks, nature programs, festivals, holiday events, school-break ideas and indoor spots for Houston's rainy and 100° days.</p>
     <h2>How listings work</h2>
-    <p>We check public calendars from the libraries, parks departments, schools and local venues every week. Every listing links to its source so you can confirm times before you go. Anything marked “Not yet confirmed” came from a community calendar rather than the organizer’s own site, so give it a quick check before you go.</p>
+    <p>We check public calendars from the libraries, parks departments, schools and local venues every week. Every listing links to its source so you can confirm times before you go. Anything marked “Date may change” hasn’t had its final date announced yet.</p>
     <h2>Add your event</h2>
     <p>Hosting something for kids in Spring Branch? Email the date, time, place, ages, cost and a link to <span class="select">${esc(config.contactEmail)}</span> and we'll take a look.</p>
     <h2>Say hello</h2>
