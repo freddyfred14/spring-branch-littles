@@ -1,7 +1,7 @@
 // Visits every "More info" link in data/ and reports what each page actually is: its status, where it
 // redirects, its title, and whether the page mentions the listing. Runs on GitHub (Actions → Link check).
-// Usage: node scripts/check-links.mjs   (writes link-report.md; exits 0 even when links are bad)
-import { readFileSync, writeFileSync, appendFileSync } from "node:fs";
+// Usage: node scripts/check-links.mjs   (writes reports/link-report.md; exits 0 even when links are bad)
+import { readFileSync, writeFileSync, appendFileSync, mkdirSync } from "node:fs";
 import { join } from "node:path";
 import { ROOT } from "../src/lib.mjs";
 
@@ -44,7 +44,8 @@ const md = [
   "|---|---|---|---|---|---|---|",
   ...[...bad, ...results.filter((r) => !bad.includes(r))].map((r) => `| ${r.verdict} | ${r.kind} | ${cell(r.name)} | ${r.status ?? ""} | ${cell(r.title)} | ${r.match ?? ""}% | ${r.url}${r.moved ? ` → ${r.moved}` : ""} |`),
 ].join("\n");
-writeFileSync(join(ROOT, "link-report.md"), md + "\n");
+mkdirSync(join(ROOT, "reports"), { recursive: true });
+writeFileSync(join(ROOT, "reports/link-report.md"), md + "\n");
 if (process.env.GITHUB_STEP_SUMMARY) appendFileSync(process.env.GITHUB_STEP_SUMMARY, md + "\n");
 for (const r of results) console.log(`${r.verdict.padEnd(34)} ${r.kind}/${r.id} :: ${r.status ?? ""} :: ${r.title || ""} :: ${r.url}${r.moved ? ` -> ${r.moved}` : ""}`);
 console.log(`\n${bad.length} of ${results.length} links need a look.`);

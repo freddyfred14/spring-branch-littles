@@ -1,5 +1,6 @@
 # Visits every "More info" link and lists the broken ones and the ones that land on the wrong page.
-# The results show on the run's Summary page. Runs Sunday mornings, before Monday's research run, and by hand.
+# The report is saved to reports/link-report.md (and the run's Summary page), where Monday's research agent
+# picks it up and fixes the bad links. Runs Sunday mornings and by hand.
 name: Link check
 
 on:
@@ -8,7 +9,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   links:
@@ -20,7 +21,9 @@ jobs:
         with:
           node-version: 22
       - run: node scripts/check-links.mjs
-      - uses: actions/upload-artifact@v4
-        with:
-          name: link-report
-          path: link-report.md
+      - name: Save the report
+        run: |
+          git config user.name "Spring Branch Littles bot"
+          git config user.email "bot@users.noreply.github.com"
+          git add reports/link-report.md
+          git diff --cached --quiet || { git commit -m "Link check $(date -u +%F)"; git pull --rebase; git push; }
