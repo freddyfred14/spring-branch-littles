@@ -31,6 +31,14 @@ export const NEWS_CATEGORIES = {
   "heads-up": "Heads-up",
   community: "Community",
 };
+export const PERKS = {
+  "play-area": "Play area",
+  "indoor-play": "Indoor play",
+  patio: "Patio",
+  lawn: "Lawn to run",
+  "kids-menu": "Kids' menu",
+  "free-treat": "Free treat",
+};
 export const DAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 const DAY_NAMES = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
@@ -51,6 +59,8 @@ export function loadAll() {
     recurring: readJson("data/recurring.json"),
     events: readJson("data/events.json"),
     news: existsSync(join(ROOT, "data/news.json")) ? readJson("data/news.json") : [],
+    restaurants: existsSync(join(ROOT, "data/restaurants.json")) ? readJson("data/restaurants.json") : [],
+    deals: existsSync(join(ROOT, "data/deals.json")) ? readJson("data/deals.json") : [],
     issues,
   };
 }
@@ -156,6 +166,15 @@ export function currentNews(data, now, days = 60) {
     .filter((n) => n.date >= addDays(now, -days) && (!n.expires || n.expires >= now))
     .sort((a, b) => b.date.localeCompare(a.date));
 }
+// Deals still running, each with its restaurant's name and neighborhood filled in.
+export function activeDeals(data, now) {
+  return data.deals
+    .filter((d) => !d.expires || d.expires >= now)
+    .map((d) => {
+      const r = d.restaurantId && data.restaurants.find((x) => x.id === d.restaurantId);
+      return { ...d, name: r ? r.name : d.restaurantName, place: r ? r.neighborhood : d.where };
+    });
+}
 export function areaOf(data, item) {
   return item.area || (item.placeId && placeById(data, item.placeId)?.area) || "local";
 }
@@ -249,6 +268,37 @@ export function validate(data, now = today()) {
     if (n.area != null && !AREAS[n.area]) err(w, `area must be one of ${Object.keys(AREAS).join(", ")}`);
     if (n.expires != null && !DATE_RE.test(n.expires)) err(w, "expires must be YYYY-MM-DD or null");
     if (n.date < addDays(now, -90)) warn(w, "older than 90 days; remove it");
+  });
+
+  data.restaurants.forEach((r, i) => {
+    const w = `restaurants[${i}] ${r.id || ""}`;
+    unique(w, r.id);
+    if (!r.id || !ID_RE.test(r.id)) err(w, "id must be lowercase letters, digits and dashes");
+    if (!r.name) err(w, "name is required");
+    if (!r.neighborhood) err(w, "neighborhood is required");
+    if (!AREAS[r.area]) err(w, `area must be one of ${Object.keys(AREAS).join(", ")}`);
+    if (!Array.isArray(r.perks) || !r.perks.length || r.perks.some((p) => !PERKS[p])) err(w, `perks must be a non-empty list from ${Object.keys(PERKS).join(", ")}`);
+    if (!["$", "$$", "$$$"].includes(r.price)) err(w, 'price must be "$", "$$" or "$$$"');
+    if (!r.description || r.description.length > 400) err(w, "description is required and must be under 400 characters");
+    if (!/^https:\/\//.test(r.url || "")) err(w, "url must start with https://");
+    if (r.lastVerified == null) warn(w, "never verified");
+  });
+  const restaurantIds = new Set(data.restaurants.map((r) => r.id));
+  data.deals.forEach((d, i) => {
+    const w = `deals[${i}] ${d.id || ""}`;
+    unique(w, d.id);
+    if (!d.id || !ID_RE.test(d.id)) err(w, "id must be lowercase letters, digits and dashes");
+    if (!d.title) err(w, "title is required");
+    if (d.restaurantId ? !restaurantIds.has(d.restaurantId) : !d.restaurantName) err(w, "needs a restaurantId from restaurants.json or a restaurantName");
+    if (!Array.isArray(d.days) || !d.days.length || d.days.some((x) => !DAYS.includes(x))) err(w, `days must be a list from ${DAYS.join(", ")}`);
+    if (d.startTime && !TIME_RE.test(d.startTime)) err(w, "startTime must be HH:MM (24h)");
+    if (d.endTime && !TIME_RE.test(d.endTime)) err(w, "endTime must be HH:MM (24h)");
+    if (!d.details || d.details.length > 200) err(w, "details are required and must be under 200 characters");
+    if (!AREAS[d.area]) err(w, `area must be one of ${Object.keys(AREAS).join(", ")}`);
+    if (!["confirmed", "tentative"].includes(d.status)) err(w, 'status must be "confirmed" or "tentative"');
+    if (!/^https:\/\//.test(d.url || "")) err(w, "url must start with https://");
+    if (d.expires != null && !DATE_RE.test(d.expires)) err(w, "expires must be YYYY-MM-DD or null");
+    if (!d.lastVerified || d.lastVerified < addDays(now, -30)) warn(w, "deal not verified in the last 30 days");
   });
 
   data.issues.forEach((iss) => {

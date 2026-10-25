@@ -3,7 +3,7 @@
 import { mkdirSync, writeFileSync, rmSync, cpSync, existsSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { ROOT, loadAll, validate, today, fmtLong } from "../src/lib.mjs";
-import { homePage, eventsPage, placesPage, newsPage, newsletterPage, issuePage, aboutPage, notFoundPage, esc } from "../src/templates.mjs";
+import { homePage, eventsPage, placesPage, eatsPage, newsPage, newsletterPage, issuePage, aboutPage, notFoundPage, esc } from "../src/templates.mjs";
 
 const data = loadAll();
 const now = today(data.config.timezone);
@@ -14,7 +14,7 @@ if (errors.length) {
   console.error(`\n${errors.length} error(s). Fix the data files before publishing.`);
   process.exit(1);
 }
-console.log(`Data OK: ${data.places.length} places, ${data.recurring.length} weekly programs, ${data.events.length} dated events, ${data.news.length} news items, ${data.issues.length} issues. ${warnings.length} warning(s).`);
+console.log(`Data OK: ${data.places.length} places, ${data.recurring.length} weekly programs, ${data.events.length} dated events, ${data.news.length} news items, ${data.restaurants.length} restaurants, ${data.deals.length} deals, ${data.issues.length} issues. ${warnings.length} warning(s).`);
 if (process.argv.includes("--check")) process.exit(0);
 
 const DIST = join(ROOT, "dist");
@@ -32,6 +32,7 @@ const pages = {
   "index.html": homePage(data, now),
   "events/index.html": eventsPage(data, now),
   "places/index.html": placesPage(data, now),
+  "eats/index.html": eatsPage(data, now),
   "news/index.html": newsPage(data, now),
   "newsletter/index.html": newsletterPage(data, now),
   "about/index.html": aboutPage(data, now),

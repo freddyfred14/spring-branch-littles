@@ -40,3 +40,25 @@ document.querySelectorAll(".filters").forEach((bar) => {
   });
   apply();
 });
+
+// Restaurant perk filters: show places that have every selected perk.
+document.querySelectorAll(".perk-filters").forEach((bar) => {
+  const target = document.getElementById(bar.dataset.perkFor);
+  if (!target) return;
+  const on = new Set();
+  bar.addEventListener("click", (e) => {
+    const b = e.target.closest("button");
+    if (!b) return;
+    on.has(b.dataset.perk) ? on.delete(b.dataset.perk) : on.add(b.dataset.perk);
+    b.setAttribute("aria-pressed", String(on.has(b.dataset.perk)));
+    target.querySelectorAll("[data-perks]").forEach((el) => {
+      const perks = el.dataset.perks.split(" ");
+      el.hidden = [...on].some((p) => !perks.includes(p));
+    });
+    target.querySelectorAll("[data-group]").forEach((g) => {
+      const items = [...g.querySelectorAll("[data-perks]")];
+      const msg = g.querySelector(".group-empty");
+      if (msg) msg.hidden = items.some((i) => !i.hidden);
+    });
+  });
+});

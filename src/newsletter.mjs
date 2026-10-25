@@ -3,7 +3,7 @@
 import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import {
-  ROOT, AGES, areaOf, currentNews, addDays, weekendOf, eventsBetween, recurringBetween, fmtDateRange,
+  ROOT, AGES, areaOf, currentNews, activeDeals, addDays, weekendOf, eventsBetween, recurringBetween, fmtDateRange,
   fmtTimeRange, fmtShort, whereText, placeById,
 } from "./lib.mjs";
 
@@ -80,6 +80,14 @@ export function buildIssue(data, date, draft = loadDraft(date)) {
     });
   }
 
+  const deals = activeDeals(data, date).sort((a, b) => (a.area === "local" ? -1 : 1) - (b.area === "local" ? -1 : 1)).slice(0, 4);
+  if (deals.length) {
+    sections.push({
+      heading: "Kids eat free",
+      items: deals.map((d) => ({ title: `${d.name}: ${d.title}`, when: d.days.join(" & ") + (d.startTime ? ` · ${fmtTimeRange(d.startTime, d.endTime)}` : ""), where: d.place || "", ages: "", cost: "", description: d.details, url: d.url, deal: true })),
+    });
+  }
+
   const rainy = rainyPick(data, date);
   if (rainy) {
     sections.push({
@@ -112,8 +120,9 @@ export function toMarkdown(issue, config) {
   for (const s of issue.sections) {
     out.push(`## ${s.heading}`, "");
     for (const i of s.items) {
-      out.push(`**[${i.title}](${i.url})**${i.tentative ? " _(date not final)_" : ""}  `);
+      out.push(`**[${i.title}](${i.url})**${i.tentative ? " _(not yet confirmed, check before you go)_" : ""}  `);
       if (i.news) out.push(`_${i.when}_  `);
+      else if (i.deal) out.push(`${i.when}${i.where ? ` · ${i.where}` : ""}  `);
       else {
         out.push(`${i.when} · ${i.where}  `);
         out.push(`_${i.ages} · ${i.cost}_  `);

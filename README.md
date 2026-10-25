@@ -12,7 +12,7 @@ Once it's set up, it runs on its own:
 | Every morning | The site rebuilds so "This week" always starts today. | `deploy.yml` |
 | 1st of month | The Instagram access token is refreshed. | `refresh-instagram-token.yml` |
 
-**Guardrails.** The agent can only search the web and edit files in `data/`. Every change must pass `npm run check` (required fields, valid dates, a source link on every listing) before it's committed. The newsletter won't send if it has fewer than 3 items. Each listing links to its source, and anything not confirmed by the organizer shows as "Date not final." If a run fails, GitHub emails you.
+**Guardrails.** The agent can only search the web and edit files in `data/`. Every change must pass `npm run check` (required fields, valid dates, a source link on every listing) before it's committed. The newsletter won't send if it has fewer than 3 items. Each listing links to its source, and anything not confirmed by the organizer shows as "Not yet confirmed." If a run fails, GitHub emails you.
 
 ---
 

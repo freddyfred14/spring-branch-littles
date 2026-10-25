@@ -1,0 +1,259 @@
+[
+  {
+    "address": "8217 Long Point Rd, Houston, TX 77055",
+    "price": "$$",
+    "tip": "Wednesday nights are kids-eat-free night, so arrive early for a patio table.",
+    "area": "local",
+    "lastVerified": "2026-10-24",
+    "id": "feges-bbq-spring-branch",
+    "name": "Feges BBQ",
+    "neighborhood": "Spring Branch",
+    "url": "https://fegesbbq.com/locations/spring-branch/",
+    "perks": [
+      "play-area",
+      "patio",
+      "kids-menu"
+    ],
+    "description": "Barbecue with a big patio and a small enclosed play space with a climbing gym tucked beside it. You order at the counter, so no waiting in line with wiggly kids.",
+    "sources": [
+      "https://fegesbbq.com/locations/spring-branch/",
+      "https://www.houstonpress.com/restaurants/best-of-houston-2021-best-family-friendly-restaurant-11609987/"
+    ]
+  },
+  {
+    "address": null,
+    "price": "$$",
+    "tip": null,
+    "area": "local",
+    "lastVerified": null,
+    "id": "union-kitchen-memorial",
+    "name": "The Union Kitchen – Memorial",
+    "neighborhood": "Memorial",
+    "url": "https://www.yelp.com/search?find_desc=Kid+Friendly+Restaurant+Play+Area&find_loc=memorial%2C+houston%2C+tx",
+    "perks": [
+      "play-area",
+      "patio",
+      "kids-menu"
+    ],
+    "description": "American comfort food with a spacious patio, a play area for kids and live music some nights.",
+    "sources": [
+      "https://www.yelp.com/search?find_desc=Kid+Friendly+Restaurant+Play+Area&find_loc=memorial%2C+houston%2C+tx"
+    ]
+  },
+  {
+    "address": null,
+    "price": "$$",
+    "tip": "Best on a mild evening. Bring bug spray in summer.",
+    "area": "local",
+    "lastVerified": null,
+    "id": "lazy-oaks-beer-garden",
+    "name": "Lazy Oaks Beer Garden",
+    "neighborhood": "Spring Branch",
+    "url": "https://www.yelp.com/search?find_desc=Restaurants+With+Playground&find_loc=Houston%2C+TX",
+    "perks": [
+      "play-area",
+      "patio"
+    ],
+    "description": "A shady, laid-back beer garden with a playground, so kids can climb while grown-ups relax.",
+    "sources": [
+      "https://www.yelp.com/search?find_desc=Restaurants+With+Playground&find_loc=Houston%2C+TX"
+    ]
+  },
+  {
+    "address": null,
+    "price": "$$",
+    "tip": null,
+    "area": "local",
+    "lastVerified": null,
+    "id": "mias-table-memorial-city",
+    "name": "Mia's Table",
+    "neighborhood": "Memorial City",
+    "url": "https://mommypoppins.com/houston-kids/restaurants/20-kid-friendly-restaurants-with-room-to-play-in-houston",
+    "perks": [
+      "play-area",
+      "patio",
+      "kids-menu"
+    ],
+    "description": "Family-style comfort food with an outdoor patio and a spot for kids to play. Parents rave about the kids' meals.",
+    "sources": [
+      "https://mommypoppins.com/houston-kids/restaurants/20-kid-friendly-restaurants-with-room-to-play-in-houston",
+      "https://www.yelp.com/search?find_desc=Kid+Friendly+Restaurant+Play+Area&find_loc=memorial%2C+houston%2C+tx"
+    ]
+  },
+  {
+    "address": null,
+    "price": "$$",
+    "tip": null,
+    "area": "local",
+    "lastVerified": null,
+    "id": "ciros-italian-grill",
+    "name": "Ciro's Italian Grill",
+    "neighborhood": "Memorial",
+    "url": "https://www.yelp.com/search?find_desc=Kid+Friendly+Restaurant+Play+Area&find_loc=memorial%2C+houston%2C+tx",
+    "perks": [
+      "play-area",
+      "patio",
+      "kids-menu"
+    ],
+    "description": "Family-owned Italian spot with an outdoor play area for kids, plus weekend brunch.",
+    "sources": [
+      "https://www.yelp.com/search?find_desc=Kid+Friendly+Restaurant+Play+Area&find_loc=memorial%2C+houston%2C+tx"
+    ]
+  },
+  {
+    "address": null,
+    "price": "$$",
+    "tip": "The play area is outside, so pick a patio table close by.",
+    "area": "local",
+    "lastVerified": null,
+    "id": "lupe-tortilla-memorial",
+    "name": "Lupe Tortilla",
+    "neighborhood": "Memorial",
+    "url": "https://lupetortilla.com/",
+    "perks": [
+      "play-area",
+      "patio",
+      "kids-menu"
+    ],
+    "description": "Tex-Mex with an outdoor play area, a Houston family favorite for fajita night.",
+    "sources": [
+      "https://www.yelp.com/search?find_desc=Kid+Friendly+Restaurant+Play+Area&find_loc=memorial%2C+houston%2C+tx"
+    ]
+  },
+  {
+    "address": null,
+    "price": "$$",
+    "tip": null,
+    "area": "local",
+    "lastVerified": null,
+    "id": "the-decoy-memorial",
+    "name": "The Decoy",
+    "neighborhood": "Memorial",
+    "url": "https://www.yelp.com/search?find_desc=Kid+Friendly+Restaurant+Play+Area&find_loc=memorial%2C+houston%2C+tx",
+    "perks": [
+      "play-area",
+      "patio"
+    ],
+    "description": "A mostly outdoor hangout with a kids' playground, good for an easy early dinner.",
+    "sources": [
+      "https://www.yelp.com/search?find_desc=Kid+Friendly+Restaurant+Play+Area&find_loc=memorial%2C+houston%2C+tx"
+    ]
+  },
+  {
+    "address": null,
+    "price": "$$",
+    "tip": null,
+    "area": "local",
+    "lastVerified": null,
+    "id": "yard-house-citycentre",
+    "name": "Yard House",
+    "neighborhood": "CityCentre",
+    "url": "https://www.yardhouse.com/",
+    "perks": [
+      "kids-menu",
+      "lawn"
+    ],
+    "description": "Big menu, kids' menu, and it sits right on CityCentre's plaza lawn, where kids can run around before or after dinner.",
+    "sources": [
+      "https://www.yelp.com/search?find_desc=Kid+Friendly+Restaurant+Play+Area&find_loc=memorial%2C+houston%2C+tx"
+    ]
+  },
+  {
+    "address": null,
+    "price": "$$",
+    "tip": null,
+    "area": "local",
+    "lastVerified": null,
+    "id": "blue-agave-cantina",
+    "name": "Blue Agave Cantina",
+    "neighborhood": "Energy Corridor",
+    "url": "https://www.yelp.com/search?find_desc=Restaurants+With+Playground&find_loc=Houston%2C+TX",
+    "perks": [
+      "play-area",
+      "patio",
+      "kids-menu"
+    ],
+    "description": "Tex-Mex near Terry Hershey Park with a patio playground. Pair it with an afternoon on the trails.",
+    "sources": [
+      "https://www.yelp.com/search?find_desc=Restaurants+With+Playground&find_loc=Houston%2C+TX"
+    ]
+  },
+  {
+    "address": "1500 Waugh Dr, Houston, TX 77019",
+    "price": "$$",
+    "tip": "New in 2026. Check that it's open before you make the drive.",
+    "area": "houston",
+    "lastVerified": null,
+    "id": "recess-houston",
+    "name": "Recess",
+    "neighborhood": "Montrose / Heights",
+    "url": "https://houston.culturemap.com/news/restaurants-bars/recess-restaurant-bar-playground-houston/",
+    "perks": [
+      "indoor-play",
+      "kids-menu"
+    ],
+    "description": "A two-story family restaurant and bar in a former bank, built around a supervised play area. Made for parents who want a real meal.",
+    "sources": [
+      "https://houston.culturemap.com/news/restaurants-bars/recess-restaurant-bar-playground-houston/"
+    ]
+  },
+  {
+    "address": null,
+    "price": "$$",
+    "tip": null,
+    "area": "houston",
+    "lastVerified": null,
+    "id": "betsys-evelyns-park",
+    "name": "Betsy's at Evelyn's Park",
+    "neighborhood": "Bellaire",
+    "url": "https://www.visithoustontexas.com/blog/post/kid-friendly-restaurants-in-houston/",
+    "perks": [
+      "play-area",
+      "patio",
+      "lawn"
+    ],
+    "description": "A café inside Evelyn's Park, with play areas, a climbing slope with slides and a splash pad nearby.",
+    "sources": [
+      "https://www.yelp.com/search?find_desc=Restaurants+With+Playgrounds&find_loc=Houston%2C+TX"
+    ]
+  },
+  {
+    "address": null,
+    "price": "$$",
+    "tip": null,
+    "area": "houston",
+    "lastVerified": null,
+    "id": "lake-house-discovery-green",
+    "name": "The Lake House at Discovery Green",
+    "neighborhood": "Downtown",
+    "url": "https://www.visithoustontexas.com/blog/post/kid-friendly-restaurants-in-houston/",
+    "perks": [
+      "patio",
+      "lawn",
+      "kids-menu"
+    ],
+    "description": "Fast-casual spot on Kinder Lake, steps from Discovery Green's playgrounds and splash pad.",
+    "sources": [
+      "https://www.yelp.com/search?find_desc=Restaurants+With+Playground&find_loc=Houston%2C+TX"
+    ]
+  },
+  {
+    "address": "4618 Dacoma St, Houston, TX 77092",
+    "price": "$",
+    "tip": null,
+    "area": "houston",
+    "lastVerified": null,
+    "id": "tia-marias",
+    "name": "Tia Maria's",
+    "neighborhood": "Oak Forest",
+    "url": "https://www.theinfatuation.com/houston/guides/best-kid-friendly-restaurants-houston",
+    "perks": [
+      "free-treat",
+      "kids-menu"
+    ],
+    "description": "Tex-Mex with a free self-serve soft-serve machine by the front door. Kids will remember it.",
+    "sources": [
+      "https://www.theinfatuation.com/houston/guides/best-kid-friendly-restaurants-houston"
+    ]
+  }
+]

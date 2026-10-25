@@ -1,0 +1,184 @@
+[
+  {
+    "restaurantId": "feges-bbq-spring-branch",
+    "restaurantName": null,
+    "where": null,
+    "startTime": "17:00",
+    "endTime": "20:00",
+    "area": "local",
+    "status": "tentative",
+    "expires": null,
+    "lastVerified": "2026-10-24",
+    "id": "feges-kids-eat-free-wed",
+    "title": "Kids eat free",
+    "days": [
+      "Wed"
+    ],
+    "details": "Kids 12 and under eat free.",
+    "url": "https://fegesbbq.com/locations/spring-branch/"
+  },
+  {
+    "restaurantId": "union-kitchen-memorial",
+    "restaurantName": null,
+    "where": null,
+    "startTime": null,
+    "endTime": null,
+    "area": "local",
+    "status": "tentative",
+    "expires": null,
+    "lastVerified": "2026-10-24",
+    "id": "union-kitchen-mon-tue",
+    "title": "Free kids' meal",
+    "days": [
+      "Mon",
+      "Tue"
+    ],
+    "details": "One free kids' meal (12 and under) with each adult entrée.",
+    "url": "https://2for20deals.com/kids-eat-free-houston"
+  },
+  {
+    "restaurantId": null,
+    "restaurantName": "Local Table",
+    "where": "All locations",
+    "startTime": null,
+    "endTime": null,
+    "area": "houston",
+    "status": "tentative",
+    "expires": null,
+    "lastVerified": "2026-10-24",
+    "id": "local-table-mon",
+    "title": "Free kids' meal",
+    "days": [
+      "Mon"
+    ],
+    "details": "A free kids' meal with each adult entrée.",
+    "url": "https://2for20deals.com/kids-eat-free-houston"
+  },
+  {
+    "restaurantId": null,
+    "restaurantName": "Black-eyed Pea",
+    "where": "Houston-area locations",
+    "startTime": "16:00",
+    "endTime": null,
+    "area": "houston",
+    "status": "tentative",
+    "expires": null,
+    "lastVerified": "2026-10-24",
+    "id": "black-eyed-pea-tue",
+    "title": "Free kids' meal",
+    "days": [
+      "Tue"
+    ],
+    "details": "A free kids' meal with each adult entrée, 4 pm to close.",
+    "url": "https://www.houstononthecheap.com/kids-eat-free-houston-texas-today-every-day/"
+  },
+  {
+    "restaurantId": null,
+    "restaurantName": "Pluckers",
+    "where": "Houston-area locations",
+    "startTime": null,
+    "endTime": null,
+    "area": "houston",
+    "status": "tentative",
+    "expires": null,
+    "lastVerified": "2026-10-24",
+    "id": "pluckers-tue",
+    "title": "Kids eat free",
+    "days": [
+      "Tue"
+    ],
+    "details": "Two free kids' meals per adult meal for kids under 10. Dine-in only.",
+    "url": "https://www.houstononthecheap.com/kids-eat-free-houston-texas-today-every-day/"
+  },
+  {
+    "restaurantId": null,
+    "restaurantName": "Dish Society",
+    "where": "All locations",
+    "startTime": null,
+    "endTime": null,
+    "area": "houston",
+    "status": "tentative",
+    "expires": null,
+    "lastVerified": "2026-10-24",
+    "id": "dish-society-tue",
+    "title": "Kids eat free",
+    "days": [
+      "Tue"
+    ],
+    "details": "With the purchase of an entrée, sandwich or salad.",
+    "url": "https://2for20deals.com/kids-eat-free-houston"
+  },
+  {
+    "restaurantId": null,
+    "restaurantName": "Chicken Salad Chick",
+    "where": "Participating locations",
+    "startTime": "17:00",
+    "endTime": "20:00",
+    "area": "houston",
+    "status": "tentative",
+    "expires": null,
+    "lastVerified": "2026-10-24",
+    "id": "chicken-salad-chick-tue",
+    "title": "Kids eat free",
+    "days": [
+      "Tue"
+    ],
+    "details": "A free kids' meal with an adult purchase.",
+    "url": "https://2for20deals.com/kids-eat-free-houston"
+  },
+  {
+    "restaurantId": null,
+    "restaurantName": "Red Robin",
+    "where": "Participating locations",
+    "startTime": null,
+    "endTime": null,
+    "area": "houston",
+    "status": "tentative",
+    "expires": null,
+    "lastVerified": "2026-10-24",
+    "id": "red-robin-wed",
+    "title": "Free kids' meal + sundae",
+    "days": [
+      "Wed"
+    ],
+    "details": "A free kids' meal and sundae with an adult entrée.",
+    "url": "https://2for20deals.com/kids-eat-free-houston"
+  },
+  {
+    "restaurantId": null,
+    "restaurantName": "Leaf & Grain",
+    "where": "All locations",
+    "startTime": null,
+    "endTime": null,
+    "area": "houston",
+    "status": "tentative",
+    "expires": null,
+    "lastVerified": "2026-10-24",
+    "id": "leaf-and-grain-weekend",
+    "title": "Free kids' meal",
+    "days": [
+      "Sat",
+      "Sun"
+    ],
+    "details": "Kids 12 and under get a free meal on weekends.",
+    "url": "https://2for20deals.com/kids-eat-free-houston"
+  },
+  {
+    "restaurantId": null,
+    "restaurantName": "Boudreaux's Cajun Kitchen",
+    "where": "Houston-area locations",
+    "startTime": null,
+    "endTime": null,
+    "area": "houston",
+    "status": "tentative",
+    "expires": null,
+    "lastVerified": "2026-10-24",
+    "id": "boudreaux-sun",
+    "title": "Kids eat free",
+    "days": [
+      "Sun"
+    ],
+    "details": "With an adult entrée purchase.",
+    "url": "https://2for20deals.com/kids-eat-free-houston"
+  }
+]

@@ -328,3 +328,41 @@ p { margin: 0; }
 .nsource { margin-top: auto; font-family: var(--display); font-weight: 600; font-size: 15px; text-decoration: none; color: var(--sky-deep); }
 .nsource:hover { text-decoration: underline; }
 .news-note { margin-top: 22px; }
+
+/* ---------- kid-friendly eats ---------- */
+.dealboard { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 10px; }
+.dealboard.compact { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
+.dealday { background: var(--card); border: 2px solid var(--line); border-radius: var(--r-md); padding: 12px 10px; display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.dealday h3 { font-size: 17px; text-align: center; padding: 4px 0 6px; border-bottom: 2px dashed var(--line); }
+.dealday.today { border-color: var(--sun); box-shadow: 0 6px 0 var(--sun-soft); }
+.dealday.today h3 { color: #a8641f; }
+.deal { display: grid; gap: 2px; padding: 9px 10px; border-radius: 14px; background: var(--sky-soft); text-decoration: none; color: var(--ink); line-height: 1.3; transition: transform .15s; }
+.deal.local { background: var(--dino-soft); }
+.deal:hover { transform: translateY(-2px) rotate(-.5deg); }
+.deal b { font-family: var(--display); font-weight: 600; font-size: 15.5px; }
+.deal-what { font-family: var(--script); font-size: 20px; color: var(--sky-deep); line-height: 1.05; }
+.deal.local .deal-what { color: var(--dino-deep); }
+.deal-meta { font-size: 12.5px; font-weight: 700; color: var(--muted); }
+.deal-terms { font-size: 12.5px; color: var(--muted); }
+.dealboard:not(.compact) .deal-terms { display: none; }
+.deal-none { font-size: 13px; color: var(--muted); font-style: italic; text-align: center; padding: 6px 2px; }
+.deal-note { margin-top: 16px; }
+.rcards { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 18px; }
+.rcard { display: flex; flex-direction: column; gap: 8px; background: var(--card); border: 2px solid var(--line); border-radius: var(--r-lg); padding: 20px 22px; box-shadow: 0 6px 0 var(--dino-soft); }
+.rcard.c1 { box-shadow: 0 6px 0 var(--sky-soft); } .rcard.c2 { box-shadow: 0 6px 0 var(--sun-soft); } .rcard.c3 { box-shadow: 0 6px 0 var(--peach); }
+.rcard-head { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; }
+.rcard h3 { font-size: 21px; font-weight: 600; }
+.rcard h3 a { color: var(--ink); text-decoration: none; }
+.rcard h3 a:hover { color: var(--sky-deep); text-decoration: underline; }
+.price { font-family: var(--display); font-weight: 600; color: var(--dino-deep); }
+.rcard .tip { color: var(--ink); background: var(--paper); border-radius: 14px; padding: 10px 12px; font-size: 15px; }
+.rcard .tip b { font-family: var(--script); font-size: 20px; color: var(--sky); font-weight: 700; }
+.rdeal { font-family: var(--display); font-weight: 600; font-size: 14.5px; color: #8a5316; background: var(--sun-soft); border-radius: 999px; padding: 5px 12px; align-self: flex-start; }
+.rcard .tags { justify-content: flex-start; margin-top: auto; padding-top: 6px; }
+.t-perk { background: var(--dino-soft); color: var(--dino-deep); }
+@media (max-width: 1000px) {
+  .dealboard { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
+@media (max-width: 640px) {
+  .dealboard, .dealboard.compact { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}

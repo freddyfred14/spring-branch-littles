@@ -1,9 +1,9 @@
 // HTML templates. Every page is plain HTML with one shared stylesheet and a small script for filters.
 import {
   AGES, AREAS, PLACE_TYPES, addDays, fmtDateRange, fmtTimeRange, fmtLong, fmtShort, fmtMonth, dateParts,
-  eventsBetween, placeById, whereText, weekendOf, areaOf, NEWS_CATEGORIES, currentNews,
+  eventsBetween, placeById, whereText, weekendOf, areaOf, NEWS_CATEGORIES, currentNews, PERKS, activeDeals, weekday,
 } from "./lib.mjs";
-import { WATERCOLOR_DEFS, readerIllo, kiteIllo, bubblesIllo, toddlerIllo, AGE_ILLOS, THEME_ICONS, themeOf, NEWS_ICONS } from "./illustrations.mjs";
+import { WATERCOLOR_DEFS, readerIllo, kiteIllo, bubblesIllo, toddlerIllo, AGE_ILLOS, THEME_ICONS, themeOf, NEWS_ICONS, iceCreamIllo } from "./illustrations.mjs";
 
 export const esc = (s) =>
   String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
@@ -17,6 +17,7 @@ const NAV = [
   ["/", "This week"],
   ["/events/", "Calendar"],
   ["/places/", "Places"],
+  ["/eats/", "Eats"],
   ["/news/", "News"],
   ["/newsletter/", "Newsletter"],
   ["/about/", "About"],
@@ -92,7 +93,7 @@ ${body}
 
 const ageChips = (ages) => ages.map((a) => `<span class="tag t-age">${AGES[a].label}</span>`).join("");
 const flagChips = (x) =>
-  `${x.free ? '<span class="tag t-free">Free</span>' : `<span class="tag t-paid">${esc(x.cost || "Paid")}</span>`}${x.indoor ? '<span class="tag t-in">Indoors</span>' : ""}${x.status === "tentative" ? '<span class="tag t-tent">Date not final</span>' : ""}`;
+  `${x.free ? '<span class="tag t-free">Free</span>' : `<span class="tag t-paid">${esc(x.cost || "Paid")}</span>`}${x.indoor ? '<span class="tag t-in">Indoors</span>' : ""}${x.status === "tentative" ? '<span class="tag t-tent" title="We found this on a community calendar, not the organizer&#39;s own site. Double-check before you go.">Not yet confirmed</span>' : ""}`;
 const dataAttrs = (x) => `data-ages="${x.ages.join(" ")}" data-free="${x.free ? 1 : 0}" data-indoor="${x.indoor ? 1 : 0}"`;
 
 const CLOCK = `<svg class="mi" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M8 4.5V8l2.5 1.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>`;
@@ -203,6 +204,85 @@ function newsCard(n, i) {
   </article>`;
 }
 
+// ---------- kid-friendly eats ----------
+
+const WEEK = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+const WEEK_LONG = { Mon: "Monday", Tue: "Tuesday", Wed: "Wednesday", Thu: "Thursday", Fri: "Friday", Sat: "Saturday", Sun: "Sunday" };
+
+function dealChip(d) {
+  const when = d.startTime ? fmtTimeRange(d.startTime, d.endTime) : "All day";
+  return `<a class="deal ${d.area}" href="${esc(d.url)}" rel="noopener">
+    <b>${esc(d.name)}</b><span class="deal-what">${esc(d.title)}</span>
+    <span class="deal-meta">${esc(when)}${d.place ? ` · ${esc(d.place)}` : ""}</span>
+    <span class="deal-terms">${esc(d.details)}</span>
+  </a>`;
+}
+
+// One column per weekday, today's highlighted.
+function dealBoard(data, now, { compact = false } = {}) {
+  const deals = activeDeals(data, now);
+  const today = weekday(now);
+  const days = compact ? [0, 1, 2, 3].map((n) => weekday(addDays(now, n))) : WEEK;
+  return `<div class="dealboard${compact ? " compact" : ""}">${days
+    .map((day) => {
+      const list = deals.filter((d) => d.days.includes(day)).sort((a, b) => (a.area === "local" ? -1 : 1) - (b.area === "local" ? -1 : 1));
+      return `<section class="dealday${day === today ? " today" : ""}">
+        <h3>${day === today ? "Today" : WEEK_LONG[day]}</h3>
+        ${list.length ? list.map(dealChip).join("") : '<p class="deal-none">No deals we know of yet. Know one? Tell us!</p>'}
+      </section>`;
+    })
+    .join("")}</div>`;
+}
+
+function restaurantCard(data, r, i) {
+  const deals = activeDeals(data, "0000-00-00").filter((d) => d.restaurantId === r.id);
+  return `<article class="rcard c${i % 4}" data-perks="${r.perks.join(" ")}">
+    <div class="rcard-head"><h3><a href="${esc(r.url)}" rel="noopener">${esc(r.name)}</a></h3><span class="price">${esc(r.price)}</span></div>
+    <p class="meta">${PIN}<span>${esc(r.address || r.neighborhood)}</span></p>
+    <p class="desc">${esc(r.description)}</p>
+    ${r.tip ? `<p class="tip"><b>Parent tip:</b> ${esc(r.tip)}</p>` : ""}
+    ${deals.map((d) => `<p class="rdeal">${esc(d.title)} · ${d.days.map((x) => WEEK_LONG[x]).join(" & ")}${d.startTime ? `, ${fmtTimeRange(d.startTime, d.endTime)}` : ""}</p>`).join("")}
+    <div class="tags">${r.perks.map((p) => `<span class="tag t-perk">${esc(PERKS[p])}</span>`).join("")}</div>
+  </article>`;
+}
+
+export function eatsPage(data, now) {
+  const { config } = data;
+  const byArea = (a) => data.restaurants.filter((r) => r.area === a);
+  const group = (area) => {
+    const list = byArea(area);
+    return list.length ? `<section class="band region" data-group><div class="wrap">
+      <div class="region-head"><div class="region-art">${area === "local" ? toddlerIllo() : kiteIllo()}</div>
+        <div><p class="label">${esc(AREAS[area].label)}</p><h2>${area === "local" ? "Spring Branch & Memorial" : "Surrounding Houston"}</h2></div></div>
+      <div class="rcards">${list.map((r, i) => restaurantCard(data, r, i)).join("")}</div>
+      <p class="group-empty" hidden>Nothing here has all of those. Try fewer filters.</p>
+    </div></section>` : "";
+  };
+  const body = `
+  <section class="page-head"><div class="wrap head-art"><div class="head-copy">
+    <p class="label">Kid-friendly eats</p>
+    <h1>Where to eat with <span class="script">littles</span></h1>
+    <p class="lede">Restaurants with play areas, patios and kids' menus, plus the kids-eat-free nights worth planning around.</p>
+    <p class="jump"><a href="#deals">Kids eat free</a><a href="#restaurants">Restaurants</a></p>
+  </div>${iceCreamIllo()}</div></section>
+
+  <section class="band" id="deals"><div class="wrap">
+    <div class="sec-head"><div><p class="label">Deals by day</p><h2>Kids eat free ${SPARK}</h2></div></div>
+    ${dealBoard(data, now)}
+    <p class="quiet deal-note">Deals change often and usually need an adult entrée. Call ahead or check the restaurant's site before you go. Green deals are close to home; blue ones are around Houston.</p>
+  </div></section>
+
+  <section class="band whatson" id="restaurants"><div class="wrap">
+    <div class="sec-head"><div><p class="label">Our list</p><h2>Kid-friendly restaurants ${SPARK}</h2></div></div>
+    <div class="filters perk-filters" data-perk-for="rest-list" role="group" aria-label="Filter restaurants">
+      ${["play-area", "indoor-play", "patio", "kids-menu"].map((p) => `<button class="chip" type="button" data-perk="${p}" aria-pressed="false">${esc(PERKS[p])}</button>`).join("")}
+    </div>
+  </div></section>
+  <div id="rest-list">${group("local")}${group("houston")}</div>
+  <section class="band"><div class="wrap"><p class="quiet">Is your favorite family spot missing? Email <span class="select">${esc(config.contactEmail)}</span>.</p></div></section>`;
+  return layout(config, { title: "Kid-friendly eats", path: "/eats/", body, now, description: "Kid-friendly restaurants with play areas and patios in Spring Branch, Memorial and Houston, plus kids-eat-free deals by day." });
+}
+
 // ---------- pages ----------
 
 export function homePage(data, now) {
@@ -252,6 +332,11 @@ export function homePage(data, now) {
   ${news.length ? `<section class="band news-band"><div class="wrap">
     <div class="sec-head"><div><p class="label">What parents should know</p><h2>Neighborhood news ${SPARK}</h2></div><a class="more" href="/news/">All news →</a></div>
     <div class="ncards">${news.map(newsCard).join("")}</div>
+  </div></section>` : ""}
+
+  ${data.deals.length ? `<section class="band"><div class="wrap">
+    <div class="sec-head"><div><p class="label">Dinner's sorted</p><h2>Kids eat free ${SPARK}</h2></div><a class="more" href="/eats/">All kid-friendly eats →</a></div>
+    ${dealBoard(data, now, { compact: true })}
   </div></section>` : ""}
 
   <section class="band"><div class="wrap">
@@ -389,7 +474,7 @@ export function issuePage(data, issue, now) {
   <section class="band"><div class="wrap narrow issue">
     ${issue.sections
       .map((s) => `<h2>${esc(s.heading)}</h2><ul class="issue-items">${s.items
-        .map((i) => `<li><h3><a href="${esc(i.url)}" rel="noopener">${esc(i.title)}</a>${i.tentative ? ' <span class="tag t-tent">Date not final</span>' : ""}</h3>${i.news ? `<p class="quiet">${esc(i.when)}</p>` : `<p class="ev-where">${esc(i.when)} · ${esc(i.where)}</p><p class="quiet">${esc(i.ages)} · ${esc(i.cost)}</p>`}<p>${esc(i.description)}</p></li>`)
+        .map((i) => `<li><h3><a href="${esc(i.url)}" rel="noopener">${esc(i.title)}</a>${i.tentative ? ' <span class="tag t-tent" title="We found this on a community calendar, not the organizer&#39;s own site. Double-check before you go.">Not yet confirmed</span>' : ""}</h3>${i.news ? `<p class="quiet">${esc(i.when)}</p>` : i.deal ? `<p class="ev-where">${esc(i.when)}${i.where ? ` · ${esc(i.where)}` : ""}</p>` : `<p class="ev-where">${esc(i.when)} · ${esc(i.where)}</p><p class="quiet">${esc(i.ages)} · ${esc(i.cost)}</p>`}<p>${esc(i.description)}</p></li>`)
         .join("")}</ul>`)
       .join("")}
     <div class="signup-card"><h2>Get it in your inbox</h2>${signupForm(config, "issue")}</div>
@@ -409,7 +494,7 @@ export function aboutPage(data, now) {
     <h2>What we cover</h2>
     <p>${esc(config.area)}. That means library storytimes, city and county parks, nature programs, festivals, holiday events, school-break ideas and indoor spots for Houston's rainy and 100° days.</p>
     <h2>How listings work</h2>
-    <p>We check public calendars from the libraries, parks departments, schools and local venues every week. Every listing links to its source so you can confirm times before you go. Anything marked “Date not final” hasn't been confirmed by the organizer yet.</p>
+    <p>We check public calendars from the libraries, parks departments, schools and local venues every week. Every listing links to its source so you can confirm times before you go. Anything marked “Not yet confirmed” came from a community calendar rather than the organizer’s own site, so give it a quick check before you go.</p>
     <h2>Add your event</h2>
     <p>Hosting something for kids in Spring Branch? Email the date, time, place, ages, cost and a link to <span class="select">${esc(config.contactEmail)}</span> and we'll take a look.</p>
     <h2>Say hello</h2>

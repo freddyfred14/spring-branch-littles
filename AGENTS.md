@@ -9,10 +9,11 @@ You keep the Spring Branch Littles calendar accurate. Parents plan their weekend
 3. **Re-verify what's listed.** For each upcoming event in the next 3 weeks, open its `url` and confirm the date, time, place and cost. Fix anything that changed. Set `lastVerified` to today only if you actually confirmed it on that page this run.
 4. **Find new events** for the next 6 weeks using the sources below. Aim for at least 8–12 Spring Branch & Memorial events in the next 3 weeks (at least 2 on the coming weekend), plus 3–6 Surrounding Houston events. Holidays, school breaks and seasonal events (Halloween, Thanksgiving week, Santa visits, tree lightings, spring festivals) are what parents search for most.
 5. **Keep weekly programs and places fresh.** Re-check any entry in `data/recurring.json` or `data/places.json` whose `lastVerified` is null or older than 30 days. Limit it to about 5 per run so every run stays short. If a weekly program has ended or moved, update or remove it.
-6. **Update neighborhood news** in `data/news.json` (see "Neighborhood news" below). Add 2–4 new items each week, and remove items older than 90 days or past their `expires` date.
-7. **On Wednesdays only, write the newsletter intro** (see below).
-8. **Run `npm run check`** and fix every error. Warnings are fine.
-9. **Write a short summary** at the top of `data/agent-log.md`: date, what you added, changed, removed, and anything you couldn't confirm. Keep only the last 12 entries.
+6. **Check kids' deals and restaurants** in `data/deals.json` and `data/restaurants.json` (see "Kid-friendly eats" below). Re-verify every deal at least every 2 weeks, and add new ones you find.
+7. **Update neighborhood news** in `data/news.json` (see "Neighborhood news" below). Add 2–4 new items each week, and remove items older than 90 days or past their `expires` date.
+8. **On Wednesdays only, write the newsletter intro** (see below).
+9. **Run `npm run check`** and fix every error. Warnings are fine.
+10. **Write a short summary** at the top of `data/agent-log.md`: date, what you added, changed, removed, and anything you couldn't confirm. Keep only the last 12 entries.
 
 Only edit files in `data/`. Never edit code, templates or workflows.
 
@@ -92,6 +93,56 @@ All dates are `YYYY-MM-DD`, times are 24-hour `HH:MM`. Ages use these keys: `bab
 `data/recurring.json`: weekly programs (storytimes, open play). Fields are the same idea, plus `days` (e.g. `["Tue"]`), optional `frequency` text for patterns like "1st and 3rd Saturdays", and optional `from` / `until` dates for seasonal runs.
 
 `data/places.json`: venues for the directory. `type` is one of `library`, `park`, `indoor-play`, `nature`, `attraction`. Include a practical `tip` from a parent's point of view. Add a new place when an event happens somewhere families would want to go back to.
+
+## Kid-friendly eats
+
+**Restaurants** (`data/restaurants.json`) belong on the list when they make eating out easier with kids: a play area or playground, a patio or lawn where kids can move, a real kids' menu, or a kid-delighting extra (free soft-serve, crayons-and-paper tables, a train that runs overhead). Spring Branch & Memorial spots are `"area": "local"`; standouts elsewhere in Houston are `"houston"`.
+
+```json
+{
+  "id": "feges-bbq-spring-branch",
+  "name": "Feges BBQ",
+  "neighborhood": "Spring Branch",
+  "address": "8217 Long Point Rd, Houston, TX 77055",
+  "url": "https://the-restaurants-own-page",
+  "perks": ["play-area", "patio", "kids-menu"],
+  "price": "$$",
+  "area": "local",
+  "description": "What it's like with kids, in two sentences.",
+  "tip": "One practical parent tip, or null.",
+  "sources": ["https://where-you-confirmed-it"],
+  "lastVerified": "2026-10-24"
+}
+```
+- `perks` come from: `play-area`, `indoor-play`, `patio`, `lawn`, `kids-menu`, `free-treat`. Only list a perk you've seen confirmed (photos, the restaurant's site, or recent reviews).
+- `price` is `$`, `$$` or `$$$`. Use `null` for `address` if you can't confirm it. Never guess a website; use the restaurant's own site or the page where you found it.
+- Remove restaurants that have closed or lost their play area.
+
+**Kids' deals** (`data/deals.json`) are recurring promos like kids-eat-free nights. They change often, so check the restaurant's own site or social media whenever you can.
+
+```json
+{
+  "id": "feges-kids-eat-free-wed",
+  "title": "Kids eat free",
+  "restaurantId": "feges-bbq-spring-branch",
+  "restaurantName": null,
+  "where": null,
+  "days": ["Wed"],
+  "startTime": "17:00",
+  "endTime": "20:00",
+  "details": "Kids 12 and under eat free with an adult entrée.",
+  "area": "local",
+  "url": "https://where-a-parent-can-confirm",
+  "status": "confirmed",
+  "expires": null,
+  "lastVerified": "2026-10-24"
+}
+```
+- Use `restaurantId` when the restaurant is in `restaurants.json`. For chains, set `restaurantId` to `null`, put the chain in `restaurantName` and say which locations in `where` ("All Houston-area locations").
+- `"status": "confirmed"` only when the restaurant itself shows the deal; otherwise `"tentative"`.
+- Seasonal or limited-time promos (summer kids-eat-free, holiday specials) get an `expires` date.
+- Prefer deals with a Spring Branch or Memorial location. Aim to have something on every day of the week.
+- Remove a deal if you can't find any current evidence of it.
 
 ## Neighborhood news
 

@@ -141,6 +141,23 @@ export function readerIllo() {
     ${sparkle(150, 52, 0.9)}`);
 }
 
+export function iceCreamIllo() {
+  const s = SKIN[0];
+  return wrap("0 0 220 220", "A girl happily holding an ice cream cone", `
+    ${blob(110, 124, 92, 86, P.peach, 0.7)}
+    ${limb([[98, 164], [96, 196]], s, 12)}${limb([[118, 164], [120, 196]], s, 12)}
+    ${shoe(94, 199, 8, P.skyDeep)}${shoe(122, 199, 8, P.skyDeep)}
+    <path d="M108 106 L74 170 Q108 182 142 170Z" fill="${P.sky}"/>
+    <circle cx="96" cy="150" r="4" fill="#fff" opacity=".7"/><circle cx="118" cy="160" r="4" fill="#fff" opacity=".7"/><circle cx="110" cy="136" r="4" fill="#fff" opacity=".7"/>
+    ${limb([[92, 122], [76, 146]], s, 10)}
+    ${head(108, 80, 30, s, HAIR.brown, "bob")}
+    ${limb([[124, 120], [144, 104]], s, 10)}
+    <path d="M140 104 L152 140 L164 104Z" fill="${P.sun}"/><path d="M143 112 l18 0 M146 122 l12 0" stroke="${P.bark}" stroke-width="2" opacity=".5"/>
+    <circle cx="146" cy="96" r="12" fill="${P.coral}"/><circle cx="160" cy="96" r="12" fill="${P.cream}"/><circle cx="153" cy="84" r="11" fill="${P.sage}"/>
+    <circle cx="152" cy="73" r="4" fill="${P.coral}"/>
+    ${sparkle(166, 58, 0.9)}`);
+}
+
 // ---------- wide playground scene (1000 × 300) ----------
 
 export function playgroundScene() {
