@@ -833,3 +833,8 @@ body { background-image: none; }
 .guide-sub:first-child { margin-top: 0; }
 .guide-tips { display: grid; gap: 10px; padding-left: 22px; max-width: 70ch; }
 .archive li span { flex-basis: 100%; }
+
+/* blog posts */
+.post-body { display: grid; gap: 16px; font-size: 18px; max-width: 680px; }
+.post-body ul { margin: 0; padding-left: 22px; display: grid; gap: 8px; }
+.page-head .event-photo { margin-top: 10px; }

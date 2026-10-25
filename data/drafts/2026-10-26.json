@@ -1,9 +1,18 @@
 {
   "subject": "Halloween week: trick-or-treating, Zoo Boo and more",
-  "preheader": "Welcome to the first Littles List: two weeks of kid-friendly plans near you.",
+  "preheader": "Welcome to the first Littles List: our favorite kid plans for the next two weeks.",
   "intro": [
-    "Welcome to the very first Littles List! Every Monday, we'll send you the best things to do with babies through elementary schoolers in Spring Branch and Memorial for the next two weeks, so you have time to plan. Every event is checked against the organizer's own page.",
-    "It's Halloween week, so this one is all about costumes. Our picks are marked with a star: the Spring Branch Memorial Library's party for kids 4 to 8 on Thursday, and CityCentre's free trick-or-treat on Friday evening (bring your own bucket). Zoo Boo wraps up Saturday, too.",
-    "Know a parent who'd like this? Forward it along. And if we missed something, just hit reply. We read every one."
-  ]
+    "Welcome to the very first Littles List! Every Monday, we'll send our favorite things to do with babies through elementary schoolers in Spring Branch and Memorial over the next two weeks, so you have time to plan.",
+    "It's Halloween week, so costumes are the theme. If you only do one thing, make it CityCentre's free trick-or-treat on Friday evening (bring your own bucket)."
+  ],
+  "picks": [
+    "2026-10-29-sbm-kids-halloween-party",
+    "2026-10-29-cmh-free-family-night",
+    "2026-10-30-citycentre-trick-or-treat",
+    "2026-10-25-houston-zoo-boo",
+    "2026-11-07-arboretum-scavenger-hunt",
+    "2026-11-08-hbg-standing-tall"
+  ],
+  "restaurants": ["feges-bbq-spring-branch", "union-kitchen-memorial", "lazy-oaks-beer-garden"],
+  "posts": ["how-to-get-a-spot-at-storytime", "kids-eat-free-spring-branch-cheat-sheet"]
 }

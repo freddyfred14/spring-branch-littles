@@ -63,6 +63,7 @@ export function loadAll() {
     deals: existsSync(join(ROOT, "data/deals.json")) ? readJson("data/deals.json") : [],
     gallery: existsSync(join(ROOT, "data/gallery.json")) ? readJson("data/gallery.json") : [],
     guides: existsSync(join(ROOT, "data/guides.json")) ? readJson("data/guides.json") : [],
+    posts: existsSync(join(ROOT, "data/posts.json")) ? readJson("data/posts.json") : [],
     issues,
   };
 }
@@ -205,7 +206,7 @@ export function isRoundup(url) {
   } catch { return false; }
 }
 const DATE_RE = /^\d{4}-\d{2}-\d{2}$/;
-const IMAGE_RE = /^\/img\/(news|events|places|eats|gallery)\/[a-z0-9-]+\.(jpe?g|png|webp)$/;
+const IMAGE_RE = /^\/img\/(news|events|places|eats|gallery|blog)\/[a-z0-9-]+\.(jpe?g|png|webp)$/;
 
 // Photos are optional everywhere, but when present they need a real file, alt text and a credit.
 function checkImage(x, w, err) {
@@ -304,7 +305,7 @@ export function validate(data, now = today()) {
     if (n.date < addDays(now, -90)) warn(w, "older than 90 days; remove it");
     checkImage(n, w, err);
     (n.moreLinks || []).forEach((l) => { if (!l.label || !/^https:\/\//.test(l.url || "")) err(w, "each moreLinks entry needs a label and an https url"); });
-    if (n.featured && (!Array.isArray(n.story) || !n.story.length || n.story.some((p) => typeof p !== "string" || p.length > 700))) err(w, "the featured story needs a story: a list of 1–4 paragraphs, each under 700 characters");
+    if (n.featured && (!Array.isArray(n.story) || !n.story.length || n.story.length > 2 || n.story.some((p) => typeof p !== "string") || n.story.join(" ").split(/\s+/).length > 100)) err(w, "the featured story needs a short story: 1–2 paragraphs, under 100 words in all");
   });
 
   data.restaurants.forEach((r, i) => {
@@ -381,6 +382,27 @@ export function validate(data, now = today()) {
       else if (!GUIDE_KINDS[kind].some((x) => x.id === id)) err(w, `item "${ref}" doesn't match any listing`);
     }
     if (g.tips != null && (!Array.isArray(g.tips) || g.tips.some((t) => typeof t !== "string" || t.length > 300))) err(w, "tips must be a list of short strings (under 300 characters)");
+  });
+
+  // Blog posts: short, useful reads for parents. They're kept short on purpose.
+  const postIds = new Set();
+  data.posts.forEach((p, i) => {
+    const w = `posts[${i}] ${p.id || "?"}`;
+    if (!p.id || !ID_RE.test(p.id)) err(w, "id must be lowercase letters, digits and dashes (it becomes the page address)");
+    else if (postIds.has(p.id)) err(w, "duplicate id");
+    postIds.add(p.id);
+    if (!p.title || p.title.length > 80) err(w, "title is required and must be under 80 characters");
+    if (!DATE_RE.test(p.date || "")) err(w, "date must be YYYY-MM-DD");
+    if (!p.summary || p.summary.length > 200) err(w, "summary is required and must be under 200 characters (it's the newsletter teaser)");
+    const words = Array.isArray(p.body) ? p.body.join(" ").split(/\s+/).filter(Boolean).length : 0;
+    if (!Array.isArray(p.body) || !p.body.length || p.body.some((x) => typeof x !== "string")) err(w, "body must be a list of short paragraphs (or list items starting with \"- \")");
+    else if (words > 250) err(w, `body is ${words} words; keep posts under 250 words`);
+    for (const ref of p.related || []) {
+      const [kind, id] = String(ref).split(":");
+      if (!GUIDE_KINDS[kind]) err(w, `related "${ref}" must start with event:, weekly:, place: or eats:`);
+      else if (!GUIDE_KINDS[kind].some((x) => x.id === id)) err(w, `related "${ref}" doesn't match any listing`);
+    }
+    checkImage(p, w, err);
   });
 
   return { errors, warnings };

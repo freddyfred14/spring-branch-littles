@@ -4,7 +4,7 @@ import { mkdirSync, writeFileSync, rmSync, cpSync, existsSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { ROOT, loadAll, validate, today, fmtLong, addDays, areaOf, currentNews, PLACE_TYPES, PERKS } from "../src/lib.mjs";
 import { eventPath, nextOccurrence, icsFile } from "../src/calendar.mjs";
-import { homePage, eventsPage, placesPage, eatsPage, newsPage, newsletterPage, joinPage, eventPage, searchPage, thanksPage, appPage, offlinePage, guidePage, guidesIndexPage, issuePage, aboutPage, notFoundPage, esc } from "../src/templates.mjs";
+import { homePage, eventsPage, placesPage, eatsPage, newsPage, newsletterPage, joinPage, eventPage, searchPage, thanksPage, appPage, offlinePage, guidePage, guidesIndexPage, postPage, blogIndexPage, issuePage, aboutPage, notFoundPage, esc } from "../src/templates.mjs";
 
 const data = loadAll();
 const now = today(data.config.timezone);
@@ -41,12 +41,14 @@ const pages = {
   "thanks/index.html": thanksPage(data, now),
   "app/index.html": appPage(data, now),
   "guides/index.html": guidesIndexPage(data, now),
+  "blog/index.html": blogIndexPage(data, now),
   "offline/index.html": offlinePage(data, now),
   "about/index.html": aboutPage(data, now),
   "404.html": notFoundPage(data, now),
 };
 for (const issue of data.issues) pages[`newsletter/${issue.date}/index.html`] = issuePage(data, issue, now);
 for (const g of data.guides.filter((g) => !g.expires || g.expires >= now)) pages[`guides/${g.id}/index.html`] = guidePage(data, g, now);
+for (const p of data.posts.filter((p) => p.date <= now)) pages[`blog/${p.id}/index.html`] = postPage(data, p, now);
 
 // A page and an "Add to calendar" file for every upcoming event and weekly program.
 const stamp = new Date().toISOString().replace(/[-:]/g, "").replace(/\.\d+/, "");
@@ -68,6 +70,7 @@ const index = [
   ...data.places.map((p) => ({ t: PLACE_TYPES[p.type], title: p.name, sub: p.address, text: `${p.description} ${p.tip || ""} ${p.ages.join(" ")}`, url: `/places/#${p.id}` })),
   ...data.restaurants.map((r) => ({ t: "Eats", title: r.name, sub: r.neighborhood, text: `${r.description} ${r.perks.map((k) => PERKS[k]).join(" ")} restaurant food dinner lunch`, url: "/eats/#restaurants" })),
   ...currentNews(data, now, 90).map((n) => ({ t: "News", title: n.title, sub: n.source, text: n.summary, url: `/news/#${n.id}` })),
+  ...data.posts.filter((p) => p.date <= now).map((p) => ({ t: "Blog", title: p.title, sub: fmtLong(p.date), text: `${p.summary} ${p.body.join(" ")}`, url: `/blog/${p.id}/` })),
 ];
 write("search.json", JSON.stringify(index));
 

@@ -44,10 +44,11 @@ Say plainly when a number is a guess, and replace guesses with our own data as s
 | `reach/city-playbook.md` | **The City Launch Playbook:** what to do, in what order, with what results, to launch a new Littles city |
 | `reach/log.md` | Your run log, plus anything the owner reports doing or seeing. Newest first, last 30 entries |
 | `data/guides.json` | Guides you publish on the site (see "Guides") |
+| `data/posts.json` | Short blog posts you write every Tuesday (see "Blog posts"); two go in each Monday newsletter |
 | `marketing/GROWTH-KICKOFF.md` | The owner's starting checklist: accounts, first ads, groups, quick wins |
 | `marketing/ads/<date>/` | Ad creative made by **Actions → Ad creatives**, with copy and tracked links |
 
-Only edit files in `reach/` and `data/guides.json`. Never touch the listings, code or workflows. If you need something built (a new ad concept, a landing-page change, a referral feature), put a clear request in the plan under "Requests for Claude".
+Only edit files in `reach/`, `data/guides.json` and `data/posts.json`. Never touch the listings, code or workflows. If you need something built (a new ad concept, a landing-page change, a referral feature), put a clear request in the plan under "Requests for Claude".
 
 ---
 
@@ -61,7 +62,7 @@ You run **Tuesday mornings** (the full run, after Monday's newsletter) and **Fri
 3. **First run only:** write `reach/strategy.md`, `reach/experiments.md`, `reach/targets.md` and the first version of `reach/city-playbook.md` (see below). Use web search to find real local groups, schools, PTAs, preschools, churches, kids' businesses and media.
 4. **Score last week:** for each experiment that ended, record the result and call it: scale, iterate or kill. Update `strategy.md` only when the data says to, and say why in the log.
 5. **Write the plan** (`reach/plans/<today>.md`) and **the kit** (`reach/kits/<today>.md`).
-6. **Publish or improve one guide** in `data/guides.json`.
+6. **Write two blog posts** in `data/posts.json` (see "Blog posts"), and **publish or improve one guide** in `data/guides.json`.
 7. **Grow `reach/targets.md`** by at least 5 real, checked entries until it has 50+.
 8. **Update `reach/city-playbook.md`** with anything learned this week.
 9. Run `npm run check` and fix every error. Log the run at the top of `reach/log.md`.
@@ -159,6 +160,31 @@ Guides are pages at `/guides/<id>/`, built only from listings already on the sit
 - Titles use the words parents search for, under 90 characters; descriptions under 160.
 - `items` must exist (`npm run check` tells you). Never invent facts or copy other sites. If there aren't enough listings for a guide, choose another topic and say which listings the research agent should find.
 - Every guide is also content: turn it into a Facebook post, a Reel and a newsletter mention in the kit.
+
+## Blog posts (`data/posts.json`)
+
+Two short posts every Tuesday. They go in the next Monday newsletter, get shared in groups during the week, and bring in Google searches. **Short is the point: under 200 words, a one-minute read.** (`npm run check` rejects anything over 250.)
+
+```json
+{
+  "id": "how-to-get-a-spot-at-storytime",
+  "title": "How to actually get a spot at library storytime",
+  "date": "2026-10-27",
+  "summary": "One or two sentences, under 200 characters. It's the newsletter teaser, so make people want to click.",
+  "body": [
+    "One short opening line on why this matters.",
+    "- Tip or item one, with a specific place, day or time from our data.",
+    "- Tip or item two.",
+    "One closing line pointing to the calendar, Eats page or a guide."
+  ],
+  "related": ["weekly:sbm-tiny-tykes", "eats:feges-bbq-spring-branch"]
+}
+```
+- **Topics parents care about, tied to here and now:** how-tos (getting storytime spots, surviving a Zoo Boo crowd with a toddler), cheat sheets (kids eat free by night, free things this month, rainy-day backups), seasonal plans (Thanksgiving break, holiday lights, spring break camps), local news explained ("What the new Memorial Park playground means for you"), and new spots worth a visit.
+- **Every fact comes from `data/`**, or from a source you checked and link in the post. If it isn't checked, leave it out. No medical, safety or parenting advice beyond common sense.
+- A line starting with `- ` becomes a bullet. Use `related` to show listing cards under the post (they must exist).
+- Write like a friendly local mom, not a blog: no "In today's busy world", no filler intros.
+- Don't repeat a topic from the last 8 weeks. Update an old post (new date) instead if it's still relevant.
 
 ## Targets (`reach/targets.md`)
 

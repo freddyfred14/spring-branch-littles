@@ -34,6 +34,7 @@ const NAV = [
 const NAV_MORE = [
   ["/news/", "Neighborhood news"],
   ["/newsletter/", "Newsletter archive"],
+  ["/blog/", "Blog"],
   ["/guides/", "Guides"],
   ["/app/", "Get the app"],
   ["/search/", "Search"],
@@ -882,6 +883,57 @@ export function guidesIndexPage(data, now) {
     ${guides.length ? `<ul class="archive">${guides.map((g) => `<li><a href="/guides/${esc(g.id)}/">${esc(g.title)}</a><span>${esc(g.description)}</span></li>`).join("")}</ul>` : '<p class="quiet">Guides are on the way.</p>'}
   </div></section>`;
   return layout(config, { title: "Guides", path: "/guides/", body, now, description: "Spring Branch Littles guides: holidays, rainy days, birthdays and more for families with little kids." });
+}
+
+// Blog: short, useful reads for parents (under 250 words). Lines starting with "- " become a list.
+function postBody(paragraphs) {
+  const out = [];
+  let list = [];
+  // A short first sentence in a list item reads as its heading, so it's bolded.
+  const bullet = (l) => { const m = l.match(/^([^.:]{3,60}[.:])\s(.+)$/); return m ? `<b>${esc(m[1])}</b> ${esc(m[2])}` : esc(l); };
+  const flush = () => { if (list.length) out.push(`<ul>${list.map((l) => `<li>${bullet(l)}</li>`).join("")}</ul>`); list = []; };
+  for (const p of paragraphs) {
+    if (p.startsWith("- ")) list.push(p.slice(2));
+    else { flush(); out.push(`<p>${esc(p)}</p>`); }
+  }
+  flush();
+  return out.join("");
+}
+
+export function postPage(data, post, now) {
+  const { config } = data;
+  const related = guideItems(data, { items: post.related || [] }, now);
+  const body = `
+  <article>
+    <section class="page-head"><div class="wrap narrow">
+      <p class="label"><a href="/blog/">Blog</a> · ${esc(fmtLong(post.date))}</p>
+      <h1>${esc(post.title)}</h1>
+      ${post.image ? photo(post, "event-photo") : ""}
+    </div></section>
+    <section class="band"><div class="wrap narrow post-body">${postBody(post.body)}</div></section>
+  </article>
+  ${related.length ? `<section class="band"><div class="wrap"><h2 class="guide-sub">Mentioned in this post</h2><div class="ecards">${related.map((x) => x.html).join("")}</div></div></section>` : ""}
+  <section class="band"><div class="wrap narrow"><div class="signup-card">
+    <h2>Get posts like this every Monday</h2>
+    <p>${esc(config.newsletterName)}: two weeks of kid-friendly plans in Spring Branch and Memorial, plus a couple of quick reads. Free.</p>
+    ${signupForm(config, "post")}
+  </div></div></section>`;
+  return layout(config, { title: post.title, path: `/blog/${post.id}/`, body, now, description: post.summary });
+}
+
+export function blogIndexPage(data, now) {
+  const { config } = data;
+  const posts = data.posts.filter((p) => p.date <= now).sort((a, b) => b.date.localeCompare(a.date));
+  const body = `
+  <section class="page-head"><div class="wrap narrow">
+    <p class="label">Blog</p>
+    <h1>Quick reads for <span class="script pink">busy</span> parents</h1>
+    <p class="lede">Short, practical posts about family life in Spring Branch and Memorial. Most take a minute to read.</p>
+  </div></section>
+  <section class="band"><div class="wrap narrow">
+    ${posts.length ? `<ul class="archive">${posts.map((p) => `<li><a href="/blog/${esc(p.id)}/">${esc(p.title)}</a><span>${esc(p.summary)}</span></li>`).join("")}</ul>` : '<p class="quiet">The first posts are on the way.</p>'}
+  </div></section>`;
+  return layout(config, { title: "Blog", path: "/blog/", body, now, description: "Quick reads for parents of little kids in Spring Branch and Memorial, Houston." });
 }
 
 // How to install the app and turn on alerts. site.js shows the steps that fit the visitor's phone.

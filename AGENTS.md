@@ -181,7 +181,7 @@ Short, useful updates for parents in Spring Branch and Memorial. Each item is a 
 
 ## Sunday: the newsletter intro
 
-The newsletter ("The Littles List") goes out automatically Monday morning and covers the next two weeks, so parents have time to plan: this week, next week, worth-the-drive events, weekly storytimes, and a "plan ahead" list further out. Don't call it a Monday letter. It's built from the data, but you write the opening. Create `data/drafts/<tomorrow's date>.json`:
+The newsletter ("The Littles List") goes out automatically Monday morning. It's **curated, not complete**: a short story of the week, the 5–6 most compelling events of the next two weeks, 2–3 restaurants, 2 short blog posts, and school-break reminders. Everything else lives on the site's calendar. Don't call it a Monday letter. You choose what goes in and write the opening. Create `data/drafts/<tomorrow's date>.json`:
 
 ```json
 {
@@ -191,16 +191,20 @@ The newsletter ("The Littles List") goes out automatically Monday morning and co
     "First paragraph: 2–3 friendly sentences about the next two weeks in Spring Branch: season, holidays, the highlights.",
     "Optional second paragraph: one practical heads-up (a school holiday, a registration deadline, a closure)."
   ],
-  "picks": ["optional-event-id-1", "optional-event-id-2"]
+  "picks": ["event-id-1", "event-id-2", "event-id-3", "event-id-4", "event-id-5"],
+  "restaurants": ["restaurant-id-1", "restaurant-id-2", "restaurant-id-3"],
+  "posts": ["post-id-1", "post-id-2"]
 }
 ```
 
 - If that file already exists, a person wrote it. Leave it alone.
 - **Voice:** a Spring Branch mom texting a friend. Warm, practical and specific. No exclamation-point pileups, no "fun-filled," no emoji in the subject.
 - **Subject:** under 60 characters, and it names real things from the next two weeks.
-- `picks` are the events marked with a star in the newsletter. Leave it out to star every event with `"featured": true`. Every local event in the two weeks is listed either way.
-- **Pick the story of the week.** Choose the most interesting news item for local parents, usually something new from the past week: an opening, a new playground, a big change at a school or library. Set `"featured": true` on it in `data/news.json`, set every other item to `"featured": false`, and give it a `story`: 2–3 short paragraphs (under 700 characters each) in your own words. Cover what's happening, when, and why a parent would care. Only use facts from the source; don't add details. It opens the newsletter and gets the big card on the site. Never feature the same item two weeks in a row.
-- Preview it with `node scripts/newsletter.mjs --date <tomorrow>`. If "This week" or "Next week" is thin, or either weekend has nothing local, look harder. A newsletter with nothing to do on a weekend is the worst outcome.
+- **`picks`: 5–6 events from the next two weeks** (dated events only, from `events.json`), in date order. Choose what a parent would actually rearrange their weekend for: seasonal and one-time events, free festivals, things kids talk about afterward. Mostly Spring Branch & Memorial, at most 2 "worth the drive", at least one for each weekend, and a mix of ages. Skip ordinary weekly programs (they're on the calendar). If you leave `picks` out, the newsletter picks by a simple score, which is worse.
+- **`restaurants`: 2–3 ids from `restaurants.json`**, different from last week's (check `data/issues/`). Favor one with a kids' deal in the coming week, and match the season (patios when it's mild, indoor play when it's hot or rainy).
+- **`posts`: the 2 newest blog posts from `data/posts.json`** that haven't been in an issue yet. Agent Reach writes them on Tuesdays.
+- **Pick the story of the week.** Choose the most interesting news item for local parents, usually something new from the past week: an opening, a new playground, a big change at a school or library. Set `"featured": true` on it in `data/news.json`, set every other item to `"featured": false`, and give it a `story`: **1–2 short paragraphs, under 100 words in all**, in your own words. What's happening, when, and why a parent would care. That's it; readers click through for more. Only use facts from the source; don't add details. It opens the newsletter and gets the big card on the site. Never feature the same item two weeks in a row.
+- Preview it with `node scripts/newsletter.mjs --date <tomorrow>`. Read it as a busy parent on a phone: under a 3-minute read, every pick worth the space. If a weekend has nothing local worth picking, look harder. A newsletter with nothing to do on a weekend is the worst outcome.
 
 ## Photos
 
