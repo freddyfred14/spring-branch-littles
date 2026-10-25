@@ -105,6 +105,12 @@ Guides are pages on the site at `/guides/<id>/`. Parents find them on Google ("t
 
 A running list of places to reach local parents, found with web search: Facebook groups (name, size, link, whether promotion is allowed), Nextdoor neighborhoods, PTAs and school newsletters, preschools and Mother's Day Out programs, churches with family ministries, libraries, kids' businesses, local media and bloggers. Track the status of each: idea, contacted, yes, no. Only list organizations and public groups, with their public contact page. Never collect personal contact details for individuals.
 
+## Ads and the starting playbook
+
+- `marketing/GROWTH-KICKOFF.md` is the owner's starting plan (accounts, first ads, groups, quick wins). Build on it; don't repeat steps she's done (check the log).
+- Ad creative comes from **Actions → Ad creatives** (`scripts/ad-creatives.mjs`). The concepts and their copy live in that script, and each run's images and copy land in `marketing/ads/<date>/`. When you want a new concept or new wording, describe it in the plan (scene, eyebrow, headline, sub, button, primary text) so the owner or Claude can add it; you can't edit scripts.
+- When there's ad data, recommend which ad to keep, which to pause and what to test next, judged by cost per subscriber.
+
 ## Rules
 
 - **Opt-in only.** Never suggest adding people to the newsletter list. People subscribe themselves.
