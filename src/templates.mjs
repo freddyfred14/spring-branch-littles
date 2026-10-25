@@ -1,7 +1,7 @@
 // HTML templates. Every page is plain HTML with one shared stylesheet and a small script for filters.
 import {
   AGES, AREAS, PLACE_TYPES, addDays, fmtDateRange, fmtTimeRange, fmtLong, fmtShort, fmtMonth, dateParts,
-  eventsBetween, placeById, whereText, weekendOf, areaOf, NEWS_CATEGORIES, currentNews, featuredStory, PERKS, activeDeals, weekday,
+  eventsBetween, recurringBetween, placeById, whereText, weekendOf, areaOf, NEWS_CATEGORIES, currentNews, featuredStory, PERKS, activeDeals, weekday,
 } from "./lib.mjs";
 import { WATERCOLOR_DEFS, readerIllo, kiteIllo, bubblesIllo, toddlerIllo, AGE_ILLOS, THEME_ICONS, themeOf, NEWS_ICONS, iceCreamIllo } from "./illustrations.mjs";
 
@@ -143,6 +143,7 @@ function eventCard(data, x, i, wk) {
       ${THEME_ICONS[theme]()}
     </div>
     <h3><a href="${esc(x.url)}" rel="noopener">${esc(x.title)}</a></h3>
+    ${x.kind === "recurring" ? `<span class="weekly-pill">Every ${esc(x.days.map((d) => WEEK_LONG[d].slice(0, 3)).join(" & "))}</span>` : ""}
     <p class="meta">${CLOCK}<span>${fmtTimeRange(x.startTime, x.endTime)}</span></p>
     <p class="meta">${PIN}<span>${whereLink(data, x)}</span></p>
     <p class="desc clamp-2">${esc(x.description)}</p>
@@ -259,6 +260,27 @@ function dealChip(d) {
   </a>`;
 }
 
+// Homepage carousel: the next 7 days of deals, one small card per deal per day.
+function dealCarousel(data, now) {
+  const deals = activeDeals(data, now);
+  const cards = [];
+  for (let n = 0; n < 7; n++) {
+    const d = addDays(now, n);
+    const day = weekday(d);
+    const label = n === 0 ? "Today" : n === 1 ? "Tomorrow" : WEEK_LONG[day];
+    deals
+      .filter((x) => x.days.includes(day))
+      .sort((a, b) => (a.area === "local" ? -1 : 1) - (b.area === "local" ? -1 : 1))
+      .forEach((x) => cards.push(`<a class="dcard ${x.area}${n === 0 ? " today" : ""}" href="${esc(x.url)}" target="_blank" rel="noopener">
+        <span class="dday">${label}</span>
+        <b>${esc(x.name)}</b>
+        <span class="deal-what">${esc(x.title)}</span>
+        <span class="deal-meta">${x.startTime ? fmtTimeRange(x.startTime, x.endTime) : "All day"}${x.place ? ` · ${esc(x.place)}` : ""}</span>
+      </a>`));
+  }
+  return cards.length ? `<div class="dcarousel">${cards.join("")}</div>` : "";
+}
+
 // One column per weekday, today's highlighted.
 function dealBoard(data, now, { compact = false } = {}) {
   const deals = activeDeals(data, now);
@@ -333,8 +355,14 @@ export function homePage(data, now) {
   const weekEnd = addDays(now, 6);
   const soon = upcomingByArea(data, now, weekEnd);
   const later = upcomingByArea(data, addDays(now, 7), addDays(now, 120));
+  // Local weekly programs show up on their next date this week, alongside one-off events.
+  const weekly = [];
+  const seen = new Set();
+  // Skip programs that only run on "selected" days; we can't say which date it falls on.
+  const regular = data.recurring.filter((r) => !r.frequency || r.from);
+  for (const r of recurringBetween(regular, now, weekEnd)) if (!seen.has(r.id) && seen.add(r.id)) weekly.push(r);
   const region = (area) => {
-    const list = soon[area];
+    const list = [...soon[area], ...(area === "local" ? weekly : [])].sort((a, b) => a.date.localeCompare(b.date) || (a.startTime || "99").localeCompare(b.startTime || "99"));
     const more = later[area].length ? `<a class="more" href="/events/#${area}">${later[area].length} more coming up →</a>` : "";
     return `<section class="band region" id="${area}" data-group><div class="wrap">
       ${regionHead(area, more)}
@@ -372,7 +400,6 @@ export function homePage(data, now) {
   <div id="listings" class="filterable">
     ${region("local")}
     ${region("houston")}
-    ${weeklySection(data)}
   </div>
 
   ${news.length ? `<section class="band news-band"><div class="wrap">
@@ -382,7 +409,7 @@ export function homePage(data, now) {
 
   ${data.deals.length ? `<section class="band"><div class="wrap">
     <div class="sec-head"><div><p class="label">Dinner's sorted</p><h2>Kids eat free ${SPARK_PINK}</h2></div><a class="more" href="/eats/">All kid-friendly eats →</a></div>
-    ${dealBoard(data, now, { compact: true })}
+    ${dealCarousel(data, now)}
   </div></section>` : ""}
 
   <section class="band"><div class="wrap">
@@ -435,8 +462,8 @@ export function eventsPage(data, now) {
   <section class="page-head"><div class="wrap head-art"><div class="head-copy">
     <p class="label">Calendar · from ${fmtShort(start)}</p>
     <h1>Coming up for <span class="script pink">littles</span> ${SPARK}</h1>
-    <p class="lede">Everything after this week, close to home and around Houston, so you can plan ahead. Looking for the next few days or weekly storytimes? They're on <a href="/">This week</a>.</p>
-    <p class="jump"><a href="#local">Spring Branch & Memorial</a><a href="#houston">Surrounding Houston</a><a href="/#every-week">Weekly storytimes</a></p>
+    <p class="lede">Everything after this week, close to home and around Houston, plus the storytimes and playtimes that happen every week. For the next few days, see <a href="/">This week</a>.</p>
+    <p class="jump"><a href="#local">Spring Branch & Memorial</a><a href="#houston">Surrounding Houston</a><a href="#every-week">Every week</a></p>
   </div>${kiteIllo()}</div></section>
   <section class="band whatson"><div class="wrap">
     ${breakNotices(data, start, addDays(now, 150))}
@@ -445,6 +472,7 @@ export function eventsPage(data, now) {
   <div id="listings" class="filterable">
     ${region("local")}
     ${region("houston")}
+    ${weeklySection(data)}
   </div>`;
   return layout(config, { title: "Calendar", path: "/events/", body, now, description: "Plan ahead: upcoming kids' events in Spring Branch, Memorial and around Houston, month by month, filterable by age." });
 }

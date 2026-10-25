@@ -502,3 +502,17 @@ p { margin: 0; }
 .moreinfo:hover { background: var(--red-deep); }
 .moreinfo:active { transform: translateY(2px); box-shadow: 0 1px 0 var(--red-deep); }
 .ecard .tags, .wcard .tags { margin-top: auto; }
+
+/* weekly programs shown in this week's row */
+.weekly-pill { align-self: flex-start; font-family: var(--script); font-size: 19px; line-height: 1; color: var(--sky-deep); background: var(--sky-soft); padding: 3px 10px 4px; border-radius: 999px; margin-top: -2px; }
+.ecard.c1 .weekly-pill, .ecard.c3 .weekly-pill { color: var(--pink-deep); background: var(--pink-soft); }
+
+/* kids eat free carousel */
+.dcarousel { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(190px, 220px); gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 4px 4px 14px; margin-inline: -4px; scrollbar-width: thin; scrollbar-color: var(--pink) transparent; }
+.dcard { scroll-snap-align: start; display: grid; gap: 2px; align-content: start; padding: 12px 14px 14px; border-radius: 18px; background: var(--sky-soft); color: var(--ink); text-decoration: none; border: 2px solid transparent; transition: transform .15s; }
+.dcard.local { background: var(--dino-soft); }
+.dcard:hover { transform: translateY(-2px); border-color: var(--pink); }
+.dcard .dday { justify-self: start; font-family: var(--display); font-weight: 700; font-size: 12px; letter-spacing: .06em; text-transform: uppercase; background: #fff; color: var(--ink); padding: 3px 9px; border-radius: 999px; margin-bottom: 6px; }
+.dcard.today .dday { background: var(--pink); color: #fff; }
+.dcard b { font-family: var(--display); font-weight: 600; font-size: 16px; line-height: 1.2; }
+.dcard .deal-what { font-size: 20px; }

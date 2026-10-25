@@ -1,5 +1,28 @@
 [
   {
+    "id": "sbm-baby-bouncers",
+    "title": "Baby Bouncers playtime",
+    "placeId": "spring-branch-memorial-library",
+    "days": [
+      "Wed"
+    ],
+    "startTime": "10:15",
+    "endTime": null,
+    "ages": [
+      "baby",
+      "toddler"
+    ],
+    "free": true,
+    "indoor": true,
+    "description": "Bouncy songs, rhymes and playtime for crawlers and babies taking their first steps. Two sessions, 10:15 and 11:15.",
+    "registration": null,
+    "url": "https://hcpl.net/locations/sm/",
+    "sources": [
+      "https://hcpl.net/locations/sm/"
+    ],
+    "lastVerified": "2026-10-25"
+  },
+  {
     "id": "sbm-preschool-storytime",
     "title": "Preschool storytime + craft",
     "placeId": "spring-branch-memorial-library",
@@ -15,7 +38,7 @@
     "indoor": true,
     "description": "Stories, songs, rhymes and a themed craft for ages 3–6.",
     "registration": "Pick up a free ticket at the children's desk.",
-    "url": "https://hcpl.bibliocommons.com/v2/events",
+    "url": "https://hcpl.net/locations/sm/",
     "sources": [
       "https://ma.to/event/christmas-in-july-story-time-20-july-2026"
     ],

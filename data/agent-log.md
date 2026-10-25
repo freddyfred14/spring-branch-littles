@@ -2,6 +2,14 @@
 
 Newest first. The research agent adds an entry each run.
 
+## 2026-10-25 · more local events for this week
+
+- Added from the Spring Branch Memorial library branch page (hcpl.net/locations/sm/): Baby Bouncers playtime (Wednesdays 10:15 and 11:15), Halloween party for tweens & teens (Tue Oct 27, 4:30–5:30), Halloween party for kids 4–8 (Thu Oct 29, 5–7). The kids' party also appears on community calendars.
+- Children's Museum Free Family Night (Oct 29) includes trick-or-treating and the Halloween Happy House, per the museum's calendar.
+- Weekly local programs now appear in the homepage's This week row on their next date. The full Every week list is on the Calendar page.
+- Leads that didn't check out: a Bayou City Fellowship trunk-or-treat (Cypress campus, not Spring Branch), "St. Timothy Lutheran" (different church), and Memorial Drive UMC (Tulsa).
+- Worth checking each week: library branch pages (HCPL Spring Branch Memorial; HPL Ring, Hillendahl, Spring Branch-area branches), Houston Audubon's monthly "Cabin, Coffee, Conversation" Saturday at Edith Moore, Arboretum Hatchlings (select Wednesdays), CityCentre and Memorial City events pages, and church/school fall festivals near Memorial Dr and Long Point.
+
 ## 2026-10-25 · links now go to organizers; blog-only events removed
 
 - Every event and weekly program now links to the organizer's own page. Blog/roundup links are rejected by `npm run check`.

@@ -280,7 +280,7 @@
       "preschool",
       "elementary"
     ],
-    "description": "Free admission Thursday evenings from 5 to 8 pm. Arrive early; it fills up fast.",
+    "description": "Free admission Thursday evening, plus trick-or-treating and the Halloween Happy House. Arrive early; it fills up.",
     "url": "https://www.cmhouston.org/events"
   },
   {
@@ -334,5 +334,57 @@
     ],
     "description": "Big airshow at Ellington with the U.S. Air Force Thunderbirds headlining. Gates at 8 am, flying from about 10:30. Bring ear protection.",
     "url": "https://wingsoverhouston.com/"
+  },
+  {
+    "kind": "event",
+    "endDate": null,
+    "startTime": "16:30",
+    "endTime": "17:30",
+    "location": null,
+    "free": true,
+    "cost": null,
+    "indoor": true,
+    "registration": null,
+    "status": "confirmed",
+    "featured": false,
+    "area": "local",
+    "lastVerified": "2026-10-25",
+    "id": "2026-10-27-sbm-tween-teen-halloween-party",
+    "title": "Halloween party for tweens & teens",
+    "date": "2026-10-27",
+    "placeId": "spring-branch-memorial-library",
+    "ages": [
+      "elementary"
+    ],
+    "description": "A Halloween party at the library for the older kids: tweens and teens. Costumes encouraged.",
+    "url": "https://hcpl.net/locations/sm/"
+  },
+  {
+    "kind": "event",
+    "endDate": null,
+    "startTime": "17:00",
+    "endTime": "19:00",
+    "location": null,
+    "free": true,
+    "cost": null,
+    "indoor": true,
+    "registration": null,
+    "status": "confirmed",
+    "featured": true,
+    "area": "local",
+    "lastVerified": "2026-10-25",
+    "id": "2026-10-29-sbm-kids-halloween-party",
+    "title": "Halloween party for kids",
+    "date": "2026-10-29",
+    "placeId": "spring-branch-memorial-library",
+    "ages": [
+      "preschool",
+      "elementary"
+    ],
+    "description": "A costume-friendly Halloween party at the library for ages 4–8.",
+    "url": "https://hcpl.net/locations/sm/",
+    "sources": [
+      "https://kidseventsthisweek.com/tx/houston/halloween"
+    ]
   }
 ]
