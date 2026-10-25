@@ -1,1 +1,39 @@
-[]
+[
+  {
+    "id": "thanksgiving-break-spring-branch-2026",
+    "title": "Thanksgiving break with kids in Spring Branch & Memorial (2026)",
+    "description": "Free and cheap things to do with kids during SBISD's Thanksgiving break, Nov 23–27: storytimes, parks, free indoor play and kids-eat-free nights.",
+    "intro": [
+      "Spring Branch ISD is out all week for Thanksgiving, Monday Nov 23 through Friday Nov 27. That's five days to fill, and the trick is to plan a few anchors before the week starts: a storytime, a long park morning, a free indoor play spot for a rainy day, and an easy dinner out.",
+      "Everything here is close to home in Spring Branch and Memorial, and most of it is free. Holiday weeks change library and restaurant schedules, so check each listing before you go, especially on Thursday.",
+      "The Saturday after the break, CityCentre's Holiday in the Plaza kicks off the holiday season (the date may still change). We'll add more events to this guide as they're announced."
+    ],
+    "items": [
+      "event:2026-sbisd-thanksgiving-break",
+      "event:2026-citycentre-holiday-in-the-plaza",
+      "weekly:sbm-preschool-storytime",
+      "weekly:sbm-baby-bouncers",
+      "weekly:ring-toddler-storytime",
+      "place:frolics-castle",
+      "place:christ-the-king-play",
+      "place:houston-arboretum",
+      "place:terry-hershey-park",
+      "place:haden-park",
+      "place:memorial-park-playground",
+      "place:edith-moore-sanctuary",
+      "eats:feges-bbq-spring-branch",
+      "eats:union-kitchen-memorial",
+      "eats:lazy-oaks-beer-garden",
+      "eats:blue-agave-cantina"
+    ],
+    "tips": [
+      "Libraries usually close or shorten hours around Thanksgiving, and storytimes can pause on holiday weeks. Check the branch calendar the week before.",
+      "Do outdoor plans early in the week and save the free indoor spots for whichever day it rains.",
+      "Frolic's Castle at Memorial City Mall requires socks, and weekday mornings are the quietest.",
+      "Ring Library's toddler storytime opens registration about two weeks ahead, so sign up around Nov 9.",
+      "Kids-eat-free nights change without notice, especially on holiday weeks. Call the restaurant before you go."
+    ],
+    "updated": "2026-10-25",
+    "expires": "2026-11-29"
+  }
+]
