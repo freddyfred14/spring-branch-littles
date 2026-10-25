@@ -10,7 +10,8 @@ Once it's set up, it runs on its own:
 | Sun ~7 am | A Claude agent researches events for the next 6 weeks, fixes bad links, re-checks listings, updates `data/` and writes Monday's newsletter intro and subject line. The site redeploys. | `research-agent.yml` |
 | Mon ~6:45 am | The newsletter (the next two weeks of plans) is sent through Buttondown and archived on the site. | `newsletter.yml` |
 | Wed ~7 am | Mid-week research refresh. | `research-agent.yml` |
-| Tue ~8 am | Agent Reach writes the week's growth plan and posts, publishes a guide, and emails you a checklist. | `agent-reach.yml` |
+| Tue ~8 am | Agent Reach reads the numbers, writes the week's growth plan and posts, publishes a guide, updates the City Launch Playbook, and emails you a checklist. | `agent-reach.yml` |
+| Fri ~8 am | Agent Reach sends a short weekend pulse: 1–3 quick actions. | `agent-reach.yml` |
 | Thu ~6:45 am | The weekend Instagram carousel is made and posted, and the weekend app alert goes out. | `weekend-social.yml` |
 | Every morning | The site rebuilds so "This week" always starts today. | `deploy.yml` |
 | 1st of month | The Instagram access token is refreshed. | `refresh-instagram-token.yml` |
