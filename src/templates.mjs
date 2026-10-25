@@ -3,6 +3,7 @@ import {
   AGES, PLACE_TYPES, DAYS, addDays, fmtDate, fmtDateRange, fmtTimeRange, fmtLong, fmtShort,
   weekdayLong, agenda, eventsBetween, placeById, whereText, weekendOf,
 } from "./lib.mjs";
+import { WATERCOLOR_DEFS, playgroundScene, readerIllo, kiteIllo, bubblesIllo, toddlerIllo, AGE_ILLOS } from "./illustrations.mjs";
 
 export const esc = (s) =>
   String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
@@ -55,6 +56,7 @@ export function layout(config, { title, description, path, body, now }) {
 <link rel="stylesheet" href="/assets/site.css">
 </head>
 <body${path === "/" ? ' class="home"' : ""}>
+${WATERCOLOR_DEFS}
 <a class="skip" href="#main">Skip to content</a>
 <header class="site-header"><div class="wrap">
   <a class="brand" href="/">${LOGO}</a>
@@ -127,15 +129,24 @@ function breakNotices(data, start, end) {
     .join("");
 }
 
+// Only days with something on them; a quiet day just doesn't appear.
 function dayGroups(data, byDay) {
-  return [...byDay.entries()]
+  const days = [...byDay.entries()].filter(([, items]) => items.length);
+  if (!days.length) return emptyWeek();
+  return days
     .map(([d, items], i) => `<section class="day" data-day>
       <h3 class="day-head c${i % 4}"><span>${weekdayLong(d)}</span> <em>${fmtShort(d)}</em></h3>
-      ${items.length ? `<ul class="evs">${items.map((x) => eventRow(data, x)).join("")}</ul>` : `<p class="quiet">Nothing listed yet. A good day for a park.</p>`}
-      <p class="quiet empty-filter" hidden>Nothing matches these filters on this day.</p>
+      <ul class="evs">${items.map((x) => eventRow(data, x)).join("")}</ul>
     </section>`)
     .join("");
 }
+
+function emptyWeek() {
+  return `<div class="empty-state">${readerIllo()}<div><h3>A quiet week so far</h3><p>New events are added every Monday and Wednesday. Until then, <a href="/places/">pick a favorite park or library</a>.</p></div></div>`;
+}
+
+// Shown by site.js when the filters hide everything.
+const emptyFilter = `<div class="empty-state empty-filter" hidden>${bubblesIllo()}<div><h3>Nothing matches those filters</h3><p>Try another age group, or turn off Free or Indoors.</p></div></div>`;
 
 // ---------- pages ----------
 
@@ -161,7 +172,7 @@ export function homePage(data, now) {
     </div>
     </div>
   </div></section>
-  ${GRASS}
+  <div class="scene-band">${playgroundScene()}</div>
 
   <section class="band"><div class="wrap">
     <div class="sec-head">
@@ -170,7 +181,7 @@ export function homePage(data, now) {
     </div>
     ${breakNotices(data, now, addDays(now, 13))}
     ${filterBar("week")}
-    <div id="week" class="filterable">${dayGroups(data, byDay)}</div>
+    <div id="week" class="filterable">${dayGroups(data, byDay)}${emptyFilter}</div>
   </div></section>
 
   ${later.length ? `<section class="band"><div class="wrap">
@@ -185,11 +196,11 @@ export function homePage(data, now) {
 
   <section class="band ages-band"><div class="wrap">
     <div class="sec-head"><div><p class="label">Find your stage</p><h2>Browse by age ${SPARK}</h2></div></div>
-    <div class="ages">${Object.entries(AGES).map(([k, v], i) => `<a class="age-card c${i}" href="/events/?age=${k}"><b>${v.label}</b><span class="script">ages ${v.range}</span></a>`).join("")}</div>
+    <div class="ages">${Object.entries(AGES).map(([k, v], i) => `<a class="age-card c${i}" href="/events/?age=${k}">${AGE_ILLOS[k]()}<b>${v.label}</b><span class="script">ages ${v.range}</span></a>`).join("")}</div>
   </div></section>
 
   <section class="band"><div class="wrap ig-cta">
-    <img class="ig-dino" src="/img/dino-head.png" alt="" width="512" height="512">
+    <div class="ig-art">${toddlerIllo()}<img class="ig-dino" src="/img/dino-head.png" alt="" width="512" height="512"></div>
     <div>
       <p class="label">On Instagram</p>
       <h2>Come say hi <span class="script">@${esc(config.instagram)}</span></h2>
@@ -205,19 +216,18 @@ export function eventsPage(data, now) {
   const dated = eventsBetween(data.events.filter((e) => e.kind === "event"), now, addDays(now, 120));
   const byWeekday = DAYS.slice(1).concat("Sun").map((d) => [d, data.recurring.filter((r) => r.days.includes(d))]);
   const body = `
-  <section class="page-head"><div class="wrap">
+  <section class="page-head"><div class="wrap head-art"><div class="head-copy">
     <p class="label">Calendar</p>
     <h1>Kids' events in Spring Branch ${SPARK}</h1>
     <p class="lede">Dated events for the next few months, plus the storytimes and open-play times that happen every week.</p>
-  </div></section>
+  </div>${kiteIllo()}</div></section>
   <section class="band"><div class="wrap">
     ${filterBar("calendar")}
-    <div id="calendar" class="filterable">
+    <div id="calendar" class="filterable">${emptyFilter}
       ${breakNotices(data, now, addDays(now, 120))}
       <section class="day" data-day>
         <h2 class="day-head c1"><span>Upcoming events</span></h2>
         ${dated.length ? `<ul class="evs">${dated.map((x) => eventRow(data, x, { showDate: true })).join("")}</ul>` : '<p class="quiet">New events are added every week.</p>'}
-        <p class="quiet empty-filter" hidden>Nothing matches these filters.</p>
       </section>
       <h2 class="sub">Every week</h2>
       ${byWeekday
@@ -225,7 +235,6 @@ export function eventsPage(data, now) {
         .map(([d, list], i) => `<section class="day" data-day>
           <h3 class="day-head c${i % 4}"><span>${{ Mon: "Mondays", Tue: "Tuesdays", Wed: "Wednesdays", Thu: "Thursdays", Fri: "Fridays", Sat: "Saturdays", Sun: "Sundays" }[d]}</span></h3>
           <ul class="evs">${list.map((r) => eventRow(data, { ...r, kind: "recurring" })).join("")}</ul>
-          <p class="quiet empty-filter" hidden>Nothing matches these filters on this day.</p>
         </section>`)
         .join("")}
     </div>
@@ -247,18 +256,18 @@ function placeCard(p) {
 export function placesPage(data, now) {
   const { config } = data;
   const body = `
-  <section class="page-head"><div class="wrap">
+  <section class="page-head"><div class="wrap head-art"><div class="head-copy">
     <p class="label">Places</p>
     <h1>Where to go with <span class="script">littles</span> in Spring Branch</h1>
     <p class="lede">Libraries, parks, nature trails and indoor play, with tips from parents who've been.</p>
-  </div></section>
+  </div>${bubblesIllo()}</div></section>
   <section class="band"><div class="wrap">
     ${filterBar("places")}
-    <div id="places" class="filterable">
+    <div id="places" class="filterable">${emptyFilter}
       ${Object.entries(PLACE_TYPES)
         .map(([type, label]) => {
           const list = data.places.filter((p) => p.type === type);
-          return list.length ? `<section class="day" data-day><h2 class="day-head c${Object.keys(PLACE_TYPES).indexOf(type) % 4}"><span>${esc(label)}</span></h2><div class="places">${list.map(placeCard).join("")}</div><p class="quiet empty-filter" hidden>Nothing matches these filters.</p></section>` : "";
+          return list.length ? `<section class="day" data-day><h2 class="day-head c${Object.keys(PLACE_TYPES).indexOf(type) % 4}"><span>${esc(label)}</span></h2><div class="places">${list.map(placeCard).join("")}</div></section>` : "";
         })
         .join("")}
     </div>
@@ -269,12 +278,12 @@ export function placesPage(data, now) {
 export function newsletterPage(data, now) {
   const { config, issues } = data;
   const body = `
-  <section class="page-head"><div class="wrap narrow">
+  <section class="page-head"><div class="wrap narrow head-art"><div class="head-copy">
     <p class="label">Newsletter</p>
     <h1>The Thursday letter ${SPARK}</h1>
     <p class="lede">Every ${esc(config.newsletterDay)} morning: the best things to do with kids in Spring Branch this weekend, next week's storytimes, a rainy-day backup and what's coming up. Free, and you can unsubscribe any time.</p>
     <div class="signup-card">${signupForm(config, "nl")}</div>
-  </div></section>
+  </div>${readerIllo()}</div></section>
   <section class="band"><div class="wrap narrow">
     <h2>Past issues</h2>
     ${issues.length ? `<ul class="archive">${issues.map((i) => `<li><a href="/newsletter/${i.date}/">${esc(i.subject)}</a><span>${fmtLong(i.date)}</span></li>`).join("")}</ul>` : '<p class="quiet">The first issue goes out soon.</p>'}
@@ -304,11 +313,11 @@ export function issuePage(data, issue, now) {
 export function aboutPage(data, now) {
   const { config } = data;
   const body = `
-  <section class="page-head"><div class="wrap narrow">
+  <section class="page-head"><div class="wrap narrow head-art"><div class="head-copy">
     <p class="label">About</p>
     <h1>Hi, <span class="script">neighbor!</span></h1>
     <p class="lede">${esc(config.name)} is a free guide for Spring Branch families with kids from babies through elementary school. It started with one question every parent here asks on Thursday night: what are we doing this weekend?</p>
-  </div></section>
+  </div>${toddlerIllo()}</div></section>
   <section class="band"><div class="wrap narrow prose">
     <h2>What we cover</h2>
     <p>${esc(config.area)}. That means library storytimes, city and county parks, nature programs, festivals, holiday events, school-break ideas and indoor spots for Houston's rainy and 100° days.</p>

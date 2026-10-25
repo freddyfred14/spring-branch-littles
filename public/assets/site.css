@@ -165,7 +165,7 @@ p { margin: 0; }
 
 /* ages: four chunky color blocks */
 .ages { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
-.age-card { display: grid; gap: 0; padding: 22px 22px 18px; border-radius: var(--r-lg); background: var(--dino-soft); text-decoration: none; color: var(--ink); box-shadow: 0 6px 0 rgba(75, 119, 89, .18); transition: transform .2s; }
+.age-card { display: grid; gap: 0; justify-items: center; text-align: center; padding: 16px 16px 18px; border-radius: var(--r-lg); background: var(--dino-soft); text-decoration: none; color: var(--ink); box-shadow: 0 6px 0 rgba(75, 119, 89, .18); transition: transform .2s; }
 .age-card.c1 { background: var(--sky-soft); box-shadow: 0 6px 0 rgba(75, 124, 166, .2); transform: rotate(1deg); }
 .age-card.c2 { background: var(--sun-soft); box-shadow: 0 6px 0 rgba(233, 165, 90, .25); transform: rotate(-1deg); }
 .age-card.c3 { background: var(--peach); box-shadow: 0 6px 0 rgba(200, 140, 100, .22); }
@@ -175,7 +175,6 @@ p { margin: 0; }
 
 /* instagram */
 .ig-cta { display: flex; align-items: center; gap: 20px 32px; flex-wrap: wrap; background: var(--sky-soft); border-radius: var(--r-lg); padding-block: 28px; }
-.ig-dino { width: 110px; flex: none; transform: scaleX(-1) rotate(6deg); }
 .ig-cta > div { display: grid; gap: 6px; flex: 1 1 320px; min-width: 0; }
 .ig-cta p:last-child { color: var(--muted); }
 .ig-cta .btn-ghost { background: var(--sky); color: #fff; box-shadow: 0 4px 0 var(--sky-deep); border: 0; }
@@ -194,6 +193,24 @@ p { margin: 0; }
 .prose h2 { margin-top: 14px; }
 .nf-dino { width: 140px; }
 
+/* illustrations */
+.illo { display: block; width: 100%; height: auto; overflow: visible; }
+.scene-band { max-width: 1240px; margin: 4px auto 0; padding-left: max(8px, env(safe-area-inset-left, 0px)); padding-right: max(8px, env(safe-area-inset-right, 0px)); }
+.scene-band .illo { aspect-ratio: 10 / 3; }
+.head-art { display: grid !important; grid-template-columns: minmax(0, 1fr) 210px; gap: 20px 36px; align-items: center; }
+.head-copy { display: grid; gap: 14px; min-width: 0; }
+.head-art > .illo { width: 210px; }
+.age-card .illo { width: 78%; max-width: 170px; margin: -4px auto 6px; transition: transform .25s; }
+.age-card:hover .illo { transform: rotate(-4deg) scale(1.04); }
+.ig-cta > .ig-art { position: relative; width: 150px; flex: none; }
+.ig-art .illo { width: 150px; }
+.ig-art .ig-dino { position: absolute; width: 72px; right: -12px; bottom: -6px; transform: scaleX(-1) rotate(6deg); }
+.empty-state { display: flex; align-items: center; gap: 18px 28px; flex-wrap: wrap; background: var(--card); border: 2px dashed var(--dino); border-radius: var(--r-lg); padding: 20px 26px; }
+.empty-state .illo { width: 150px; flex: none; }
+.empty-state > div { flex: 1 1 240px; display: grid; gap: 6px; min-width: 0; }
+.empty-state h3 { font-size: 24px; }
+.empty-state p { color: var(--muted); }
+
 /* footer */
 .site-footer { margin-top: 30px; }
 .footer-band { background: var(--dino-soft); }
@@ -208,6 +225,10 @@ p { margin: 0; }
 @media (max-width: 860px) {
   .hero-grid { grid-template-columns: 1fr; }
   .hero-logo { max-width: 270px; }
+  .head-art { grid-template-columns: 1fr; }
+  .head-art > .illo { width: 150px; grid-row: 1; justify-self: start; }
+  .scene-band { overflow: hidden; }
+  .scene-band .illo { width: 140%; margin-left: -20%; }
   .home .site-header .brand { display: none; }
   .home .site-header .wrap { padding-block: 14px 0; }
   .footer-grid { grid-template-columns: 1fr !important; }

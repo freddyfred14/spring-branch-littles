@@ -16,11 +16,16 @@ document.querySelectorAll(".filters").forEach((bar) => {
         (!state.indoor || el.dataset.indoor === "1");
       el.hidden = !ok;
     });
+    // Hide a whole day (or section) when the filters leave nothing in it.
+    let anyShown = false;
     target.querySelectorAll("[data-day]").forEach((day) => {
-      const items = day.querySelectorAll("[data-ages]");
-      const msg = day.querySelector(".empty-filter");
-      if (msg) msg.hidden = !items.length || [...items].some((i) => !i.hidden);
+      const items = [...day.querySelectorAll("[data-ages]")];
+      const shown = !items.length || items.some((i) => !i.hidden);
+      day.hidden = !shown;
+      if (items.some((i) => !i.hidden)) anyShown = true;
     });
+    const msg = target.querySelector(".empty-filter");
+    if (msg) msg.hidden = anyShown || !target.querySelector("[data-ages]");
   }
   bar.addEventListener("click", (e) => {
     const b = e.target.closest("button");
