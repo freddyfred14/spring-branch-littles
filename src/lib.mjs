@@ -189,6 +189,20 @@ export function whereText(data, item) {
 
 // ---------- validation ----------
 
+// Roundups and blogs are great for *finding* events, but parents should land on the organizer's page.
+export const ROUNDUP_SITES = [
+  "juliesheets.com", "mommypoppins.com", "houstononthecheap.com", "kidsoutandabout.com", "diningout.com",
+  "jillbjarvis.com", "2for20deals.com", "greaterhoustonmoms.com", "macaronikid.com", "yelp.com",
+  "kidseventsthisweek.com", "ma.to", "culturemap.com", "visithoustontexas.com", "thebuzzmagazines.com",
+  "upparent.com", "kids-houston.com", "houstonmom.com", "theinfatuation.com", "katychristianmagazine.com",
+  "allevents.in", "seatgeek.com", "seatgeek.ca", "eventticketscenter.com", "houcalendar.com", "myneighborhoodnews.com",
+];
+export function isRoundup(url) {
+  try {
+    const h = new URL(url).hostname.replace(/^www\./, "");
+    return ROUNDUP_SITES.some((d) => h === d || h.endsWith(`.${d}`));
+  } catch { return false; }
+}
 const DATE_RE = /^\d{4}-\d{2}-\d{2}$/;
 const IMAGE_RE = /^\/img\/(news|events|places|eats|gallery)\/[a-z0-9-]+\.(jpe?g|png|webp)$/;
 
@@ -248,6 +262,7 @@ export function validate(data, now = today()) {
     if (r.startTime && !TIME_RE.test(r.startTime)) err(w, "startTime must be HH:MM (24h)");
     if (r.endTime && !TIME_RE.test(r.endTime)) err(w, "endTime must be HH:MM (24h)");
     if (!r.url) err(w, "url (where a parent can confirm details) is required");
+    else if (isRoundup(r.url)) err(w, `url points to a roundup/blog (${r.url}). Link the organizer's own page; put roundups in "sources".`);
   });
 
   data.events.forEach((e, i) => {
@@ -263,6 +278,7 @@ export function validate(data, now = today()) {
     if (e.placeId && !placeIds.has(e.placeId)) err(w, `placeId "${e.placeId}" is not in places.json`);
     if (!e.placeId && !e.location) err(w, "needs a placeId or a location");
     if (!e.url) err(w, "url (the source a parent can check) is required");
+    else if (isRoundup(e.url)) err(w, `url points to a roundup/blog (${e.url}). Link the organizer's own page; put roundups in "sources".`);
     if (!["confirmed", "tentative"].includes(e.status)) err(w, 'status must be "confirmed" or "tentative"');
     if (e.area != null && !AREAS[e.area]) err(w, `area must be one of ${Object.keys(AREAS).join(", ")}`);
     if (e.lastVerified == null) err(w, "dated events must have lastVerified");
@@ -300,6 +316,7 @@ export function validate(data, now = today()) {
     if (!r.description || r.description.length > 400) err(w, "description is required and must be under 400 characters");
     if (!/^https:\/\//.test(r.url || "")) err(w, "url must start with https://");
     if (r.lastVerified == null) warn(w, "never verified");
+    if (isRoundup(r.url)) warn(w, "url is a roundup/blog; replace it with the restaurant's own site");
     checkImage(r, w, err);
   });
   const restaurantIds = new Set(data.restaurants.map((r) => r.id));
@@ -318,6 +335,7 @@ export function validate(data, now = today()) {
     if (!/^https:\/\//.test(d.url || "")) err(w, "url must start with https://");
     if (d.expires != null && !DATE_RE.test(d.expires)) err(w, "expires must be YYYY-MM-DD or null");
     if (!d.lastVerified || d.lastVerified < addDays(now, -30)) warn(w, "deal not verified in the last 30 days");
+    if (isRoundup(d.url)) warn(w, "url is a roundup/blog; link the restaurant's own page for this deal");
   });
 
   data.gallery.forEach((g, i) => {

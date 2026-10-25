@@ -2,6 +2,15 @@
 
 Newest first. The research agent adds an entry each run.
 
+## 2026-10-25 · links now go to organizers; blog-only events removed
+
+- Every event and weekly program now links to the organizer's own page. Blog/roundup links are rejected by `npm run check`.
+- Fixed: Levy Park Howl-O-Ween is Sun Oct 25 (not Mon Oct 26); Wings Over Houston is Oct 31–Nov 1; Zoo Boo runs Sep 25–Oct 31; Ring toddler storytime is Wed 10:30–11:30 with registration; Tiny Tykes has 10:15 and 11:15 sessions; the Arboretum's Nov 7 hunt is "Fall Foliage".
+- Removed because no organizer page shows a 2026 date: Spring Branch Memorial library Halloween party, MVPD trunk-or-treat, Children's Museum free weekend (Nov 7–8) and Diwali, Monster Mayhem, Galaxy Frights (Oct 31), Boo on the Boardwalk, Elmo's Got the Moves (resale listings only). Re-add any of them when the organizer posts it.
+- Removed from weekly: Christ the King open play (no official hours) and Hillendahl toddler storytime (2025 schedule). Hillendahl lists Baby Storytime (10:30–11:30) and Toddler Playtime (11:00–11:30); confirm their days and add them.
+- To do: restaurants and deals still link to roundups (the check warns). Replace them with the restaurants' own pages.
+- CityCentre trick-or-treat: link from the site owner. Re-confirm the date and time on that page (couldn't open it from the setup session).
+
 ## 2026-10-25 · Tiny Tykes added, confirmation rules relaxed
 
 - Added Tiny Tykes (Spring Branch Memorial Library, Thursdays 10:15–10:45, new walkers). The time comes from the library's own event page, as checked by the site owner. Some search listings show 11:15, so re-check it.

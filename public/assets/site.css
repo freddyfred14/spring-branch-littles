@@ -20,6 +20,8 @@
   --pink: #e38aa5;        /* rosy cheeks, to balance the blue */
   --pink-deep: #c25578;
   --pink-soft: #fbe3ea;
+  --red: #d2453d;         /* "More info" buttons */
+  --red-deep: #a8322b;
   --grass: #8f9f5c;
   --display: "Fredoka", "Trebuchet MS", system-ui, sans-serif;
   --body: "Nunito", system-ui, -apple-system, "Segoe UI", sans-serif;
@@ -271,11 +273,11 @@ p { margin: 0; }
 .ecard-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 4px; }
 .datetile { display: grid; justify-items: center; width: 78px; border-radius: 16px; overflow: hidden; background: var(--paper); border: 2px solid var(--line); transform: rotate(-3deg); font-family: var(--display); line-height: 1; }
 .ecard.c1 .datetile { transform: rotate(2deg); } .ecard.c2 .datetile { transform: rotate(-1.5deg); } .ecard.c3 .datetile { transform: rotate(3deg); }
-.dt-dow { width: 100%; text-align: center; background: var(--dino); color: var(--ink); font-size: 13px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; padding: 5px 0 4px; }
+.dt-dow { width: 100%; text-align: center; white-space: nowrap; background: var(--dino); color: var(--ink); font-size: 13px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; padding: 5px 0 4px; }
 .ecard.c1 .dt-dow { background: var(--sky); color: #fff; } .ecard.c2 .dt-dow { background: var(--sun); } .ecard.c3 .dt-dow { background: #e9a487; }
 .dt-day { font-size: 34px; font-weight: 700; padding: 6px 0 0; }
 .dt-day.small { font-size: 24px; padding-top: 10px; }
-.dt-mon { font-size: 13px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); padding: 2px 0 7px; }
+.dt-mon { white-space: nowrap; font-size: 12px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); padding: 2px 0 7px; }
 .ticon { width: 58px; height: 58px; }
 .ecard h3 { font-size: 21px; font-weight: 600; line-height: 1.2; }
 .ecard h3 a, .wcard h3 a { color: var(--ink); text-decoration: none; }
@@ -496,8 +498,7 @@ p { margin: 0; }
 .t-in { background: var(--pink-soft); color: var(--pink-deep); }
 
 /* "More info" link on event cards */
-.moreinfo { white-space: nowrap; align-self: flex-start; margin-top: 4px; font-family: var(--display); font-weight: 600; font-size: 14.5px; color: var(--sky-deep); text-decoration: none; background: var(--sky-soft); padding: 6px 13px; border-radius: 999px; }
-.moreinfo:hover { background: var(--sky); color: #fff; }
-.ecard.c1 .moreinfo, .wcard.c1 .moreinfo { background: var(--pink-soft); color: var(--pink-deep); }
-.ecard.c1 .moreinfo:hover, .wcard.c1 .moreinfo:hover { background: var(--pink); color: #fff; }
+.moreinfo { white-space: nowrap; align-self: flex-start; margin-top: 4px; font-family: var(--display); font-weight: 600; font-size: 14.5px; color: #fff; text-decoration: none; background: var(--red); padding: 7px 15px; border-radius: 999px; box-shadow: 0 3px 0 var(--red-deep); }
+.moreinfo:hover { background: var(--red-deep); }
+.moreinfo:active { transform: translateY(2px); box-shadow: 0 1px 0 var(--red-deep); }
 .ecard .tags, .wcard .tags { margin-top: auto; }

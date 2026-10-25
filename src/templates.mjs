@@ -128,9 +128,11 @@ function eventCard(data, x, i, wk) {
   const a = dateParts(x.date);
   const multi = x.endDate && x.endDate !== x.date;
   const b = multi ? dateParts(x.endDate) : null;
-  const day = multi ? (a.mon === b.mon ? `${a.day}–${b.day}` : `${a.day}`) : `${a.day}`;
-  const dow = multi ? `${a.dow}–${b.dow}` : a.dow;
-  const mon = multi && a.mon !== b.mon ? `${a.mon}–${b.mon}` : a.mon;
+  // Already running (e.g. a month-long festival): show "On now · until 31 Oct".
+  const ongoing = multi && wk.now && x.date < wk.now;
+  const day = ongoing ? `${b.day}` : multi ? (a.mon === b.mon ? `${a.day}–${b.day}` : `${a.day}`) : `${a.day}`;
+  const dow = ongoing ? "On now" : multi ? `${a.dow}–${b.dow}` : a.dow;
+  const mon = ongoing ? `until ${b.mon}` : multi && a.mon !== b.mon ? `${a.mon}–${b.mon}` : a.mon;
   const thisWeekend = (x.endDate || x.date) >= wk.start && x.date <= wk.end;
   const theme = themeOf(x);
   return `<article class="ecard c${i % 4}${x.image ? " has-photo" : ""}" ${dataAttrs(x)}>
@@ -327,7 +329,7 @@ export function eatsPage(data, now) {
 
 export function homePage(data, now) {
   const { config } = data;
-  const wk = weekendOf(now);
+  const wk = { ...weekendOf(now), now };
   const weekEnd = addDays(now, 6);
   const soon = upcomingByArea(data, now, weekEnd);
   const later = upcomingByArea(data, addDays(now, 7), addDays(now, 120));
@@ -412,7 +414,7 @@ export function homePage(data, now) {
 
 export function eventsPage(data, now) {
   const { config } = data;
-  const wk = weekendOf(now);
+  const wk = { ...weekendOf(now), now };
   const start = addDays(now, 7);
   const later = upcomingByArea(data, start, addDays(now, 150));
   const region = (area) => {

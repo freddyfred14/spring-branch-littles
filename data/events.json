@@ -40,11 +40,11 @@
     ],
     "free": true,
     "indoor": false,
-    "description": "CityCentre's free holiday celebration on the plaza. Past years included photos with Santa and his reindeer.",
-    "url": "https://houston.kidsoutandabout.com/content/101-ideas-holiday-family-fun-houston",
+    "description": "CityCentre's free holiday celebration. Past years had Santa with his reindeer and photos in exchange for a donated toy.",
+    "url": "https://www.citycentrehouston.com/event/holiday-in-the-plaza",
     "status": "tentative",
     "featured": true,
-    "lastVerified": "2026-10-24",
+    "lastVerified": "2026-10-25",
     "area": "local"
   },
   {
@@ -74,31 +74,6 @@
     "kind": "event",
     "endDate": null,
     "startTime": "17:00",
-    "endTime": "19:00",
-    "placeId": "spring-branch-memorial-library",
-    "location": null,
-    "free": true,
-    "cost": null,
-    "indoor": true,
-    "registration": null,
-    "status": "confirmed",
-    "featured": false,
-    "lastVerified": "2026-10-24",
-    "id": "2026-10-29-sbm-library-halloween-party",
-    "title": "Halloween party for kids",
-    "date": "2026-10-29",
-    "ages": [
-      "preschool",
-      "elementary"
-    ],
-    "description": "A costume-friendly Halloween party at the library for ages 4–8, with crafts and treats.",
-    "url": "https://juliesheets.com/blog/memorial-celebrates-halloween-before-halloween-this-year-the-october-calendar-weekend-by-weekend",
-    "area": "local"
-  },
-  {
-    "kind": "event",
-    "endDate": null,
-    "startTime": "17:00",
     "endTime": "20:00",
     "placeId": "citycentre",
     "location": null,
@@ -108,7 +83,7 @@
     "registration": null,
     "status": "confirmed",
     "featured": true,
-    "lastVerified": "2026-10-24",
+    "lastVerified": "2026-10-25",
     "id": "2026-10-30-citycentre-trick-or-treat",
     "title": "CityCentre trick-or-treat",
     "date": "2026-10-30",
@@ -118,41 +93,15 @@
       "preschool",
       "elementary"
     ],
-    "description": "Costumes on! Kids trick-or-treat store to store, then everyone gathers on the Plaza for spooky tunes and a Halloween show.",
-    "url": "https://juliesheets.com/blog/memorial-celebrates-halloween-before-halloween-this-year-the-october-calendar-weekend-by-weekend",
+    "description": "Kids trick-or-treat at CityCentre shops and restaurants marked with balloons. Rain or shine; bring your own bucket.",
+    "url": "https://www.citycentrehouston.com/event/15th-annual-halloween-trick-or-treat",
     "area": "local"
   },
   {
     "kind": "event",
     "endDate": null,
-    "startTime": "18:00",
+    "startTime": null,
     "endTime": null,
-    "placeId": null,
-    "location": "Memorial Villages Police Department, Memorial Dr",
-    "free": true,
-    "cost": null,
-    "indoor": false,
-    "registration": null,
-    "status": "confirmed",
-    "featured": false,
-    "lastVerified": "2026-10-24",
-    "id": "2026-10-30-mvpd-trunk-or-treat",
-    "title": "Trunk-or-treat & haunted house",
-    "date": "2026-10-30",
-    "ages": [
-      "toddler",
-      "preschool",
-      "elementary"
-    ],
-    "description": "The Memorial Villages Police Department's trunk-or-treat, with a haunted house for braver kids.",
-    "url": "https://juliesheets.com/blog/memorial-celebrates-halloween-before-halloween-this-year-the-october-calendar-weekend-by-weekend",
-    "area": "local"
-  },
-  {
-    "kind": "event",
-    "endDate": null,
-    "startTime": "14:00",
-    "endTime": "16:00",
     "placeId": "houston-arboretum",
     "location": null,
     "free": true,
@@ -161,35 +110,9 @@
     "registration": null,
     "status": "confirmed",
     "featured": true,
-    "lastVerified": "2026-10-24",
+    "lastVerified": "2026-10-25",
     "id": "2026-11-07-arboretum-scavenger-hunt",
-    "title": "Discover Nature Together scavenger hunt",
-    "date": "2026-11-07",
-    "ages": [
-      "toddler",
-      "preschool",
-      "elementary"
-    ],
-    "description": "A free, themed nature scavenger hunt for the whole family on the Arboretum trails.",
-    "url": "https://houstonarboretum.org/events/",
-    "area": "local"
-  },
-  {
-    "kind": "event",
-    "endDate": "2026-11-08",
-    "startTime": null,
-    "endTime": null,
-    "placeId": null,
-    "location": "Children's Museum Houston, 1500 Binz St",
-    "free": true,
-    "cost": null,
-    "indoor": true,
-    "registration": null,
-    "status": "confirmed",
-    "featured": false,
-    "lastVerified": "2026-10-24",
-    "id": "2026-11-07-childrens-museum-free-days",
-    "title": "Free admission weekend at the Children's Museum",
+    "title": "Fall Foliage scavenger hunt",
     "date": "2026-11-07",
     "ages": [
       "baby",
@@ -197,15 +120,15 @@
       "preschool",
       "elementary"
     ],
-    "description": "Free admission all weekend at one of the best kids' museums in the country. Go early, it gets busy.",
-    "url": "https://www.cmhouston.org/events",
-    "area": "houston"
+    "description": "A free, hour-long family scavenger hunt on the trails about fall leaves. Turn in your sheet at the Nature Center for a prize.",
+    "url": "https://houstonarboretum.org/events/",
+    "area": "local"
   },
   {
     "kind": "event",
     "endDate": null,
-    "startTime": null,
-    "endTime": null,
+    "startTime": "09:00",
+    "endTime": "17:00",
     "placeId": null,
     "location": "Children's Museum Houston, 1500 Binz St",
     "free": false,
@@ -215,42 +138,16 @@
     "status": "confirmed",
     "featured": false,
     "area": "houston",
-    "lastVerified": "2026-10-24",
+    "lastVerified": "2026-10-25",
     "id": "2026-11-01-cmh-dia-de-los-muertos",
-    "title": "Día de los Muertos celebration",
+    "title": "Día de los Muertos at the Children's Museum",
     "date": "2026-11-01",
     "ages": [
       "toddler",
       "preschool",
       "elementary"
     ],
-    "description": "Crafts, music and stories celebrating Día de los Muertos at the Children's Museum.",
-    "url": "https://www.cmhouston.org/events"
-  },
-  {
-    "kind": "event",
-    "endDate": null,
-    "startTime": null,
-    "endTime": null,
-    "placeId": null,
-    "location": "Children's Museum Houston, 1500 Binz St",
-    "free": false,
-    "cost": "Museum admission",
-    "indoor": true,
-    "registration": null,
-    "status": "confirmed",
-    "featured": false,
-    "area": "houston",
-    "lastVerified": "2026-10-24",
-    "id": "2026-11-05-cmh-diwali",
-    "title": "Diwali celebration",
-    "date": "2026-11-05",
-    "ages": [
-      "toddler",
-      "preschool",
-      "elementary"
-    ],
-    "description": "Celebrate the festival of lights with hands-on activities at the Children's Museum.",
+    "description": "Face painting, ofrenda building and dance performances. Included with museum admission.",
     "url": "https://www.cmhouston.org/events"
   },
   {
@@ -282,31 +179,6 @@
   {
     "kind": "event",
     "endDate": null,
-    "startTime": "18:00",
-    "endTime": null,
-    "placeId": null,
-    "location": "Bayou Music Center, 520 Texas Ave",
-    "free": false,
-    "cost": "Tickets required",
-    "indoor": true,
-    "registration": null,
-    "status": "confirmed",
-    "featured": false,
-    "area": "houston",
-    "lastVerified": "2026-10-24",
-    "id": "2026-11-13-elmos-got-the-moves",
-    "title": "Sesame Street Live: Elmo's Got the Moves",
-    "date": "2026-11-13",
-    "ages": [
-      "toddler",
-      "preschool"
-    ],
-    "description": "Elmo and friends sing and dance on stage. A great first show for toddlers and preschoolers.",
-    "url": "https://www.ticketmaster.com/discover/houston?categoryId=family"
-  },
-  {
-    "kind": "event",
-    "endDate": null,
     "startTime": "17:00",
     "endTime": "20:00",
     "placeId": null,
@@ -315,10 +187,10 @@
     "cost": null,
     "indoor": false,
     "registration": null,
-    "status": "confirmed",
+    "status": "tentative",
     "featured": false,
     "area": "houston",
-    "lastVerified": "2026-10-24",
+    "lastVerified": "2026-10-25",
     "id": "2026-12-05-deck-the-hall",
     "title": "Mayor's Deck the Hall tree lighting",
     "date": "2026-12-05",
@@ -328,18 +200,18 @@
       "preschool",
       "elementary"
     ],
-    "description": "Downtown's big tree lighting with a concert. Past years had a Winter Wonderland kids' zone.",
-    "url": "https://www.houstontx.gov/specialevents/event-planned-routes.pdf"
+    "description": "The city's holiday tree lighting and concert at City Hall. Last year ended with fireworks from the rooftop.",
+    "url": "https://cohips.houstontx.gov/deckthehall/index.html"
   },
   {
     "kind": "event",
     "endDate": "2026-10-31",
-    "startTime": null,
-    "endTime": null,
+    "startTime": "09:00",
+    "endTime": "17:00",
     "placeId": null,
     "location": "Houston Zoo, 6200 Hermann Park Dr",
     "free": false,
-    "cost": "Zoo admission",
+    "cost": "Included with zoo admission",
     "indoor": false,
     "registration": null,
     "status": "confirmed",
@@ -348,15 +220,15 @@
     "lastVerified": "2026-10-25",
     "id": "2026-10-25-houston-zoo-boo",
     "title": "Zoo Boo at the Houston Zoo",
-    "date": "2026-10-25",
+    "date": "2026-09-25",
     "ages": [
       "baby",
       "toddler",
       "preschool",
       "elementary"
     ],
-    "description": "Pumpkins, fall decorations and animals getting Halloween treats. Costumes welcome. Runs through Halloween.",
-    "url": "https://www.visithoustontexas.com/things-to-do/attractions/halloween-in-houston/"
+    "description": "Pumpkins, fall decorations, photo spots and animals getting Halloween treats. Costumes welcome.",
+    "url": "https://www.houstonzoo.org/events/zoo-boo-2"
   },
   {
     "kind": "event",
@@ -373,16 +245,16 @@
     "featured": false,
     "area": "houston",
     "lastVerified": "2026-10-25",
-    "id": "2026-10-26-levy-park-howl-o-ween",
+    "id": "2026-10-25-levy-park-howl-o-ween",
     "title": "Howl-O-Ween dog parade & costume contest",
-    "date": "2026-10-26",
+    "date": "2026-10-25",
     "ages": [
       "toddler",
       "preschool",
       "elementary"
     ],
-    "description": "A costumed dog parade at Levy Park. Kids can enter the costume contest too; registration is free but required.",
-    "url": "https://www.houstononthecheap.com/halloween-events-houston/"
+    "description": "A costumed dog parade, then a runway where every kid in costume can strut. Free; the costume contest needs pre-registration.",
+    "url": "https://levyparkhouston.org/"
   },
   {
     "kind": "event",
@@ -400,7 +272,7 @@
     "area": "houston",
     "lastVerified": "2026-10-25",
     "id": "2026-10-29-cmh-free-family-night",
-    "title": "Free Family Night: Halloween Happy House",
+    "title": "Free Family Night at the Children's Museum",
     "date": "2026-10-29",
     "ages": [
       "baby",
@@ -408,7 +280,7 @@
       "preschool",
       "elementary"
     ],
-    "description": "Free admission Thursday evening, with the museum's Halloween Happy House. Arrive early, it fills up.",
+    "description": "Free admission Thursday evenings from 5 to 8 pm. Arrive early; it fills up fast.",
     "url": "https://www.cmhouston.org/events"
   },
   {
@@ -435,92 +307,14 @@
       "preschool",
       "elementary"
     ],
-    "description": "Free Halloween night in the park with a costume contest, games and spooky music.",
-    "url": "https://www.houstononthecheap.com/halloween-events-houston/"
+    "description": "Discovery Green's free Halloween night: costume contest, living sculptures, games, spooky music and photo ops.",
+    "url": "https://www.discoverygreen.com/scream"
   },
   {
     "kind": "event",
-    "endDate": null,
-    "startTime": "09:00",
-    "endTime": "20:00",
-    "placeId": null,
-    "location": "Children's Museum Houston, 1500 Binz St",
-    "free": false,
-    "cost": "Museum admission",
-    "indoor": true,
-    "registration": null,
-    "status": "confirmed",
-    "featured": false,
-    "area": "houston",
-    "lastVerified": "2026-10-25",
-    "id": "2026-10-31-cmh-monster-mayhem",
-    "title": "Monster Mayhem at the Children's Museum",
-    "date": "2026-10-31",
-    "ages": [
-      "baby",
-      "toddler",
-      "preschool",
-      "elementary"
-    ],
-    "description": "A full day of Halloween fun: monster-making, candy hunts, face painting and a dance party.",
-    "url": "https://www.cmhouston.org/events"
-  },
-  {
-    "kind": "event",
-    "endDate": null,
-    "startTime": null,
-    "endTime": null,
-    "placeId": null,
-    "location": "Space Center Houston, 1601 E NASA Pkwy",
-    "free": false,
-    "cost": "Included with admission",
-    "indoor": true,
-    "registration": null,
-    "status": "confirmed",
-    "featured": false,
-    "area": "houston",
-    "lastVerified": "2026-10-25",
-    "id": "2026-10-31-space-center-galaxy-frights",
-    "title": "Galaxy Frights at Space Center Houston",
-    "date": "2026-10-31",
-    "ages": [
-      "preschool",
-      "elementary"
-    ],
-    "description": "Space-themed Halloween with trick-or-treating at candy stations, a pop-up science lab and astronaut photo ops.",
-    "url": "https://mommypoppins.com/things-to-do-in-Houston-this-weekend-kids-families"
-  },
-  {
-    "kind": "event",
-    "endDate": null,
-    "startTime": "14:00",
-    "endTime": null,
-    "placeId": null,
-    "location": "Kemah Boardwalk",
-    "free": true,
-    "cost": null,
-    "indoor": false,
-    "registration": null,
-    "status": "confirmed",
-    "featured": false,
-    "area": "houston",
-    "lastVerified": "2026-10-25",
-    "id": "2026-10-31-kemah-boo-on-the-boardwalk",
-    "title": "Boo on the Boardwalk",
-    "date": "2026-10-31",
-    "ages": [
-      "toddler",
-      "preschool",
-      "elementary"
-    ],
-    "description": "Halloween on the Boardwalk with a kids' costume contest and children's activities. Rides are extra.",
-    "url": "https://diningout.com/houston/where-to-celebrate-halloween-weekend-in-houston-the-best-parties-and-events-for-2026"
-  },
-  {
-    "kind": "event",
-    "endDate": null,
+    "endDate": "2026-11-01",
     "startTime": "08:00",
-    "endTime": "17:00",
+    "endTime": null,
     "placeId": null,
     "location": "Ellington Airport",
     "free": false,
@@ -538,7 +332,7 @@
       "preschool",
       "elementary"
     ],
-    "description": "Vintage warbirds, jet demos and big flyovers. Bring ear protection for little ones.",
-    "url": "https://www.jillbjarvis.com/things-to-do-in-houston-today-and-this-weekend-with-kids/"
+    "description": "Big airshow at Ellington with the U.S. Air Force Thunderbirds headlining. Gates at 8 am, flying from about 10:30. Bring ear protection.",
+    "url": "https://wingsoverhouston.com/"
   }
 ]

@@ -48,7 +48,8 @@ Search ideas: "Memorial Houston kids events [month year]", "Spring Branch Housto
 ## Rules for accuracy
 
 - **Never invent details.** If you can't find a start time, use `null` for `startTime`; the site shows "See listing for times." Don't guess an age range. Map what the organizer says.
-- `url` must be a page where a parent can confirm the details: the organizer's page if it exists, otherwise the most specific listing page.
+- **`url` is always the organizer's own page** for that specific event: the venue, library, city, school, park conservancy, or the organizer's own Eventbrite/ticketing page. Never a blog, roundup, news listing or resale site (Mommy Poppins, Houston on the Cheap, CultureMap, juliesheets, Macaroni Kid, Yelp, Visit Houston, The Buzz…). `npm run check` rejects those. Use roundups only to *discover* events, then find the organizer's page. Put the roundup in `sources` if you like.
+- If you can't find an organizer page that shows **this year's** date, don't list the event. Blogs often recycle last year's dates.
 - Use `"status": "confirmed"` when the event is listed with a date by the organizer **or** by a reputable calendar or local publication (library and city calendars, Eventbrite, Mommy Poppins, Houston on the Cheap, Kids Out and About, The Buzz, neighborhood blogs). Use `"tentative"` only when the date itself is uncertain: the organizer says "TBA", sources give different dates, or it's a yearly event whose new date hasn't been announced. The site shows tentative events as "Date may change".
 - If something is cancelled, remove it.
 - If sources disagree, trust the organizer's page and note the conflict in the agent log.
@@ -115,10 +116,10 @@ All dates are `YYYY-MM-DD`, times are 24-hour `HH:MM`. Ages use these keys: `bab
 }
 ```
 - `perks` come from: `play-area`, `indoor-play`, `patio`, `lawn`, `kids-menu`, `free-treat`. Only list a perk you've seen confirmed (photos, the restaurant's site, or recent reviews).
-- `price` is `$`, `$$` or `$$$`. Use `null` for `address` if you can't confirm it. Never guess a website; use the restaurant's own site or the page where you found it.
+- `price` is `$`, `$$` or `$$$`. Use `null` for `address` if you can't confirm it. `url` should be the restaurant's own website; never guess one, and replace Yelp or blog links when you find the real site.
 - Remove restaurants that have closed or lost their play area.
 
-**Kids' deals** (`data/deals.json`) are recurring promos like kids-eat-free nights. They change often, so check the restaurant's own site or social media whenever you can.
+**Kids' deals** (`data/deals.json`) are recurring promos like kids-eat-free nights. They change often. Find the deal on the restaurant's own site or social media and link that; replace any roundup links still in the file (the check warns about them).
 
 ```json
 {
