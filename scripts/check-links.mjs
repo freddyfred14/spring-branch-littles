@@ -1,7 +1,7 @@
 // Visits every "More info" link in data/ and reports what each page actually is: its status, where it
 // redirects, its title, and whether the page mentions the listing. Runs on GitHub (Actions → Link check).
 // Usage: node scripts/check-links.mjs   (writes reports/link-report.md; exits 0 even when links are bad)
-import { readFileSync, writeFileSync, appendFileSync, mkdirSync } from "node:fs";
+import { readFileSync, writeFileSync, appendFileSync, mkdirSync, existsSync } from "node:fs";
 import { join } from "node:path";
 import { ROOT } from "../src/lib.mjs";
 
@@ -9,7 +9,12 @@ const UA = "Mozilla/5.0 (Macintosh; Intel Mac OS X 14_5) AppleWebKit/605.1.15 (K
 const KINDS = ["events", "recurring", "places", "restaurants", "deals", "news"];
 const STOP = new Set(["the", "and", "for", "at", "of", "in", "a", "an", "with", "on", "to", "&", "-", "kids", "kid", "family"]);
 
-const rows = KINDS.flatMap((k) => JSON.parse(readFileSync(join(ROOT, "data", `${k}.json`), "utf8")).map((x) => ({ kind: k, id: x.id, name: x.title || x.name, url: x.url })));
+// With reports/candidates.json ({"Listing name": [urls]}), it tests those pages instead, to pick replacements.
+const CANDIDATES = join(ROOT, "reports/candidates.json");
+const trying = existsSync(CANDIDATES);
+const rows = trying
+  ? Object.entries(JSON.parse(readFileSync(CANDIDATES, "utf8"))).flatMap(([name, urls]) => urls.map((url) => ({ kind: "candidate", id: name, name, url })))
+  : KINDS.flatMap((k) => JSON.parse(readFileSync(join(ROOT, "data", `${k}.json`), "utf8")).map((x) => ({ kind: k, id: x.id, name: x.title || x.name, url: x.url })));
 const words = (s) => s.toLowerCase().replace(/[^a-z0-9\s-]/g, " ").split(/\s+/).filter((w) => w.length > 2 && !STOP.has(w));
 const decode = (s) => s.replace(/&amp;/g, "&").replace(/&#39;|&rsquo;/g, "'").replace(/&quot;/g, '"').replace(/\s+/g, " ").trim();
 
@@ -45,7 +50,7 @@ const md = [
   ...[...bad, ...results.filter((r) => !bad.includes(r))].map((r) => `| ${r.verdict} | ${r.kind} | ${cell(r.name)} | ${r.status ?? ""} | ${cell(r.title)} | ${r.match ?? ""}% | ${r.url}${r.moved ? ` → ${r.moved}` : ""} |`),
 ].join("\n");
 mkdirSync(join(ROOT, "reports"), { recursive: true });
-writeFileSync(join(ROOT, "reports/link-report.md"), md + "\n");
+writeFileSync(join(ROOT, trying ? "reports/candidate-report.md" : "reports/link-report.md"), md + "\n");
 if (process.env.GITHUB_STEP_SUMMARY) appendFileSync(process.env.GITHUB_STEP_SUMMARY, md + "\n");
 for (const r of results) console.log(`${r.verdict.padEnd(34)} ${r.kind}/${r.id} :: ${r.status ?? ""} :: ${r.title || ""} :: ${r.url}${r.moved ? ` -> ${r.moved}` : ""}`);
 console.log(`\n${bad.length} of ${results.length} links need a look.`);
