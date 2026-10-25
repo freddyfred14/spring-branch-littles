@@ -3,7 +3,7 @@
 import { mkdirSync, writeFileSync, rmSync, cpSync, existsSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { ROOT, loadAll, validate, today, fmtLong } from "../src/lib.mjs";
-import { homePage, eventsPage, placesPage, eatsPage, newsPage, newsletterPage, issuePage, aboutPage, notFoundPage, esc } from "../src/templates.mjs";
+import { homePage, eventsPage, placesPage, eatsPage, newsPage, newsletterPage, joinPage, issuePage, aboutPage, notFoundPage, esc } from "../src/templates.mjs";
 
 const data = loadAll();
 const now = today(data.config.timezone);
@@ -35,6 +35,7 @@ const pages = {
   "eats/index.html": eatsPage(data, now),
   "news/index.html": newsPage(data, now),
   "newsletter/index.html": newsletterPage(data, now),
+  "join/index.html": joinPage(data, now),
   "about/index.html": aboutPage(data, now),
   "404.html": notFoundPage(data, now),
 };

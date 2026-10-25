@@ -537,6 +537,39 @@ export function newsPage(data, now) {
   return layout(config, { title: "News", path: "/news/", body, now, description: "Neighborhood news for parents in Spring Branch and Memorial, Houston: openings, parks, schools and heads-ups." });
 }
 
+// A focused landing page for ads and social links: what you get, a taste of this week, sign up.
+export function joinPage(data, now) {
+  const { config } = data;
+  const wk = { ...weekendOf(now), now };
+  const picks = eventsBetween(data.events.filter((e) => e.kind === "event"), now, addDays(now, 13))
+    .sort((a, b) => Number(!!b.featured) - Number(!!a.featured) || (areaOf(data, a) === "local" ? -1 : 1) - (areaOf(data, b) === "local" ? -1 : 1))
+    .slice(0, 3)
+    .sort((a, b) => a.date.localeCompare(b.date));
+  const body = `
+  <section class="join-hero"><div class="wrap join-grid">
+    <img class="join-logo" src="/img/logo.webp" alt="Spring Branch Littles" width="900" height="778">
+    <div class="join-copy">
+      <p class="script pink" style="font-size:30px">Spring Branch &amp; Memorial parents</p>
+      <h1>Never miss a storytime, festival or kids-eat-free night again.</h1>
+      <ul class="join-points">
+        <li>${readerIllo()}<span><b>One short email a week</b> with the best things to do with kids this weekend</span></li>
+        <li>${iceCreamIllo()}<span><b>Storytimes, parks, festivals</b> and where kids eat free, close to home</span></li>
+        <li>${kiteIllo()}<span><b>Babies through elementary,</b> with every link going straight to the organizer</span></li>
+      </ul>
+      <div class="signup-card">
+        <h2>Get ${esc(config.newsletterName)}, free</h2>
+        ${signupForm(config, "join")}
+        <p class="quiet">No spam, ever. Unsubscribe with one click.</p>
+      </div>
+    </div>
+  </div></section>
+  ${picks.length ? `<section class="band"><div class="wrap">
+    <div class="sec-head"><div><p class="label">A taste of what you'll get</p><h2>Coming up soon ${SPARK_PINK}</h2></div><a class="more" href="/">See this week →</a></div>
+    <div class="ecards">${picks.map((x, i) => eventCard(data, x, i, wk)).join("")}</div>
+  </div></section>` : ""}`;
+  return layout(config, { title: "Join The Littles List", path: "/join/", body, now, description: `${config.newsletterName}: free weekly kid-friendly finds for Spring Branch & Memorial parents.` });
+}
+
 export function newsletterPage(data, now) {
   const { config, issues } = data;
   const body = `
