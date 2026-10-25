@@ -772,20 +772,27 @@ body { background-image: none; }
 .news-band .story { margin-bottom: 26px; }
 .story-copy h3 { font-size: clamp(24px, 2.6vw, 32px); }
 
-/* subscribe pop-up */
-.sub-pop { width: min(460px, calc(100vw - 32px)); border: 0; border-radius: var(--r-lg); padding: 34px 28px 20px; background: var(--card); color: var(--ink); box-shadow: 0 24px 60px rgba(36, 30, 26, .3); overflow: visible; text-align: center; }
-.sub-pop::backdrop { background: rgba(36, 30, 26, .45); }
-.sub-pop[open] { display: grid; gap: 12px; }
-.sub-pop h2 { font-size: clamp(26px, 6vw, 32px); }
-.sub-pop > p:not(.label) { color: var(--muted); font-size: 16px; }
-.sub-pop .signup-form { justify-content: center; }
-.sub-pop .signup-form .btn { background: var(--pink-strong); box-shadow: 0 4px 0 #8f3655; }
-.sub-pop-dino { width: 92px; margin: -82px auto -6px; transform: rotate(-6deg); }
-.sub-pop-close { position: absolute; top: 8px; right: 10px; width: 44px; height: 44px; border: 0; border-radius: 50%; background: transparent; font-size: 30px; line-height: 1; color: var(--muted); cursor: pointer; }
-.sub-pop-close:hover { background: var(--paper-2); color: var(--ink); }
-.sub-pop-later { justify-self: center; min-height: 44px; border: 0; background: none; font: inherit; font-size: 15px; color: var(--muted); text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+/* subscribe pop-up: a pink header with the dino, then the form */
+.sub-pop { width: min(420px, calc(100vw - 32px)); height: fit-content; height: -webkit-fit-content; margin: auto; inset: 0; max-height: calc(100dvh - 32px); overflow: auto; padding: 0; border: 0; border-radius: 26px; background: var(--card); color: var(--ink); box-shadow: 0 24px 60px rgba(36, 30, 26, .3); }
+.sub-pop[open] { display: block; }
+.sub-pop:focus { outline: none; }
+.sub-pop::backdrop { background: rgba(36, 30, 26, .5); }
+.sub-pop-top { position: relative; display: flex; justify-content: center; align-items: flex-end; height: 128px; background-color: var(--pink-soft);
+  background-image: radial-gradient(circle at 14% 30%, rgba(255,255,255,.7) 0 12px, transparent 13px), radial-gradient(circle at 84% 62%, rgba(255,255,255,.6) 0 18px, transparent 19px), radial-gradient(circle at 70% 20%, rgba(255,255,255,.5) 0 7px, transparent 8px); }
+.sub-pop-dino { display: block; width: 116px; height: 116px; object-fit: contain; margin-bottom: -4px; }
+.sub-pop-close { position: absolute; top: 12px; right: 12px; width: 40px; height: 40px; display: grid; place-items: center; border: 0; border-radius: 50%; background: #fff; color: var(--ink); font-size: 26px; line-height: 1; cursor: pointer; box-shadow: 0 2px 8px rgba(0,0,0,.12); }
+.sub-pop-close:hover { background: var(--paper-2); }
+.sub-pop-body { display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 22px 26px 16px; text-align: center; }
+.sub-pop-body h2 { font-size: clamp(25px, 6.5vw, 30px); }
+.sub-pop-lede { color: var(--muted); font-size: 16px; line-height: 1.5; max-width: 32ch; }
+.sub-pop-perks { list-style: none; margin: 4px 0 6px; padding: 0; display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; }
+.sub-pop-perks li { font-size: 13.5px; font-weight: 800; color: var(--dino-deep); background: var(--dino-soft); padding: 4px 11px 4px 9px; border-radius: 999px; }
+.sub-pop-perks li::before { content: "✓ "; }
+.sub-pop .signup-form { width: 100%; flex-direction: column; gap: 10px; }
+.sub-pop .signup-form input[type=email] { flex: none; width: 100%; min-height: 50px; text-align: center; }
+.sub-pop .signup-form .btn { width: 100%; min-height: 50px; background: var(--pink-strong); box-shadow: 0 4px 0 #8f3655; }
+.sub-pop-later { min-height: 44px; padding: 0 12px; border: 0; background: none; font: inherit; font-size: 15px; color: var(--muted); text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
 @media (prefers-reduced-motion: no-preference) {
   .sub-pop[open] { animation: pop-in .25s ease-out; }
   @keyframes pop-in { from { opacity: 0; transform: translateY(16px) scale(.97); } }
 }
-.sub-pop:focus { outline: none; }

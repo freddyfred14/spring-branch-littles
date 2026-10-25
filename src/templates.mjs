@@ -3,7 +3,8 @@ import {
   AGES, AREAS, PLACE_TYPES, addDays, fmtDateRange, fmtTimeRange, fmtLong, fmtShort, fmtMonth, dateParts,
   eventsBetween, recurringBetween, placeById, whereText, weekendOf, areaOf, NEWS_CATEGORIES, currentNews, featuredStory, PERKS, activeDeals, weekday,
 } from "./lib.mjs";
-import { existsSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
+import { createHash } from "node:crypto";
 import { join } from "node:path";
 import { ROOT } from "./lib.mjs";
 import { eventPath, addressOf, mapsUrl, nextOccurrence, googleCalendarUrl } from "./calendar.mjs";
@@ -12,6 +13,8 @@ import { WATERCOLOR_DEFS, babyIllo, readerIllo, kiteIllo, bubblesIllo, toddlerIl
 export const esc = (s) =>
   String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
 
+// Changes whenever the CSS or JS changes, so browsers never keep an old copy.
+const ASSET_VERSION = createHash("sha1").update(["site.css", "site.js"].map((f) => readFileSync(join(ROOT, "public/assets", f))).join("")).digest("hex").slice(0, 8);
 const LOGO = `<img class="logo" src="/img/logo-sm.webp" alt="Spring Branch Littles" width="360" height="311">`;
 // The three little "happy" marks next to the dino's head in the logo.
 export const SPARK_PINK = `<svg class="spark pink" viewBox="0 0 32 32" aria-hidden="true"><path d="M8 3l3 8M20 6l-5 8M29 15l-9 3" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" fill="none"/></svg>`;
@@ -52,13 +55,18 @@ export function signupForm(config, id = "signup") {
 // Shown once a few seconds after someone arrives (site.js decides when, and stops after a signup or a "no thanks").
 function subscribePopup(config) {
   return `<dialog class="sub-pop" aria-labelledby="sub-pop-title" tabindex="-1">
-  <button class="sub-pop-close" type="button" aria-label="Close" data-pop-close>×</button>
-  <img class="sub-pop-dino" src="/img/dino-head.png" alt="" width="512" height="512">
-  <p class="label">Free · once a week</p>
-  <h2 id="sub-pop-title">Get ${esc(config.newsletterName)}</h2>
-  <p>${esc(config.newsletterBlurb)}: storytimes, festivals and kids-eat-free nights near you, in your inbox every week. Short enough for nap time.</p>
-  ${signupForm(config, "pop")}
-  <button class="sub-pop-later" type="button" data-pop-close>No thanks</button>
+  <div class="sub-pop-top">
+    <img class="sub-pop-dino" src="/img/dino-head.png" alt="" width="512" height="512">
+    <button class="sub-pop-close" type="button" aria-label="Close" data-pop-close>×</button>
+  </div>
+  <div class="sub-pop-body">
+    <p class="label">Free · once a week</p>
+    <h2 id="sub-pop-title">Get ${esc(config.newsletterName)}</h2>
+    <p class="sub-pop-lede">The best kid-friendly plans near you, in your inbox every week. Short enough for nap time.</p>
+    <ul class="sub-pop-perks"><li>Weekend plans</li><li>Storytimes</li><li>Kids eat free</li></ul>
+    ${signupForm(config, "pop")}
+    <button class="sub-pop-later" type="button" data-pop-close>No thanks</button>
+  </div>
 </dialog>`;
 }
 
@@ -85,7 +93,7 @@ export function layout(config, { title, description, path, body, now }) {
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800&family=Caveat:wght@700&display=swap">
-<link rel="stylesheet" href="/assets/site.css">
+<link rel="stylesheet" href="/assets/site.css?v=${ASSET_VERSION}">
 </head>
 <body${path === "/" ? ' class="home"' : ""}>
 ${WATERCOLOR_DEFS}
@@ -126,7 +134,7 @@ ${path === "/join/" || path === "/thanks/" ? "" : subscribePopup(config)}
 </div>
 <div class="wrap fineprint">Listings are gathered from public calendars and checked regularly, but times change. Please confirm with the venue before you go. Updated ${esc(fmtLong(now))}.</div>
 </div></footer>
-<script src="/assets/site.js" defer></script>
+<script src="/assets/site.js?v=${ASSET_VERSION}" defer></script>
 </body>
 </html>`;
 }

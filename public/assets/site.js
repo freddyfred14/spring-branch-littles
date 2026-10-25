@@ -175,7 +175,17 @@ document.querySelectorAll(".signup-form").forEach((f) => f.addEventListener("sub
 if (pop && typeof pop.showModal === "function") {
   const snoozed = Number(store.get("sbl-pop-snoozed") || 0) > Date.now() - 30 * 864e5;
   if (!store.get("sbl-subscribed") && !snoozed) {
-    setTimeout(() => { if (!document.querySelector("dialog[open]")) { pop.showModal(); pop.focus(); } }, 5000);
+    // After 5 seconds, or sooner once someone has scrolled a bit (people on phones scroll right away).
+    let shown = false;
+    const show = () => {
+      if (shown || document.querySelector("dialog[open]")) return;
+      shown = true;
+      pop.showModal();
+      pop.focus();
+    };
+    setTimeout(show, 5000);
+    const onScroll = () => { if (scrollY > innerHeight * 0.8) { removeEventListener("scroll", onScroll); show(); } };
+    addEventListener("scroll", onScroll, { passive: true });
   }
   const close = () => { store.set("sbl-pop-snoozed", String(Date.now())); pop.close(); };
   pop.querySelectorAll("[data-pop-close]").forEach((b) => b.addEventListener("click", close));
