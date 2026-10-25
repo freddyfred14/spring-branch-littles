@@ -1,46 +1,45 @@
-# Link check: 16 of 59 need a look
+# Link check: 9 of 58 need a look
 
 | Verdict | Kind | Listing | Status | Page title | Mentions listing | Link (→ redirect) |
 |---|---|---|---|---|---|---|
 | WRONG PAGE? (doesn't mention it) | events | SBISD Thanksgiving break | 200 | Client Challenge | 0% | https://www.springbranchisd.com/events/ |
-| BROKEN (404) | events | Holiday in the Plaza | 404 |  | 0% | https://www.citycentrehouston.com/event/holiday-in-the-plaza |
 | WRONG PAGE? (doesn't mention it) | events | SBISD winter break | 200 | Client Challenge | 0% | https://www.springbranchisd.com/events/ |
-| BROKEN (404) | events | Zoo Boo at the Houston Zoo | 404 |  | 0% | https://www.houstonzoo.org/events/zoo-boo-2 |
-| WRONG PAGE? (doesn't mention it) | recurring | Baby Bouncers playtime | 200 | Spring Branch Memorial Branch Library / Harris County Public Library | 33% | https://hcpl.net/locations/sm/ |
-| WRONG PAGE? (doesn't mention it) | recurring | Preschool storytime + craft | 200 | Spring Branch Memorial Branch Library / Harris County Public Library | 0% | https://hcpl.net/locations/sm/ |
+| WRONG PAGE? (doesn't mention it) | recurring | Baby Bouncers playtime | 200 | Events / Harris County Public Library / BiblioCommons | 33% | https://hcpl.bibliocommons.com/v2/events?q=Baby%20Bouncer |
 | WRONG PAGE? (doesn't mention it) | recurring | Toddler storytime | 200 | Houston Public Library - Visit us | 0% | https://calendar.houstonlibrary.org/ |
-| BROKEN (404) | recurring | Stories & Crafts in the Cabin | 404 |  | 0% | https://houstonaudubon.org/programs/youth/stories-crafts-cabin.html → https://birdshouston.org/programs/youth/stories-crafts-cabin.html |
-| WRONG PAGE? (doesn't mention it) | places | Spring Branch Memorial Library | 200 | Harris County Public Library | 25% | https://www.hcpl.net/ → https://hcpl.net/ |
-| WRONG PAGE? (doesn't mention it) | places | Terry Hershey Park | 200 | Harris County Commissioner Precinct 4 > Home | 33% | https://www.hcp4.net/ → https://cp4.harriscountytx.gov/ |
 | BROKEN (403) | restaurants | The Union Kitchen – Memorial | 403 |  | 0% | https://www.theunionkitchen.com/ |
 | BROKEN (403) | deals | Free kids' meal | 403 |  | 0% | https://www.theunionkitchen.com/ |
 | WRONG PAGE? (doesn't mention it) | deals | Free kids' meal | 200 | blackeyedpea.com | 0% | https://www.blackeyedpea.com/ |
-| WRONG PAGE? (doesn't mention it) | deals | Kids eat free | 200 | Chicken Salad Chick / Fresh Chicken Salads, Sandwiches & Sides / Chicken Salad Chick | 0% | https://www.chickensaladchick.com/ |
 | WRONG PAGE? (doesn't mention it) | news | Greenside, a family-friendly spot with a kids' play structure, is coming to Memorial City | 200 | Client Challenge | 0% | https://www.houstonchronicle.com/business/real-estate/article/retail-mixed-use-new-development-houston-21118226.php |
-| WRONG PAGE? (doesn't mention it) | news | Heads-up: library storytimes can be canceled on short notice | 200 | Events / Harris County Public Library / BiblioCommons | 43% | https://hcpl.bibliocommons.com/v2/events |
+| WRONG PAGE? (doesn't mention it) | news | Heads-up: library storytimes can be canceled on short notice | 200 | Events / Harris County Public Library / BiblioCommons | 14% | https://hcpl.bibliocommons.com/v2/events?q=Tiny%20Tykes |
+| OK | events | Holiday in the Plaza | 200 | Events at CityCentre Houston - CITYCENTRE | 100% | https://www.citycentrehouston.com/events |
 | OK | events | CityCentre trick-or-treat | 200 |  | 100% | https://www.citycentrehouston.com/event/15th-annual-halloween-trick-or-treat |
-| OK | events | Fall Foliage scavenger hunt | 200 | Events from October 26 &#8211; November 15 &#8211; Houston Arboretum & Nature Center | 75% | https://houstonarboretum.org/events/ |
-| OK | events | Día de los Muertos at the Children's Museum | 200 | Event Calendar at the Children’s Museum Houston | 100% | https://www.cmhouston.org/events |
+| OK | events | Fall Foliage scavenger hunt | 200 | Discover Nature Together Scavenger Hunts - Houston Arboretum & Nature Center | 100% | https://houstonarboretum.org/event/discover-nature-together-scavenger-hunts/2026-11-07/ |
+| OK | events | Día de los Muertos at the Children's Museum | 200 | Día de los Muertos / Children&#x27;s Museum Houston | 100% | https://www.cmhouston.org/events/dia-de-los-muertos-2 |
 | OK | events | Standing Tall tree festival | 200 | Standing Tall / Houston Botanic Garden | 100% | https://hbg.org/event/standing-tall/ |
 | OK | events | Mayor's Deck the Hall tree lighting | 200 | Reliant Presents Deck the Hall | 100% | https://cohips.houstontx.gov/deckthehall/index.html |
-| OK (redirects) | events | Howl-O-Ween dog parade & costume contest | 200 | Levy Park - Levy Park | 100% | https://levyparkhouston.org/ → https://www.levyparkhouston.org/ |
-| OK | events | Free Family Night at the Children's Museum | 200 | Event Calendar at the Children’s Museum Houston | 100% | https://www.cmhouston.org/events |
-| OK (redirects) | events | Scream on the Green | 200 | Scream on the Green® - Discovery Green | 100% | https://www.discoverygreen.com/scream → https://www.discoverygreen.com/signature-experiences/scream-on-the-green/ |
+| OK | events | Zoo Boo at the Houston Zoo | 200 | Zoo Boo 2026 / Halloween & Fall Activities at Houston Zoo | 100% | https://www.houstonzoo.org/events/zoo-boo/ |
+| OK | events | Howl-O-Ween dog parade & costume contest | 200 | Howl-o-ween Dog Parade and Costume Contest presented by H-E-B - Levy Park | 100% | https://www.levyparkhouston.org/events/howl-o-ween-dog-parade-and-costume-contest-presented-by-h-e-b/ |
+| OK | events | Free Family Night at the Children's Museum | 200 | Get Spooky with Me: Free Family Night / Children&#x27;s Museum Houston | 100% | https://www.cmhouston.org/events/get-spooky-with-me-free-family-night |
+| OK | events | Scream on the Green | 200 | Scream on the Green® - Discovery Green | 100% | https://www.discoverygreen.com/signature-experiences/scream-on-the-green/ |
 | OK | events | Wings Over Houston Airshow | 200 | Wings Over Houston 2026 / Airshow / AIR SHOW INSIDER® | 100% | https://wingsoverhouston.com/ |
 | OK | events | Halloween party for tweens & teens | 200 | Spring Branch Memorial Branch Library / Harris County Public Library | 100% | https://hcpl.net/locations/sm/ |
 | OK | events | Halloween party for kids | 200 | Spring Branch Memorial Branch Library / Harris County Public Library | 100% | https://hcpl.net/locations/sm/ |
-| OK (redirects) | recurring | Tiny Tykes storytime | 200 | Tiny Tykes / Harris County Public Library / BiblioCommons | 67% | https://hcpl.bibliocommons.com/events/6a024547c7d3cd5800588782 → https://hcpl.bibliocommons.com/v2/events/6a024547c7d3cd5800588782 |
-| OK | recurring | Tyke Hike at Arrowwood Pond | 200 | Events from October 26 &#8211; November 15 &#8211; Houston Arboretum & Nature Center | 50% | https://houstonarboretum.org/events/ |
+| OK | recurring | Preschool storytime + craft | 200 | Events / Harris County Public Library / BiblioCommons | 100% | https://hcpl.bibliocommons.com/v2/events?q=Preschool%20Storytime |
+| OK | recurring | Tiny Tykes storytime | 200 | Events / Harris County Public Library / BiblioCommons | 67% | https://hcpl.bibliocommons.com/v2/events?q=Tiny%20Tykes |
+| OK | recurring | Stories & Crafts in the Cabin | 200 | Programs/ Edith Moore / Birds Houston | 100% | https://birdshouston.org/conservation/sanctuaries/edith-moore/programs.html |
+| OK | recurring | Tyke Hike at Arrowwood Pond | 200 | Tyke Hikes - Houston Arboretum & Nature Center | 50% | https://houstonarboretum.org/series/tyke-hikes/ |
 | OK | recurring | Grownup & me classes at The Bunny Hive | 200 | Houston | 100% | https://www.thebunnyhive.com/houston |
+| OK | places | Spring Branch Memorial Library | 200 | Spring Branch Memorial Branch Library / Harris County Public Library | 100% | https://hcpl.net/locations/sm/ |
 | OK (redirects) | places | Ring Neighborhood Library | 200 | HPL - Home - Visit Us at Houston Public Library | 100% | https://houstonlibrary.org/ → https://houstonlibrary.org/home |
 | OK (redirects) | places | Hillendahl Neighborhood Library | 200 | HPL - Home - Visit Us at Houston Public Library | 67% | https://houstonlibrary.org/ → https://houstonlibrary.org/home |
-| OK | places | Haden Park | 200 | Houston Parks and Recreation Department | 50% | https://houstontx.gov/parks/ |
-| OK | places | Agnes Moffitt Park | 200 | Houston Parks and Recreation Department | 67% | https://houstontx.gov/parks/ |
-| OK | places | Freed Park | 200 | Houston Parks and Recreation Department | 50% | https://houstontx.gov/parks/ |
-| OK (redirects) | places | Edith L. Moore Nature Sanctuary | 200 | Programs/ Edith Moore / Birds Houston | 100% | https://houstonaudubon.org/conservation/sanctuaries/edith-moore/programs.html → https://birdshouston.org/conservation/sanctuaries/edith-moore/programs.html |
+| OK | places | Haden Park | 200 | Park Sites | 100% | https://www.houstontx.gov/parks/parksitesG-N.html |
+| OK | places | Agnes Moffitt Park | 200 | Park Sites | 100% | https://www.houstontx.gov/parks/parksitesG-N.html |
+| OK | places | Freed Park | 200 | Freed Park | 100% | https://cp4.harriscountytx.gov/Explore/Parks/Precinct-4-Parks/freed-park |
+| OK | places | Edith L. Moore Nature Sanctuary | 200 | Programs/ Edith Moore / Birds Houston | 100% | https://birdshouston.org/conservation/sanctuaries/edith-moore/programs.html |
 | OK | places | Frolic's Castle at Memorial City Mall | 200 | Memorial City | 60% | https://www.memorialcity.com/ |
-| OK | places | Christ the King Presbyterian indoor play area | 200 | Houston&#039;s Big List of FREE Indoor Playgrounds / Greater Houston Moms | 100% | https://greaterhoustonmoms.com/houstons-big-list-of-free-indoor-playgrounds/ |
+| MAP (not checked) | places | Christ the King Presbyterian indoor play area | - |  | % | https://www.google.com/maps/search/?api=1&query=Christ+the+King+Presbyterian+Church+1201+Silber+Rd+Houston+TX |
 | OK | places | CityCentre | 200 | Houston&#x27;s Favorite Shopping Center - CITYCENTRE | 100% | https://www.citycentrehouston.com/ |
+| OK | places | Terry Hershey Park | 200 | Terry Hershey Park | 100% | https://cp4.harriscountytx.gov/Explore/Parks/Precinct-4-Parks/terry-hershey-park |
 | OK | places | Houston Arboretum & Nature Center | 200 | Houston Arboretum & Nature Center - Houston Arboretum & Nature Center | 100% | https://houstonarboretum.org/ |
 | OK | places | Vale-Asche Foundation Playground, Memorial Park | 200 | Playgrounds at Memorial Park Houston / Kids Play Areas | 100% | https://www.memorialparkconservancy.org/visit/things_to_do/playgrounds/ |
 | OK | places | The Bunny Hive Houston | 200 | Houston | 100% | https://www.thebunnyhive.com/houston |
