@@ -58,6 +58,15 @@ To post automatically:
 3. Add repository secrets `IG_USER_ID` (the Instagram account ID shown there) and `IG_ACCESS_TOKEN` (the long-lived token).
 4. So the token renews itself, create a fine-grained GitHub personal access token for this repo with **Secrets: read and write**, and save it as the secret `GH_PAT`.
 
+### 6. Event illustrations (optional)
+Every upcoming event and weekly program without a photo gets an AI illustration from OpenAI's image API. The research agent writes a short scene description (`imagePrompt`) for each new event, and the **Event images** workflow turns it into a picture after every research run.
+1. At platform.openai.com, create an API key and add a few dollars of credit (each image costs roughly 4–20¢). You may need to verify your organization before image models are available. Set a monthly budget limit there.
+2. Add it as the repository secret `OPENAI_API_KEY`.
+3. Run it the first time by hand: **Actions → Event images → Run workflow**. It makes up to 30 images per run and redeploys the site.
+4. Optional repository variables: `OPENAI_IMAGE_MODEL` (default `gpt-image-1`), `OPENAI_IMAGE_QUALITY` (`low`, `medium` or `high`; default `medium`) and `MAX_IMAGES`.
+
+To redo one image, delete its file in `public/img/events/` and its `image`, `imageAlt` and `imageCredit` lines in the data file, edit its `imagePrompt` if you like, then run the workflow again. A real photo you add yourself always wins: items with an `image` are skipped.
+
 ---
 
 ## Working on it yourself

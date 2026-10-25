@@ -205,6 +205,8 @@ The newsletter ("The Littles List") goes out automatically Thursday morning, but
 
 Never download or add photos or logos yourself. Photos are added only by the site owner, who makes sure we have permission. If an item already has `image`, `imageAlt` and `imageCredit`, keep them unless the item is removed. When you notice a great photo opportunity (a new playground opening, a festival), mention it in the agent log so the owner can ask for one.
 
+**Illustrations.** After your run, a separate job makes an AI illustration for every upcoming event and weekly program that has no `image`. For each new event or weekly program you add, write an `imagePrompt`: one or two sentences describing a happy scene of that activity, for example "A friendly librarian reads a picture book to a circle of preschoolers on a carpet in a bright library children's area." Describe kids of the right ages, the activity and the setting. Don't name the venue, brands or real people, and don't ask for text or signs; keep it under 600 characters. Don't write `image`, `imageAlt` or `imageCredit` yourself; the job fills them in.
+
 ## If something goes wrong
 
 If you can't reach a source, skip it and note that in the log. Don't fill gaps with guesses. A shorter, accurate calendar is the goal.

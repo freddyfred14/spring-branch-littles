@@ -61,7 +61,13 @@ jobs:
     outputs:
       changed: ${{ steps.commit.outputs.changed }}
 
-  deploy:
+  # Illustrate any new events. It redeploys the site itself when it adds images.
+  images:
     needs: research
-    if: needs.research.outputs.changed == 'true'
+    uses: ./.github/workflows/event-images.yml
+    secrets: inherit
+
+  deploy:
+    needs: [research, images]
+    if: always() && needs.research.outputs.changed == 'true' && needs.images.outputs.changed != 'true'
     uses: ./.github/workflows/deploy.yml

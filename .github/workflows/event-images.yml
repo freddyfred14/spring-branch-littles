@@ -1,0 +1,63 @@
+# Makes an AI illustration (OpenAI image API) for each upcoming event and weekly program without an image.
+# Runs after every research agent run, and by hand from Actions → Event images → Run workflow.
+# Needs the repository secret OPENAI_API_KEY; without it, it does nothing.
+# Optional repository variables: OPENAI_IMAGE_MODEL (default gpt-image-1), OPENAI_IMAGE_QUALITY (low|medium|high), MAX_IMAGES.
+name: Event images
+
+on:
+  workflow_dispatch:
+  workflow_call:
+    outputs:
+      changed:
+        value: ${{ jobs.images.outputs.changed }}
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+jobs:
+  images:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.repository.default_branch }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Make missing images
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          OPENAI_IMAGE_MODEL: ${{ vars.OPENAI_IMAGE_MODEL }}
+          OPENAI_IMAGE_QUALITY: ${{ vars.OPENAI_IMAGE_QUALITY }}
+          MAX_IMAGES: ${{ vars.MAX_IMAGES }}
+        run: node scripts/event-images.mjs
+
+      - name: Validate
+        run: npm run check
+
+      - name: Commit images
+        id: commit
+        run: |
+          git config user.name "Spring Branch Littles bot"
+          git config user.email "bot@users.noreply.github.com"
+          git add data/ public/img/events/
+          if git diff --cached --quiet; then
+            echo "No new images."
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            git commit -m "Event illustrations $(date -u +%F)"
+            git pull --rebase
+            git push
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+    outputs:
+      changed: ${{ steps.commit.outputs.changed }}
+
+  deploy:
+    needs: images
+    if: needs.images.outputs.changed == 'true'
+    uses: ./.github/workflows/deploy.yml

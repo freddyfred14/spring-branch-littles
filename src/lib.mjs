@@ -208,6 +208,7 @@ const IMAGE_RE = /^\/img\/(news|events|places|eats|gallery)\/[a-z0-9-]+\.(jpe?g|
 
 // Photos are optional everywhere, but when present they need a real file, alt text and a credit.
 function checkImage(x, w, err) {
+  if (x.imagePrompt != null && (typeof x.imagePrompt !== "string" || x.imagePrompt.length > 600)) err(w, "imagePrompt must be text under 600 characters");
   if (x.image == null) return;
   if (!IMAGE_RE.test(x.image)) err(w, "image must live in public/img/<news|events|places|eats|gallery>/ and be written like /img/places/haden-park.jpg");
   else if (!existsSync(join(ROOT, "public", x.image))) err(w, `image file public${x.image} doesn't exist`);
