@@ -199,6 +199,10 @@ The newsletter ("The Littles List") goes out automatically Thursday morning, but
 - **Pick the story of the week.** Choose the most interesting news item for local parents, usually something new from the past week: an opening, a new playground, a big change at a school or library. Set `"featured": true` on it in `data/news.json`, set every other item to `"featured": false`, and give it a `story`: 2–3 short paragraphs (under 700 characters each) in your own words. Cover what's happening, when, and why a parent would care. Only use facts from the source; don't add details. It opens the newsletter and gets the big card on the site. Never feature the same item two weeks in a row.
 - Preview it with `node scripts/newsletter.mjs --date <tomorrow>`. If the weekend section is empty, look harder for weekend events. A newsletter with nothing to do on the weekend is the worst outcome.
 
+## Photos
+
+Never download or add photos yourself. Photos are added only by the site owner, who makes sure we have permission. If an item already has `image`, `imageAlt` and `imageCredit`, keep them unless the item is removed. When you notice a great photo opportunity (a new playground opening, a festival), mention it in the agent log so the owner can ask for one.
+
 ## If something goes wrong
 
 If you can't reach a source, skip it and note that in the log. Don't fill gaps with guesses. A shorter, accurate calendar is the goal.

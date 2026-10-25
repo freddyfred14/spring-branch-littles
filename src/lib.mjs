@@ -61,6 +61,7 @@ export function loadAll() {
     news: existsSync(join(ROOT, "data/news.json")) ? readJson("data/news.json") : [],
     restaurants: existsSync(join(ROOT, "data/restaurants.json")) ? readJson("data/restaurants.json") : [],
     deals: existsSync(join(ROOT, "data/deals.json")) ? readJson("data/deals.json") : [],
+    gallery: existsSync(join(ROOT, "data/gallery.json")) ? readJson("data/gallery.json") : [],
     issues,
   };
 }
@@ -189,6 +190,16 @@ export function whereText(data, item) {
 // ---------- validation ----------
 
 const DATE_RE = /^\d{4}-\d{2}-\d{2}$/;
+const IMAGE_RE = /^\/img\/(news|events|places|eats|gallery)\/[a-z0-9-]+\.(jpe?g|png|webp)$/;
+
+// Photos are optional everywhere, but when present they need a real file, alt text and a credit.
+function checkImage(x, w, err) {
+  if (x.image == null) return;
+  if (!IMAGE_RE.test(x.image)) err(w, "image must live in public/img/<news|events|places|eats|gallery>/ and be written like /img/places/haden-park.jpg");
+  else if (!existsSync(join(ROOT, "public", x.image))) err(w, `image file public${x.image} doesn't exist`);
+  if (!x.imageAlt) err(w, "an image needs imageAlt (what's in the photo, for screen readers)");
+  if (!x.imageCredit) err(w, "an image needs imageCredit (whose photo it is)");
+}
 const TIME_RE = /^([01]\d|2[0-3]):[0-5]\d$/;
 const ID_RE = /^[a-z0-9-]+$/;
 
@@ -198,6 +209,7 @@ export function validate(data, now = today()) {
   const err = (where, msg) => errors.push(`${where}: ${msg}`);
   const warn = (where, msg) => warnings.push(`${where}: ${msg}`);
   const checkCommon = (where, x) => {
+    checkImage(x, where, err);
     if (!x.id || !ID_RE.test(x.id)) err(where, "id must be lowercase letters, digits and dashes");
     if (!Array.isArray(x.ages) || !x.ages.length || x.ages.some((a) => !AGES[a])) err(where, `ages must be a non-empty list from ${Object.keys(AGES).join(", ")}`);
     if (typeof x.free !== "boolean") err(where, "free must be true or false");
@@ -271,12 +283,7 @@ export function validate(data, now = today()) {
     if (n.area != null && !AREAS[n.area]) err(w, `area must be one of ${Object.keys(AREAS).join(", ")}`);
     if (n.expires != null && !DATE_RE.test(n.expires)) err(w, "expires must be YYYY-MM-DD or null");
     if (n.date < addDays(now, -90)) warn(w, "older than 90 days; remove it");
-    if (n.image != null) {
-      if (!/^\/img\/news\/[a-z0-9-]+\.(jpe?g|png|webp)$/.test(n.image)) err(w, "image must be a file in public/img/news/, written as /img/news/name.jpg");
-      else if (!existsSync(join(ROOT, "public", n.image))) err(w, `image file public${n.image} doesn't exist`);
-      if (!n.imageAlt) err(w, "an image needs imageAlt (a short description for screen readers)");
-      if (!n.imageCredit) err(w, "an image needs imageCredit (who made it, e.g. 'Rendering courtesy of Radom Capital')");
-    }
+    checkImage(n, w, err);
     (n.moreLinks || []).forEach((l) => { if (!l.label || !/^https:\/\//.test(l.url || "")) err(w, "each moreLinks entry needs a label and an https url"); });
     if (n.featured && (!Array.isArray(n.story) || !n.story.length || n.story.some((p) => typeof p !== "string" || p.length > 700))) err(w, "the featured story needs a story: a list of 1–4 paragraphs, each under 700 characters");
   });
@@ -293,6 +300,7 @@ export function validate(data, now = today()) {
     if (!r.description || r.description.length > 400) err(w, "description is required and must be under 400 characters");
     if (!/^https:\/\//.test(r.url || "")) err(w, "url must start with https://");
     if (r.lastVerified == null) warn(w, "never verified");
+    checkImage(r, w, err);
   });
   const restaurantIds = new Set(data.restaurants.map((r) => r.id));
   data.deals.forEach((d, i) => {
@@ -310,6 +318,13 @@ export function validate(data, now = today()) {
     if (!/^https:\/\//.test(d.url || "")) err(w, "url must start with https://");
     if (d.expires != null && !DATE_RE.test(d.expires)) err(w, "expires must be YYYY-MM-DD or null");
     if (!d.lastVerified || d.lastVerified < addDays(now, -30)) warn(w, "deal not verified in the last 30 days");
+  });
+
+  data.gallery.forEach((g, i) => {
+    const w = `gallery[${i}]`;
+    if (!g.image) err(w, "image is required");
+    checkImage(g, w, err);
+    if (!g.caption || g.caption.length > 120) err(w, "caption is required and must be under 120 characters");
   });
 
   if (data.news.filter((n) => n.featured).length > 1) err("news", "only one news item can be featured (the story of the week)");

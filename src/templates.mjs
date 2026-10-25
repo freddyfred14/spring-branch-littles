@@ -91,7 +91,21 @@ ${body}
 
 // ---------- shared pieces ----------
 
-const ageChips = (ages) => ages.map((a) => `<span class="tag t-age">${AGES[a].label}</span>`).join("");
+// One age tag instead of four: "All ages", "Ages 1–5", or the labels if they skip a stage.
+const AGE_SPAN = { baby: [0, 1], toddler: [1, 3], preschool: [3, 5], elementary: [5, 11] };
+function ageText(ages) {
+  const order = Object.keys(AGES).filter((a) => ages.includes(a));
+  if (order.length === 4) return "All ages";
+  const idx = order.map((a) => Object.keys(AGES).indexOf(a));
+  const contiguous = idx.every((v, i) => i === 0 || v === idx[i - 1] + 1);
+  if (!contiguous) return order.map((a) => AGES[a].label).join(" · ");
+  if (order.length === 1) return `${AGES[order[0]].label} ${AGES[order[0]].range}`;
+  return `Ages ${AGE_SPAN[order[0]][0]}–${AGE_SPAN[order[order.length - 1]][1]}`;
+}
+const ageChips = (ages) => `<span class="tag t-age">${esc(ageText(ages))}</span>`;
+// A photo across the top of a card, with its credit.
+const photo = (x, cls = "cphoto") =>
+  x.image ? `<figure class="${cls}"><img src="${esc(x.image)}" alt="${esc(x.imageAlt)}" loading="lazy"><figcaption>${esc(x.imageCredit)}</figcaption></figure>` : "";
 const flagChips = (x) =>
   `${x.free ? '<span class="tag t-free">Free</span>' : `<span class="tag t-paid">${esc(x.cost || "Paid")}</span>`}${x.indoor ? '<span class="tag t-in">Indoors</span>' : ""}${x.status === "tentative" ? '<span class="tag t-tent" title="The organizer hasn&#39;t announced a final date yet, or sources disagree. We&#39;ll update it when it&#39;s set.">Date may change</span>' : ""}`;
 const dataAttrs = (x) => `data-ages="${x.ages.join(" ")}" data-free="${x.free ? 1 : 0}" data-indoor="${x.indoor ? 1 : 0}"`;
@@ -115,8 +129,9 @@ function eventCard(data, x, i, wk) {
   const mon = multi && a.mon !== b.mon ? `${a.mon}–${b.mon}` : a.mon;
   const thisWeekend = (x.endDate || x.date) >= wk.start && x.date <= wk.end;
   const theme = themeOf(x);
-  return `<article class="ecard c${i % 4}" ${dataAttrs(x)}>
+  return `<article class="ecard c${i % 4}${x.image ? " has-photo" : ""}" ${dataAttrs(x)}>
     ${thisWeekend ? '<span class="ribbon">This weekend</span>' : ""}
+    ${photo(x)}
     <div class="ecard-top">
       <div class="datetile"><span class="dt-dow">${dow}</span><span class="dt-day${day.length > 3 ? " small" : ""}">${day}</span><span class="dt-mon">${mon}</span></div>
       ${THEME_ICONS[theme]()}
@@ -124,7 +139,7 @@ function eventCard(data, x, i, wk) {
     <h3><a href="${esc(x.url)}" rel="noopener">${esc(x.title)}</a></h3>
     <p class="meta">${CLOCK}<span>${fmtTimeRange(x.startTime, x.endTime)}</span></p>
     <p class="meta">${PIN}<span>${whereLink(data, x)}</span></p>
-    <p class="desc">${esc(x.description)}</p>
+    <p class="desc clamp-2">${esc(x.description)}</p>
     <div class="tags">${ageChips(x.ages)}${flagChips(x)}</div>
   </article>`;
 }
@@ -163,15 +178,11 @@ function breakNotices(data, start, end) {
 const emptyFilter = `<div class="empty-state empty-filter" hidden>${bubblesIllo()}<div><h3>Nothing matches those filters</h3><p>Try another age group, or turn off Free or Indoors.</p></div></div>`;
 const groupEmpty = `<p class="group-empty" hidden>Nothing here matches those filters. Try another age, or turn off Free or Indoors.</p>`;
 const REGION_ART = { local: () => bubblesIllo(), houston: () => kiteIllo() };
-const REGION_BLURB = {
-  local: "Close-to-home plans in Spring Branch, Memorial and the Villages.",
-  houston: "Bigger outings around Houston that are worth the drive.",
-};
 
 function regionHead(area, extra = "") {
   return `<div class="region-head">
     <div class="region-art">${REGION_ART[area]()}</div>
-    <div><p class="label">${esc(AREAS[area].label)}</p><h2>${esc(AREAS[area].title)}</h2><p class="quiet">${esc(REGION_BLURB[area])}</p></div>
+    <div><p class="label">${esc(AREAS[area].label)}</p><h2>${esc(AREAS[area].title)}</h2></div>
     ${extra}
   </div>`;
 }
@@ -188,21 +199,37 @@ function weeklySection(data) {
   return `<section class="band region regulars" id="every-week" data-group><div class="wrap">
     <div class="region-head">
       <div class="region-art">${readerIllo()}</div>
-      <div><p class="label">The regulars</p><h2>Every week</h2><p class="quiet">Storytimes and open play you can count on. Times change now and then, so check the link before you head out.</p></div>
+      <div><p class="label">The regulars</p><h2>Every week</h2><p class="quiet">Storytimes and open play you can count on.</p></div>
     </div>
     <div class="wcards">${list.map((r, i) => weeklyCard(data, r, i)).join("")}</div>${groupEmpty}
   </div></section>`;
 }
 
 // A neighborhood news item: our short summary, linking to the original story.
+// The homepage banner for the story of the week: big photo, short teaser.
+function storyBanner(n) {
+  return `<section class="story-band"><div class="wrap">
+    <article class="story${n.image ? "" : " no-photo"}">
+      ${n.image ? photo(n, "story-photo") : `<div class="story-art">${toddlerIllo()}</div>`}
+      <div class="story-copy">
+        <span class="ribbon">Story of the week</span>
+        <p class="ncat">${esc(NEWS_CATEGORIES[n.category])} · ${fmtShort(n.date)}</p>
+        <h2>${esc(n.title)}</h2>
+        <p class="desc">${esc(n.summary)}</p>
+        <a class="btn" href="/news/#${esc(n.id)}">Read the story</a>
+      </div>
+    </article>
+  </div></section>`;
+}
+
 function newsCard(n, i) {
   const feature = n.featured && n.story?.length;
-  return `<article class="ncard c${i % 4}${feature ? " feature" : ""}">
+  return `<article class="ncard c${i % 4}${feature ? " feature" : ""}${n.image ? " has-photo" : ""}" id="${esc(n.id)}">
     ${feature ? '<span class="ribbon">Story of the week</span>' : ""}
+    ${n.image ? photo(n, feature ? "nfig-top" : "cphoto") : ""}
     <div class="ncard-top">${THEME_ICONS[NEWS_ICONS[n.category]]()}<div><span class="ncat">${esc(NEWS_CATEGORIES[n.category])}</span><span class="ndate">${fmtShort(n.date)}</span></div></div>
     <h3><a href="${esc(n.url)}" rel="noopener">${esc(n.title)}</a></h3>
-    ${feature && n.image ? `<figure class="nfig"><img src="${esc(n.image)}" alt="${esc(n.imageAlt)}" loading="lazy"><figcaption>${esc(n.imageCredit)}</figcaption></figure>` : ""}
-    ${feature ? n.story.map((p) => `<p class="desc">${esc(p)}</p>`).join("") : `<p class="desc">${esc(n.summary)}</p>`}
+    ${feature ? n.story.map((p) => `<p class="desc">${esc(p)}</p>`).join("") : `<p class="desc clamp-3">${esc(n.summary)}</p>`}
     ${feature && n.moreLinks?.length ? `<p class="morelinks">${n.moreLinks.map((l) => `<a href="${esc(l.url)}" rel="noopener">${esc(l.label)} →</a>`).join("")}</p>` : ""}
     ${feature
       ? `<div class="feature-foot"><a class="nsource" href="${esc(n.url)}" rel="noopener">Read more at ${esc(n.source)} →</a>${n.image ? "" : `<div class="feature-art">${toddlerIllo()}</div>`}</div>`
@@ -242,10 +269,11 @@ function dealBoard(data, now, { compact = false } = {}) {
 
 function restaurantCard(data, r, i) {
   const deals = activeDeals(data, "0000-00-00").filter((d) => d.restaurantId === r.id);
-  return `<article class="rcard c${i % 4}" data-perks="${r.perks.join(" ")}">
+  return `<article class="rcard c${i % 4}${r.image ? " has-photo" : ""}" data-perks="${r.perks.join(" ")}">
+    ${photo(r)}
     <div class="rcard-head"><h3><a href="${esc(r.url)}" rel="noopener">${esc(r.name)}</a></h3><span class="price">${esc(r.price)}</span></div>
     <p class="meta">${PIN}<span>${esc(r.address || r.neighborhood)}</span></p>
-    <p class="desc">${esc(r.description)}</p>
+    <p class="desc clamp-3">${esc(r.description)}</p>
     ${r.tip ? `<p class="tip"><b>Parent tip:</b> ${esc(r.tip)}</p>` : ""}
     ${deals.map((d) => `<p class="rdeal">${esc(d.title)} · ${d.days.map((x) => WEEK_LONG[x]).join(" & ")}${d.startTime ? `, ${fmtTimeRange(d.startTime, d.endTime)}` : ""}</p>`).join("")}
     <div class="tags">${r.perks.map((p) => `<span class="tag t-perk">${esc(PERKS[p])}</span>`).join("")}</div>
@@ -308,7 +336,7 @@ export function homePage(data, now) {
     </div></section>`;
   };
   const story = featuredStory(data, now);
-  const news = [...(story ? [story] : []), ...currentNews(data, now, 45).filter((n) => n !== story)].slice(0, 3);
+  const news = currentNews(data, now, 45).filter((n) => n !== story).slice(0, 3);
   const week = Math.floor(Date.parse(`${now}T12:00:00Z`) / (7 * 864e5));
   const spot = [0, 1, 2].map((i) => data.places[(week * 3 + i) % data.places.length]).filter((p, i, a) => a.indexOf(p) === i);
   const body = `
@@ -316,16 +344,17 @@ export function homePage(data, now) {
     <img class="hero-logo" src="/img/logo.webp" alt="Spring Branch Littles" width="900" height="778">
     <div class="hero-copy">
       <h1>Weekend plans for your <span class="script">littles</span>, sorted.</h1>
-      <p class="lede">Storytimes, parks, festivals and rainy-day spots in Spring Branch, Memorial and nearby, for babies through elementary schoolers. We check the library calendars, park schedules and neighborhood events so you don't have to.</p>
+      <p class="lede">Storytimes, parks, festivals and kids-eat-free nights in Spring Branch &amp; Memorial, for babies through elementary schoolers.</p>
     <div class="signup-card peek">
       <img class="peek-dino" src="/img/dino-head.png" alt="" width="512" height="512">
       <h2>${esc(config.newsletterName)}</h2>
-      <p>${esc(config.newsletterBlurb)}: weekend plans, storytimes, rainy-day backups and what's coming up. Free, and short enough to read during nap time.</p>
+      <p>${esc(config.newsletterBlurb)}. Free, once a week, short enough for nap time.</p>
       ${signupForm(config, "hero")}
     </div>
     </div>
   </div></section>
   ${GRASS}
+  ${story ? storyBanner(story) : ""}
 
   <section class="band whatson"><div class="wrap">
     <div class="sec-head"><div><p class="label">${fmtShort(now)} – ${fmtShort(weekEnd)}</p><h2>This week ${SPARK}</h2></div><a class="more" href="/events/">Coming up →</a></div>
@@ -340,7 +369,7 @@ export function homePage(data, now) {
 
   ${news.length ? `<section class="band news-band"><div class="wrap">
     <div class="sec-head"><div><p class="label">What parents should know</p><h2>Neighborhood news ${SPARK}</h2></div><a class="more" href="/news/">All news →</a></div>
-    <div class="ncards${story ? " with-feature" : ""}">${news.map(newsCard).join("")}</div>
+    <div class="ncards">${news.map(newsCard).join("")}</div>
   </div></section>` : ""}
 
   ${data.deals.length ? `<section class="band"><div class="wrap">
@@ -350,13 +379,18 @@ export function homePage(data, now) {
 
   <section class="band"><div class="wrap">
     <div class="sec-head"><div><p class="label">Worth a visit</p><h2>Places to try this weekend ${SPARK}</h2></div><a class="more" href="/places/">All places →</a></div>
-    <div class="places">${spot.map(placeCard).join("")}</div>
+    <div class="places">${spot.map((p) => placeCard(p, { short: true })).join("")}</div>
   </div></section>
 
   <section class="band ages-band"><div class="wrap">
     <div class="sec-head"><div><p class="label">Find your stage</p><h2>Browse by age ${SPARK}</h2></div></div>
     <div class="ages">${Object.entries(AGES).map(([k, v], i) => `<a class="age-card c${i}" href="/events/?age=${k}">${AGE_ILLOS[k]()}<b>${v.label}</b><span class="script">ages ${v.range}</span></a>`).join("")}</div>
   </div></section>
+
+  ${data.gallery.length >= 3 ? `<section class="band"><div class="wrap">
+    <div class="sec-head"><div><p class="label">Seen around the neighborhood</p><h2>Our week in photos ${SPARK}</h2></div></div>
+    <div class="gallery">${data.gallery.slice(0, 7).map((g, i) => `<figure class="g${i}"><img src="${esc(g.image)}" alt="${esc(g.imageAlt)}" loading="lazy"><figcaption>${esc(g.caption)}</figcaption></figure>`).join("")}</div>
+  </div></section>` : ""}
 
   <section class="band"><div class="wrap ig-cta">
     <div class="ig-art">${toddlerIllo()}<img class="ig-dino" src="/img/dino-head.png" alt="" width="512" height="512"></div>
@@ -407,13 +441,15 @@ export function eventsPage(data, now) {
   return layout(config, { title: "Calendar", path: "/events/", body, now, description: "Plan ahead: upcoming kids' events in Spring Branch, Memorial and around Houston, month by month, filterable by age." });
 }
 
-function placeCard(p) {
-  return `<article class="place" id="${esc(p.id)}" ${dataAttrs(p)}>
+const PLACE_ICON = { library: "story", park: "nature", "indoor-play": "party", nature: "nature", attraction: "museum" };
+function placeCard(p, { short = false } = {}) {
+  return `<article class="place t-${esc(p.type)}${p.image ? " has-photo" : ""}" id="${esc(p.id)}" ${dataAttrs(p)}>
+    ${p.image ? photo(p) : `<div class="place-band">${THEME_ICONS[PLACE_ICON[p.type]]()}</div>`}
     <p class="label">${esc(PLACE_TYPES[p.type])}</p>
     <h3><a href="${esc(p.url)}" rel="noopener">${esc(p.name)}</a></h3>
-    <p>${esc(p.description)}</p>
-    ${p.tip ? `<p class="tip"><b>Parent tip:</b> ${esc(p.tip)}</p>` : ""}
-    <p class="addr">${esc(p.address)}</p>
+    <p class="clamp-3">${esc(p.description)}</p>
+    ${p.tip && !short ? `<p class="tip"><b>Parent tip:</b> ${esc(p.tip)}</p>` : ""}
+    <p class="addr">${PIN}<span>${esc(p.address)}</span></p>
     <div class="tags">${ageChips(p.ages)}${flagChips(p)}</div>
   </article>`;
 }
