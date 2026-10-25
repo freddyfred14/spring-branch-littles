@@ -138,8 +138,12 @@ const moreInfo = (url) => `<a class="moreinfo" href="${esc(url)}" target="_blank
 function photo(x, cls = "cphoto") {
   if (!x?.image) return "";
   const small = x.image.replace(/(\.\w+)$/, "-800$1");
-  const srcset = existsSync(join(ROOT, "public", small)) ? ` srcset="${esc(small)} 800w, ${esc(x.image)} 1400w" sizes="(max-width: 860px) 100vw, 640px"` : "";
-  return `<figure class="${cls}"><img src="${esc(x.image)}"${srcset} alt="${esc(x.imageAlt)}" loading="lazy"><figcaption>${esc(x.imageCredit)}</figcaption></figure>`;
+  const hasSmall = existsSync(join(ROOT, "public", small));
+  // Cards are narrow: the 800px copy is sharp enough everywhere. Bigger spots (event pages, the story) pick by screen.
+  const img = cls === "cphoto" && hasSmall
+    ? `<img src="${esc(small)}" alt="${esc(x.imageAlt)}" loading="lazy">`
+    : `<img src="${esc(x.image)}"${hasSmall ? ` srcset="${esc(small)} 800w, ${esc(x.image)} 1400w" sizes="(max-width: 860px) 100vw, 640px"` : ""} alt="${esc(x.imageAlt)}" loading="lazy">`;
+  return `<figure class="${cls}">${img}<figcaption>${esc(x.imageCredit)}</figcaption></figure>`;
 }
 const flagChips = (x) =>
   `${x.free ? '<span class="tag t-free">Free</span>' : `<span class="tag t-paid">${esc(x.cost || "Paid")}</span>`}${x.indoor ? '<span class="tag t-in">Indoors</span>' : ""}${x.status === "tentative" ? '<span class="tag t-tent" title="The organizer hasn&#39;t announced a final date yet, or sources disagree. We&#39;ll update it when it&#39;s set.">Date may change</span>' : ""}`;

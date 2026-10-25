@@ -36,6 +36,11 @@ jobs:
           MAX_IMAGES: ${{ vars.MAX_IMAGES }}
         run: node scripts/event-images.mjs
 
+      - name: Make small copies for phones
+        run: |
+          pip install --quiet pillow
+          python3 scripts/resize-images.py
+
       - name: Validate
         run: npm run check
 
