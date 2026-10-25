@@ -90,7 +90,12 @@ export function layout(config, { title, description, path, body, now }) {
 <meta property="og:image" content="${esc(config.url)}/og.png">
 <link rel="icon" href="/favicon.png" type="image/png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<link rel="manifest" href="/manifest.webmanifest">${config.goatcounterCode ? `
+<link rel="manifest" href="/manifest.webmanifest">${config.metaPixelId ? `
+<script>
+  !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '${esc(config.metaPixelId)}');
+  fbq('track', 'PageView');${path === "/thanks/" ? "\n  fbq('track', 'Lead'); // someone just subscribed" : ""}
+</script>` : ""}${config.goatcounterCode ? `
 <script data-goatcounter="https://${esc(config.goatcounterCode)}.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>` : ""}
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
@@ -146,7 +151,7 @@ ${path === "/join/" || path === "/thanks/" ? "" : subscribePopup(config)}
     <p>Tips and corrections: <span class="select">${esc(config.contactEmail)}</span></p>
   </div>
 </div>
-<div class="wrap fineprint">Listings are gathered from public calendars and checked regularly, but times change. Please confirm with the venue before you go. Updated ${esc(fmtLong(now))}.</div>
+<div class="wrap fineprint">Listings are gathered from public calendars and checked regularly, but times change. Please confirm with the venue before you go. Updated ${esc(fmtLong(now))}.${config.metaPixelId ? " We use the Meta Pixel to see which of our ads bring new readers." : ""}</div>
 </div></footer>
 <script src="/assets/site.js?v=${ASSET_VERSION}" defer></script>
 </body>

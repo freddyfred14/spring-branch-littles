@@ -1,0 +1,38 @@
+# Makes Instagram/Facebook ad images with OpenAI (scene) + our logo, headline and button, in three sizes,
+# with the ad copy and tracking links in marketing/ads/<date>/README.md.
+# Run it from Actions → Ad creatives → Run workflow. Each run costs about $1 in OpenAI images.
+name: Ad creatives
+
+on:
+  workflow_dispatch:
+    inputs:
+      concepts:
+        description: "Which concepts (comma-separated: plan-ahead, storytime, weekend, holidays). Blank = all."
+        required: false
+
+permissions:
+  contents: write
+
+jobs:
+  ads:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - name: Make the ads
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          OPENAI_IMAGE_MODEL: ${{ vars.OPENAI_IMAGE_MODEL }}
+          AD_CONCEPTS: ${{ inputs.concepts }}
+        run: node scripts/ad-creatives.mjs
+      - name: Save them
+        run: |
+          git config user.name "Spring Branch Littles bot"
+          git config user.email "bot@users.noreply.github.com"
+          git add marketing/ads
+          git diff --cached --quiet || { git commit -m "Ad creatives $(date -u +%F)"; git pull --rebase; git push; }
