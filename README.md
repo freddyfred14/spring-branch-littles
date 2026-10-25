@@ -10,6 +10,7 @@ Once it's set up, it runs on its own:
 | Sun ~7 am | A Claude agent researches events for the next 6 weeks, fixes bad links, re-checks listings, updates `data/` and writes Monday's newsletter intro and subject line. The site redeploys. | `research-agent.yml` |
 | Mon ~6:45 am | The newsletter (the next two weeks of plans) is sent through Buttondown and archived on the site. | `newsletter.yml` |
 | Wed ~7 am | Mid-week research refresh. | `research-agent.yml` |
+| Tue ~8 am | Agent Reach writes the week's growth plan and posts, publishes a guide, and emails you a checklist. | `agent-reach.yml` |
 | Thu ~6:45 am | The weekend Instagram carousel is made and posted, and the weekend app alert goes out. | `weekend-social.yml` |
 | Every morning | The site rebuilds so "This week" always starts today. | `deploy.yml` |
 | 1st of month | The Instagram access token is refreshed. | `refresh-instagram-token.yml` |
@@ -78,6 +79,18 @@ The site installs as a phone app from **springbranchlittles.com/app/** (iPhone: 
 
 Every Thursday morning, everyone with alerts on gets the weekend's picks. To send your own alert (a rain plan, a last-minute event), use **Actions → Send app alert → Run workflow**. Keep them rare, about one a week, so people keep alerts on.
 
+### 8. Agent Reach (growth)
+Agent Reach is the growth agent. Every Tuesday it collects the numbers, writes a 30-minute plan and ready-to-paste posts in `reach/`, publishes a search-friendly guide at `/guides/`, and opens a GitHub issue with your to-do checklist (GitHub emails it to you). Its playbook is `REACH.md`; edit it to change priorities.
+1. It uses the same `ANTHROPIC_API_KEY` as the research agent. A weekly run costs a few dollars at most.
+2. To get issue emails: on the repo page, click **Watch → Custom → Issues → Apply**.
+3. Optional, so it can see what's working:
+   - `BUTTONDOWN_API_KEY` (already set for the newsletter) gives it the subscriber count.
+   - `IG_ACCESS_TOKEN` (already set for Instagram posting) gives it the follower count.
+   - Site visits: sign up free at goatcounter.com with the code `springbranchlittles`, put that code in `goatcounterCode` in `site.config.json`, then create an API token (Settings → API, with "Read statistics") and add it as the secret `GOATCOUNTER_TOKEN`.
+4. Kick it off: **Actions → Agent Reach → Run workflow**. The first run writes the 90-day strategy (`reach/strategy.md`). You can type a focus, like "a push for Thanksgiving break".
+5. Each week, do the checklist and close the issue. If you add a comment saying what you did or what happened, paste it into `reach/log.md` (or tell Claude) so the agent learns from it.
+6. Optional: set the repository variable `REACH_MODEL` to `claude-opus-5-5` for deeper plans (costs more per run).
+
 ---
 
 ## Working on it yourself
@@ -115,4 +128,6 @@ scripts/         build, newsletter, social and Instagram scripts
 public/          CSS, JS, favicon, link-preview image
 social/          generated Instagram carousels
 AGENTS.md        instructions for the research agent
+REACH.md         instructions for Agent Reach (growth)
+reach/           Agent Reach's strategy, weekly plans, posts, targets and numbers
 ```

@@ -4,7 +4,7 @@ import { mkdirSync, writeFileSync, rmSync, cpSync, existsSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { ROOT, loadAll, validate, today, fmtLong, addDays, areaOf, currentNews, PLACE_TYPES, PERKS } from "../src/lib.mjs";
 import { eventPath, nextOccurrence, icsFile } from "../src/calendar.mjs";
-import { homePage, eventsPage, placesPage, eatsPage, newsPage, newsletterPage, joinPage, eventPage, searchPage, thanksPage, appPage, offlinePage, issuePage, aboutPage, notFoundPage, esc } from "../src/templates.mjs";
+import { homePage, eventsPage, placesPage, eatsPage, newsPage, newsletterPage, joinPage, eventPage, searchPage, thanksPage, appPage, offlinePage, guidePage, guidesIndexPage, issuePage, aboutPage, notFoundPage, esc } from "../src/templates.mjs";
 
 const data = loadAll();
 const now = today(data.config.timezone);
@@ -40,11 +40,13 @@ const pages = {
   "search/index.html": searchPage(data, now),
   "thanks/index.html": thanksPage(data, now),
   "app/index.html": appPage(data, now),
+  "guides/index.html": guidesIndexPage(data, now),
   "offline/index.html": offlinePage(data, now),
   "about/index.html": aboutPage(data, now),
   "404.html": notFoundPage(data, now),
 };
 for (const issue of data.issues) pages[`newsletter/${issue.date}/index.html`] = issuePage(data, issue, now);
+for (const g of data.guides.filter((g) => !g.expires || g.expires >= now)) pages[`guides/${g.id}/index.html`] = guidePage(data, g, now);
 
 // A page and an "Add to calendar" file for every upcoming event and weekly program.
 const stamp = new Date().toISOString().replace(/[-:]/g, "").replace(/\.\d+/, "");

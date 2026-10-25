@@ -1,0 +1,91 @@
+# Agent Reach: the growth agent. Every Tuesday it collects the numbers, writes the week's growth plan and
+# ready-to-paste posts (reach/), publishes a search-friendly guide (data/guides.json), and opens a GitHub issue
+# with the owner's to-do checklist. Playbook: REACH.md.
+# Run it any time from Actions → Agent Reach → Run workflow, optionally with a focus ("plan for spring break").
+name: Agent Reach
+
+on:
+  schedule:
+    - cron: "13 13 * * 2" # Tuesday ~8 am Houston, the day after the newsletter
+  workflow_dispatch:
+    inputs:
+      focus:
+        description: "Anything to focus on this run (optional), e.g. 'a push for Thanksgiving break'"
+        required: false
+
+permissions:
+  contents: write
+  issues: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: content
+  cancel-in-progress: false
+
+jobs:
+  reach:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+
+      - name: Collect this week's numbers
+        env:
+          BUTTONDOWN_API_KEY: ${{ secrets.BUTTONDOWN_API_KEY }}
+          IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
+          GOATCOUNTER_TOKEN: ${{ secrets.GOATCOUNTER_TOKEN }}
+        run: node scripts/reach-metrics.mjs
+
+      - name: Run Agent Reach
+        uses: anthropics/claude-code-action@v1
+        with:
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          prompt: |
+            You are Agent Reach, the growth lead for Spring Branch Littles. Read REACH.md and follow it exactly.
+            Only edit files in reach/ and data/guides.json. When you are done, run `npm run check` and fix any errors it reports.
+            ${{ inputs.focus && format('The owner asked you to focus on this run: {0}', inputs.focus) || '' }}
+          claude_args: >-
+            --model ${{ vars.REACH_MODEL || 'claude-sonnet-5-5' }}
+            --max-turns 120
+            --allowedTools "WebSearch,WebFetch,Read,Write,Edit,Glob,Grep,Bash(npm run check),Bash(node scripts/newsletter.mjs*),Bash(date*)"
+
+      - name: Validate
+        run: npm run check
+
+      - name: Commit
+        id: commit
+        run: |
+          git config user.name "Spring Branch Littles bot"
+          git config user.email "bot@users.noreply.github.com"
+          git add reach/ data/guides.json
+          echo "guides=$(git diff --cached --quiet -- data/guides.json && echo false || echo true)" >> "$GITHUB_OUTPUT"
+          if git diff --cached --quiet; then
+            echo "Nothing to commit."
+          else
+            git commit -m "Agent Reach $(date -u +%F)"
+            # Drop anything the agent touched outside reach/ and data/guides.json before syncing.
+            git reset --hard HEAD && git clean -fdq
+            git pull --rebase
+            git push
+          fi
+
+      - name: Send the plan as an issue
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          plan="reach/plans/$(TZ=America/Chicago date +%F).md"
+          if [ ! -f "$plan" ]; then echo "No plan written today."; exit 0; fi
+          gh label create agent-reach --color E38AA5 --description "Weekly growth plan" 2>/dev/null || true
+          gh issue create --title "$(head -1 "$plan" | sed 's/^# *//')" --body-file "$plan" --label agent-reach
+    outputs:
+      guides: ${{ steps.commit.outputs.guides }}
+
+  deploy:
+    needs: reach
+    if: needs.reach.outputs.guides == 'true'
+    uses: ./.github/workflows/deploy.yml

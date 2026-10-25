@@ -34,6 +34,7 @@ const NAV = [
 const NAV_MORE = [
   ["/news/", "Neighborhood news"],
   ["/newsletter/", "Newsletter archive"],
+  ["/guides/", "Guides"],
   ["/app/", "Get the app"],
   ["/search/", "Search"],
   ["/about/", "About us"],
@@ -89,7 +90,8 @@ export function layout(config, { title, description, path, body, now }) {
 <meta property="og:image" content="${esc(config.url)}/og.png">
 <link rel="icon" href="/favicon.png" type="image/png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<link rel="manifest" href="/manifest.webmanifest">
+<link rel="manifest" href="/manifest.webmanifest">${config.goatcounterCode ? `
+<script data-goatcounter="https://${esc(config.goatcounterCode)}.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>` : ""}
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="${esc(config.appName)}">
@@ -809,6 +811,70 @@ export function searchPage(data, now) {
     <noscript><p class="quiet">Search needs JavaScript. You can also browse <a href="/">This week</a> or the <a href="/events/">Calendar</a>.</p></noscript>
   </div></section>`;
   return layout(data.config, { title: "Search", path: "/search/", body, now, description: "Search kid-friendly events, places, restaurants and news in Spring Branch and Memorial." });
+}
+
+// Guides: evergreen pages Agent Reach writes for search ("Halloween in Spring Branch", "Rainy day with toddlers").
+// Each is built only from listings we already have, so every detail is checked.
+function guideItems(data, g, now) {
+  const wk = { ...weekendOf(now), now };
+  const find = (list, id) => list.find((x) => x.id === id);
+  return g.items
+    .map((ref) => {
+      const [kind, id] = ref.split(":");
+      if (kind === "event") {
+        const e = find(data.events, id);
+        return e && (e.endDate || e.date) >= now ? { kind, sort: e.date, html: eventCard(data, e, 0, wk) } : null;
+      }
+      if (kind === "weekly") { const r = find(data.recurring, id); return r && { kind, html: weeklyCard(data, r, 0) }; }
+      if (kind === "place") { const p = find(data.places, id); return p && { kind, html: placeCard(p, { short: false }) }; }
+      if (kind === "eats") { const r = find(data.restaurants, id); return r && { kind, html: restaurantCard(data, r, 0) }; }
+      return null;
+    })
+    .filter(Boolean);
+}
+const liveGuides = (data, now) => data.guides.filter((g) => !g.expires || g.expires >= now);
+
+export function guidePage(data, g, now) {
+  const { config } = data;
+  const items = guideItems(data, g, now);
+  const group = (kind, title, cls) => {
+    const list = items.filter((x) => x.kind === kind);
+    return list.length ? `<h2 class="guide-sub">${title}</h2><div class="${cls}">${list.sort((a, b) => (a.sort || "").localeCompare(b.sort || "")).map((x) => x.html).join("")}</div>` : "";
+  };
+  const body = `
+  <section class="page-head"><div class="wrap narrow">
+    <p class="label"><a href="/guides/">Guides</a> · Updated ${esc(fmtShort(g.updated))}</p>
+    <h1>${esc(g.title)}</h1>
+    ${g.intro.map((p) => `<p class="lede">${esc(p)}</p>`).join("")}
+  </div></section>
+  <section class="band"><div class="wrap">
+    ${group("event", "Dated events", "ecards")}
+    ${group("weekly", "Every week", "wcards")}
+    ${group("place", "Places to go", "places")}
+    ${group("eats", "Where to eat", "rcards")}
+    ${g.tips?.length ? `<h2 class="guide-sub">Parent tips</h2><ul class="guide-tips">${g.tips.map((t) => `<li>${esc(t)}</li>`).join("")}</ul>` : ""}
+  </div></section>
+  <section class="band"><div class="wrap narrow"><div class="signup-card">
+    <h2>Get plans like this every Monday</h2>
+    <p>${esc(config.newsletterName)}: the next two weeks of kid-friendly plans in Spring Branch and Memorial. Free.</p>
+    ${signupForm(config, "guide")}
+  </div></div></section>`;
+  return layout(config, { title: g.title, path: `/guides/${g.id}/`, body, now, description: g.description });
+}
+
+export function guidesIndexPage(data, now) {
+  const { config } = data;
+  const guides = liveGuides(data, now).sort((a, b) => b.updated.localeCompare(a.updated));
+  const body = `
+  <section class="page-head"><div class="wrap narrow">
+    <p class="label">Guides</p>
+    <h1>Plans for every <span class="script pink">kind</span> of day</h1>
+    <p class="lede">Our round-ups for holidays, rainy days, birthdays and more, built from the listings we check every week.</p>
+  </div></section>
+  <section class="band"><div class="wrap narrow">
+    ${guides.length ? `<ul class="archive">${guides.map((g) => `<li><a href="/guides/${esc(g.id)}/">${esc(g.title)}</a><span>${esc(g.description)}</span></li>`).join("")}</ul>` : '<p class="quiet">Guides are on the way.</p>'}
+  </div></section>`;
+  return layout(config, { title: "Guides", path: "/guides/", body, now, description: "Spring Branch Littles guides: holidays, rainy days, birthdays and more for families with little kids." });
 }
 
 // How to install the app and turn on alerts. site.js shows the steps that fit the visitor's phone.

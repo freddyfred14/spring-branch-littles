@@ -827,3 +827,9 @@ body { background-image: none; }
 /* newsletter archive: keep the story photo inside its card */
 .issue-feature > * { min-width: 0; }
 .issue-feature img { display: block; width: 100%; height: auto; border-radius: 16px; }
+
+/* guides */
+.guide-sub { font-size: clamp(24px, 3vw, 30px); margin: 30px 0 16px; }
+.guide-sub:first-child { margin-top: 0; }
+.guide-tips { display: grid; gap: 10px; padding-left: 22px; max-width: 70ch; }
+.archive li span { flex-basis: 100%; }

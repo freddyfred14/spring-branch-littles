@@ -62,6 +62,7 @@ export function loadAll() {
     restaurants: existsSync(join(ROOT, "data/restaurants.json")) ? readJson("data/restaurants.json") : [],
     deals: existsSync(join(ROOT, "data/deals.json")) ? readJson("data/deals.json") : [],
     gallery: existsSync(join(ROOT, "data/gallery.json")) ? readJson("data/gallery.json") : [],
+    guides: existsSync(join(ROOT, "data/guides.json")) ? readJson("data/guides.json") : [],
     issues,
   };
 }
@@ -358,6 +359,28 @@ export function validate(data, now = today()) {
     if (!DATE_RE.test(iss.date || "")) err(w, "date must be YYYY-MM-DD");
     if (!iss.subject) err(w, "subject is required");
     if (!Array.isArray(iss.sections)) err(w, "sections must be a list");
+  });
+
+  // Guides (written by Agent Reach): evergreen pages built only from listings we already have.
+  const GUIDE_KINDS = { event: data.events, weekly: data.recurring, place: data.places, eats: data.restaurants };
+  const guideIds = new Set();
+  data.guides.forEach((g, i) => {
+    const w = `guides[${i}] ${g.id || "?"}`;
+    if (!g.id || !ID_RE.test(g.id)) err(w, "id must be lowercase letters, digits and dashes (it becomes the page address)");
+    else if (guideIds.has(g.id)) err(w, "duplicate id");
+    guideIds.add(g.id);
+    if (!g.title || g.title.length > 90) err(w, "title is required and must be under 90 characters");
+    if (!g.description || g.description.length > 160) err(w, "description is required and must be under 160 characters (it's what Google shows)");
+    if (!Array.isArray(g.intro) || !g.intro.length || g.intro.length > 4 || g.intro.some((p) => typeof p !== "string" || p.length > 700)) err(w, "intro must be 1–4 paragraphs, each under 700 characters");
+    if (!DATE_RE.test(g.updated || "")) err(w, "updated must be YYYY-MM-DD");
+    if (g.expires != null && !DATE_RE.test(g.expires)) err(w, "expires must be YYYY-MM-DD or null");
+    if (!Array.isArray(g.items) || !g.items.length) err(w, "items must list at least one listing, like \"event:<id>\" or \"place:<id>\"");
+    for (const ref of g.items || []) {
+      const [kind, id] = String(ref).split(":");
+      if (!GUIDE_KINDS[kind]) err(w, `item "${ref}" must start with event:, weekly:, place: or eats:`);
+      else if (!GUIDE_KINDS[kind].some((x) => x.id === id)) err(w, `item "${ref}" doesn't match any listing`);
+    }
+    if (g.tips != null && (!Array.isArray(g.tips) || g.tips.some((t) => typeof t !== "string" || t.length > 300))) err(w, "tips must be a list of short strings (under 300 characters)");
   });
 
   return { errors, warnings };
