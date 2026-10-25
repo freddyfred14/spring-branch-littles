@@ -310,3 +310,21 @@ p { margin: 0; }
   .regulars { border-radius: 0; }
 }
 @media (prefers-reduced-motion: reduce) { .ecard, .ecard:hover { transition: none; transform: none; } }
+
+/* ---------- neighborhood news ---------- */
+.news-band { background: var(--paper-2); }
+.ncards { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
+.ncard { display: flex; flex-direction: column; gap: 10px; background: var(--card); border: 2px solid var(--line); border-radius: var(--r-lg); padding: 20px 22px; position: relative; }
+.ncard::before { content: ""; position: absolute; left: 22px; right: 22px; top: -2px; height: 6px; border-radius: 0 0 6px 6px; background: var(--dino); }
+.ncard.c1::before { background: var(--sky); } .ncard.c2::before { background: var(--sun); } .ncard.c3::before { background: #e9a487; }
+.ncard-top { display: flex; align-items: center; gap: 12px; }
+.ncard-top .ticon { width: 46px; height: 46px; flex: none; }
+.ncard-top > div { display: grid; gap: 0; }
+.ncat { font-family: var(--display); font-weight: 600; font-size: 14px; letter-spacing: .05em; text-transform: uppercase; color: var(--dino-deep); }
+.ndate { font-family: var(--script); font-size: 20px; color: var(--muted); line-height: 1; }
+.ncard h3 { font-size: 20px; font-weight: 600; line-height: 1.25; }
+.ncard h3 a { color: var(--ink); text-decoration: none; }
+.ncard h3 a:hover { color: var(--sky-deep); text-decoration: underline; }
+.nsource { margin-top: auto; font-family: var(--display); font-weight: 600; font-size: 15px; text-decoration: none; color: var(--sky-deep); }
+.nsource:hover { text-decoration: underline; }
+.news-note { margin-top: 22px; }

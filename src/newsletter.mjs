@@ -3,7 +3,7 @@
 import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import {
-  ROOT, AGES, areaOf, addDays, weekendOf, eventsBetween, recurringBetween, fmtDateRange,
+  ROOT, AGES, areaOf, currentNews, addDays, weekendOf, eventsBetween, recurringBetween, fmtDateRange,
   fmtTimeRange, fmtShort, whereText, placeById,
 } from "./lib.mjs";
 
@@ -72,6 +72,14 @@ export function buildIssue(data, date, draft = loadDraft(date)) {
     });
   }
 
+  const news = currentNews(data, date, 10).slice(0, 3);
+  if (news.length) {
+    sections.push({
+      heading: "Neighborhood news",
+      items: news.map((n) => ({ title: n.title, when: n.source, where: "", ages: "", cost: "", description: n.summary, url: n.url, news: true })),
+    });
+  }
+
   const rainy = rainyPick(data, date);
   if (rainy) {
     sections.push({
@@ -105,8 +113,11 @@ export function toMarkdown(issue, config) {
     out.push(`## ${s.heading}`, "");
     for (const i of s.items) {
       out.push(`**[${i.title}](${i.url})**${i.tentative ? " _(date not final)_" : ""}  `);
-      out.push(`${i.when} · ${i.where}  `);
-      out.push(`_${i.ages} · ${i.cost}_  `);
+      if (i.news) out.push(`_${i.when}_  `);
+      else {
+        out.push(`${i.when} · ${i.where}  `);
+        out.push(`_${i.ages} · ${i.cost}_  `);
+      }
       out.push(i.description, "");
     }
   }

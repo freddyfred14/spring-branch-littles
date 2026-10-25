@@ -2,6 +2,11 @@
 
 Newest first. The research agent adds an entry each run.
 
+## 2026-10-24 · neighborhood news added
+
+- New `data/news.json` with 3 items: Greenside opening at Memorial City, Memorial Park's Camp Logan Playground (late 2027), and a heads-up about canceled library storytimes.
+- Found while researching: Spring Branch Memorial Library has a Thursday "Tiny Tykes" storytime for walkers (canceled Oct 22 for staffing). Confirm its usual time and add it to `recurring.json`.
+
 ## 2026-10-24 · coverage expanded to Memorial
 
 - Added the Memorial area to the coverage (Memorial City, CityCentre, the Memorial Villages, Memorial Park, the Houston Arboretum).

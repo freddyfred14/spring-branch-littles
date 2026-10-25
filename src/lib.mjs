@@ -23,6 +23,14 @@ export const AREAS = {
   local: { title: "Spring Branch & Memorial", label: "Close to home" },
   houston: { title: "Surrounding Houston", label: "Worth the drive" },
 };
+export const NEWS_CATEGORIES = {
+  openings: "New & opening",
+  parks: "Parks & play",
+  schools: "Schools",
+  libraries: "Libraries",
+  "heads-up": "Heads-up",
+  community: "Community",
+};
 export const DAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 const DAY_NAMES = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
@@ -42,6 +50,7 @@ export function loadAll() {
     places: readJson("data/places.json"),
     recurring: readJson("data/recurring.json"),
     events: readJson("data/events.json"),
+    news: existsSync(join(ROOT, "data/news.json")) ? readJson("data/news.json") : [],
     issues,
   };
 }
@@ -141,6 +150,12 @@ export function agenda(data, start, end) {
 }
 
 export const placeById = (data, id) => data.places.find((p) => p.id === id);
+// News that's still worth showing: not expired, newest first.
+export function currentNews(data, now, days = 60) {
+  return data.news
+    .filter((n) => n.date >= addDays(now, -days) && (!n.expires || n.expires >= now))
+    .sort((a, b) => b.date.localeCompare(a.date));
+}
 export function areaOf(data, item) {
   return item.area || (item.placeId && placeById(data, item.placeId)?.area) || "local";
 }
@@ -218,6 +233,22 @@ export function validate(data, now = today()) {
     if (e.area != null && !AREAS[e.area]) err(w, `area must be one of ${Object.keys(AREAS).join(", ")}`);
     if (e.lastVerified == null) err(w, "dated events must have lastVerified");
     if ((e.endDate || e.date) < addDays(now, -14)) warn(w, "ended more than two weeks ago; remove it");
+  });
+
+  data.news.forEach((n, i) => {
+    const w = `news[${i}] ${n.id || ""}`;
+    unique(w, n.id);
+    if (!n.id || !ID_RE.test(n.id)) err(w, "id must be lowercase letters, digits and dashes");
+    if (!DATE_RE.test(n.date || "")) err(w, "date must be YYYY-MM-DD");
+    if (n.date > now) err(w, "date is in the future");
+    if (!NEWS_CATEGORIES[n.category]) err(w, `category must be one of ${Object.keys(NEWS_CATEGORIES).join(", ")}`);
+    if (!n.title || n.title.length > 120) err(w, "title is required and must be under 120 characters");
+    if (!n.summary || n.summary.length > 400) err(w, "summary is required and must be under 400 characters");
+    if (!/^https:\/\//.test(n.url || "")) err(w, "url (the original story) must start with https://");
+    if (!n.source) err(w, "source (who published it) is required");
+    if (n.area != null && !AREAS[n.area]) err(w, `area must be one of ${Object.keys(AREAS).join(", ")}`);
+    if (n.expires != null && !DATE_RE.test(n.expires)) err(w, "expires must be YYYY-MM-DD or null");
+    if (n.date < addDays(now, -90)) warn(w, "older than 90 days; remove it");
   });
 
   data.issues.forEach((iss) => {

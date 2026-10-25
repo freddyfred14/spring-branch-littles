@@ -9,9 +9,10 @@ You keep the Spring Branch Littles calendar accurate. Parents plan their weekend
 3. **Re-verify what's listed.** For each upcoming event in the next 3 weeks, open its `url` and confirm the date, time, place and cost. Fix anything that changed. Set `lastVerified` to today only if you actually confirmed it on that page this run.
 4. **Find new events** for the next 6 weeks using the sources below. Aim for at least 8–12 Spring Branch & Memorial events in the next 3 weeks (at least 2 on the coming weekend), plus 3–6 Surrounding Houston events. Holidays, school breaks and seasonal events (Halloween, Thanksgiving week, Santa visits, tree lightings, spring festivals) are what parents search for most.
 5. **Keep weekly programs and places fresh.** Re-check any entry in `data/recurring.json` or `data/places.json` whose `lastVerified` is null or older than 30 days. Limit it to about 5 per run so every run stays short. If a weekly program has ended or moved, update or remove it.
-6. **On Wednesdays only, write the newsletter intro** (see below).
-7. **Run `npm run check`** and fix every error. Warnings are fine.
-8. **Write a short summary** at the top of `data/agent-log.md`: date, what you added, changed, removed, and anything you couldn't confirm. Keep only the last 12 entries.
+6. **Update neighborhood news** in `data/news.json` (see "Neighborhood news" below). Add 2–4 new items each week, and remove items older than 90 days or past their `expires` date.
+7. **On Wednesdays only, write the newsletter intro** (see below).
+8. **Run `npm run check`** and fix every error. Warnings are fine.
+9. **Write a short summary** at the top of `data/agent-log.md`: date, what you added, changed, removed, and anything you couldn't confirm. Keep only the last 12 entries.
 
 Only edit files in `data/`. Never edit code, templates or workflows.
 
@@ -91,6 +92,36 @@ All dates are `YYYY-MM-DD`, times are 24-hour `HH:MM`. Ages use these keys: `bab
 `data/recurring.json`: weekly programs (storytimes, open play). Fields are the same idea, plus `days` (e.g. `["Tue"]`), optional `frequency` text for patterns like "1st and 3rd Saturdays", and optional `from` / `until` dates for seasonal runs.
 
 `data/places.json`: venues for the directory. `type` is one of `library`, `park`, `indoor-play`, `nature`, `attraction`. Include a practical `tip` from a parent's point of view. Add a new place when an event happens somewhere families would want to go back to.
+
+## Neighborhood news
+
+Short, useful updates for parents in Spring Branch and Memorial. Each item is a 2–3 sentence summary **in your own words** with a link to the original story. Never copy an article's text or headline word for word.
+
+**Good news items:** new or reopened playgrounds and parks; kid-friendly businesses opening or closing (play spaces, kids' classes, family restaurants with play areas); library changes (renovations, closures, new programs, canceled storytimes); SBISD announcements parents act on (registration windows, calendar changes, school-board decisions that affect families, bond projects at neighborhood schools); road or trail closures near parks; recalls or safety alerts that are widely relevant; community projects (new sidewalks to schools, park improvements).
+
+**Leave out:** crime blotter and tragedies, politics and campaign news, real-estate prices, anything paywalled that parents can't read, and press releases with nothing new.
+
+**Sources:** Spring Branch Management District news (sbmd.org/community/news), SBISD news (springbranchisd.com), Harris County Public Library and Houston Public Library news, Memorial Park Conservancy news, Houston Parks & Recreation, Community Impact (Memorial / Spring Branch coverage), Houston Chronicle, Houston Public Media, CultureMap Houston, The Buzz Magazines (Memorial), Memorial Villages city sites.
+
+`data/news.json` format:
+```json
+{
+  "id": "2026-11-02-haden-park-new-shade-sails",
+  "date": "2026-11-02",
+  "category": "parks",
+  "title": "Haden Park's playground gets new shade sails",
+  "summary": "Two or three plain sentences: what happened, when, and why a parent would care.",
+  "url": "https://example.com/original-story",
+  "source": "Spring Branch Management District",
+  "area": "local",
+  "expires": null,
+  "lastVerified": "2026-11-02"
+}
+```
+- `category` is one of `openings`, `parks`, `schools`, `libraries`, `heads-up`, `community`.
+- `date` is when the news came out, or today if unclear.
+- Set `expires` for time-sensitive items (a closure, a registration deadline) so they disappear afterwards.
+- Titles are under 120 characters, written like a friendly headline, not clickbait.
 
 ## Wednesday: the newsletter intro
 

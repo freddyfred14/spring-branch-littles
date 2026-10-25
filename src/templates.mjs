@@ -1,9 +1,9 @@
 // HTML templates. Every page is plain HTML with one shared stylesheet and a small script for filters.
 import {
   AGES, AREAS, PLACE_TYPES, addDays, fmtDateRange, fmtTimeRange, fmtLong, fmtShort, fmtMonth, dateParts,
-  eventsBetween, placeById, whereText, weekendOf, areaOf,
+  eventsBetween, placeById, whereText, weekendOf, areaOf, NEWS_CATEGORIES, currentNews,
 } from "./lib.mjs";
-import { WATERCOLOR_DEFS, readerIllo, kiteIllo, bubblesIllo, toddlerIllo, AGE_ILLOS, THEME_ICONS, themeOf } from "./illustrations.mjs";
+import { WATERCOLOR_DEFS, readerIllo, kiteIllo, bubblesIllo, toddlerIllo, AGE_ILLOS, THEME_ICONS, themeOf, NEWS_ICONS } from "./illustrations.mjs";
 
 export const esc = (s) =>
   String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
@@ -17,6 +17,7 @@ const NAV = [
   ["/", "This week"],
   ["/events/", "Calendar"],
   ["/places/", "Places"],
+  ["/news/", "News"],
   ["/newsletter/", "Newsletter"],
   ["/about/", "About"],
 ];
@@ -192,6 +193,16 @@ function weeklySection(data) {
   </div></section>`;
 }
 
+// A neighborhood news item: our short summary, linking to the original story.
+function newsCard(n, i) {
+  return `<article class="ncard c${i % 4}">
+    <div class="ncard-top">${THEME_ICONS[NEWS_ICONS[n.category]]()}<div><span class="ncat">${esc(NEWS_CATEGORIES[n.category])}</span><span class="ndate">${fmtShort(n.date)}</span></div></div>
+    <h3><a href="${esc(n.url)}" rel="noopener">${esc(n.title)}</a></h3>
+    <p class="desc">${esc(n.summary)}</p>
+    <a class="nsource" href="${esc(n.url)}" rel="noopener">Read more at ${esc(n.source)} →</a>
+  </article>`;
+}
+
 // ---------- pages ----------
 
 export function homePage(data, now) {
@@ -208,6 +219,7 @@ export function homePage(data, now) {
       ${list.length ? `<div class="ecards strip">${list.map((x, i) => eventCard(data, x, i, wk)).join("")}</div>${groupEmpty}` : `<p class="quiet">New events are added every Monday and Wednesday.</p>`}
     </div></section>`;
   };
+  const news = currentNews(data, now, 45).slice(0, 3);
   const week = Math.floor(Date.parse(`${now}T12:00:00Z`) / (7 * 864e5));
   const spot = [0, 1, 2].map((i) => data.places[(week * 3 + i) % data.places.length]).filter((p, i, a) => a.indexOf(p) === i);
   const body = `
@@ -236,6 +248,11 @@ export function homePage(data, now) {
     ${region("houston")}
     ${weeklySection(data)}
   </div>
+
+  ${news.length ? `<section class="band news-band"><div class="wrap">
+    <div class="sec-head"><div><p class="label">What parents should know</p><h2>Neighborhood news ${SPARK}</h2></div><a class="more" href="/news/">All news →</a></div>
+    <div class="ncards">${news.map(newsCard).join("")}</div>
+  </div></section>` : ""}
 
   <section class="band"><div class="wrap">
     <div class="sec-head"><div><p class="label">Worth a visit</p><h2>Places to try this weekend ${SPARK}</h2></div><a class="more" href="/places/">All places →</a></div>
@@ -329,6 +346,22 @@ export function placesPage(data, now) {
   return layout(config, { title: "Places", path: "/places/", body, now, description: "Kid-friendly libraries, parks, playgrounds and indoor play spaces in Spring Branch and Memorial, Houston." });
 }
 
+export function newsPage(data, now) {
+  const { config } = data;
+  const news = currentNews(data, now, 90);
+  const body = `
+  <section class="page-head"><div class="wrap head-art"><div class="head-copy">
+    <p class="label">News</p>
+    <h1>Neighborhood news for <span class="script">parents</span></h1>
+    <p class="lede">New playgrounds, openings, closures, school updates and heads-ups for families in Spring Branch and Memorial, in a few sentences each, with a link to the full story.</p>
+  </div>${readerIllo()}</div></section>
+  <section class="band"><div class="wrap">
+    ${news.length ? `<div class="ncards">${news.map(newsCard).join("")}</div>` : '<p class="quiet">News is added every week.</p>'}
+    <p class="quiet news-note">Know something other parents should hear about? Email <span class="select">${esc(config.contactEmail)}</span>.</p>
+  </div></section>`;
+  return layout(config, { title: "News", path: "/news/", body, now, description: "Neighborhood news for parents in Spring Branch and Memorial, Houston: openings, parks, schools and heads-ups." });
+}
+
 export function newsletterPage(data, now) {
   const { config, issues } = data;
   const body = `
@@ -356,7 +389,7 @@ export function issuePage(data, issue, now) {
   <section class="band"><div class="wrap narrow issue">
     ${issue.sections
       .map((s) => `<h2>${esc(s.heading)}</h2><ul class="issue-items">${s.items
-        .map((i) => `<li><h3><a href="${esc(i.url)}" rel="noopener">${esc(i.title)}</a>${i.tentative ? ' <span class="tag t-tent">Date not final</span>' : ""}</h3><p class="ev-where">${esc(i.when)} · ${esc(i.where)}</p><p class="quiet">${esc(i.ages)} · ${esc(i.cost)}</p><p>${esc(i.description)}</p></li>`)
+        .map((i) => `<li><h3><a href="${esc(i.url)}" rel="noopener">${esc(i.title)}</a>${i.tentative ? ' <span class="tag t-tent">Date not final</span>' : ""}</h3>${i.news ? `<p class="quiet">${esc(i.when)}</p>` : `<p class="ev-where">${esc(i.when)} · ${esc(i.where)}</p><p class="quiet">${esc(i.ages)} · ${esc(i.cost)}</p>`}<p>${esc(i.description)}</p></li>`)
         .join("")}</ul>`)
       .join("")}
     <div class="signup-card"><h2>Get it in your inbox</h2>${signupForm(config, "issue")}</div>

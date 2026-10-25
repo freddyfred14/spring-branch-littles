@@ -206,6 +206,11 @@ export const THEME_ICONS = {
   show: () => icon("Show", `<path d="M26 44 V16 L48 10 V38" stroke="${P.skyDeep}" stroke-width="4" fill="none" stroke-linejoin="round"/><ellipse cx="20" cy="45" rx="8" ry="6" fill="${P.coral}"/><ellipse cx="42" cy="39" rx="8" ry="6" fill="${P.coral}"/>`),
   party: () => icon("Fun", `<ellipse cx="30" cy="24" rx="15" ry="17" fill="${P.coral}"/><path d="M27 41 l3 -3 l3 3z" fill="${P.coral}"/><path d="M30 41 q-6 8 2 16" stroke="${P.ink}" stroke-width="1.8" fill="none" opacity=".6"/><path d="M23 16 q3 -6 9 -6" stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round" opacity=".8"/><circle cx="50" cy="16" r="3" fill="${P.sun}"/><circle cx="48" cy="34" r="2.5" fill="${P.sky}"/><circle cx="12" cy="40" r="2.5" fill="${P.sage}"/>`),
 };
+export const NEWS_ICONS = {
+  openings: "party", parks: "nature", schools: "story", libraries: "story", community: "party",
+  "heads-up": "headsup",
+};
+THEME_ICONS.headsup = () => icon("Heads-up", `<circle cx="32" cy="32" r="24" fill="${P.sun}"/><path d="M32 18 v18" stroke="${P.ink}" stroke-width="6" stroke-linecap="round"/><circle cx="32" cy="45" r="3.6" fill="${P.ink}"/>`);
 export function themeOf(e) {
   const t = `${e.title} ${e.description}`.toLowerCase();
   if (/hallowe|trick-or|trunk-or|pumpkin|costume|boo\b/.test(t)) return "halloween";
