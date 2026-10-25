@@ -271,6 +271,13 @@ export function validate(data, now = today()) {
     if (n.area != null && !AREAS[n.area]) err(w, `area must be one of ${Object.keys(AREAS).join(", ")}`);
     if (n.expires != null && !DATE_RE.test(n.expires)) err(w, "expires must be YYYY-MM-DD or null");
     if (n.date < addDays(now, -90)) warn(w, "older than 90 days; remove it");
+    if (n.image != null) {
+      if (!/^\/img\/news\/[a-z0-9-]+\.(jpe?g|png|webp)$/.test(n.image)) err(w, "image must be a file in public/img/news/, written as /img/news/name.jpg");
+      else if (!existsSync(join(ROOT, "public", n.image))) err(w, `image file public${n.image} doesn't exist`);
+      if (!n.imageAlt) err(w, "an image needs imageAlt (a short description for screen readers)");
+      if (!n.imageCredit) err(w, "an image needs imageCredit (who made it, e.g. 'Rendering courtesy of Radom Capital')");
+    }
+    (n.moreLinks || []).forEach((l) => { if (!l.label || !/^https:\/\//.test(l.url || "")) err(w, "each moreLinks entry needs a label and an https url"); });
     if (n.featured && (!Array.isArray(n.story) || !n.story.length || n.story.some((p) => typeof p !== "string" || p.length > 700))) err(w, "the featured story needs a story: a list of 1–4 paragraphs, each under 700 characters");
   });
 

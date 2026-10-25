@@ -4,7 +4,7 @@
     "date": "2026-10-24",
     "category": "openings",
     "title": "Greenside, a family-friendly spot with a kids' play structure, is coming to Memorial City",
-    "summary": "A new 35,000-square-foot outdoor-focused development at 1085 Gessner is set to open this fall, with a children's play structure in the design. Early tenants include Honest Mary's, Leemoo, Hiatus Spa and Solidcore, with more to be announced.",
+    "summary": "A new family-friendly hangout built around a one-acre lawn is coming to 1085 Gessner, with a children's play area in the plans. Michelin-recognized Pizzana is among the restaurants opening there this fall.",
     "url": "https://www.houstonchronicle.com/business/real-estate/article/retail-mixed-use-new-development-houston-21118226.php",
     "source": "Houston Chronicle",
     "area": "local",
@@ -12,9 +12,22 @@
     "lastVerified": "2026-10-24",
     "featured": true,
     "story": [
-      "Memorial City is getting a new hangout built with families in mind. Greenside, a 35,000-square-foot development at 1085 Gessner, is set to open this fall. It's designed around the outdoors, and the plans include a children's play structure, so it could become an easy spot for a coffee or a bite while the kids climb.",
-      "The first tenants announced are the fast-casual restaurant Honest Mary's, Leemoo for health food, Hiatus Spa and a Solidcore fitness studio, with more to come. We'll keep an eye on the opening date and share it here as soon as it's set."
-    ]
+      "Memorial City is getting a new hangout built with families in mind. Greenside, at 1085 Gessner, turns three old warehouses into about 35,000 square feet of restaurants, shops and wellness spots, all wrapped around a one-acre green space. The plans include play areas and outdoor seating, so it could become an easy place to grab a bite while the kids run around.",
+      "It's a joint project from MetroNational, the owner of Memorial City Mall, and Radom Capital, the team behind M-K-T Heights and Montrose Collective. Announced tenants include Michelin-recognized Pizzana (its second Houston location), the fast-casual restaurant Honest Mary's, Leemoo, Hiatus Spa and Solidcore. Openings are expected this fall, and we'll share dates as soon as they're set."
+    ],
+    "moreLinks": [
+      {
+        "label": "See the renderings at ABC13",
+        "url": "https://abc13.com/post/new-development-plans-bring-restaurants-retail-green-space-memorial-city/15660715/"
+      },
+      {
+        "label": "Pizzana is coming to Greenside (Houston Chronicle)",
+        "url": "https://www.houstonchronicle.com/business/article/pizzana-houston-greenside-memorial-city-22195757.php"
+      }
+    ],
+    "image": null,
+    "imageAlt": null,
+    "imageCredit": null
   },
   {
     "id": "2026-10-24-memorial-groves-playground",

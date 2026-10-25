@@ -386,3 +386,9 @@ p { margin: 0; }
 .feature-foot { margin-top: auto; display: flex; align-items: flex-end; justify-content: space-between; gap: 12px; }
 .feature-art { width: 200px; flex: none; margin-bottom: -6px; }
 @media (max-width: 860px) { .feature-art { width: 96px; } }
+.nfig { margin: 4px 0 4px; display: grid; gap: 6px; }
+.nfig img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 18px; border: 2px solid var(--line); }
+.nfig figcaption { font-size: 13px; color: var(--muted); font-style: italic; }
+.morelinks { display: flex; flex-wrap: wrap; gap: 6px 18px; }
+.morelinks a { font-family: var(--display); font-weight: 600; font-size: 15px; text-decoration: none; color: var(--sky-deep); }
+.morelinks a:hover { text-decoration: underline; }

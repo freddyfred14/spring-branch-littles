@@ -201,9 +201,11 @@ function newsCard(n, i) {
     ${feature ? '<span class="ribbon">Story of the week</span>' : ""}
     <div class="ncard-top">${THEME_ICONS[NEWS_ICONS[n.category]]()}<div><span class="ncat">${esc(NEWS_CATEGORIES[n.category])}</span><span class="ndate">${fmtShort(n.date)}</span></div></div>
     <h3><a href="${esc(n.url)}" rel="noopener">${esc(n.title)}</a></h3>
+    ${feature && n.image ? `<figure class="nfig"><img src="${esc(n.image)}" alt="${esc(n.imageAlt)}" loading="lazy"><figcaption>${esc(n.imageCredit)}</figcaption></figure>` : ""}
     ${feature ? n.story.map((p) => `<p class="desc">${esc(p)}</p>`).join("") : `<p class="desc">${esc(n.summary)}</p>`}
+    ${feature && n.moreLinks?.length ? `<p class="morelinks">${n.moreLinks.map((l) => `<a href="${esc(l.url)}" rel="noopener">${esc(l.label)} →</a>`).join("")}</p>` : ""}
     ${feature
-      ? `<div class="feature-foot"><a class="nsource" href="${esc(n.url)}" rel="noopener">Read more at ${esc(n.source)} →</a><div class="feature-art">${toddlerIllo()}</div></div>`
+      ? `<div class="feature-foot"><a class="nsource" href="${esc(n.url)}" rel="noopener">Read more at ${esc(n.source)} →</a>${n.image ? "" : `<div class="feature-art">${toddlerIllo()}</div>`}</div>`
       : `<a class="nsource" href="${esc(n.url)}" rel="noopener">Read more at ${esc(n.source)} →</a>`}
   </article>`;
 }
@@ -482,7 +484,7 @@ export function issuePage(data, issue, now) {
   <section class="band"><div class="wrap narrow issue">
     ${issue.sections
       .map((s) => s.items[0]?.feature
-        ? `<h2>${esc(s.heading)}</h2><article class="issue-feature"><h3><a href="${esc(s.items[0].url)}" rel="noopener">${esc(s.items[0].title)}</a></h3>${s.items[0].paragraphs.map((p) => `<p>${esc(p)}</p>`).join("")}<p><a href="${esc(s.items[0].url)}" rel="noopener">Read more at ${esc(s.items[0].when)} →</a></p></article>`
+        ? `<h2>${esc(s.heading)}</h2><article class="issue-feature"><h3><a href="${esc(s.items[0].url)}" rel="noopener">${esc(s.items[0].title)}</a></h3>${s.items[0].image ? `<figure class="nfig"><img src="${esc(s.items[0].image.src)}" alt="${esc(s.items[0].image.alt)}" loading="lazy"><figcaption>${esc(s.items[0].image.credit)}</figcaption></figure>` : ""}${s.items[0].paragraphs.map((p) => `<p>${esc(p)}</p>`).join("")}<p><a href="${esc(s.items[0].url)}" rel="noopener">Read more at ${esc(s.items[0].when)} →</a></p></article>`
         : `<h2>${esc(s.heading)}</h2><ul class="issue-items">${s.items
         .map((i) => `<li><h3><a href="${esc(i.url)}" rel="noopener">${esc(i.title)}</a>${i.tentative ? ' <span class="tag t-tent" title="The organizer hasn&#39;t announced a final date yet, or sources disagree. We&#39;ll update it when it&#39;s set.">Date may change</span>' : ""}</h3>${i.news ? `<p class="quiet">${esc(i.when)}</p>` : i.deal ? `<p class="ev-where">${esc(i.when)}${i.where ? ` · ${esc(i.where)}` : ""}</p>` : `<p class="ev-where">${esc(i.when)} · ${esc(i.where)}</p><p class="quiet">${esc(i.ages)} · ${esc(i.cost)}</p>`}<p>${esc(i.description)}</p></li>`)
         .join("")}</ul>`)

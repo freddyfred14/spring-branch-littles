@@ -44,7 +44,7 @@ export function buildIssue(data, date, draft = loadDraft(date)) {
   if (story) {
     sections.push({
       heading: "Story of the week",
-      items: [{ title: story.title, when: story.source, where: "", ages: "", cost: "", description: story.summary, paragraphs: story.story || [story.summary], url: story.url, feature: true }],
+      items: [{ title: story.title, when: story.source, where: "", ages: "", cost: "", description: story.summary, paragraphs: story.story || [story.summary], url: story.url, feature: true, image: story.image ? { src: data.config.url + story.image, alt: story.imageAlt, credit: story.imageCredit } : null, moreLinks: story.moreLinks || [] }],
     });
   }
 
@@ -130,8 +130,9 @@ export function toMarkdown(issue, config) {
     if (s.items[0]?.feature) {
       const f = s.items[0];
       out.push(`### ${f.title}`, "");
+      if (f.image) out.push(`![${f.image.alt}](${f.image.src})`, `_${f.image.credit}_`, "");
       for (const p of f.paragraphs) out.push(p, "");
-      out.push(`[Read more at ${f.when} →](${f.url})`, "");
+      out.push([`[Read more at ${f.when} →](${f.url})`, ...f.moreLinks.map((l) => `[${l.label} →](${l.url})`)].join(" · "), "");
       continue;
     }
     for (const i of s.items) {
