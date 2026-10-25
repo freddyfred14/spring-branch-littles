@@ -10,6 +10,7 @@ import {
 
 const ageText = (ages) => ages.map((a) => AGES[a].label).join(", ");
 const costText = (x) => x.cost || (x.free ? "Free" : "Paid");
+const everyText = (days) => (days.length >= 5 ? `${days[0]}–${days[days.length - 1]}, every week` : `Every ${days.join(" & ")}`);
 
 function item(data, x, when) {
   const ours = x.kind === "event" || x.kind === "recurring" || x.days;
@@ -52,17 +53,19 @@ export function buildIssue(data, date, draft = loadDraft(date)) {
 
   const local = data.events.filter((e) => e.kind === "event" && areaOf(data, e) === "local");
   const houston = data.events.filter((e) => e.kind === "event" && areaOf(data, e) === "houston");
-  let weekend = eventsBetween(local, wk.start, wk.end);
+  // The issue lands on Thursday morning, so "this weekend" runs from that day through Sunday.
+  const from = date < wk.start ? date : wk.start;
+  let weekend = eventsBetween(local, from, wk.end);
   if (draft.picks?.length) weekend = draft.picks.map((id) => weekend.find((e) => e.id === id)).filter(Boolean);
   weekend.sort((a, b) => Number(!!b.featured) - Number(!!a.featured));
   if (weekend.length) {
     sections.push({
-      heading: `This weekend · ${fmtShort(wk.start)}–${fmtShort(wk.end)}`,
+      heading: `Today through Sunday · ${fmtShort(from)}–${fmtShort(wk.end)}`,
       items: weekend.slice(0, 6).map((e) => item(data, e, `${fmtDateRange(e.date, e.endDate)} · ${fmtTimeRange(e.startTime, e.endTime)}`)),
     });
   }
 
-  const drive = eventsBetween(houston, wk.start, addDays(wk.end, 14));
+  const drive = eventsBetween(houston, from, addDays(wk.end, 14));
   if (drive.length) {
     sections.push({
       heading: "Worth the drive",
@@ -78,7 +81,7 @@ export function buildIssue(data, date, draft = loadDraft(date)) {
       heading: "Weekly storytimes and open play",
       items: weekly
         .filter((r) => !seen.has(r.id) && seen.add(r.id))
-        .map((r) => item(data, r, `${r.frequency || `Every ${r.days.join(" & ")}`} · ${fmtTimeRange(r.startTime, r.endTime)}`)),
+        .map((r) => item(data, r, `${r.frequency || everyText(r.days)} · ${fmtTimeRange(r.startTime, r.endTime)}`)),
     });
   }
 
@@ -150,6 +153,7 @@ export function toMarkdown(issue, config) {
   }
   out.push("---", "");
   out.push(`See the full calendar at [${config.url.replace("https://", "")}](${config.url}/events/) and follow along on Instagram at [@${config.instagram}](https://instagram.com/${config.instagram}).`, "");
+  out.push(`**Know a parent who'd love this?** Forward this email, or send them to [${config.url.replace("https://", "")}/join](${config.url}/join/?source=forward). It's free.`, "");
   out.push(`Know about something we missed? Reply to this email and tell us.`, "");
   out.push(`_Times and details change. Please check with the venue before you go._`);
   return out.join("\n");

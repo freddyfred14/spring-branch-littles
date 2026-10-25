@@ -823,3 +823,7 @@ body { background-image: none; }
 .app-prompt-close { flex: none; width: 40px; height: 40px; border: 0; border-radius: 50%; background: transparent; font-size: 24px; color: var(--muted); cursor: pointer; }
 /* In the installed app there's no browser bar, so leave room for the phone's status bar. */
 @media (display-mode: standalone) { .site-header { padding-top: env(safe-area-inset-top, 0px); } }
+
+/* newsletter archive: keep the story photo inside its card */
+.issue-feature > * { min-width: 0; }
+.issue-feature img { display: block; width: 100%; height: auto; border-radius: 16px; }
