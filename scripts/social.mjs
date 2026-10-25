@@ -73,7 +73,7 @@ const outro = (total) => base(1080, 1350, `
   <img src="${DINO}" style="position:absolute;left:50%;top:150px;width:300px;transform:translateX(-50%)">
   <div style="position:absolute;left:80px;right:80px;top:480px;text-align:center">
     <h2 class="fred" style="font-size:100px;line-height:1.02">Want the <span class="script" style="font-size:1.25em">whole</span> list?</h2>
-    <p style="font-size:42px;line-height:1.4;margin-top:34px;color:${C.muted};font-weight:600">Storytimes, rainy-day spots and next week's events land in your inbox every ${esc(config.newsletterDay)}.</p>
+    <p style="font-size:42px;line-height:1.4;margin-top:34px;color:${C.muted};font-weight:600">Get ${esc(config.newsletterName)}: weekly kid-friendly finds in your inbox.</p>
     <div style="display:inline-block;margin-top:50px;background:${C.dinoDeep};color:#fff;font-family:Fredoka;font-weight:600;font-size:46px;padding:22px 52px;border-radius:999px;box-shadow:0 8px 0 #365a42">Free newsletter · link in bio</div>
     <p class="script" style="font-size:52px;margin-top:40px">save this for the weekend ♡</p>
   </div>
@@ -83,7 +83,7 @@ const ogImage = () => base(1200, 630, `
   <img src="${LOGO}" style="position:absolute;left:60px;top:50%;width:540px;transform:translateY(-50%)">
   <div style="position:absolute;left:660px;right:60px;top:50%;transform:translateY(-50%)">
     <h1 class="fred" style="font-size:70px;line-height:1.05">Weekend plans for your <span class="script" style="font-size:1.3em">littles</span>, sorted.</h1>
-    <p style="font-size:30px;margin-top:22px;color:${C.muted};font-weight:600">Things to do with kids in Spring Branch, Houston. Every week.</p>
+    <p style="font-size:30px;margin-top:22px;color:${C.muted};font-weight:600">Kid-friendly finds in Spring Branch & Memorial, Houston. Every week.</p>
   </div>`);
 
 async function render(pages, dir) {
@@ -127,14 +127,14 @@ const files = await render(
 );
 
 const caption = [
-  `${items.length} things to do with kids in Spring Branch this weekend and next week (${fmtShort(wk.start)}–${fmtShort(addDays(wk.end, 5))}) 🌳`,
+  `${items.length} things to do with kids in Spring Branch & Memorial this weekend and next week (${fmtShort(wk.start)}–${fmtShort(addDays(wk.end, 5))}) 🌳`,
   "",
   ...items.map((it, i) => `${i + 1}. ${it.title} · ${it.where}`),
   "",
   "Times change, so double-check with the venue before you go.",
-  `Get the full list every ${config.newsletterDay} with the free newsletter, link in bio. Save this for the weekend!`,
+  `Get the full list in ${config.newsletterName}, our free weekly email. Link in bio. Save this for the weekend!`,
   "",
-  "#springbranch #springbranchhouston #houstonmoms #houstonkids #houstonfamily #thingstodoinhouston #memorialhouston #houstontoddler #houstonparents",
+  "#springbranch #springbranchhouston #memorialhouston #memorialparkhouston #houstonmoms #houstonkids #houstonfamily #thingstodoinhouston #houstontoddler #houstonparents",
 ].join("\n");
 const postPath = join(dir, "post.json");
 const prev = existsSync(postPath) ? JSON.parse(readFileSync(postPath, "utf8")) : {};

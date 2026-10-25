@@ -71,7 +71,7 @@ ${body}
     <p>${esc(config.description)}</p>
   </div>
   <div>
-    <h2 class="label">Get the Thursday letter</h2>
+    <h2 class="label">Get ${esc(config.newsletterName)}</h2>
     ${signupForm(config, "footer")}
   </div>
   <div>
@@ -163,11 +163,11 @@ export function homePage(data, now) {
     <img class="hero-logo" src="/img/logo.webp" alt="Spring Branch Littles" width="900" height="778">
     <div class="hero-copy">
       <h1>Weekend plans for your <span class="script">littles</span>, sorted.</h1>
-      <p class="lede">Storytimes, parks, festivals and rainy-day spots in Spring Branch for babies through elementary schoolers. We check the library calendars, park schedules and neighborhood events so you don't have to.</p>
+      <p class="lede">Storytimes, parks, festivals and rainy-day spots in Spring Branch, Memorial and nearby, for babies through elementary schoolers. We check the library calendars, park schedules and neighborhood events so you don't have to.</p>
     <div class="signup-card peek">
       <img class="peek-dino" src="/img/dino-head.png" alt="" width="512" height="512">
-      <h2>The Thursday letter</h2>
-      <p>Weekend picks, next week's storytimes and one rainy-day backup. Free, every ${esc(config.newsletterDay)} morning.</p>
+      <h2>${esc(config.newsletterName)}</h2>
+      <p>${esc(config.newsletterBlurb)}: weekend plans, storytimes, rainy-day backups and what's coming up. Free, and short enough to read during nap time.</p>
       ${signupForm(config, "hero")}
     </div>
     </div>
@@ -218,7 +218,7 @@ export function eventsPage(data, now) {
   const body = `
   <section class="page-head"><div class="wrap head-art"><div class="head-copy">
     <p class="label">Calendar</p>
-    <h1>Kids' events in Spring Branch ${SPARK}</h1>
+    <h1>Kids' events in Spring Branch & Memorial ${SPARK}</h1>
     <p class="lede">Dated events for the next few months, plus the storytimes and open-play times that happen every week.</p>
   </div>${kiteIllo()}</div></section>
   <section class="band"><div class="wrap">
@@ -239,7 +239,7 @@ export function eventsPage(data, now) {
         .join("")}
     </div>
   </div></section>`;
-  return layout(config, { title: "Calendar", path: "/events/", body, now, description: "Upcoming kids' events, storytimes and open play in Spring Branch, Houston, filterable by age." });
+  return layout(config, { title: "Calendar", path: "/events/", body, now, description: "Upcoming kids' events, storytimes and open play in Spring Branch and Memorial, Houston, filterable by age." });
 }
 
 function placeCard(p) {
@@ -258,7 +258,7 @@ export function placesPage(data, now) {
   const body = `
   <section class="page-head"><div class="wrap head-art"><div class="head-copy">
     <p class="label">Places</p>
-    <h1>Where to go with <span class="script">littles</span> in Spring Branch</h1>
+    <h1>Where to go with <span class="script">littles</span> in Spring Branch & Memorial</h1>
     <p class="lede">Libraries, parks, nature trails and indoor play, with tips from parents who've been.</p>
   </div>${bubblesIllo()}</div></section>
   <section class="band"><div class="wrap">
@@ -272,7 +272,7 @@ export function placesPage(data, now) {
         .join("")}
     </div>
   </div></section>`;
-  return layout(config, { title: "Places", path: "/places/", body, now, description: "Kid-friendly libraries, parks, playgrounds and indoor play spaces in Spring Branch, Houston." });
+  return layout(config, { title: "Places", path: "/places/", body, now, description: "Kid-friendly libraries, parks, playgrounds and indoor play spaces in Spring Branch and Memorial, Houston." });
 }
 
 export function newsletterPage(data, now) {
@@ -280,15 +280,15 @@ export function newsletterPage(data, now) {
   const body = `
   <section class="page-head"><div class="wrap narrow head-art"><div class="head-copy">
     <p class="label">Newsletter</p>
-    <h1>The Thursday letter ${SPARK}</h1>
-    <p class="lede">Every ${esc(config.newsletterDay)} morning: the best things to do with kids in Spring Branch this weekend, next week's storytimes, a rainy-day backup and what's coming up. Free, and you can unsubscribe any time.</p>
+    <h1>${esc(config.newsletterName)} ${SPARK}</h1>
+    <p class="lede">${esc(config.newsletterBlurb)}, once a week, just in time to plan the weekend. The best things to do with kids in Spring Branch and Memorial, the week's storytimes, a rainy-day backup and what's coming up. Free, and you can unsubscribe any time.</p>
     <div class="signup-card">${signupForm(config, "nl")}</div>
   </div>${readerIllo()}</div></section>
   <section class="band"><div class="wrap narrow">
     <h2>Past issues</h2>
     ${issues.length ? `<ul class="archive">${issues.map((i) => `<li><a href="/newsletter/${i.date}/">${esc(i.subject)}</a><span>${fmtLong(i.date)}</span></li>`).join("")}</ul>` : '<p class="quiet">The first issue goes out soon.</p>'}
   </div></section>`;
-  return layout(config, { title: "Newsletter", path: "/newsletter/", body, now, description: "A free weekly email of things to do with kids in Spring Branch, Houston." });
+  return layout(config, { title: "Newsletter", path: "/newsletter/", body, now, description: `${config.newsletterName}: a free weekly email of kid-friendly finds in Spring Branch and Memorial, Houston.` });
 }
 
 export function issuePage(data, issue, now) {
@@ -316,7 +316,7 @@ export function aboutPage(data, now) {
   <section class="page-head"><div class="wrap narrow head-art"><div class="head-copy">
     <p class="label">About</p>
     <h1>Hi, <span class="script">neighbor!</span></h1>
-    <p class="lede">${esc(config.name)} is a free guide for Spring Branch families with kids from babies through elementary school. It started with one question every parent here asks on Thursday night: what are we doing this weekend?</p>
+    <p class="lede">${esc(config.name)} is a free guide for Spring Branch and Memorial families with kids from babies through elementary school. It started with the question every parent asks by midweek: what are we doing this weekend?</p>
   </div>${toddlerIllo()}</div></section>
   <section class="band"><div class="wrap narrow prose">
     <h2>What we cover</h2>

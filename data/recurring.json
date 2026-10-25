@@ -3,82 +3,142 @@
     "id": "sbm-preschool-storytime",
     "title": "Preschool storytime + craft",
     "placeId": "spring-branch-memorial-library",
-    "days": ["Mon"],
+    "days": [
+      "Mon"
+    ],
     "startTime": "10:30",
     "endTime": null,
-    "ages": ["preschool"],
+    "ages": [
+      "preschool"
+    ],
     "free": true,
     "indoor": true,
     "description": "Stories, songs, rhymes and a themed craft for ages 3–6.",
     "registration": "Pick up a free ticket at the children's desk.",
     "url": "https://www.hcpl.net/",
-    "sources": ["https://ma.to/event/christmas-in-july-story-time-20-july-2026"],
+    "sources": [
+      "https://ma.to/event/christmas-in-july-story-time-20-july-2026"
+    ],
     "lastVerified": null
   },
   {
     "id": "hillendahl-toddler-storytime",
     "title": "Toddler storytime",
     "placeId": "hillendahl-library",
-    "days": ["Tue"],
+    "days": [
+      "Tue"
+    ],
     "startTime": "10:30",
     "endTime": "11:15",
-    "ages": ["toddler"],
+    "ages": [
+      "toddler"
+    ],
     "free": true,
     "indoor": true,
     "description": "Books, songs and movement for ages 18–36 months with a caregiver.",
     "registration": "Free tickets usually go out 30 minutes before.",
     "url": "https://calendar.houstonlibrary.org/event/13584737",
-    "sources": ["https://calendar.houstonlibrary.org/event/13584737"],
+    "sources": [
+      "https://calendar.houstonlibrary.org/event/13584737"
+    ],
     "lastVerified": null
   },
   {
     "id": "ring-toddler-storytime",
     "title": "Toddler storytime",
     "placeId": "ring-library",
-    "days": ["Wed"],
+    "days": [
+      "Wed"
+    ],
     "startTime": "10:30",
     "endTime": "11:15",
-    "ages": ["toddler"],
+    "ages": [
+      "toddler"
+    ],
     "free": true,
     "indoor": true,
     "description": "Books, songs and movement for ages 18–36 months with a caregiver.",
     "registration": "Free tickets usually go out 30 minutes before.",
     "url": "https://calendar.houstonlibrary.org/event/13532046",
-    "sources": ["https://calendar.houstonlibrary.org/event/13532046"],
+    "sources": [
+      "https://calendar.houstonlibrary.org/event/13532046"
+    ],
     "lastVerified": null
   },
   {
     "id": "edith-moore-stories-crafts",
     "title": "Stories & Crafts in the Cabin",
     "placeId": "edith-moore-sanctuary",
-    "days": ["Mon"],
+    "days": [
+      "Mon"
+    ],
     "frequency": "Selected Mondays, September–May",
     "startTime": "10:30",
     "endTime": "11:30",
-    "ages": ["preschool"],
+    "ages": [
+      "preschool"
+    ],
     "free": false,
     "cost": "About $10–12 per child",
     "indoor": false,
     "description": "A nature story and craft in the sanctuary's log cabin for ages 3–5 with an adult. Siblings with a supervising adult come free.",
     "registration": "Registration required.",
     "url": "https://houstonaudubon.org/programs/youth/stories-crafts-cabin.html",
-    "sources": ["https://houstonaudubon.org/programs/youth/stories-crafts-cabin.html"],
+    "sources": [
+      "https://houstonaudubon.org/programs/youth/stories-crafts-cabin.html"
+    ],
     "lastVerified": null
   },
   {
     "id": "christ-the-king-open-play",
     "title": "Free indoor open play",
     "placeId": "christ-the-king-play",
-    "days": ["Mon", "Fri"],
+    "days": [
+      "Mon",
+      "Fri"
+    ],
     "startTime": "09:00",
     "endTime": "13:00",
-    "ages": ["baby", "toddler", "preschool"],
+    "ages": [
+      "baby",
+      "toddler",
+      "preschool"
+    ],
     "free": true,
     "indoor": true,
     "description": "Free indoor play area open to the public on Monday and Friday mornings.",
     "registration": null,
     "url": "https://greaterhoustonmoms.com/houstons-big-list-of-free-indoor-playgrounds/",
-    "sources": ["https://greaterhoustonmoms.com/houstons-big-list-of-free-indoor-playgrounds/"],
+    "sources": [
+      "https://greaterhoustonmoms.com/houstons-big-list-of-free-indoor-playgrounds/"
+    ],
     "lastVerified": null
+  },
+  {
+    "id": "arboretum-tyke-hikes",
+    "title": "Tyke Hike at Arrowwood Pond",
+    "placeId": "houston-arboretum",
+    "days": [
+      "Mon"
+    ],
+    "from": "2026-11-02",
+    "until": "2026-11-16",
+    "startTime": "09:30",
+    "endTime": "10:15",
+    "ages": [
+      "toddler",
+      "preschool"
+    ],
+    "free": false,
+    "cost": "$7 per child (members free)",
+    "indoor": false,
+    "description": "A guided nature walk for ages 18 months to 4 years with a grown-up: bugs, leaves, pond critters and lots of stopping to look.",
+    "registration": "No sign-up needed, but it's capped at 20 kids. Check in at the Beautyberry Classroom.",
+    "url": "https://houstonarboretum.org/events/",
+    "sources": [
+      "https://houstonarboretum.org/events/"
+    ],
+    "lastVerified": "2026-10-24",
+    "frequency": "Mondays, Nov 2–16"
   }
 ]

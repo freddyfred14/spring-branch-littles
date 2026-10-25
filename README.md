@@ -1,6 +1,6 @@
 # Spring Branch Littles
 
-The website, newsletter and Instagram content for **Spring Branch Littles**, a weekly guide to things to do with kids (babies through elementary school) in Spring Branch, Houston.
+The website, newsletter and Instagram content for **Spring Branch Littles**, a weekly guide to things to do with kids (babies through elementary school) in Spring Branch and Memorial, Houston.
 
 Once it's set up, it runs on its own:
 

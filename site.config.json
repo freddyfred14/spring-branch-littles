@@ -1,12 +1,13 @@
 {
   "name": "Spring Branch Littles",
-  "tagline": "Things to do with kids in Spring Branch, Houston",
-  "description": "A weekly guide to storytimes, parks, festivals and rainy-day spots for families with kids from babies through elementary school in Spring Branch, Houston.",
+  "tagline": "Things to do with kids in Spring Branch & Memorial, Houston",
+  "description": "Weekly kid-friendly finds for families with babies through elementary schoolers in Spring Branch, Memorial and nearby Houston neighborhoods: storytimes, parks, festivals and rainy-day spots.",
   "url": "https://springbranchlittles.com",
   "instagram": "springbranchlittles",
   "contactEmail": "hello@springbranchlittles.com",
   "buttondownUsername": "springbranchlittles",
   "timezone": "America/Chicago",
-  "newsletterDay": "Thursday",
-  "area": "Spring Branch, between I-10 and US-290, from Loop 610 west to Hwy 6, plus a few favorites just outside it"
+  "area": "Spring Branch and Memorial, plus nearby favorites: Memorial City, CityCentre, the Memorial Villages (Hedwig, Hunters Creek, Bunker Hill, Piney Point, Spring Valley), Memorial Park and the Houston Arboretum, and the Energy Corridor's Terry Hershey Park",
+  "newsletterName": "The Littles List",
+  "newsletterBlurb": "Your weekly kid-friendly finds"
 }

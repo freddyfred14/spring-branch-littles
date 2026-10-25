@@ -81,9 +81,9 @@ export function buildIssue(data, date, draft = loadDraft(date)) {
   const lead = weekend[0];
   return {
     date,
-    subject: draft.subject || (lead ? `This weekend in Spring Branch: ${lead.title} and more` : `Your Spring Branch family week · ${fmtShort(date)}`),
+    subject: draft.subject || (lead ? `This weekend: ${lead.title} and more` : `Kid-friendly finds for the week of ${fmtShort(date)}`),
     preheader: draft.preheader || "Storytimes, parks and family events for little ones near you.",
-    intro: draft.intro || ["Here's what's happening for kids in Spring Branch this weekend and next week."],
+    intro: draft.intro || ["Here are this week's kid-friendly finds around Spring Branch and Memorial, from weekend plans to next week's storytimes."],
     sections,
   };
 }

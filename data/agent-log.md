@@ -2,6 +2,14 @@
 
 Newest first. The research agent adds an entry each run.
 
+## 2026-10-24 · coverage expanded to Memorial
+
+- Added the Memorial area to the coverage (Memorial City, CityCentre, the Memorial Villages, Memorial Park, the Houston Arboretum).
+- Added places: Houston Arboretum & Nature Center, Vale-Asche Foundation Playground (Memorial Park).
+- Added events: Spring Branch Memorial Library Halloween party (Oct 29), CityCentre trick-or-treat (Oct 30), MVPD trunk-or-treat & haunted house (Oct 30), Arboretum scavenger hunt (Nov 7), Children's Museum free weekend (Nov 7–8), and Arboretum Tyke Hikes (Mondays Nov 2–16).
+- The three Halloween events come from a Memorial-area roundup (juliesheets.com), not the organizers' pages, so they're marked tentative. Confirm them on the next run.
+- Searched for but couldn't confirm 2026 dates: Santa at Memorial City Mall, CityCentre tree lighting, Memorial Park movie nights, Memorial Villages fall festival.
+
 ## 2026-10-24 · initial setup
 
 - Seeded 11 places, 5 weekly programs and 3 dated events from web search results.

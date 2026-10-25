@@ -7,7 +7,7 @@ You keep the Spring Branch Littles calendar accurate. Parents plan their weekend
 1. **Check the date.** Run `date` and work in Houston time (America/Chicago).
 2. **Clean up.** Delete events from `data/events.json` that ended more than 2 days ago.
 3. **Re-verify what's listed.** For each upcoming event in the next 3 weeks, open its `url` and confirm the date, time, place and cost. Fix anything that changed. Set `lastVerified` to today only if you actually confirmed it on that page this run.
-4. **Find new events** for the next 6 weeks using the sources below. Add the good ones.
+4. **Find new events** for the next 6 weeks using the sources below. Aim for at least 8–12 dated events in the next 3 weeks, including at least 2 on the coming weekend. Holidays, school breaks and seasonal events (Halloween, Thanksgiving week, Santa visits, tree lightings, spring festivals) are what parents search for most.
 5. **Keep weekly programs and places fresh.** Re-check any entry in `data/recurring.json` or `data/places.json` whose `lastVerified` is null or older than 30 days. Limit it to about 5 per run so every run stays short. If a weekly program has ended or moved, update or remove it.
 6. **On Wednesdays only, write the newsletter intro** (see below).
 7. **Run `npm run check`** and fix every error. Warnings are fine.
@@ -18,7 +18,7 @@ Only edit files in `data/`. Never edit code, templates or workflows.
 ## What belongs
 
 - **Audience:** families with kids from babies through elementary school (about ages 0–11).
-- **Area:** Spring Branch, Houston. Roughly I-10 to US-290, Loop 610 west to Hwy 6. That includes Memorial City, CityCentre, Spring Valley, Hedwig/Hunters Creek/Bunker Hill villages, and the Long Point, Gessner, Hammerly, Wirt, Campbell and Blalock corridors. A few favorites just outside (Terry Hershey Park, Memorial Park, Edith Moore Sanctuary) are fine. Big citywide events (Houston Zoo lights, Children's Museum) only if they're truly major and you mark them clearly in the description as "worth the drive."
+- **Area:** Spring Branch and Memorial, Houston. Roughly I-10 to US-290 from Loop 610 west to Hwy 6, plus everything south of I-10 to Buffalo Bayou / Westheimer: the Memorial area, Memorial City, CityCentre / Town & Country, the Memorial Villages (Hedwig, Hunters Creek, Bunker Hill, Piney Point, Spring Valley), Memorial Park and the Houston Arboretum, Briar Forest, and Terry Hershey Park / the Energy Corridor. Big citywide events (Children's Museum free days, Zoo Lights) are fine when they're truly major; start the description with "Worth the drive:".
 - **Good fits:** library storytimes and kids' programs, park and nature programs, festivals, holiday events, school-break camps, free indoor play, kids' classes with drop-in sessions, church or school events open to the public, farmers markets with kids' activities.
 - **Leave out:** anything adults-only, multi-week classes that need a long commitment (unless it's a notable registration deadline), private parties, MLM/vendor pitches, events with no public source page.
 
@@ -35,9 +35,13 @@ Start with the organizers' own calendars, then use listing sites to discover eve
 - Memorial City: memorialcity.com · CityCentre: citycentrehouston.com
 - Spring Branch Management District: springbranchdistrict.com
 - Memorial Villages, Spring Valley Village and Hedwig Village city websites
-- Discovery only (always confirm at the source before listing): Macaroni Kid Greater NW Houston, Mommy Poppins Houston, Greater Houston Moms, Houston on the Cheap, Kids Out and About Houston, Eventbrite "Spring Branch, Houston", The Buzz Magazines (Memorial edition)
+- Houston Arboretum & Nature Center (Tyke Hikes, Hatchlings, family days): houstonarboretum.org/events
+- Memorial Park Conservancy event calendar: memorialparkconservancy.org/visit/event-calendar
+- Memorial Villages city sites (bunkerhilltx.gov, hedwigtx.gov, hunterscreektx.org, pineypt.org, springvalleytx.com) and Memorial Villages Police Department
+- Church and school events open to the public (trunk-or-treats, fall festivals, Christmas markets): search "Memorial Drive" + the event type
+- Discovery only (always confirm at the source before listing): juliesheets.com (Memorial monthly calendars), Macaroni Kid Greater NW Houston, Mommy Poppins Houston, Greater Houston Moms, Houston on the Cheap, Kids Out and About Houston, Eventbrite "Spring Branch, Houston", The Buzz Magazines (Memorial edition)
 
-Search ideas: "Spring Branch Houston kids event [month year]", "storytime [branch name] [month]", "trunk or treat Spring Branch", "Memorial City [holiday] 2026", "CityCentre kids [month]".
+Search ideas: "Memorial Houston kids events [month year]", "Spring Branch Houston kids event [month year]", "storytime [branch name] [month]", "trunk or treat Spring Branch", "Memorial City [holiday] 2026", "CityCentre kids [month]".
 
 ## Rules for accuracy
 
@@ -88,7 +92,7 @@ All dates are `YYYY-MM-DD`, times are 24-hour `HH:MM`. Ages use these keys: `bab
 
 ## Wednesday: the newsletter intro
 
-The newsletter goes out automatically Thursday morning. It's built from the data, but you write the opening. Create `data/drafts/<tomorrow's date>.json`:
+The newsletter ("The Littles List") goes out automatically Thursday morning, but we don't call it a Thursday letter. It's built from the data, but you write the opening. Create `data/drafts/<tomorrow's date>.json`:
 
 ```json
 {

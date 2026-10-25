@@ -5,12 +5,19 @@
     "type": "library",
     "address": "930 Corbindale Rd, Houston, TX 77024",
     "url": "https://www.hcpl.net/",
-    "ages": ["baby", "toddler", "preschool", "elementary"],
+    "ages": [
+      "baby",
+      "toddler",
+      "preschool",
+      "elementary"
+    ],
     "free": true,
     "indoor": true,
     "description": "Harris County Public Library branch with a preschool storytime (ages 3–6) that ends with a themed craft.",
     "tip": "Storytime tickets can run out. Arrive 15 minutes early and ask at the children's desk.",
-    "sources": ["https://ma.to/event/christmas-in-july-story-time-20-july-2026"],
+    "sources": [
+      "https://ma.to/event/christmas-in-july-story-time-20-july-2026"
+    ],
     "lastVerified": null
   },
   {
@@ -19,12 +26,19 @@
     "type": "library",
     "address": "8835 Long Point Rd, Houston, TX 77055",
     "url": "https://houstonlibrary.org/",
-    "ages": ["baby", "toddler", "preschool", "elementary"],
+    "ages": [
+      "baby",
+      "toddler",
+      "preschool",
+      "elementary"
+    ],
     "free": true,
     "indoor": true,
     "description": "Houston Public Library branch on Long Point with a weekday toddler storytime.",
     "tip": "Free tickets for storytime are usually handed out about 30 minutes before it starts.",
-    "sources": ["https://calendar.houstonlibrary.org/event/13532046"],
+    "sources": [
+      "https://calendar.houstonlibrary.org/event/13532046"
+    ],
     "lastVerified": null
   },
   {
@@ -33,12 +47,19 @@
     "type": "library",
     "address": "2436 Gessner Rd, Houston, TX 77080",
     "url": "https://houstonlibrary.org/",
-    "ages": ["baby", "toddler", "preschool", "elementary"],
+    "ages": [
+      "baby",
+      "toddler",
+      "preschool",
+      "elementary"
+    ],
     "free": true,
     "indoor": true,
     "description": "Houston Public Library branch on Gessner with toddler and family storytimes.",
     "tip": "Family storytime suits preschoolers and early elementary kids together, handy with siblings.",
-    "sources": ["https://calendar.houstonlibrary.org/event/13584737"],
+    "sources": [
+      "https://calendar.houstonlibrary.org/event/13584737"
+    ],
     "lastVerified": null
   },
   {
@@ -47,12 +68,19 @@
     "type": "park",
     "address": "1404 Witte Rd, Houston, TX 77055",
     "url": "https://houstontx.gov/parks/",
-    "ages": ["toddler", "preschool", "elementary"],
+    "ages": [
+      "toddler",
+      "preschool",
+      "elementary"
+    ],
     "free": true,
     "indoor": false,
     "description": "About 12 acres with a forest-themed play area, restored wetlands and a dog park.",
     "tip": "The wetland boardwalk is a good short walk for little legs after the playground.",
-    "sources": ["https://www.swagroup.com/projects/haden-park", "https://311.houstontx.gov/parks/pdfs/HPARDInventory.pdf"],
+    "sources": [
+      "https://www.swagroup.com/projects/haden-park",
+      "https://311.houstontx.gov/parks/pdfs/HPARDInventory.pdf"
+    ],
     "lastVerified": null
   },
   {
@@ -61,12 +89,18 @@
     "type": "park",
     "address": "10645 Hammerly Blvd, Houston, TX 77043",
     "url": "https://houstontx.gov/parks/",
-    "ages": ["toddler", "preschool", "elementary"],
+    "ages": [
+      "toddler",
+      "preschool",
+      "elementary"
+    ],
     "free": true,
     "indoor": false,
     "description": "One of the largest city parks in Spring Branch, about 40 acres on the west side of the district.",
     "tip": "Plenty of open space for scooters, bikes and a picnic.",
-    "sources": ["https://houstontx.gov/parks/pdfs/District_A.PDF"],
+    "sources": [
+      "https://houstontx.gov/parks/pdfs/District_A.PDF"
+    ],
     "lastVerified": null
   },
   {
@@ -75,12 +109,18 @@
     "type": "park",
     "address": "6818 Shadyvilla Ln, Houston, TX 77055",
     "url": "https://houstontx.gov/parks/",
-    "ages": ["toddler", "preschool", "elementary"],
+    "ages": [
+      "toddler",
+      "preschool",
+      "elementary"
+    ],
     "free": true,
     "indoor": false,
     "description": "A 15-acre neighborhood park in the heart of Spring Branch.",
     "tip": "Pair it with a trip to Ring Library on Long Point.",
-    "sources": ["https://houstontx.gov/parks/pdfs/District_A.PDF"],
+    "sources": [
+      "https://houstontx.gov/parks/pdfs/District_A.PDF"
+    ],
     "lastVerified": null
   },
   {
@@ -89,12 +129,18 @@
     "type": "nature",
     "address": "440 Wilchester Blvd, Houston, TX 77079",
     "url": "https://houstonaudubon.org/conservation/sanctuaries/edith-moore/programs.html",
-    "ages": ["preschool", "elementary"],
+    "ages": [
+      "preschool",
+      "elementary"
+    ],
     "free": true,
     "indoor": false,
     "description": "Houston Audubon's 17.5-acre woodland along Rummel Creek, with a historic log cabin, trails and paid nature programs for kids.",
     "tip": "Parking by the cabin is tight. Houston Audubon suggests the Memorial Drive United Methodist Church lot for programs.",
-    "sources": ["https://en.wikipedia.org/wiki/Edith_L._Moore_Nature_Sanctuary", "https://houstonaudubon.org/programs/youth/"],
+    "sources": [
+      "https://en.wikipedia.org/wiki/Edith_L._Moore_Nature_Sanctuary",
+      "https://houstonaudubon.org/programs/youth/"
+    ],
     "lastVerified": null
   },
   {
@@ -103,12 +149,19 @@
     "type": "indoor-play",
     "address": "303 Memorial City Way, Houston, TX 77024",
     "url": "https://www.memorialcity.com/",
-    "ages": ["toddler", "preschool", "elementary"],
+    "ages": [
+      "toddler",
+      "preschool",
+      "elementary"
+    ],
     "free": true,
     "indoor": true,
     "description": "A free three-story castle play area in the mall for kids under 48 inches, plus Puffy's Playground for toddlers under 32 inches.",
     "tip": "Socks required. Weekday mornings are the quietest.",
-    "sources": ["https://www.softplay.com/blog/memorial-city-mall-opens-nations-largest-indoor-play-area/", "https://greaterhoustonmoms.com/houstons-big-list-of-free-indoor-playgrounds/"],
+    "sources": [
+      "https://www.softplay.com/blog/memorial-city-mall-opens-nations-largest-indoor-play-area/",
+      "https://greaterhoustonmoms.com/houstons-big-list-of-free-indoor-playgrounds/"
+    ],
     "lastVerified": null
   },
   {
@@ -117,12 +170,18 @@
     "type": "indoor-play",
     "address": "1201 Silber Rd, Houston, TX 77055",
     "url": "https://greaterhoustonmoms.com/houstons-big-list-of-free-indoor-playgrounds/",
-    "ages": ["baby", "toddler", "preschool"],
+    "ages": [
+      "baby",
+      "toddler",
+      "preschool"
+    ],
     "free": true,
     "indoor": true,
     "description": "A free indoor play area at a Spring Branch church, open to the public on set weekday mornings.",
     "tip": "Hours are limited, so confirm before you go.",
-    "sources": ["https://greaterhoustonmoms.com/houstons-big-list-of-free-indoor-playgrounds/"],
+    "sources": [
+      "https://greaterhoustonmoms.com/houstons-big-list-of-free-indoor-playgrounds/"
+    ],
     "lastVerified": null
   },
   {
@@ -131,12 +190,19 @@
     "type": "attraction",
     "address": "800 Town and Country Blvd, Houston, TX 77024",
     "url": "https://www.citycentrehouston.com/",
-    "ages": ["baby", "toddler", "preschool", "elementary"],
+    "ages": [
+      "baby",
+      "toddler",
+      "preschool",
+      "elementary"
+    ],
     "free": true,
     "indoor": false,
     "description": "Walkable shopping and dining district with a central plaza that hosts free seasonal events, including a holiday celebration.",
     "tip": "The plaza lawn is a good spot to let kids run while grown-ups grab dinner.",
-    "sources": ["https://houston.kidsoutandabout.com/content/101-ideas-holiday-family-fun-houston"],
+    "sources": [
+      "https://houston.kidsoutandabout.com/content/101-ideas-holiday-family-fun-houston"
+    ],
     "lastVerified": null
   },
   {
@@ -145,12 +211,59 @@
     "type": "park",
     "address": "Memorial Dr, between Beltway 8 and Hwy 6, Houston, TX 77079",
     "url": "https://www.hcp4.net/",
-    "ages": ["baby", "toddler", "preschool", "elementary"],
+    "ages": [
+      "baby",
+      "toddler",
+      "preschool",
+      "elementary"
+    ],
     "free": true,
     "indoor": false,
     "description": "Harris County park with miles of paved, stroller-friendly trails along Buffalo Bayou, just west of Spring Branch.",
     "tip": "Paved and mostly flat, so it's great for balance bikes.",
     "sources": [],
+    "lastVerified": null
+  },
+  {
+    "id": "houston-arboretum",
+    "name": "Houston Arboretum & Nature Center",
+    "type": "nature",
+    "address": "4501 Woodway Dr, Houston, TX 77024",
+    "url": "https://houstonarboretum.org/",
+    "ages": [
+      "baby",
+      "toddler",
+      "preschool",
+      "elementary"
+    ],
+    "free": true,
+    "indoor": false,
+    "description": "155 acres of woods, ponds and easy trails on the edge of Memorial Park, with toddler nature walks, caregiver-and-me classes and free family days.",
+    "tip": "The short loop around Arrowwood Pond is perfect for little walkers, and there's usually a turtle or two to spot.",
+    "sources": [
+      "https://houstonarboretum.org/events/",
+      "https://houstonarboretum.org/programs-trips/childrens-programs/"
+    ],
+    "lastVerified": null
+  },
+  {
+    "id": "memorial-park-playground",
+    "name": "Vale-Asche Foundation Playground, Memorial Park",
+    "type": "park",
+    "address": "Memorial Loop Dr near Arnot St, Houston, TX 77007",
+    "url": "https://www.memorialparkconservancy.org/visit/things_to_do/playgrounds/",
+    "ages": [
+      "toddler",
+      "preschool",
+      "elementary"
+    ],
+    "free": true,
+    "indoor": false,
+    "description": "An accessible playground in Memorial Park designed so kids of all abilities can play together.",
+    "tip": "Combine it with a stroller loop and a picnic, then check the Conservancy calendar for free movie nights on the lawn.",
+    "sources": [
+      "https://www.memorialparkconservancy.org/visit/things_to_do/playgrounds/"
+    ],
     "lastVerified": null
   }
 ]
