@@ -10,6 +10,7 @@ export const esc = (s) =>
 
 const LOGO = `<img class="logo" src="/img/logo-sm.webp" alt="Spring Branch Littles" width="360" height="311">`;
 // The three little "happy" marks next to the dino's head in the logo.
+export const SPARK_PINK = `<svg class="spark pink" viewBox="0 0 32 32" aria-hidden="true"><path d="M8 3l3 8M20 6l-5 8M29 15l-9 3" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" fill="none"/></svg>`;
 export const SPARK = `<svg class="spark" viewBox="0 0 32 32" aria-hidden="true"><path d="M8 3l3 8M20 6l-5 8M29 15l-9 3" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" fill="none"/></svg>`;
 const GRASS = `<div class="grass" aria-hidden="true"></div>`;
 
@@ -103,6 +104,9 @@ function ageText(ages) {
   return `Ages ${AGE_SPAN[order[0]][0]}–${AGE_SPAN[order[order.length - 1]][1]}`;
 }
 const ageChips = (ages) => `<span class="tag t-age">${esc(ageText(ages))}</span>`;
+// "More info at mommypoppins.com →": the page where parents get full details.
+const host = (u) => { try { return new URL(u).hostname.replace(/^www\./, ""); } catch { return "the organizer's site"; } };
+const moreInfo = (url) => `<a class="moreinfo" href="${esc(url)}" target="_blank" rel="noopener" title="Opens ${esc(host(url))}">More info <span aria-hidden="true">↗</span><span class="sr"> (opens ${esc(host(url))})</span></a>`;
 // A photo across the top of a card, with its credit.
 const photo = (x, cls = "cphoto") =>
   x.image ? `<figure class="${cls}"><img src="${esc(x.image)}" alt="${esc(x.imageAlt)}" loading="lazy"><figcaption>${esc(x.imageCredit)}</figcaption></figure>` : "";
@@ -141,6 +145,7 @@ function eventCard(data, x, i, wk) {
     <p class="meta">${PIN}<span>${whereLink(data, x)}</span></p>
     <p class="desc clamp-2">${esc(x.description)}</p>
     <div class="tags">${ageChips(x.ages)}${flagChips(x)}</div>
+    ${moreInfo(x.url)}
   </article>`;
 }
 
@@ -154,6 +159,7 @@ function weeklyCard(data, r, i) {
     <p class="meta">${PIN}<span>${whereLink(data, r)}</span></p>
     ${r.registration ? `<p class="desc">${esc(r.registration)}</p>` : ""}
     <div class="tags">${ageChips(r.ages)}${flagChips(r)}</div>
+    ${moreInfo(r.url)}
   </article>`;
 }
 
@@ -295,7 +301,7 @@ export function eatsPage(data, now) {
   const body = `
   <section class="page-head"><div class="wrap head-art"><div class="head-copy">
     <p class="label">Kid-friendly eats</p>
-    <h1>Where to eat with <span class="script">littles</span></h1>
+    <h1>Where to eat with <span class="script pink">littles</span></h1>
     <p class="lede">Restaurants with play areas, patios and kids' menus, plus the kids-eat-free nights worth planning around.</p>
     <p class="jump"><a href="#deals">Kids eat free</a><a href="#restaurants">Restaurants</a></p>
   </div>${iceCreamIllo()}</div></section>
@@ -343,7 +349,7 @@ export function homePage(data, now) {
   <section class="hero"><div class="wrap hero-grid">
     <img class="hero-logo" src="/img/logo.webp" alt="Spring Branch Littles" width="900" height="778">
     <div class="hero-copy">
-      <h1>Weekend plans for your <span class="script">littles</span>, sorted.</h1>
+      <h1>Weekend plans for your <span class="script">littles</span>, sorted<span class="pink-dot">.</span></h1>
       <p class="lede">Storytimes, parks, festivals and kids-eat-free nights in Spring Branch &amp; Memorial, for babies through elementary schoolers.</p>
     <div class="signup-card peek">
       <img class="peek-dino" src="/img/dino-head.png" alt="" width="512" height="512">
@@ -368,12 +374,12 @@ export function homePage(data, now) {
   </div>
 
   ${news.length ? `<section class="band news-band"><div class="wrap">
-    <div class="sec-head"><div><p class="label">What parents should know</p><h2>Neighborhood news ${SPARK}</h2></div><a class="more" href="/news/">All news →</a></div>
+    <div class="sec-head"><div><p class="label">What parents should know</p><h2>Neighborhood news ${SPARK_PINK}</h2></div><a class="more" href="/news/">All news →</a></div>
     <div class="ncards">${news.map(newsCard).join("")}</div>
   </div></section>` : ""}
 
   ${data.deals.length ? `<section class="band"><div class="wrap">
-    <div class="sec-head"><div><p class="label">Dinner's sorted</p><h2>Kids eat free ${SPARK}</h2></div><a class="more" href="/eats/">All kid-friendly eats →</a></div>
+    <div class="sec-head"><div><p class="label">Dinner's sorted</p><h2>Kids eat free ${SPARK_PINK}</h2></div><a class="more" href="/eats/">All kid-friendly eats →</a></div>
     ${dealBoard(data, now, { compact: true })}
   </div></section>` : ""}
 
@@ -383,7 +389,7 @@ export function homePage(data, now) {
   </div></section>
 
   <section class="band ages-band"><div class="wrap">
-    <div class="sec-head"><div><p class="label">Find your stage</p><h2>Browse by age ${SPARK}</h2></div></div>
+    <div class="sec-head"><div><p class="label">Find your stage</p><h2>Browse by age ${SPARK_PINK}</h2></div></div>
     <div class="ages">${Object.entries(AGES).map(([k, v], i) => `<a class="age-card c${i}" href="/events/?age=${k}">${AGE_ILLOS[k]()}<b>${v.label}</b><span class="script">ages ${v.range}</span></a>`).join("")}</div>
   </div></section>
 
@@ -426,7 +432,7 @@ export function eventsPage(data, now) {
   const body = `
   <section class="page-head"><div class="wrap head-art"><div class="head-copy">
     <p class="label">Calendar · from ${fmtShort(start)}</p>
-    <h1>Coming up for <span class="script">littles</span> ${SPARK}</h1>
+    <h1>Coming up for <span class="script pink">littles</span> ${SPARK}</h1>
     <p class="lede">Everything after this week, close to home and around Houston, so you can plan ahead. Looking for the next few days or weekly storytimes? They're on <a href="/">This week</a>.</p>
     <p class="jump"><a href="#local">Spring Branch & Memorial</a><a href="#houston">Surrounding Houston</a><a href="/#every-week">Weekly storytimes</a></p>
   </div>${kiteIllo()}</div></section>
@@ -483,7 +489,7 @@ export function newsPage(data, now) {
   const body = `
   <section class="page-head"><div class="wrap head-art"><div class="head-copy">
     <p class="label">News</p>
-    <h1>Neighborhood news for <span class="script">parents</span></h1>
+    <h1>Neighborhood news for <span class="script pink">parents</span></h1>
     <p class="lede">New playgrounds, openings, closures, school updates and heads-ups for families in Spring Branch and Memorial, in a few sentences each, with a link to the full story.</p>
   </div>${readerIllo()}</div></section>
   <section class="band"><div class="wrap">
@@ -535,7 +541,7 @@ export function aboutPage(data, now) {
   const body = `
   <section class="page-head"><div class="wrap narrow head-art"><div class="head-copy">
     <p class="label">About</p>
-    <h1>Hi, <span class="script">neighbor!</span></h1>
+    <h1>Hi, <span class="script pink">neighbor!</span></h1>
     <p class="lede">${esc(config.name)} is a free guide for Spring Branch and Memorial families with kids from babies through elementary school. It started with the question every parent asks by midweek: what are we doing this weekend?</p>
   </div>${toddlerIllo()}</div></section>
   <section class="band"><div class="wrap narrow prose">

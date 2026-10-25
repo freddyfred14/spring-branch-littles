@@ -17,6 +17,9 @@
   --sun: #e9a55a;         /* sparkle marks */
   --sun-soft: #fce7cd;
   --peach: #f8dcc7;       /* toenails */
+  --pink: #e38aa5;        /* rosy cheeks, to balance the blue */
+  --pink-deep: #c25578;
+  --pink-soft: #fbe3ea;
   --grass: #8f9f5c;
   --display: "Fredoka", "Trebuchet MS", system-ui, sans-serif;
   --body: "Nunito", system-ui, -apple-system, "Segoe UI", sans-serif;
@@ -35,6 +38,7 @@ body {
     radial-gradient(circle at 12% 18%, rgba(157, 181, 127, .16) 0 9px, transparent 10px),
     radial-gradient(circle at 78% 42%, rgba(157, 181, 127, .13) 0 6px, transparent 7px),
     radial-gradient(circle at 46% 80%, rgba(75, 124, 166, .08) 0 7px, transparent 8px),
+    radial-gradient(circle at 30% 55%, rgba(227, 138, 165, .13) 0 7px, transparent 8px),
     radial-gradient(circle at 90% 88%, rgba(233, 165, 90, .12) 0 5px, transparent 6px);
   background-size: 340px 300px;
 }
@@ -472,3 +476,28 @@ p { margin: 0; }
   .ncard.feature.has-photo > .nfig-top img { min-height: 0; aspect-ratio: 16 / 10; border-radius: calc(var(--r-lg) - 2px) calc(var(--r-lg) - 2px) 0 0; }
   .ncard.feature.has-photo > .ncard-top { margin-top: 0; }
 }
+
+/* ---------- pink, to balance the blue ---------- */
+.script.pink { color: var(--pink-deep); }
+.spark.pink { color: var(--pink); }
+.pink-dot { color: var(--pink); }
+.day-head.c3 { background: var(--pink-soft); }
+.age-card.c3 { background: var(--pink-soft); box-shadow: 0 6px 0 rgba(194, 85, 120, .18); }
+.ecard.c3 { box-shadow: 0 6px 0 var(--pink-soft); }
+.ecard.c3 .dt-dow { background: var(--pink); color: #fff; }
+.wcard.c3 .dots span.on { background: var(--pink); color: #fff; }
+.ncard.c3::before { background: var(--pink); }
+.rcard.c3 { box-shadow: 0 6px 0 var(--pink-soft); }
+.ribbon { background: var(--pink-deep); box-shadow: 0 3px 0 #9c3f5d; }
+.ribbon::after { border-left-color: #9c3f5d; }
+.signup-card { border-color: var(--pink-soft); box-shadow: 0 8px 0 var(--pink-soft); }
+.place.t-indoor-play .place-band { background-color: var(--pink-soft); }
+.chip[aria-pressed="true"][data-flag] { background: var(--pink); border-color: var(--pink); color: #fff; }
+.t-in { background: var(--pink-soft); color: var(--pink-deep); }
+
+/* "More info" link on event cards */
+.moreinfo { white-space: nowrap; align-self: flex-start; margin-top: 4px; font-family: var(--display); font-weight: 600; font-size: 14.5px; color: var(--sky-deep); text-decoration: none; background: var(--sky-soft); padding: 6px 13px; border-radius: 999px; }
+.moreinfo:hover { background: var(--sky); color: #fff; }
+.ecard.c1 .moreinfo, .wcard.c1 .moreinfo { background: var(--pink-soft); color: var(--pink-deep); }
+.ecard.c1 .moreinfo:hover, .wcard.c1 .moreinfo:hover { background: var(--pink); color: #fff; }
+.ecard .tags, .wcard .tags { margin-top: auto; }

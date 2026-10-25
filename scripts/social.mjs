@@ -25,7 +25,7 @@ const { config } = data;
 const date = args.includes("--date") ? args[args.indexOf("--date") + 1] : today(config.timezone);
 
 // Brand colors and images, matching the website and logo.
-const C = { paper: "#fbf6ec", ink: "#241e1a", muted: "#6d645b", dino: "#9db57f", dinoDeep: "#4b7759", dinoSoft: "#e7efd9", sky: "#4b7ca6", skySoft: "#e0ebf4", sun: "#e9a55a", sunSoft: "#fce7cd", peach: "#f8dcc7" };
+const C = { paper: "#fbf6ec", ink: "#241e1a", muted: "#6d645b", dino: "#9db57f", dinoDeep: "#4b7759", dinoSoft: "#e7efd9", sky: "#4b7ca6", skySoft: "#e0ebf4", sun: "#e9a55a", sunSoft: "#fce7cd", peach: "#f8dcc7", pink: "#e38aa5", pinkSoft: "#fbe3ea", pinkDeep: "#c25578" };
 const img = (p) => `data:image/png;base64,${readFileSync(join(ROOT, p)).toString("base64")}`;
 const LOGO = img("public/img/logo.png");
 const DINO = img("public/img/dino-head.png");
@@ -54,7 +54,7 @@ const cover = (wk, n, total) => base(1080, 1350, `
   </div>
   <div class="count" style="bottom:100px">swipe →</div>${grassRow}`);
 
-const colors = [[C.dinoSoft, C.dinoDeep], [C.skySoft, C.sky], [C.sunSoft, "#a8641f"], [C.peach, "#a0583a"]];
+const colors = [[C.dinoSoft, C.dinoDeep], [C.skySoft, C.sky], [C.sunSoft, "#a8641f"], [C.pinkSoft, C.pinkDeep]];
 const slide = (it, i, total) => {
   const [soft, deep] = colors[i % colors.length];
   return base(1080, 1350, `
