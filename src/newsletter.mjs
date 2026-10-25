@@ -3,7 +3,7 @@
 import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import {
-  ROOT, AGES, areaOf, currentNews, activeDeals, addDays, weekendOf, eventsBetween, recurringBetween, fmtDateRange,
+  ROOT, AGES, areaOf, currentNews, featuredStory, activeDeals, addDays, weekendOf, eventsBetween, recurringBetween, fmtDateRange,
   fmtTimeRange, fmtShort, whereText, placeById,
 } from "./lib.mjs";
 
@@ -40,6 +40,14 @@ export function buildIssue(data, date, draft = loadDraft(date)) {
   const wk = weekendOf(date);
   const sections = [];
 
+  const story = (draft.featureId && data.news.find((n) => n.id === draft.featureId)) || featuredStory(data, date);
+  if (story) {
+    sections.push({
+      heading: "Story of the week",
+      items: [{ title: story.title, when: story.source, where: "", ages: "", cost: "", description: story.summary, paragraphs: story.story || [story.summary], url: story.url, feature: true }],
+    });
+  }
+
   const local = data.events.filter((e) => e.kind === "event" && areaOf(data, e) === "local");
   const houston = data.events.filter((e) => e.kind === "event" && areaOf(data, e) === "houston");
   let weekend = eventsBetween(local, wk.start, wk.end);
@@ -72,7 +80,7 @@ export function buildIssue(data, date, draft = loadDraft(date)) {
     });
   }
 
-  const news = currentNews(data, date, 10).slice(0, 3);
+  const news = currentNews(data, date, 10).filter((n) => n.id !== story?.id).slice(0, 3);
   if (news.length) {
     sections.push({
       heading: "Neighborhood news",
@@ -119,6 +127,13 @@ export function toMarkdown(issue, config) {
   for (const p of issue.intro) out.push(p, "");
   for (const s of issue.sections) {
     out.push(`## ${s.heading}`, "");
+    if (s.items[0]?.feature) {
+      const f = s.items[0];
+      out.push(`### ${f.title}`, "");
+      for (const p of f.paragraphs) out.push(p, "");
+      out.push(`[Read more at ${f.when} →](${f.url})`, "");
+      continue;
+    }
     for (const i of s.items) {
       out.push(`**[${i.title}](${i.url})**${i.tentative ? " _(date may change)_" : ""}  `);
       if (i.news) out.push(`_${i.when}_  `);

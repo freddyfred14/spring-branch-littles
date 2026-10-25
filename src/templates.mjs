@@ -1,7 +1,7 @@
 // HTML templates. Every page is plain HTML with one shared stylesheet and a small script for filters.
 import {
   AGES, AREAS, PLACE_TYPES, addDays, fmtDateRange, fmtTimeRange, fmtLong, fmtShort, fmtMonth, dateParts,
-  eventsBetween, placeById, whereText, weekendOf, areaOf, NEWS_CATEGORIES, currentNews, PERKS, activeDeals, weekday,
+  eventsBetween, placeById, whereText, weekendOf, areaOf, NEWS_CATEGORIES, currentNews, featuredStory, PERKS, activeDeals, weekday,
 } from "./lib.mjs";
 import { WATERCOLOR_DEFS, readerIllo, kiteIllo, bubblesIllo, toddlerIllo, AGE_ILLOS, THEME_ICONS, themeOf, NEWS_ICONS, iceCreamIllo } from "./illustrations.mjs";
 
@@ -196,11 +196,15 @@ function weeklySection(data) {
 
 // A neighborhood news item: our short summary, linking to the original story.
 function newsCard(n, i) {
-  return `<article class="ncard c${i % 4}">
+  const feature = n.featured && n.story?.length;
+  return `<article class="ncard c${i % 4}${feature ? " feature" : ""}">
+    ${feature ? '<span class="ribbon">Story of the week</span>' : ""}
     <div class="ncard-top">${THEME_ICONS[NEWS_ICONS[n.category]]()}<div><span class="ncat">${esc(NEWS_CATEGORIES[n.category])}</span><span class="ndate">${fmtShort(n.date)}</span></div></div>
     <h3><a href="${esc(n.url)}" rel="noopener">${esc(n.title)}</a></h3>
-    <p class="desc">${esc(n.summary)}</p>
-    <a class="nsource" href="${esc(n.url)}" rel="noopener">Read more at ${esc(n.source)} →</a>
+    ${feature ? n.story.map((p) => `<p class="desc">${esc(p)}</p>`).join("") : `<p class="desc">${esc(n.summary)}</p>`}
+    ${feature
+      ? `<div class="feature-foot"><a class="nsource" href="${esc(n.url)}" rel="noopener">Read more at ${esc(n.source)} →</a><div class="feature-art">${toddlerIllo()}</div></div>`
+      : `<a class="nsource" href="${esc(n.url)}" rel="noopener">Read more at ${esc(n.source)} →</a>`}
   </article>`;
 }
 
@@ -301,7 +305,8 @@ export function homePage(data, now) {
         : `<p class="quiet">Nothing listed for this week yet${later[area].length ? `. <a href="/events/#${area}">See what's coming up</a>.` : ", but new events are added every Monday and Wednesday."}</p>`}
     </div></section>`;
   };
-  const news = currentNews(data, now, 45).slice(0, 3);
+  const story = featuredStory(data, now);
+  const news = [...(story ? [story] : []), ...currentNews(data, now, 45).filter((n) => n !== story)].slice(0, 3);
   const week = Math.floor(Date.parse(`${now}T12:00:00Z`) / (7 * 864e5));
   const spot = [0, 1, 2].map((i) => data.places[(week * 3 + i) % data.places.length]).filter((p, i, a) => a.indexOf(p) === i);
   const body = `
@@ -333,7 +338,7 @@ export function homePage(data, now) {
 
   ${news.length ? `<section class="band news-band"><div class="wrap">
     <div class="sec-head"><div><p class="label">What parents should know</p><h2>Neighborhood news ${SPARK}</h2></div><a class="more" href="/news/">All news →</a></div>
-    <div class="ncards">${news.map(newsCard).join("")}</div>
+    <div class="ncards${story ? " with-feature" : ""}">${news.map(newsCard).join("")}</div>
   </div></section>` : ""}
 
   ${data.deals.length ? `<section class="band"><div class="wrap">
@@ -435,7 +440,8 @@ export function placesPage(data, now) {
 
 export function newsPage(data, now) {
   const { config } = data;
-  const news = currentNews(data, now, 90);
+  const top = featuredStory(data, now);
+  const news = [...(top ? [top] : []), ...currentNews(data, now, 90).filter((n) => n !== top)];
   const body = `
   <section class="page-head"><div class="wrap head-art"><div class="head-copy">
     <p class="label">News</p>
@@ -475,7 +481,9 @@ export function issuePage(data, issue, now) {
   </div></section>
   <section class="band"><div class="wrap narrow issue">
     ${issue.sections
-      .map((s) => `<h2>${esc(s.heading)}</h2><ul class="issue-items">${s.items
+      .map((s) => s.items[0]?.feature
+        ? `<h2>${esc(s.heading)}</h2><article class="issue-feature"><h3><a href="${esc(s.items[0].url)}" rel="noopener">${esc(s.items[0].title)}</a></h3>${s.items[0].paragraphs.map((p) => `<p>${esc(p)}</p>`).join("")}<p><a href="${esc(s.items[0].url)}" rel="noopener">Read more at ${esc(s.items[0].when)} →</a></p></article>`
+        : `<h2>${esc(s.heading)}</h2><ul class="issue-items">${s.items
         .map((i) => `<li><h3><a href="${esc(i.url)}" rel="noopener">${esc(i.title)}</a>${i.tentative ? ' <span class="tag t-tent" title="The organizer hasn&#39;t announced a final date yet, or sources disagree. We&#39;ll update it when it&#39;s set.">Date may change</span>' : ""}</h3>${i.news ? `<p class="quiet">${esc(i.when)}</p>` : i.deal ? `<p class="ev-where">${esc(i.when)}${i.where ? ` · ${esc(i.where)}` : ""}</p>` : `<p class="ev-where">${esc(i.when)} · ${esc(i.where)}</p><p class="quiet">${esc(i.ages)} · ${esc(i.cost)}</p>`}<p>${esc(i.description)}</p></li>`)
         .join("")}</ul>`)
       .join("")}

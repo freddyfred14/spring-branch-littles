@@ -366,3 +366,23 @@ p { margin: 0; }
 @media (max-width: 640px) {
   .dealboard, .dealboard.compact { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
+
+/* story of the week */
+.ncard.feature { grid-column: span 2; background: var(--card); border-color: var(--sun); box-shadow: 0 8px 0 var(--sun-soft); padding-top: 26px; }
+.ncard.feature h3 { font-size: 26px; padding-right: 120px; }
+.ncard.feature .desc { font-size: 16.5px; color: var(--ink); }
+.ncard.feature .ribbon { background: var(--sun); color: var(--ink); box-shadow: 0 3px 0 #c98a3d; }
+.ncard.feature .ribbon::after { border-left-color: #c98a3d; }
+.issue-feature { background: var(--card); border: 2px solid var(--sun); border-radius: var(--r-lg); padding: 22px 24px; display: grid; gap: 10px; box-shadow: 0 8px 0 var(--sun-soft); }
+.issue-feature h3 { font-size: 24px; }
+.issue-feature h3 a { color: var(--ink); text-decoration: none; }
+@media (max-width: 700px) {
+  .ncard.feature { grid-column: auto; }
+  .ncard.feature h3 { padding-right: 0; padding-top: 18px; font-size: 22px; }
+}
+.ncards.with-feature { grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); }
+.ncards.with-feature .ncard.feature { grid-column: auto; grid-row: span 2; }
+@media (max-width: 860px) { .ncards.with-feature { grid-template-columns: 1fr; } .ncards.with-feature .ncard.feature { grid-row: auto; } }
+.feature-foot { margin-top: auto; display: flex; align-items: flex-end; justify-content: space-between; gap: 12px; }
+.feature-art { width: 200px; flex: none; margin-bottom: -6px; }
+@media (max-width: 860px) { .feature-art { width: 96px; } }

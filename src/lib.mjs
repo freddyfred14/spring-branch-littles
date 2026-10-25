@@ -160,6 +160,9 @@ export function agenda(data, start, end) {
 }
 
 export const placeById = (data, id) => data.places.find((p) => p.id === id);
+// The story of the week, if there is one.
+export const featuredStory = (data, now) => currentNews(data, now, 60).find((n) => n.featured) || null;
+
 // News that's still worth showing: not expired, newest first.
 export function currentNews(data, now, days = 60) {
   return data.news
@@ -268,6 +271,7 @@ export function validate(data, now = today()) {
     if (n.area != null && !AREAS[n.area]) err(w, `area must be one of ${Object.keys(AREAS).join(", ")}`);
     if (n.expires != null && !DATE_RE.test(n.expires)) err(w, "expires must be YYYY-MM-DD or null");
     if (n.date < addDays(now, -90)) warn(w, "older than 90 days; remove it");
+    if (n.featured && (!Array.isArray(n.story) || !n.story.length || n.story.some((p) => typeof p !== "string" || p.length > 700))) err(w, "the featured story needs a story: a list of 1–4 paragraphs, each under 700 characters");
   });
 
   data.restaurants.forEach((r, i) => {
@@ -300,6 +304,8 @@ export function validate(data, now = today()) {
     if (d.expires != null && !DATE_RE.test(d.expires)) err(w, "expires must be YYYY-MM-DD or null");
     if (!d.lastVerified || d.lastVerified < addDays(now, -30)) warn(w, "deal not verified in the last 30 days");
   });
+
+  if (data.news.filter((n) => n.featured).length > 1) err("news", "only one news item can be featured (the story of the week)");
 
   data.issues.forEach((iss) => {
     const w = `issues/${iss.date}`;

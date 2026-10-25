@@ -166,6 +166,8 @@ Short, useful updates for parents in Spring Branch and Memorial. Each item is a 
   "source": "Spring Branch Management District",
   "area": "local",
   "expires": null,
+  "featured": false,
+  "story": null,
   "lastVerified": "2026-11-02"
 }
 ```
@@ -194,6 +196,7 @@ The newsletter ("The Littles List") goes out automatically Thursday morning, but
 - **Voice:** a Spring Branch mom texting a friend. Warm, practical and specific. No exclamation-point pileups, no "fun-filled," no emoji in the subject.
 - **Subject:** under 60 characters, and it names real things from this week.
 - Leave out `picks` to include every weekend event (featured first).
+- **Pick the story of the week.** Choose the most interesting news item for local parents, usually something new from the past week: an opening, a new playground, a big change at a school or library. Set `"featured": true` on it in `data/news.json`, set every other item to `"featured": false`, and give it a `story`: 2–3 short paragraphs (under 700 characters each) in your own words. Cover what's happening, when, and why a parent would care. Only use facts from the source; don't add details. It opens the newsletter and gets the big card on the site. Never feature the same item two weeks in a row.
 - Preview it with `node scripts/newsletter.mjs --date <tomorrow>`. If the weekend section is empty, look harder for weekend events. A newsletter with nothing to do on the weekend is the worst outcome.
 
 ## If something goes wrong

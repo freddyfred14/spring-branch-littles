@@ -9,7 +9,12 @@
     "source": "Houston Chronicle",
     "area": "local",
     "expires": null,
-    "lastVerified": "2026-10-24"
+    "lastVerified": "2026-10-24",
+    "featured": true,
+    "story": [
+      "Memorial City is getting a new hangout built with families in mind. Greenside, a 35,000-square-foot development at 1085 Gessner, is set to open this fall. It's designed around the outdoors, and the plans include a children's play structure, so it could become an easy spot for a coffee or a bite while the kids climb.",
+      "The first tenants announced are the fast-casual restaurant Honest Mary's, Leemoo for health food, Hiatus Spa and a Solidcore fitness studio, with more to come. We'll keep an eye on the opening date and share it here as soon as it's set."
+    ]
   },
   {
     "id": "2026-10-24-memorial-groves-playground",
@@ -21,7 +26,8 @@
     "source": "CultureMap Houston",
     "area": "local",
     "expires": null,
-    "lastVerified": "2026-10-24"
+    "lastVerified": "2026-10-24",
+    "featured": false
   },
   {
     "id": "2026-10-22-sbm-storytime-canceled",
@@ -33,6 +39,7 @@
     "source": "Harris County Public Library",
     "area": "local",
     "expires": "2026-11-21",
-    "lastVerified": "2026-10-24"
+    "lastVerified": "2026-10-24",
+    "featured": false
   }
 ]
