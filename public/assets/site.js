@@ -63,14 +63,29 @@ document.querySelectorAll(".perk-filters").forEach((bar) => {
   });
 });
 
-// Phone menu.
+// Menus: "More" in the menu bar, and "Menu" on phones. Both close on Escape or a tap elsewhere.
+const header = document.querySelector(".site-header");
 const menuBtn = document.querySelector(".menu-btn");
-if (menuBtn) {
-  menuBtn.addEventListener("click", () => {
-    const open = document.querySelector(".site-header").classList.toggle("nav-open");
-    menuBtn.setAttribute("aria-expanded", String(open));
-  });
-}
+const moreBtn = document.querySelector(".more-btn");
+const setMenu = (open) => {
+  header.classList.toggle("nav-open", open);
+  menuBtn?.setAttribute("aria-expanded", String(open));
+};
+const setMore = (open) => {
+  moreBtn?.closest(".nav-more").classList.toggle("open", open);
+  moreBtn?.setAttribute("aria-expanded", String(open));
+};
+menuBtn?.addEventListener("click", () => setMenu(!header.classList.contains("nav-open")));
+moreBtn?.addEventListener("click", () => setMore(moreBtn.getAttribute("aria-expanded") !== "true"));
+document.addEventListener("click", (e) => {
+  if (!e.target.closest(".nav-more")) setMore(false);
+  if (!e.target.closest(".site-header")) setMenu(false);
+});
+document.addEventListener("keydown", (e) => {
+  if (e.key !== "Escape") return;
+  if (moreBtn?.getAttribute("aria-expanded") === "true") { setMore(false); moreBtn.focus(); }
+  if (header?.classList.contains("nav-open")) { setMenu(false); menuBtn.focus(); }
+});
 
 // Arrow buttons for sideways-scrolling rows (shown on larger screens when there's more to see).
 document.querySelectorAll(".ecards.strip, .dcarousel").forEach((row) => {

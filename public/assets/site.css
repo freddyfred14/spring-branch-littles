@@ -546,7 +546,7 @@ p { margin: 0; }
 .header-actions { display: flex; align-items: center; gap: 8px; }
 .icon-btn { width: 44px; height: 44px; display: grid; place-items: center; border-radius: 50%; color: var(--ink); background: transparent; border: 0; cursor: pointer; }
 .icon-btn:hover { background: var(--dino-soft); }
-.icon-btn svg { width: 24px; height: 24px; }
+.icon-btn svg { width: 22px; height: 22px; }
 .menu-btn { display: none; }
 .btn-pink { background: var(--pink-strong); box-shadow: 0 4px 0 #8f3655; }
 .btn-red { background: var(--red); box-shadow: 0 4px 0 var(--red-deep); }
@@ -554,21 +554,7 @@ p { margin: 0; }
 .btn-soft:hover { border-color: var(--dino); }
 .btn-soft svg { width: 20px; height: 20px; color: var(--dino-deep); }
 .nav-cta { padding: 9px 18px; font-size: 16px; }
-@media (max-width: 860px) {
-  .site-header .wrap { justify-content: space-between; flex-wrap: nowrap; padding-block: 8px; }
-  .site-header .logo, .home .site-header .logo { height: 58px; }
-  .home .site-header .brand { display: inline-flex; }
-  .home .site-header .wrap { padding-block: 8px; }
-  .menu-btn { display: grid; }
-  #site-nav { display: none; }
-  .site-header.nav-open .wrap { flex-wrap: wrap; }
-  .site-header.nav-open #site-nav { display: block; order: 3; width: 100%; }
-  .site-header.nav-open #site-nav ul { flex-direction: column; align-items: stretch; gap: 2px; padding-bottom: 8px; }
-  .site-header.nav-open #site-nav a { font-size: 18px; padding: 10px 14px; }
-  .nav-cta { padding: 8px 14px; font-size: 15px; }
-  .hero-logo { display: none; }
-  .hero { padding-block: 10px 0; }
-}
+/* (phone header rules live in "Menu bar and dropdowns" below) */
 
 /* filters: one swipeable row on phones */
 @media (max-width: 860px) {
@@ -655,3 +641,112 @@ p { margin: 0; }
 .join-points b { color: var(--ink); }
 .join-copy .signup-card .quiet { font-size: 14px; }
 @media (max-width: 860px) { .join-grid { grid-template-columns: 1fr; } .join-logo { display: none; } .join-hero { padding-top: 16px; } }
+
+/* ---------- Menu bar and dropdowns ---------- */
+.site-header { position: relative; z-index: 30; }
+.site-header #site-nav > ul { background: var(--card); border: 2px solid var(--line); border-radius: 999px; padding: 4px; gap: 2px; flex-wrap: nowrap; }
+.site-header nav a, .more-btn { min-height: 42px; padding: 0 15px; font-family: var(--display); font-weight: 600; font-size: 16px; color: var(--ink); border-radius: 999px; white-space: nowrap; }
+.more-btn { display: inline-flex; align-items: center; gap: 4px; background: transparent; border: 0; cursor: pointer; }
+.more-btn:hover { background: var(--dino-soft); }
+.more-btn .caret { width: 16px; height: 16px; transition: transform .2s; }
+.nav-more.open .caret { transform: rotate(180deg); }
+.site-header nav a[aria-current="page"], .nav-more.current > .more-btn { background: var(--dino-deep); color: #fff; }
+.nav-more { position: relative; }
+.site-header .dropdown { display: none; position: absolute; right: 0; top: calc(100% + 10px); min-width: 230px; flex-direction: column; gap: 2px; background: var(--card); border: 2px solid var(--line); border-radius: 18px; padding: 6px; box-shadow: 0 14px 34px rgba(36, 30, 26, .16); }
+.nav-more.open .dropdown { display: flex; }
+.site-header .dropdown a { width: 100%; border-radius: 12px; }
+.site-header .dropdown a[aria-current="page"] { background: var(--dino-soft); color: var(--dino-deep); }
+
+@media (max-width: 980px) {
+  .site-header .wrap { justify-content: space-between; flex-wrap: nowrap; padding-block: 10px; position: relative; }
+  .site-header .logo { height: 52px; }
+  .home .site-header .brand { display: none; }
+  .home .site-header .wrap { padding-block: 10px 0; }
+  .header-actions { margin-left: auto; gap: 6px; }
+  .search-btn { width: 40px; height: 40px; }
+  .search-btn svg { width: 19px; height: 19px; }
+  .nav-cta { padding: 0 15px; min-height: 40px; display: inline-flex; align-items: center; font-size: 15px; box-shadow: 0 3px 0 #8f3655; }
+  .menu-btn { display: inline-flex; align-items: center; gap: 6px; min-height: 40px; padding: 0 14px 0 11px; background: var(--card); border: 2px solid var(--line); border-radius: 999px; font-family: var(--display); font-weight: 600; font-size: 15px; color: var(--ink); cursor: pointer; }
+  .menu-btn svg { width: 18px; height: 18px; }
+  .menu-btn[aria-expanded="true"] { border-color: var(--dino-deep); }
+  #site-nav { display: none; position: absolute; left: 12px; right: 12px; top: calc(100% + 2px); background: var(--card); border: 2px solid var(--line); border-radius: 20px; padding: 8px; box-shadow: 0 16px 40px rgba(36, 30, 26, .18); }
+  .site-header.nav-open #site-nav { display: block; }
+  .site-header #site-nav > ul, .site-header .dropdown { flex-direction: column; align-items: stretch; background: none; border: 0; border-radius: 0; padding: 0; gap: 2px; box-shadow: none; }
+  .site-header #site-nav a { width: 100%; min-height: 48px; font-size: 18px; border-radius: 12px; }
+  .more-btn { display: none; }
+  .site-header .dropdown { display: flex; position: static; min-width: 0; border-top: 2px solid var(--line); margin-top: 6px; padding-top: 6px; }
+  /* the big logo greets you on the homepage; other pages use the small one in the header */
+  .hero-logo { display: block; max-width: 240px; }
+  .hero { padding-block: 4px 0; }
+}
+
+/* ---------- Structure: clear sections ----------
+   Sections alternate between cream paper and white "zones", each opened by a big title over a rule.
+   Color has a job:  green = the site (titles, active menu, dates, Free)
+                     pink  = the newsletter (Subscribe, signup boxes)
+                     red   = "More info"
+                     gold  = Story of the week and school notices
+                     blue  = text links                                            */
+body { background-image: none; }
+.band { padding-block: 48px; }
+.zone { background: var(--card); border-block: 2px solid var(--line); }
+.zone .region, .zone .band { background: transparent; border: 0; }
+.zone .band.whatson { padding-bottom: 8px; }
+.region + .region, .zone .region + .region { border-top: 2px solid var(--line); }
+.sec-head { border-bottom: 2px solid var(--line); padding-bottom: 14px; margin-bottom: 26px; }
+.sec-head h2 { font-size: clamp(32px, 4.4vw, 46px); }
+.sec-head .label, .page-head .label { font-size: 15px; }
+.region-head h2 { font-size: clamp(23px, 2.8vw, 30px); }
+.region-art { width: 72px; }
+.region-head .label { color: var(--muted); }
+.regulars, .regulars.zone { background: var(--card); border-radius: 0; max-width: none; margin-top: 0; }
+.spark, .spark.pink { color: var(--sun); }
+.more { background: var(--card); color: var(--dino-deep); border: 2px solid var(--dino-soft); }
+.more:hover { background: var(--dino-deep); border-color: var(--dino-deep); color: #fff; }
+@media (max-width: 860px) {
+  .band { padding-block: 34px; }
+  .region-art { width: 56px; }
+}
+
+/* one card style everywhere: white, soft border, neutral shadow */
+.ecard, .ecard.c1, .ecard.c2, .ecard.c3, .rcard, .rcard.c1, .rcard.c2, .rcard.c3 { box-shadow: 0 4px 0 var(--line); }
+.ecard:hover { box-shadow: 0 7px 0 var(--line); border-color: var(--dino); }
+.zone .ecard, .zone .wcard, .zone .ncard, .zone .rcard, .zone .place, .zone .age-card { background: var(--card); }
+.datetile, .ecard.c1 .datetile, .ecard.c2 .datetile, .ecard.c3 .datetile { transform: rotate(-2deg); }
+.dt-dow, .ecard .dt-dow { background: var(--dino-deep); color: #fff; }
+.weekly-pill, .ecard .weekly-pill { color: var(--dino-deep); background: var(--dino-soft); }
+.wcard { background: var(--card); border: 2px solid var(--line); }
+.wcard:hover { border-color: var(--dino); }
+.dots span.on, .wcard .dots span.on { background: var(--dino-deep); color: #fff; }
+.ncard::before, .ncard.c1::before, .ncard.c2::before, .ncard.c3::before { background: var(--dino); }
+.rbadge, .rbadge.m1, .rbadge.m2, .rbadge.m3 { background: var(--dino-deep); color: #fff; }
+.rdeal { background: var(--dino-soft); color: var(--dino-deep); }
+.day-head { background: var(--dino-soft); transform: none; }
+.age-card { background: var(--card); border: 2px solid var(--line); box-shadow: 0 4px 0 var(--line); transform: none; }
+.age-card:hover { transform: translateY(-3px); border-color: var(--dino); }
+.place-band, .place.t-library .place-band, .place.t-indoor-play .place-band, .place.t-attraction .place-band { background-color: var(--dino-soft); }
+.event-icon { background: var(--dino-soft); }
+.ig-cta { background: var(--paper); }
+.ig-cta .btn-ghost { background: var(--dino-deep); box-shadow: 0 4px 0 #365a42; }
+
+/* tags: only "Free" gets color */
+.t-age, .t-in, .t-paid, .t-perk { background: var(--paper-2); color: var(--ink); }
+.t-free { background: var(--dino-soft); color: var(--dino-deep); }
+
+/* filters: one "on" color */
+.chip[aria-pressed="true"], .chip[aria-pressed="true"][data-flag] { background: var(--dino-deep); border-color: var(--dino-deep); color: #fff; }
+.chip[aria-pressed="true"] small { color: #fff; opacity: .85; }
+
+/* deals: white cards; close-to-home ones get a green edge; today is green */
+.deal, .deal.local, .dcard, .dcard.local { background: var(--card); border: 2px solid var(--line); }
+.deal.local, .dcard.local { border-left: 6px solid var(--dino); }
+.zone .deal, .zone .dcard { background: var(--paper); }
+.deal-what, .deal.local .deal-what { color: var(--dino-deep); }
+.dcard .dday { background: var(--paper-2); }
+.dcard.today .dday { background: var(--dino-deep); border-color: var(--dino-deep); color: #fff; }
+.dealday.today { border-color: var(--dino-deep); box-shadow: 0 4px 0 var(--dino-soft); }
+.dealday.today h3 { color: var(--dino-deep); }
+.dcard:hover { border-color: var(--dino-deep); }
+.dcarousel { scrollbar-color: var(--dino) transparent; }
+.story-band { padding-block: 8px 48px; }
+@media (max-width: 860px) { .story-band { padding-bottom: 34px; } }

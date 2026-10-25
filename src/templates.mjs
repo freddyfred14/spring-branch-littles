@@ -21,15 +21,24 @@ const GRASS = `<div class="grass" aria-hidden="true"></div>`;
 const ICON_SEARCH = `<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="M15.5 15.5 21 21" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>`;
 const ICON_MENU = `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>`;
 
+// The menu bar shows the main pages; the rest sit in the "More" dropdown. On phones, all of it opens from "Menu".
 const NAV = [
   ["/", "This week"],
   ["/events/", "Calendar"],
   ["/places/", "Places"],
-  ["/eats/", "Eats"],
-  ["/news/", "News"],
-  ["/newsletter/", "Newsletter"],
-  ["/about/", "About"],
+  ["/eats/", "Kid-friendly eats"],
 ];
+const NAV_MORE = [
+  ["/news/", "Neighborhood news"],
+  ["/newsletter/", "Newsletter archive"],
+  ["/search/", "Search"],
+  ["/about/", "About us"],
+];
+const ICON_CARET = `<svg class="caret" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+
+function navLinks(items, path) {
+  return items.map(([href, label]) => `<li><a href="${href}"${href === path ? ' aria-current="page"' : ""}>${label}</a></li>`).join("");
+}
 
 export function signupForm(config, id = "signup") {
   return `<form class="signup-form" action="https://buttondown.com/api/emails/embed-subscribe/${esc(config.buttondownUsername)}" method="post">
@@ -70,11 +79,17 @@ ${WATERCOLOR_DEFS}
 <a class="skip" href="#main">Skip to content</a>
 <header class="site-header"><div class="wrap">
   <a class="brand" href="/">${LOGO}</a>
-  <nav id="site-nav" aria-label="Main"><ul>${NAV.map(([href, label]) => `<li><a href="${href}"${href === path ? ' aria-current="page"' : ""}>${label}</a></li>`).join("")}</ul></nav>
+  <nav id="site-nav" aria-label="Main"><ul>
+    ${navLinks(NAV, path)}
+    <li class="nav-more${NAV_MORE.some(([href]) => href === path) ? " current" : ""}">
+      <button class="more-btn" type="button" aria-expanded="false" aria-controls="nav-more-list">More ${ICON_CARET}</button>
+      <ul class="dropdown" id="nav-more-list">${navLinks(NAV_MORE, path)}</ul>
+    </li>
+  </ul></nav>
   <div class="header-actions">
-    <a class="icon-btn" href="/search/" aria-label="Search">${ICON_SEARCH}</a>
+    <a class="icon-btn search-btn" href="/search/" aria-label="Search">${ICON_SEARCH}</a>
     <a class="btn btn-pink nav-cta" href="/join/">Subscribe</a>
-    <button class="icon-btn menu-btn" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Menu">${ICON_MENU}</button>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="site-nav">${ICON_MENU}<span>Menu</span></button>
   </div>
 </div></header>
 <main id="main">
@@ -153,10 +168,8 @@ function dateTile(x, wk) {
 }
 
 function eventCard(data, x, i, wk) {
-  const thisWeekend = (x.endDate || x.date) >= wk.start && x.date <= wk.end;
   const theme = themeOf(x);
-  return `<article class="ecard c${i % 4}${x.image ? " has-photo" : ""}" ${dataAttrs(x)}>
-    ${thisWeekend ? '<span class="ribbon">This weekend</span>' : ""}
+  return `<article class="ecard${x.image ? " has-photo" : ""}" ${dataAttrs(x)}>
     ${photo(x)}
     <div class="ecard-top">
       ${dateTile(x, wk)}
@@ -175,7 +188,7 @@ function eventCard(data, x, i, wk) {
 // A weekly program, listed once, with the days it runs lit up.
 function weeklyCard(data, r, i) {
   const week = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
-  return `<article class="wcard c${i % 4}" ${dataAttrs(r)}>
+  return `<article class="wcard" ${dataAttrs(r)}>
     <div class="dots" aria-label="${esc(r.days.join(", "))}">${week.map((d) => `<span class="${r.days.includes(d) ? "on" : ""}" aria-hidden="true">${d[0]}</span>`).join("")}</div>
     <h3><a class="card-link" href="${eventPath(r)}">${esc(r.title)}</a></h3>
     <p class="meta">${CLOCK}<span>${r.frequency ? `${esc(r.frequency)} · ` : ""}${fmtTimeRange(r.startTime, r.endTime)}</span></p>
@@ -225,7 +238,7 @@ function weeklySection(data) {
   if (!data.recurring.length) return "";
   const order = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
   const list = [...data.recurring].sort((a, b) => order.indexOf(a.days[0]) - order.indexOf(b.days[0]) || (a.startTime || "").localeCompare(b.startTime || ""));
-  return `<section class="band region regulars" id="every-week" data-group><div class="wrap">
+  return `<section class="band region regulars zone" id="every-week" data-group><div class="wrap">
     <div class="region-head">
       <div class="region-art">${readerIllo()}</div>
       <div><p class="label">The regulars</p><h2>Every week</h2><p class="quiet">Storytimes and open play you can count on.</p></div>
@@ -253,7 +266,7 @@ function storyBanner(n) {
 
 function newsCard(n, i) {
   const feature = n.featured && n.story?.length;
-  return `<article class="ncard c${i % 4}${feature ? " feature" : ""}${n.image ? " has-photo" : ""}" id="${esc(n.id)}">
+  return `<article class="ncard${feature ? " feature" : ""}${n.image ? " has-photo" : ""}" id="${esc(n.id)}">
     ${feature ? '<span class="ribbon">Story of the week</span>' : ""}
     ${n.image ? photo(n, feature ? "nfig-top" : "cphoto") : ""}
     <div class="ncard-top">${THEME_ICONS[NEWS_ICONS[n.category]]()}<div><span class="ncat">${esc(NEWS_CATEGORIES[n.category])}</span><span class="ndate">${fmtShort(n.date)}</span></div></div>
@@ -322,12 +335,12 @@ function restaurantBadge(r, i) {
   if (r.logo) return `<span class="rbadge logo"><img src="${esc(r.logo)}" alt="${esc(r.name)} logo" loading="lazy"></span>`;
   const words = r.name.replace(/^the\s+/i, "").split(/[\s–-]+/).filter((w) => /^[a-z0-9]/i.test(w));
   const initials = (words[0]?.[0] || "") + (words[1]?.[0] || "");
-  return `<span class="rbadge m${i % 4}" aria-hidden="true">${esc(initials.toUpperCase())}</span>`;
+  return `<span class="rbadge" aria-hidden="true">${esc(initials.toUpperCase())}</span>`;
 }
 
 function restaurantCard(data, r, i) {
   const deals = activeDeals(data, "0000-00-00").filter((d) => d.restaurantId === r.id);
-  return `<article class="rcard c${i % 4}${r.image ? " has-photo" : ""}" data-perks="${r.perks.join(" ")}">
+  return `<article class="rcard${r.image ? " has-photo" : ""}" data-perks="${r.perks.join(" ")}">
     ${photo(r)}
     <div class="rcard-head">${restaurantBadge(r, i)}<h3><a href="${esc(r.url)}" rel="noopener">${esc(r.name)}</a></h3><span class="price">${esc(r.price)}</span></div>
     <p class="meta">${PIN}<span>${esc(r.address || r.neighborhood)}</span></p>
@@ -358,10 +371,10 @@ export function eatsPage(data, now) {
     <p class="jump"><a href="#deals">Kids eat free</a><a href="#restaurants">Restaurants</a></p>
   </div>${iceCreamIllo()}</div></section>
 
-  <section class="band" id="deals"><div class="wrap">
+  <section class="band zone" id="deals"><div class="wrap">
     <div class="sec-head"><div><p class="label">Deals by day</p><h2>Kids eat free ${SPARK}</h2></div></div>
     ${dealBoard(data, now)}
-    <p class="quiet deal-note">Deals change often and usually need an adult entrée. Call ahead or check the restaurant's site before you go. Green deals are close to home; blue ones are around Houston.</p>
+    <p class="quiet deal-note">Deals change often and usually need an adult entrée. Call ahead or check the restaurant's site before you go. Deals with a green edge are close to home.</p>
   </div></section>
 
   <section class="band whatson" id="restaurants"><div class="wrap">
@@ -420,6 +433,7 @@ export function homePage(data, now) {
   </div></section>
   ${GRASS}
 
+  <div class="zone">
   <section class="band whatson"><div class="wrap">
     <div class="sec-head"><div><p class="label">${fmtShort(now)} – ${fmtShort(weekEnd)} · ${weekCount} things to do</p><h2>This week ${SPARK}</h2></div><a class="more" href="/events/">Coming up →</a></div>
     ${breakNotices(data, now, weekEnd)}
@@ -428,6 +442,7 @@ export function homePage(data, now) {
   <div id="listings" class="filterable">
     ${region("local")}
     ${region("houston")}
+  </div>
   </div>
 
   <section class="band midsignup"><div class="wrap"><div class="mid-card">
@@ -441,7 +456,7 @@ export function homePage(data, now) {
 
   ${story ? storyBanner(story) : ""}
 
-  ${news.length ? `<section class="band news-band"><div class="wrap">
+  ${news.length ? `<section class="band zone news-band"><div class="wrap">
     <div class="sec-head"><div><p class="label">What parents should know</p><h2>Neighborhood news ${SPARK_PINK}</h2></div><a class="more" href="/news/">All news →</a></div>
     <div class="ncards">${news.map(newsCard).join("")}</div>
   </div></section>` : ""}
@@ -451,14 +466,14 @@ export function homePage(data, now) {
     ${dealCarousel(data, now)}
   </div></section>` : ""}
 
-  <section class="band"><div class="wrap">
+  <section class="band zone"><div class="wrap">
     <div class="sec-head"><div><p class="label">Worth a visit</p><h2>Places to try this weekend ${SPARK}</h2></div><a class="more" href="/places/">All places →</a></div>
     <div class="places">${spot.map((p) => placeCard(p, { short: true })).join("")}</div>
   </div></section>
 
   <section class="band ages-band"><div class="wrap">
     <div class="sec-head"><div><p class="label">Find your stage</p><h2>Browse by age ${SPARK_PINK}</h2></div></div>
-    <div class="ages">${Object.entries(AGES).map(([k, v], i) => `<a class="age-card c${i}" href="/events/?age=${k}">${AGE_ILLOS[k]()}<b>${v.label}</b><span class="script">ages ${v.range}</span></a>`).join("")}</div>
+    <div class="ages">${Object.entries(AGES).map(([k, v], i) => `<a class="age-card" href="/events/?age=${k}">${AGE_ILLOS[k]()}<b>${v.label}</b><span class="script">ages ${v.range}</span></a>`).join("")}</div>
   </div></section>
 
   ${data.gallery.length >= 3 ? `<section class="band"><div class="wrap">
@@ -466,7 +481,7 @@ export function homePage(data, now) {
     <div class="gallery">${data.gallery.slice(0, 7).map((g, i) => `<figure class="g${i}"><img src="${esc(g.image)}" alt="${esc(g.imageAlt)}" loading="lazy"><figcaption>${esc(g.caption)}</figcaption></figure>`).join("")}</div>
   </div></section>` : ""}
 
-  <section class="band"><div class="wrap ig-cta">
+  <section class="band zone"><div class="wrap ig-cta">
     <div class="ig-art">${toddlerIllo()}<img class="ig-dino" src="/img/dino-head.png" alt="" width="512" height="512"></div>
     <div>
       <p class="label">On Instagram</p>
@@ -490,7 +505,7 @@ export function eventsPage(data, now) {
       if (!months.has(m)) months.set(m, []);
       months.get(m).push(e);
     }
-    return `<section class="band region" id="${area}" data-group><div class="wrap">
+    return `<section class="band region${area === "local" ? " zone" : ""}" id="${area}" data-group><div class="wrap">
       ${regionHead(area)}
       ${months.size
         ? [...months.entries()].map(([m, list]) => `<div class="month" data-day><h3 class="month-head">${esc(m)}</h3><div class="ecards">${list.map((x, i) => eventCard(data, x, i, wk)).join("")}</div></div>`).join("") + groupEmpty
@@ -543,7 +558,7 @@ export function placesPage(data, now) {
       ${Object.entries(PLACE_TYPES)
         .map(([type, label]) => {
           const list = data.places.filter((p) => p.type === type);
-          return list.length ? `<section class="day" data-day><h2 class="day-head c${Object.keys(PLACE_TYPES).indexOf(type) % 4}"><span>${esc(label)}</span></h2><div class="places">${list.map(placeCard).join("")}</div></section>` : "";
+          return list.length ? `<section class="day" data-day><h2 class="day-head"><span>${esc(label)}</span></h2><div class="places">${list.map(placeCard).join("")}</div></section>` : "";
         })
         .join("")}
     </div>
@@ -688,7 +703,7 @@ export function eventPage(data, x, now) {
   <section class="page-head event-head"><div class="wrap">
     <p class="label crumbs"><a href="/">This week</a> · <a href="/events/">Calendar</a> · ${esc(AREAS[areaOf(data, x)].title)}</p>
     <div class="event-grid">
-      <div class="event-art">${x.image ? photo(x, "event-photo") : `<div class="event-icon c${themeOf(x).length % 4}">${dateTile(item, wk)}${THEME_ICONS[themeOf(x)]()}</div>`}</div>
+      <div class="event-art">${x.image ? photo(x, "event-photo") : `<div class="event-icon">${dateTile(item, wk)}${THEME_ICONS[themeOf(x)]()}</div>`}</div>
       <div class="event-copy">
         <h1>${esc(x.title)}</h1>
         <ul class="event-facts">
