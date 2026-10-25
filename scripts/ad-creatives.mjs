@@ -5,7 +5,7 @@
 //   AD_TEST_IMAGE=public/img/...jpg    skip OpenAI and use this picture (to check layouts)
 // Writes marketing/ads/<date>/<concept>-feed.png (1080×1350), -story.png (1080×1920), -square.png (1080×1080)
 // and marketing/ads/<date>/README.md with the copy for Ads Manager.
-import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import { mkdirSync, readFileSync, writeFileSync, existsSync } from "node:fs";
 import { join } from "node:path";
 import { createRequire } from "node:module";
 import { ROOT, loadAll, today } from "../src/lib.mjs";
@@ -103,16 +103,16 @@ function layouts(c, photo) {
     // logo sits below the top strip and the button above the bottom strip.
     story: [1080, 1920, `
       <div class="photo" style="${bg};height:1100px"></div>
-      <div style="position:absolute;left:0;right:0;top:860px;height:240px;background:linear-gradient(transparent,#fbf6ec)"></div>
-      <div class="panel" style="top:1100px;bottom:300px;padding:0 76px;${stack(20)};align-items:center;text-align:center;justify-content:flex-start">
+      <div style="position:absolute;left:0;right:0;top:800px;height:240px;background:linear-gradient(transparent,#fbf6ec)"></div>
+      <div class="panel" style="top:1040px;bottom:300px;padding:0 76px;${stack(20)};align-items:center;text-align:center;justify-content:flex-start">
+        <img src="${LOGO}" style="width:240px;display:block;margin-bottom:6px">
         <p class="eyebrow" style="font-size:34px">${c.eyebrow}</p>
         <h1 style="font-size:90px">${c.headline}</h1>
         <p class="sub" style="font-size:38px">${c.sub}</p>
         <span class="cta" style="font-size:46px;padding:26px 58px;margin-top:18px">${c.cta}</span>
         <p class="url" style="font-size:30px">${site}/join</p>
       </div>
-      <div class="panel" style="top:auto;height:300px"></div>
-      <div class="logo" style="left:50%;top:270px;width:280px;padding:14px 20px;transform:translateX(-50%)"><img src="${LOGO}"></div>`],
+      `],
     // Square 1:1: photo left, text right.
     square: [1080, 1080, `
       <div class="photo" style="${bg};width:520px;bottom:0;right:auto"></div>
@@ -147,7 +147,9 @@ const made = [];
 for (const c of CONCEPTS) {
   let photo;
   try {
-    const buf = TEST ? readFileSync(join(ROOT, TEST)) : await generateImage(KEY, model, `${STYLE} ${c.scene} ${RULES}`, { shape: "portrait", quality: process.env.OPENAI_IMAGE_QUALITY || "high" });
+    // Reuse a scene already made today, so layout changes don't pay for new images.
+    const saved = join(out, `${c.id}-photo.jpg`);
+    const buf = TEST ? readFileSync(join(ROOT, TEST)) : existsSync(saved) ? readFileSync(saved) : await generateImage(KEY, model, `${STYLE} ${c.scene} ${RULES}`, { shape: "portrait", quality: process.env.OPENAI_IMAGE_QUALITY || "high" });
     writeFileSync(join(out, `${c.id}-photo.jpg`), buf);
     photo = dataUri(buf, "image/jpeg");
   } catch (err) {
