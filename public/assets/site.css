@@ -767,3 +767,25 @@ body { background-image: none; }
 .wcard .cphoto { margin: -16px -18px 4px; border-radius: calc(var(--r-md) - 2px) calc(var(--r-md) - 2px) 0 0; }
 .wcard .cphoto img { aspect-ratio: 16 / 9; }
 .ecard .cphoto figcaption { top: 8px; bottom: auto; }
+
+/* story of the week leads the Neighborhood news section */
+.news-band .story { margin-bottom: 26px; }
+.story-copy h3 { font-size: clamp(24px, 2.6vw, 32px); }
+
+/* subscribe pop-up */
+.sub-pop { width: min(460px, calc(100vw - 32px)); border: 0; border-radius: var(--r-lg); padding: 34px 28px 20px; background: var(--card); color: var(--ink); box-shadow: 0 24px 60px rgba(36, 30, 26, .3); overflow: visible; text-align: center; }
+.sub-pop::backdrop { background: rgba(36, 30, 26, .45); }
+.sub-pop[open] { display: grid; gap: 12px; }
+.sub-pop h2 { font-size: clamp(26px, 6vw, 32px); }
+.sub-pop > p:not(.label) { color: var(--muted); font-size: 16px; }
+.sub-pop .signup-form { justify-content: center; }
+.sub-pop .signup-form .btn { background: var(--pink-strong); box-shadow: 0 4px 0 #8f3655; }
+.sub-pop-dino { width: 92px; margin: -82px auto -6px; transform: rotate(-6deg); }
+.sub-pop-close { position: absolute; top: 8px; right: 10px; width: 44px; height: 44px; border: 0; border-radius: 50%; background: transparent; font-size: 30px; line-height: 1; color: var(--muted); cursor: pointer; }
+.sub-pop-close:hover { background: var(--paper-2); color: var(--ink); }
+.sub-pop-later { justify-self: center; min-height: 44px; border: 0; background: none; font: inherit; font-size: 15px; color: var(--muted); text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+@media (prefers-reduced-motion: no-preference) {
+  .sub-pop[open] { animation: pop-in .25s ease-out; }
+  @keyframes pop-in { from { opacity: 0; transform: translateY(16px) scale(.97); } }
+}
+.sub-pop:focus { outline: none; }

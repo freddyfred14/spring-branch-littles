@@ -163,3 +163,27 @@ if (q) {
   q.addEventListener("input", run);
   fetch("/search.json").then((r) => r.json()).then((d) => { index = d; run(); });
 }
+
+// Subscribe pop-up: once, a few seconds after arriving. Not again for 30 days after "No thanks",
+// and never after someone subscribes from any form on the site.
+const pop = document.querySelector(".sub-pop");
+const store = {
+  get: (k) => { try { return localStorage.getItem(k); } catch { return null; } },
+  set: (k, v) => { try { localStorage.setItem(k, v); } catch { /* private mode */ } },
+};
+document.querySelectorAll(".signup-form").forEach((f) => f.addEventListener("submit", () => store.set("sbl-subscribed", "1")));
+if (pop && typeof pop.showModal === "function") {
+  const snoozed = Number(store.get("sbl-pop-snoozed") || 0) > Date.now() - 30 * 864e5;
+  if (!store.get("sbl-subscribed") && !snoozed) {
+    setTimeout(() => { if (!document.querySelector("dialog[open]")) { pop.showModal(); pop.focus(); } }, 5000);
+  }
+  const close = () => { store.set("sbl-pop-snoozed", String(Date.now())); pop.close(); };
+  pop.querySelectorAll("[data-pop-close]").forEach((b) => b.addEventListener("click", close));
+  pop.addEventListener("cancel", () => store.set("sbl-pop-snoozed", String(Date.now())));
+  // A tap on the dimmed background closes it too.
+  pop.addEventListener("click", (e) => {
+    if (e.target !== pop) return;
+    const r = pop.getBoundingClientRect();
+    if (e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom) close();
+  });
+}

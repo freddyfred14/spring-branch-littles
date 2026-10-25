@@ -49,6 +49,19 @@ export function signupForm(config, id = "signup") {
   </form>`;
 }
 
+// Shown once a few seconds after someone arrives (site.js decides when, and stops after a signup or a "no thanks").
+function subscribePopup(config) {
+  return `<dialog class="sub-pop" aria-labelledby="sub-pop-title" tabindex="-1">
+  <button class="sub-pop-close" type="button" aria-label="Close" data-pop-close>×</button>
+  <img class="sub-pop-dino" src="/img/dino-head.png" alt="" width="512" height="512">
+  <p class="label">Free · once a week</p>
+  <h2 id="sub-pop-title">Get ${esc(config.newsletterName)}</h2>
+  <p>${esc(config.newsletterBlurb)}: storytimes, festivals and kids-eat-free nights near you, in your inbox every week. Short enough for nap time.</p>
+  ${signupForm(config, "pop")}
+  <button class="sub-pop-later" type="button" data-pop-close>No thanks</button>
+</dialog>`;
+}
+
 export function layout(config, { title, description, path, body, now }) {
   const full = title ? `${title} · ${config.name}` : `${config.name} · ${config.tagline}`;
   const canonical = `${config.url}${path}`;
@@ -95,6 +108,7 @@ ${WATERCOLOR_DEFS}
 <main id="main">
 ${body}
 </main>
+${path === "/join/" || path === "/thanks/" ? "" : subscribePopup(config)}
 <footer class="site-footer">${GRASS}<div class="footer-band"><div class="wrap footer-grid">
   <div>
     <a class="brand" href="/">${LOGO}</a>
@@ -264,23 +278,21 @@ function weeklySection(data) {
   </div></section>`;
 }
 
-// A neighborhood news item: our short summary, linking to the original story.
-// The homepage banner for the story of the week: big photo, short teaser.
+// The story of the week: big photo, short teaser. Leads the Neighborhood news section.
 function storyBanner(n) {
-  return `<section class="story-band"><div class="wrap">
-    <article class="story${n.image ? "" : " no-photo"}">
+  return `<article class="story${n.image ? "" : " no-photo"}">
       ${n.image ? photo(n, "story-photo") : `<div class="story-art">${toddlerIllo()}</div>`}
       <div class="story-copy">
         <span class="ribbon">Story of the week</span>
         <p class="ncat">${esc(NEWS_CATEGORIES[n.category])} · ${fmtShort(n.date)}</p>
-        <h2>${esc(n.title)}</h2>
+        <h3>${esc(n.title)}</h3>
         <p class="desc">${esc(n.summary)}</p>
         <a class="btn" href="/news/#${esc(n.id)}">Read the story</a>
       </div>
-    </article>
-  </div></section>`;
+    </article>`;
 }
 
+// A neighborhood news item: our short summary, linking to the original story.
 function newsCard(n, i) {
   const feature = n.featured && n.story?.length;
   return `<article class="ncard${feature ? " feature" : ""}${n.image ? " has-photo" : ""}" id="${esc(n.id)}">
@@ -471,11 +483,10 @@ export function homePage(data, now) {
     </div>
   </div></div></section>
 
-  ${story ? storyBanner(story) : ""}
-
-  ${news.length ? `<section class="band zone news-band"><div class="wrap">
+  ${story || news.length ? `<section class="band zone news-band"><div class="wrap">
     <div class="sec-head"><div><p class="label">What parents should know</p><h2>Neighborhood news ${SPARK_PINK}</h2></div><a class="more" href="/news/">All news →</a></div>
-    <div class="ncards">${news.map(newsCard).join("")}</div>
+    ${story ? storyBanner(story) : ""}
+    ${news.length ? `<div class="ncards">${news.map(newsCard).join("")}</div>` : ""}
   </div></section>` : ""}
 
   ${data.deals.length ? `<section class="band"><div class="wrap">
