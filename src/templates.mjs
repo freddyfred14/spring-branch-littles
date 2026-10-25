@@ -50,6 +50,8 @@ export function signupForm(config, id = "signup") {
     <label class="sr" for="${id}-email">Email address</label>
     <input id="${id}-email" type="email" name="email" required placeholder="you@example.com" autocomplete="email">
     <input type="hidden" name="embed" value="1">
+    <input type="hidden" name="metadata__source" value="" data-source-field>
+    <input type="hidden" name="referrer_url" value="" data-referrer-field>
     <button class="btn" type="submit">Subscribe</button>
   </form>`;
 }

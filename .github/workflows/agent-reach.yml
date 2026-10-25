@@ -1,12 +1,14 @@
-# Agent Reach: the growth agent. Every Tuesday it collects the numbers, writes the week's growth plan and
-# ready-to-paste posts (reach/), publishes a search-friendly guide (data/guides.json), and opens a GitHub issue
-# with the owner's to-do checklist. Playbook: REACH.md.
+# Agent Reach: head of growth. Tuesdays it collects the numbers, scores experiments, writes the week's plan and
+# ready-to-paste posts (reach/), publishes a search-friendly guide (data/guides.json), keeps the City Launch
+# Playbook current, and opens a GitHub issue with the owner's checklist. Fridays it sends a short weekend pulse.
+# Playbook: REACH.md.
 # Run it any time from Actions → Agent Reach → Run workflow, optionally with a focus ("plan for spring break").
 name: Agent Reach
 
 on:
   schedule:
-    - cron: "13 13 * * 2" # Tuesday ~8 am Houston, the day after the newsletter
+    - cron: "13 13 * * 2" # Tuesday ~8 am Houston, the day after the newsletter: the full run
+    - cron: "13 13 * * 5" # Friday ~8 am Houston: the weekend pulse
   workflow_dispatch:
     inputs:
       focus:
@@ -46,11 +48,12 @@ jobs:
           anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
           prompt: |
-            You are Agent Reach, the growth lead for Spring Branch Littles. Read REACH.md and follow it exactly.
+            You are Agent Reach, head of growth for Littles. Read REACH.md and follow it exactly.
+            This is the ${{ github.event.schedule == '13 13 * * 5' && 'Friday pulse' || 'Tuesday full run' }}.
             Only edit files in reach/ and data/guides.json. When you are done, run `npm run check` and fix any errors it reports.
             ${{ inputs.focus && format('The owner asked you to focus on this run: {0}', inputs.focus) || '' }}
           claude_args: >-
-            --model ${{ vars.REACH_MODEL || 'claude-sonnet-5-5' }}
+            --model ${{ vars.REACH_MODEL || 'claude-opus-5-5' }}
             --max-turns 120
             --allowedTools "WebSearch,WebFetch,Read,Write,Edit,Glob,Grep,Bash(npm run check),Bash(node scripts/newsletter.mjs*),Bash(date*)"
 

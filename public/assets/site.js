@@ -1,3 +1,20 @@
+// Where this visitor first came from, so each signup can be credited to a channel: a ?source= tag on our
+// links (ads, Facebook groups, flyers), otherwise the site that sent them. Kept for 30 days.
+(() => {
+  const KEY = "sbl-source";
+  let saved = null;
+  try { saved = JSON.parse(localStorage.getItem(KEY) || "null"); } catch { /* storage blocked */ }
+  if (!saved || saved.at < Date.now() - 30 * 864e5) {
+    const tag = new URLSearchParams(location.search).get("source");
+    let from = "direct";
+    try { if (document.referrer && new URL(document.referrer).host !== location.host) from = `ref:${new URL(document.referrer).host.replace(/^www\./, "")}`; } catch { /* bad referrer */ }
+    saved = { source: tag ? tag.slice(0, 60) : from, landing: location.pathname, at: Date.now() };
+    try { localStorage.setItem(KEY, JSON.stringify(saved)); } catch { /* storage blocked */ }
+  }
+  document.querySelectorAll("[data-source-field]").forEach((el) => (el.value = saved.source));
+  document.querySelectorAll("[data-referrer-field]").forEach((el) => (el.value = `${location.origin}${saved.landing}?source=${encodeURIComponent(saved.source)}`));
+})();
+
 // Age / free / indoor filters for listing pages. Works without JS too: everything shows.
 document.querySelectorAll(".filters").forEach((bar) => {
   const target = document.getElementById(bar.dataset.filterFor);

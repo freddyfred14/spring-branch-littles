@@ -80,16 +80,13 @@ The site installs as a phone app from **springbranchlittles.com/app/** (iPhone: 
 Every Thursday morning, everyone with alerts on gets the weekend's picks. To send your own alert (a rain plan, a last-minute event), use **Actions → Send app alert → Run workflow**. Keep them rare, about one a week, so people keep alerts on.
 
 ### 8. Agent Reach (growth)
-Agent Reach is the growth agent. Every Tuesday it collects the numbers, writes a 30-minute plan and ready-to-paste posts in `reach/`, publishes a search-friendly guide at `/guides/`, and opens a GitHub issue with your to-do checklist (GitHub emails it to you). Its playbook is `REACH.md`; edit it to change priorities.
-1. It uses the same `ANTHROPIC_API_KEY` as the research agent. A weekly run costs a few dollars at most.
-2. To get issue emails: on the repo page, click **Watch → Custom → Issues → Apply**.
-3. Optional, so it can see what's working:
-   - `BUTTONDOWN_API_KEY` (already set for the newsletter) gives it the subscriber count.
-   - `IG_ACCESS_TOKEN` (already set for Instagram posting) gives it the follower count.
-   - Site visits: sign up free at goatcounter.com with the code `springbranchlittles`, put that code in `goatcounterCode` in `site.config.json`, then create an API token (Settings → API, with "Read statistics") and add it as the secret `GOATCOUNTER_TOKEN`.
-4. Kick it off: **Actions → Agent Reach → Run workflow**. The first run writes the 90-day strategy (`reach/strategy.md`). You can type a focus, like "a push for Thanksgiving break".
-5. Each week, do the checklist and close the issue. If you add a comment saying what you did or what happened, paste it into `reach/log.md` (or tell Claude) so the agent learns from it.
-6. Optional: set the repository variable `REACH_MODEL` to `claude-opus-5-5` for deeper plans (costs more per run).
+Agent Reach is head of growth for the Littles network, with Spring Branch as the pilot. Tuesdays it reads the numbers (including which channel every new subscriber came from), scores experiments, writes a plan with ready-to-paste posts in `reach/`, publishes a search-friendly guide at `/guides/`, and keeps `reach/city-playbook.md`, the recipe for launching the next city. It opens a GitHub issue with your checklist (GitHub emails it). Fridays it sends a short weekend pulse. Its playbook is `REACH.md`; edit it to change priorities, time or budget.
+1. It uses the same `ANTHROPIC_API_KEY` as the research agent, on Claude Opus by default (about $3–8 a week for both runs). Set the repository variable `REACH_MODEL` to `claude-sonnet-5-5` to spend less.
+2. To get the plan emails: on the repo page, click **Watch → Custom → Issues → Apply**.
+3. Numbers it reads (each optional): `BUTTONDOWN_API_KEY` (subscribers, signups by channel, open and click rates), `IG_ACCESS_TOKEN` (followers), and site visits through GoatCounter: sign up free at goatcounter.com with the code `springbranchlittles`, put that code in `goatcounterCode` in `site.config.json`, create an API token (Settings → API, "Read statistics") and add it as the secret `GOATCOUNTER_TOKEN`.
+4. Every signup form records where the person came from: the `?source=` tag on the link they used (ads, group posts, flyers), or the site that sent them. Always use the tagged links from the kits.
+5. Kick it off: **Actions → Agent Reach → Run workflow**. The first run writes the strategy, the experiment board, the targets list and the first City Launch Playbook.
+6. Each week, do the checklist and comment on the issue with what you did and saw ("posted in Spring Shadows Moms, 15 signups"). Add those notes to `reach/log.md` (or tell Claude) so it learns.
 
 ---
 
