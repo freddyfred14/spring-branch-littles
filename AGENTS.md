@@ -12,7 +12,7 @@ You keep the Spring Branch Littles calendar accurate. Parents plan their weekend
 5. **Keep weekly programs and places fresh.** Re-check any entry in `data/recurring.json` or `data/places.json` whose `lastVerified` is null or older than 30 days. Limit it to about 5 per run so every run stays short. If a weekly program has ended or moved, update or remove it.
 6. **Check kids' deals and restaurants** in `data/deals.json` and `data/restaurants.json` (see "Kid-friendly eats" below). Re-verify every deal at least every 2 weeks, and add new ones you find.
 7. **Update neighborhood news** in `data/news.json` (see "Neighborhood news" below). Add 2–4 new items each week, and remove items older than 90 days or past their `expires` date.
-8. **On Wednesdays only, write the newsletter intro** (see below).
+8. **On Sundays only, write the newsletter intro** (see below).
 9. **Run `npm run check`** and fix every error. Warnings are fine.
 10. **Write a short summary** at the top of `data/agent-log.md`: date, what you added, changed, removed, and anything you couldn't confirm. Keep only the last 12 entries.
 
@@ -179,16 +179,16 @@ Short, useful updates for parents in Spring Branch and Memorial. Each item is a 
 - Set `expires` for time-sensitive items (a closure, a registration deadline) so they disappear afterwards.
 - Titles are under 120 characters, written like a friendly headline, not clickbait.
 
-## Wednesday: the newsletter intro
+## Sunday: the newsletter intro
 
-The newsletter ("The Littles List") goes out automatically Thursday morning, but we don't call it a Thursday letter. It's built from the data, but you write the opening. Create `data/drafts/<tomorrow's date>.json`:
+The newsletter ("The Littles List") goes out automatically Monday morning and covers the next two weeks, so parents have time to plan: this week, next week, worth-the-drive events, weekly storytimes, and a "plan ahead" list further out. Don't call it a Monday letter. It's built from the data, but you write the opening. Create `data/drafts/<tomorrow's date>.json`:
 
 ```json
 {
   "subject": "Pumpkin patches, a free puppet show and a rainy Saturday plan",
   "preheader": "Plus: toddler storytime is back at Ring Library.",
   "intro": [
-    "First paragraph: 2–3 friendly sentences about the week in Spring Branch: weather, season, a highlight.",
+    "First paragraph: 2–3 friendly sentences about the next two weeks in Spring Branch: season, holidays, the highlights.",
     "Optional second paragraph: one practical heads-up (a school holiday, a registration deadline, a closure)."
   ],
   "picks": ["optional-event-id-1", "optional-event-id-2"]
@@ -197,10 +197,10 @@ The newsletter ("The Littles List") goes out automatically Thursday morning, but
 
 - If that file already exists, a person wrote it. Leave it alone.
 - **Voice:** a Spring Branch mom texting a friend. Warm, practical and specific. No exclamation-point pileups, no "fun-filled," no emoji in the subject.
-- **Subject:** under 60 characters, and it names real things from this week.
-- Leave out `picks` to include every weekend event (featured first).
+- **Subject:** under 60 characters, and it names real things from the next two weeks.
+- `picks` are the events marked with a star in the newsletter. Leave it out to star every event with `"featured": true`. Every local event in the two weeks is listed either way.
 - **Pick the story of the week.** Choose the most interesting news item for local parents, usually something new from the past week: an opening, a new playground, a big change at a school or library. Set `"featured": true` on it in `data/news.json`, set every other item to `"featured": false`, and give it a `story`: 2–3 short paragraphs (under 700 characters each) in your own words. Cover what's happening, when, and why a parent would care. Only use facts from the source; don't add details. It opens the newsletter and gets the big card on the site. Never feature the same item two weeks in a row.
-- Preview it with `node scripts/newsletter.mjs --date <tomorrow>`. If the weekend section is empty, look harder for weekend events. A newsletter with nothing to do on the weekend is the worst outcome.
+- Preview it with `node scripts/newsletter.mjs --date <tomorrow>`. If "This week" or "Next week" is thin, or either weekend has nothing local, look harder. A newsletter with nothing to do on a weekend is the worst outcome.
 
 ## Photos
 

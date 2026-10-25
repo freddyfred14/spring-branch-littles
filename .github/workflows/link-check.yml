@@ -1,11 +1,11 @@
 # Visits every "More info" link and lists the broken ones and the ones that land on the wrong page.
-# The report is saved to reports/link-report.md (and the run's Summary page), where Monday's research agent
-# picks it up and fixes the bad links. Runs Sunday mornings and by hand.
+# The report is saved to reports/link-report.md (and the run's Summary page), where Sunday's research agent
+# picks it up and fixes the bad links. Runs Saturday mornings and by hand.
 name: Link check
 
 on:
   schedule:
-    - cron: "17 13 * * 0" # Sunday ~8 am Houston
+    - cron: "17 13 * * 6" # Saturday ~8 am Houston, ahead of Sunday's research run
   workflow_dispatch:
 
 permissions:

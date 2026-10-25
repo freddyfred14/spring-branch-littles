@@ -5,8 +5,8 @@ name: Research agent
 
 on:
   schedule:
-    - cron: "13 12 * * 1" # Monday ~7 am Houston: refresh the calendar
-    - cron: "13 12 * * 3" # Wednesday ~7 am Houston: final check + write Thursday's newsletter intro
+    - cron: "13 12 * * 0" # Sunday ~7 am Houston: full refresh + write Monday's newsletter intro
+    - cron: "13 12 * * 3" # Wednesday ~7 am Houston: mid-week refresh before the weekend posts
   workflow_dispatch:
 
 permissions:
@@ -34,7 +34,7 @@ jobs:
           anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
           prompt: |
-            You are the research editor for Spring Branch Littles. Today is ${{ github.event.schedule == '13 12 * * 3' && 'Wednesday (newsletter day is tomorrow)' || 'a calendar refresh day' }}.
+            You are the research editor for Spring Branch Littles. Today is ${{ github.event.schedule == '13 12 * * 0' && 'Sunday (the newsletter goes out tomorrow morning)' || 'a calendar refresh day' }}.
             Read AGENTS.md and follow it exactly. Only edit files under data/. When you are done, run `npm run check` and fix any errors it reports.
           claude_args: >-
             --model claude-sonnet-5-5

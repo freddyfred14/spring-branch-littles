@@ -1,0 +1,43 @@
+# Monday morning: send The Littles List (the next two weeks of plans) and archive it on the site.
+name: Monday newsletter
+
+on:
+  schedule:
+    - cron: "47 11 * * 1" # Monday ~6:47 am Houston in summer, ~5:47 am in winter (GitHub runs on UTC)
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: content
+  cancel-in-progress: false
+
+jobs:
+  send:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+
+      - name: Send newsletter
+        env:
+          BUTTONDOWN_API_KEY: ${{ secrets.BUTTONDOWN_API_KEY }}
+          NEWSLETTER_STATUS: ${{ vars.NEWSLETTER_STATUS || 'about_to_send' }}
+        run: npm run newsletter:send
+
+      - name: Archive the issue
+        run: |
+          git config user.name "Spring Branch Littles bot"
+          git config user.email "bot@users.noreply.github.com"
+          git add data/issues
+          git diff --cached --quiet || { git commit -m "Newsletter $(date -u +%F)"; git pull --rebase; git push; }
+
+  deploy:
+    needs: send
+    uses: ./.github/workflows/deploy.yml

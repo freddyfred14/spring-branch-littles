@@ -61,10 +61,10 @@ function subscribePopup(config) {
     <button class="sub-pop-close" type="button" aria-label="Close" data-pop-close>×</button>
   </div>
   <div class="sub-pop-body">
-    <p class="label">Free · once a week</p>
+    <p class="label">Free · every Monday</p>
     <h2 id="sub-pop-title">Get ${esc(config.newsletterName)}</h2>
-    <p class="sub-pop-lede">The best kid-friendly plans near you, in your inbox every week. Short enough for nap time.</p>
-    <ul class="sub-pop-perks"><li>Weekend plans</li><li>Storytimes</li><li>Kids eat free</li></ul>
+    <p class="sub-pop-lede">Two weeks of kid-friendly plans near you, in your inbox every Monday. Plenty of time to plan.</p>
+    <ul class="sub-pop-perks"><li>Events &amp; festivals</li><li>Storytimes</li><li>Kids eat free</li></ul>
     ${signupForm(config, "pop")}
     <button class="sub-pop-later" type="button" data-pop-close>No thanks</button>
   </div>
@@ -458,7 +458,7 @@ export function homePage(data, now) {
       ${regionHead(area, more, list.length)}
       ${list.length
         ? `<div class="ecards strip">${list.map((x, i) => eventCard(data, x, i, wk)).join("")}</div>${groupEmpty}`
-        : `<p class="quiet">Nothing listed for this week yet${later[area].length ? `. <a href="/events/#${area}">See what's coming up</a>.` : ", but new events are added every Monday and Wednesday."}</p>`}
+        : `<p class="quiet">Nothing listed for this week yet${later[area].length ? `. <a href="/events/#${area}">See what's coming up</a>.` : ", but new events are added every Sunday and Wednesday."}</p>`}
     </div></section>`;
   };
   const weekCount = soon.local.length + soon.houston.length + weekly.length;
@@ -475,7 +475,7 @@ export function homePage(data, now) {
     <div class="signup-card peek">
       <img class="peek-dino" src="/img/dino-head.png" alt="" width="512" height="512">
       <h2>${esc(config.newsletterName)}</h2>
-      <p>${esc(config.newsletterBlurb)}. Free, once a week, short enough for nap time.</p>
+      <p>Two weeks of kid-friendly plans, every Monday. Free, and short enough for nap time.</p>
       ${signupForm(config, "hero")}
     </div>
     </div>
@@ -498,7 +498,7 @@ export function homePage(data, now) {
     <div class="mid-art">${bubblesIllo()}</div>
     <div class="mid-copy">
       <h2>Like this? Get it every week.</h2>
-      <p>${esc(config.newsletterName)} brings the best kid-friendly plans to your inbox once a week. Free, and short enough for nap time.</p>
+      <p>${esc(config.newsletterName)} lands every Monday with the next two weeks of kid-friendly plans, so you can get them on the calendar. Free.</p>
       ${signupForm(config, "mid")}
     </div>
   </div></div></section>
@@ -567,7 +567,7 @@ export function eventsPage(data, now) {
       ${regionHead(area)}
       ${months.size
         ? [...months.entries()].map(([m, list]) => `<div class="month" data-day><h3 class="month-head">${esc(m)}</h3><div class="ecards">${list.map((x, i) => eventCard(data, x, i, wk)).join("")}</div></div>`).join("") + groupEmpty
-        : `<p class="quiet">Nothing listed after this week yet. New events are added every Monday and Wednesday.</p>`}
+        : `<p class="quiet">Nothing listed after this week yet. New events are added every Sunday and Wednesday.</p>`}
     </div></section>`;
   };
   const body = `
@@ -680,7 +680,7 @@ export function newsletterPage(data, now) {
   <section class="page-head"><div class="wrap narrow head-art"><div class="head-copy">
     <p class="label">Newsletter</p>
     <h1>${esc(config.newsletterName)} ${SPARK}</h1>
-    <p class="lede">${esc(config.newsletterBlurb)}, once a week, just in time to plan the weekend. The best things to do with kids in Spring Branch and Memorial, the week's storytimes, a rainy-day backup and what's coming up. Free, and you can unsubscribe any time.</p>
+    <p class="lede">${esc(config.newsletterBlurb)}, every Monday morning: the next two weeks of things to do with kids in Spring Branch and Memorial, the week's storytimes, kids-eat-free nights and what to plan for further out. Free, and you can unsubscribe any time.</p>
     <div class="signup-card">${signupForm(config, "nl")}</div>
   </div>${readerIllo()}</div></section>
   <section class="band"><div class="wrap narrow">
@@ -703,7 +703,7 @@ export function issuePage(data, issue, now) {
       .map((s) => s.items[0]?.feature
         ? `<h2>${esc(s.heading)}</h2><article class="issue-feature"><h3><a href="${esc(s.items[0].url)}" rel="noopener">${esc(s.items[0].title)}</a></h3>${s.items[0].image ? `<figure class="nfig"><img src="${esc(s.items[0].image.src)}" alt="${esc(s.items[0].image.alt)}" loading="lazy"><figcaption>${esc(s.items[0].image.credit)}</figcaption></figure>` : ""}${s.items[0].paragraphs.map((p) => `<p>${esc(p)}</p>`).join("")}<p><a href="${esc(s.items[0].url)}" rel="noopener">Read more at ${esc(s.items[0].when)} →</a></p></article>`
         : `<h2>${esc(s.heading)}</h2><ul class="issue-items">${s.items
-        .map((i) => `<li><h3><a href="${esc(i.url)}" rel="noopener">${esc(i.title)}</a>${i.tentative ? ' <span class="tag t-tent" title="The organizer hasn&#39;t announced a final date yet, or sources disagree. We&#39;ll update it when it&#39;s set.">Date may change</span>' : ""}</h3>${i.news ? `<p class="quiet">${esc(i.when)}</p>` : i.deal ? `<p class="ev-where">${esc(i.when)}${i.where ? ` · ${esc(i.where)}` : ""}</p>` : `<p class="ev-where">${esc(i.when)} · ${esc(i.where)}</p><p class="quiet">${esc(i.ages)} · ${esc(i.cost)}</p>`}<p>${esc(i.description)}</p></li>`)
+        .map((i) => `<li><h3>${i.pick ? '<span title="Our pick">⭐</span> ' : ""}<a href="${esc(i.url)}" rel="noopener">${esc(i.title)}</a>${i.tentative ? ' <span class="tag t-tent" title="The organizer hasn&#39;t announced a final date yet, or sources disagree. We&#39;ll update it when it&#39;s set.">Date may change</span>' : ""}</h3>${i.news ? `<p class="quiet">${esc(i.when)}</p>` : i.deal ? `<p class="ev-where">${esc(i.when)}${i.where ? ` · ${esc(i.where)}` : ""}</p>` : `<p class="ev-where">${esc(i.when)} · ${esc(i.where)}</p><p class="quiet">${esc(i.ages)} · ${esc(i.cost)}</p>`}<p>${esc(i.description)}</p></li>`)
         .join("")}</ul>`)
       .join("")}
     <div class="signup-card"><h2>Get it in your inbox</h2>${signupForm(config, "issue")}</div>
@@ -791,7 +791,7 @@ export function eventPage(data, x, now) {
   </div></section>` : ""}
   <section class="band"><div class="wrap narrow"><div class="signup-card">
     <h2>Get plans like this every week</h2>
-    <p>${esc(config.newsletterName)}: free, once a week, short enough for nap time.</p>
+    <p>${esc(config.newsletterName)}: two weeks of plans, free, every Monday.</p>
     ${signupForm(config, "event")}
   </div></div></section>`;
   return layout(config, { title: x.title, path, body, now, description: `${when}. ${x.description}` });

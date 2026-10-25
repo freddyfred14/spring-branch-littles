@@ -4,7 +4,7 @@ import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { eventPath } from "./calendar.mjs";
 import {
-  ROOT, AGES, areaOf, currentNews, featuredStory, activeDeals, addDays, weekendOf, eventsBetween, recurringBetween, fmtDateRange,
+  ROOT, AGES, areaOf, currentNews, featuredStory, activeDeals, addDays, eventsBetween, recurringBetween, fmtDateRange,
   fmtTimeRange, fmtShort, whereText, placeById,
 } from "./lib.mjs";
 
@@ -12,7 +12,7 @@ const ageText = (ages) => ages.map((a) => AGES[a].label).join(", ");
 const costText = (x) => x.cost || (x.free ? "Free" : "Paid");
 const everyText = (days) => (days.length >= 5 ? `${days[0]}–${days[days.length - 1]}, every week` : `Every ${days.join(" & ")}`);
 
-function item(data, x, when) {
+function item(data, x, when, pick = false) {
   const ours = x.kind === "event" || x.kind === "recurring" || x.days;
   return {
     title: x.title,
@@ -23,6 +23,7 @@ function item(data, x, when) {
     description: x.description,
     url: ours ? `${data.config.url}${eventPath(x)}` : x.url,
     tentative: x.status === "tentative",
+    pick,
   };
 }
 
@@ -40,7 +41,6 @@ function rainyPick(data, date) {
 }
 
 export function buildIssue(data, date, draft = loadDraft(date)) {
-  const wk = weekendOf(date);
   const sections = [];
 
   const story = (draft.featureId && data.news.find((n) => n.id === draft.featureId)) || featuredStory(data, date);
@@ -51,30 +51,26 @@ export function buildIssue(data, date, draft = loadDraft(date)) {
     });
   }
 
-  const local = data.events.filter((e) => e.kind === "event" && areaOf(data, e) === "local");
+  // The issue goes out Monday morning and covers two weeks, so parents have time to plan.
+  const weekEnd = addDays(date, 6);
+  const nextStart = addDays(date, 7);
+  const nextEnd = addDays(date, 13);
+  const local = data.events.filter((e) => areaOf(data, e) === "local");
   const houston = data.events.filter((e) => e.kind === "event" && areaOf(data, e) === "houston");
-  // The issue lands on Thursday morning, so "this weekend" runs from that day through Sunday.
-  const from = date < wk.start ? date : wk.start;
-  let weekend = eventsBetween(local, from, wk.end);
-  if (draft.picks?.length) weekend = draft.picks.map((id) => weekend.find((e) => e.id === id)).filter(Boolean);
-  weekend.sort((a, b) => Number(!!b.featured) - Number(!!a.featured));
-  if (weekend.length) {
-    sections.push({
-      heading: `Today through Sunday · ${fmtShort(from)}–${fmtShort(wk.end)}`,
-      items: weekend.slice(0, 6).map((e) => item(data, e, `${fmtDateRange(e.date, e.endDate)} · ${fmtTimeRange(e.startTime, e.endTime)}`)),
-    });
-  }
+  const picks = new Set(draft.picks || data.events.filter((e) => e.featured).map((e) => e.id));
+  const dated = (e) => item(data, e, `${fmtDateRange(e.date, e.endDate)} · ${e.kind === "school-break" ? "No school" : fmtTimeRange(e.startTime, e.endTime)}`, picks.has(e.id));
 
-  const drive = eventsBetween(houston, from, addDays(wk.end, 14));
-  if (drive.length) {
-    sections.push({
-      heading: "Worth the drive",
-      items: drive.slice(0, 4).map((e) => item(data, e, `${fmtDateRange(e.date, e.endDate)} · ${fmtTimeRange(e.startTime, e.endTime)}`)),
-    });
-  }
+  const thisWeek = eventsBetween(local, date, weekEnd);
+  if (thisWeek.length) sections.push({ heading: `This week · ${fmtShort(date)}–${fmtShort(weekEnd)}`, items: thisWeek.map(dated) });
+  // Next week lists only what starts then; multi-day events already running show under this week.
+  const nextWeek = eventsBetween(local, nextStart, nextEnd).filter((e) => e.date >= nextStart);
+  if (nextWeek.length) sections.push({ heading: `Next week · ${fmtShort(nextStart)}–${fmtShort(nextEnd)}`, items: nextWeek.map(dated) });
 
-  const monday = addDays(wk.end, 1);
-  const weekly = recurringBetween(data.recurring, monday, addDays(monday, 4));
+  const drive = eventsBetween(houston, date, nextEnd);
+  if (drive.length) sections.push({ heading: "Worth the drive", items: drive.slice(0, 6).map(dated) });
+
+  const weekend = [...thisWeek, ...nextWeek].filter((e) => e.kind === "event");
+  const weekly = recurringBetween(data.recurring, date, weekEnd);
   if (weekly.length) {
     const seen = new Set();
     sections.push({
@@ -109,20 +105,20 @@ export function buildIssue(data, date, draft = loadDraft(date)) {
     });
   }
 
-  const later = eventsBetween(data.events.filter((e) => areaOf(data, e) === "local"), addDays(wk.end, 1), addDays(wk.end, 35));
+  const later = eventsBetween(local, addDays(nextEnd, 1), addDays(date, 45)).filter((e) => e.date > nextEnd);
   if (later.length) {
     sections.push({
-      heading: "Coming up",
+      heading: "Plan ahead",
       items: later.map((e) => item(data, e, `${fmtDateRange(e.date, e.endDate)}${e.kind === "school-break" ? " · No school" : ""}`)),
     });
   }
 
-  const lead = weekend[0];
+  const lead = weekend.find((e) => picks.has(e.id)) || weekend[0];
   return {
     date,
-    subject: draft.subject || (lead ? `This weekend: ${lead.title} and more` : `Kid-friendly finds for the week of ${fmtShort(date)}`),
+    subject: draft.subject || (lead ? `${lead.title} and more for the next two weeks` : `Kid-friendly plans for the next two weeks`),
     preheader: draft.preheader || "Storytimes, parks and family events for little ones near you.",
-    intro: draft.intro || ["Here are this week's kid-friendly finds around Spring Branch and Memorial, from weekend plans to next week's storytimes."],
+    intro: draft.intro || ["Here's what's happening for kids around Spring Branch and Memorial over the next two weeks, so you can get it on the calendar."],
     sections,
   };
 }
@@ -141,7 +137,7 @@ export function toMarkdown(issue, config) {
       continue;
     }
     for (const i of s.items) {
-      out.push(`**[${i.title}](${i.url})**${i.tentative ? " _(date may change)_" : ""}  `);
+      out.push(`${i.pick ? "⭐ " : ""}**[${i.title}](${i.url})**${i.tentative ? " _(date may change)_" : ""}  `);
       if (i.news) out.push(`_${i.when}_  `);
       else if (i.deal) out.push(`${i.when}${i.where ? ` · ${i.where}` : ""}  `);
       else {
