@@ -1,0 +1,26 @@
+# Visits every "More info" link and lists the broken ones and the ones that land on the wrong page.
+# The results show on the run's Summary page. Runs Sunday mornings, before Monday's research run, and by hand.
+name: Link check
+
+on:
+  schedule:
+    - cron: "17 13 * * 0" # Sunday ~8 am Houston
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  links:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+      - run: node scripts/check-links.mjs
+      - uses: actions/upload-artifact@v4
+        with:
+          name: link-report
+          path: link-report.md
