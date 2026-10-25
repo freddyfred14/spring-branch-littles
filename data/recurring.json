@@ -16,7 +16,7 @@
     "indoor": true,
     "description": "Bouncy songs, rhymes and playtime for crawlers and babies taking their first steps. Two sessions, 10:15 and 11:15.",
     "registration": null,
-    "url": "https://hcpl.net/locations/sm/",
+    "url": "https://hcpl.bibliocommons.com/v2/events?q=Baby%20Bouncer",
     "sources": [
       "https://hcpl.net/locations/sm/"
     ],
@@ -42,7 +42,7 @@
     "indoor": true,
     "description": "Stories, songs, rhymes and a themed craft for ages 3–6.",
     "registration": "Pick up a free ticket at the children's desk.",
-    "url": "https://hcpl.net/locations/sm/",
+    "url": "https://hcpl.bibliocommons.com/v2/events?q=Preschool%20Storytime",
     "sources": [
       "https://ma.to/event/christmas-in-july-story-time-20-july-2026"
     ],
@@ -68,7 +68,7 @@
     "indoor": true,
     "description": "Interactive storytime for new walkers and their grown-ups: stories, songs and finger plays. Two sessions, 10:15 and 11:15. Some weeks it's outside in the Reading Garden.",
     "registration": null,
-    "url": "https://hcpl.bibliocommons.com/events/6a024547c7d3cd5800588782",
+    "url": "https://hcpl.bibliocommons.com/v2/events?q=Tiny%20Tykes",
     "sources": [
       "https://hcpl.bibliocommons.com/events/6a024547c7d3cd5800588782"
     ],
@@ -122,7 +122,7 @@
     "indoor": false,
     "description": "A nature story and craft in the sanctuary's log cabin for ages 3–5 with an adult. Siblings with a supervising adult come free.",
     "registration": "Registration required.",
-    "url": "https://houstonaudubon.org/programs/youth/stories-crafts-cabin.html",
+    "url": "https://birdshouston.org/conservation/sanctuaries/edith-moore/programs.html",
     "sources": [
       "https://houstonaudubon.org/programs/youth/stories-crafts-cabin.html"
     ],
@@ -152,7 +152,7 @@
     "indoor": false,
     "description": "A guided nature walk for ages 18 months to 4 years with a grown-up: bugs, leaves, pond critters and lots of stopping to look.",
     "registration": "No sign-up needed, but it's capped at 20 kids. Check in at the Beautyberry Classroom.",
-    "url": "https://houstonarboretum.org/events/",
+    "url": "https://houstonarboretum.org/series/tyke-hikes/",
     "sources": [
       "https://houstonarboretum.org/events/"
     ],

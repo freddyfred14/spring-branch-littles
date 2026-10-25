@@ -48,7 +48,7 @@
     "category": "heads-up",
     "title": "Heads-up: library storytimes can be canceled on short notice",
     "summary": "Spring Branch Memorial Library canceled its Thursday Tiny Tykes storytime on Oct 22 because of staffing. Before you pack everyone into the car, check the library's online calendar the morning of.",
-    "url": "https://hcpl.bibliocommons.com/v2/events",
+    "url": "https://hcpl.bibliocommons.com/v2/events?q=Tiny%20Tykes",
     "source": "Harris County Public Library",
     "area": "local",
     "expires": "2026-11-21",

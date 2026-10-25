@@ -110,24 +110,6 @@
   },
   {
     "restaurantId": null,
-    "restaurantName": "Chicken Salad Chick",
-    "where": "Participating locations",
-    "startTime": "17:00",
-    "endTime": "20:00",
-    "area": "houston",
-    "status": "tentative",
-    "expires": null,
-    "lastVerified": "2026-10-25",
-    "id": "chicken-salad-chick-tue",
-    "title": "Kids eat free",
-    "days": [
-      "Tue"
-    ],
-    "details": "A free kids' meal with an adult purchase at participating locations. Confirm with your location.",
-    "url": "https://www.chickensaladchick.com/"
-  },
-  {
-    "restaurantId": null,
     "restaurantName": "Red Robin",
     "where": "Participating locations",
     "startTime": null,

@@ -4,7 +4,7 @@
     "name": "Spring Branch Memorial Library",
     "type": "library",
     "address": "930 Corbindale Rd, Houston, TX 77024",
-    "url": "https://www.hcpl.net/",
+    "url": "https://hcpl.net/locations/sm/",
     "ages": [
       "baby",
       "toddler",
@@ -73,7 +73,7 @@
     "name": "Haden Park",
     "type": "park",
     "address": "1404 Witte Rd, Houston, TX 77055",
-    "url": "https://houstontx.gov/parks/",
+    "url": "https://www.houstontx.gov/parks/parksitesG-N.html",
     "ages": [
       "toddler",
       "preschool",
@@ -94,7 +94,7 @@
     "name": "Agnes Moffitt Park",
     "type": "park",
     "address": "10645 Hammerly Blvd, Houston, TX 77043",
-    "url": "https://houstontx.gov/parks/",
+    "url": "https://www.houstontx.gov/parks/parksitesG-N.html",
     "ages": [
       "toddler",
       "preschool",
@@ -114,7 +114,7 @@
     "name": "Freed Park",
     "type": "park",
     "address": "6818 Shadyvilla Ln, Houston, TX 77055",
-    "url": "https://houstontx.gov/parks/",
+    "url": "https://cp4.harriscountytx.gov/Explore/Parks/Precinct-4-Parks/freed-park",
     "ages": [
       "toddler",
       "preschool",
@@ -134,7 +134,7 @@
     "name": "Edith L. Moore Nature Sanctuary",
     "type": "nature",
     "address": "440 Wilchester Blvd, Houston, TX 77079",
-    "url": "https://houstonaudubon.org/conservation/sanctuaries/edith-moore/programs.html",
+    "url": "https://birdshouston.org/conservation/sanctuaries/edith-moore/programs.html",
     "ages": [
       "preschool",
       "elementary"
@@ -175,7 +175,7 @@
     "name": "Christ the King Presbyterian indoor play area",
     "type": "indoor-play",
     "address": "1201 Silber Rd, Houston, TX 77055",
-    "url": "https://greaterhoustonmoms.com/houstons-big-list-of-free-indoor-playgrounds/",
+    "url": "https://www.google.com/maps/search/?api=1&query=Christ+the+King+Presbyterian+Church+1201+Silber+Rd+Houston+TX",
     "ages": [
       "baby",
       "toddler",
@@ -216,7 +216,7 @@
     "name": "Terry Hershey Park",
     "type": "park",
     "address": "Memorial Dr, between Beltway 8 and Hwy 6, Houston, TX 77079",
-    "url": "https://www.hcp4.net/",
+    "url": "https://cp4.harriscountytx.gov/Explore/Parks/Precinct-4-Parks/terry-hershey-park",
     "ages": [
       "baby",
       "toddler",
