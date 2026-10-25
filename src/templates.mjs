@@ -7,7 +7,10 @@ import {
 export const esc = (s) =>
   String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
 
-const LOGO = `<svg class="logo" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="20" fill="var(--pine-soft)"/><path d="M20 31V14M20 22l-7-6M20 17l6-5" stroke="var(--pine)" stroke-width="2.6" stroke-linecap="round" fill="none"/><circle cx="12.5" cy="15.5" r="3" fill="var(--sun)"/><circle cx="26.5" cy="11.5" r="3" fill="var(--berry)"/></svg>`;
+const LOGO = `<img class="logo" src="/img/logo-sm.webp" alt="Spring Branch Littles" width="360" height="311">`;
+// The three little "happy" marks next to the dino's head in the logo.
+export const SPARK = `<svg class="spark" viewBox="0 0 32 32" aria-hidden="true"><path d="M8 3l3 8M20 6l-5 8M29 15l-9 3" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" fill="none"/></svg>`;
+const GRASS = `<div class="grass" aria-hidden="true"></div>`;
 
 const NAV = [
   ["/", "This week"],
@@ -42,25 +45,27 @@ export function layout(config, { title, description, path, body, now }) {
 <meta property="og:url" content="${esc(canonical)}">
 <meta property="og:type" content="website">
 <meta property="og:image" content="${esc(config.url)}/og.png">
-<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.png" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#fbf6ec">
 <link rel="alternate" type="application/rss+xml" title="${esc(config.name)} newsletter" href="/feed.xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Figtree:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800&family=Caveat:wght@700&display=swap">
 <link rel="stylesheet" href="/assets/site.css">
 </head>
-<body>
+<body${path === "/" ? ' class="home"' : ""}>
 <a class="skip" href="#main">Skip to content</a>
 <header class="site-header"><div class="wrap">
-  <a class="brand" href="/">${LOGO}<span>${esc(config.name)}</span></a>
+  <a class="brand" href="/">${LOGO}</a>
   <nav aria-label="Main"><ul>${NAV.map(([href, label]) => `<li><a href="${href}"${href === path ? ' aria-current="page"' : ""}>${label}</a></li>`).join("")}</ul></nav>
 </div></header>
 <main id="main">
 ${body}
 </main>
-<footer class="site-footer"><div class="wrap footer-grid">
+<footer class="site-footer">${GRASS}<div class="footer-band"><div class="wrap footer-grid">
   <div>
-    <a class="brand" href="/">${LOGO}<span>${esc(config.name)}</span></a>
+    <a class="brand" href="/">${LOGO}</a>
     <p>${esc(config.description)}</p>
   </div>
   <div>
@@ -74,7 +79,7 @@ ${body}
   </div>
 </div>
 <div class="wrap fineprint">Listings are gathered from public calendars and checked regularly, but times change. Please confirm with the venue before you go. Updated ${esc(fmtLong(now))}.</div>
-</footer>
+</div></footer>
 <script src="/assets/site.js" defer></script>
 </body>
 </html>`;
@@ -124,8 +129,8 @@ function breakNotices(data, start, end) {
 
 function dayGroups(data, byDay) {
   return [...byDay.entries()]
-    .map(([d, items]) => `<section class="day" data-day>
-      <h3 class="day-head"><span>${weekdayLong(d)}</span> ${fmtShort(d)}</h3>
+    .map(([d, items], i) => `<section class="day" data-day>
+      <h3 class="day-head c${i % 4}"><span>${weekdayLong(d)}</span> <em>${fmtShort(d)}</em></h3>
       ${items.length ? `<ul class="evs">${items.map((x) => eventRow(data, x)).join("")}</ul>` : `<p class="quiet">Nothing listed yet. A good day for a park.</p>`}
       <p class="quiet empty-filter" hidden>Nothing matches these filters on this day.</p>
     </section>`)
@@ -144,21 +149,23 @@ export function homePage(data, now) {
   const spot = [0, 1, 2].map((i) => data.places[(week * 3 + i) % data.places.length]).filter((p, i, a) => a.indexOf(p) === i);
   const body = `
   <section class="hero"><div class="wrap hero-grid">
-    <div>
-      <p class="label">Spring Branch · Houston, Texas</p>
-      <h1>Things to do with kids in <em>Spring Branch</em>, every week.</h1>
-      <p class="lede">Storytimes, parks, festivals and rainy-day spots for families with babies through elementary schoolers. We check the library calendars, park schedules and neighborhood events so you don't have to.</p>
-    </div>
-    <div class="signup-card">
+    <img class="hero-logo" src="/img/logo.webp" alt="Spring Branch Littles" width="900" height="778">
+    <div class="hero-copy">
+      <h1>Weekend plans for your <span class="script">littles</span>, sorted.</h1>
+      <p class="lede">Storytimes, parks, festivals and rainy-day spots in Spring Branch for babies through elementary schoolers. We check the library calendars, park schedules and neighborhood events so you don't have to.</p>
+    <div class="signup-card peek">
+      <img class="peek-dino" src="/img/dino-head.png" alt="" width="512" height="512">
       <h2>The Thursday letter</h2>
       <p>Weekend picks, next week's storytimes and one rainy-day backup. Free, every ${esc(config.newsletterDay)} morning.</p>
       ${signupForm(config, "hero")}
     </div>
+    </div>
   </div></section>
+  ${GRASS}
 
   <section class="band"><div class="wrap">
     <div class="sec-head">
-      <div><p class="label">${fmtShort(now)} – ${fmtShort(end)}</p><h2>This week</h2></div>
+      <div><p class="label">${fmtShort(now)} – ${fmtShort(end)}</p><h2>This week ${SPARK}</h2></div>
       <a class="more" href="/events/">Full calendar →</a>
     </div>
     ${breakNotices(data, now, addDays(now, 13))}
@@ -167,24 +174,25 @@ export function homePage(data, now) {
   </div></section>
 
   ${later.length ? `<section class="band"><div class="wrap">
-    <div class="sec-head"><div><p class="label">Plan ahead</p><h2>Coming up</h2></div></div>
+    <div class="sec-head"><div><p class="label">Plan ahead</p><h2>Coming up ${SPARK}</h2></div></div>
     <ul class="evs card-list">${later.map((x) => eventRow(data, x, { showDate: true })).join("")}</ul>
   </div></section>` : ""}
 
   <section class="band"><div class="wrap">
-    <div class="sec-head"><div><p class="label">Worth a visit</p><h2>Places to try this weekend</h2></div><a class="more" href="/places/">All places →</a></div>
+    <div class="sec-head"><div><p class="label">Worth a visit</p><h2>Places to try this weekend ${SPARK}</h2></div><a class="more" href="/places/">All places →</a></div>
     <div class="places">${spot.map(placeCard).join("")}</div>
   </div></section>
 
   <section class="band ages-band"><div class="wrap">
-    <div class="sec-head"><div><p class="label">Find your stage</p><h2>Browse by age</h2></div></div>
-    <div class="ages">${Object.entries(AGES).map(([k, v]) => `<a class="age-card" href="/events/?age=${k}"><b>${v.label}</b><span>Ages ${v.range}</span></a>`).join("")}</div>
+    <div class="sec-head"><div><p class="label">Find your stage</p><h2>Browse by age ${SPARK}</h2></div></div>
+    <div class="ages">${Object.entries(AGES).map(([k, v], i) => `<a class="age-card c${i}" href="/events/?age=${k}"><b>${v.label}</b><span class="script">ages ${v.range}</span></a>`).join("")}</div>
   </div></section>
 
   <section class="band"><div class="wrap ig-cta">
+    <img class="ig-dino" src="/img/dino-head.png" alt="" width="512" height="512">
     <div>
       <p class="label">On Instagram</p>
-      <h2>@${esc(config.instagram)}</h2>
+      <h2>Come say hi <span class="script">@${esc(config.instagram)}</span></h2>
       <p>Weekend roundups, honest reviews of places we've taken our own kids, and same-day reminders in Stories.</p>
     </div>
     <a class="btn btn-ghost" href="https://instagram.com/${esc(config.instagram)}">Follow on Instagram</a>
@@ -199,7 +207,7 @@ export function eventsPage(data, now) {
   const body = `
   <section class="page-head"><div class="wrap">
     <p class="label">Calendar</p>
-    <h1>Kids' events in Spring Branch</h1>
+    <h1>Kids' events in Spring Branch ${SPARK}</h1>
     <p class="lede">Dated events for the next few months, plus the storytimes and open-play times that happen every week.</p>
   </div></section>
   <section class="band"><div class="wrap">
@@ -207,15 +215,15 @@ export function eventsPage(data, now) {
     <div id="calendar" class="filterable">
       ${breakNotices(data, now, addDays(now, 120))}
       <section class="day" data-day>
-        <h2 class="day-head">Upcoming events</h2>
+        <h2 class="day-head c1"><span>Upcoming events</span></h2>
         ${dated.length ? `<ul class="evs">${dated.map((x) => eventRow(data, x, { showDate: true })).join("")}</ul>` : '<p class="quiet">New events are added every week.</p>'}
         <p class="quiet empty-filter" hidden>Nothing matches these filters.</p>
       </section>
       <h2 class="sub">Every week</h2>
       ${byWeekday
         .filter(([, list]) => list.length)
-        .map(([d, list]) => `<section class="day" data-day>
-          <h3 class="day-head"><span>${{ Mon: "Mondays", Tue: "Tuesdays", Wed: "Wednesdays", Thu: "Thursdays", Fri: "Fridays", Sat: "Saturdays", Sun: "Sundays" }[d]}</span></h3>
+        .map(([d, list], i) => `<section class="day" data-day>
+          <h3 class="day-head c${i % 4}"><span>${{ Mon: "Mondays", Tue: "Tuesdays", Wed: "Wednesdays", Thu: "Thursdays", Fri: "Fridays", Sat: "Saturdays", Sun: "Sundays" }[d]}</span></h3>
           <ul class="evs">${list.map((r) => eventRow(data, { ...r, kind: "recurring" })).join("")}</ul>
           <p class="quiet empty-filter" hidden>Nothing matches these filters on this day.</p>
         </section>`)
@@ -241,7 +249,7 @@ export function placesPage(data, now) {
   const body = `
   <section class="page-head"><div class="wrap">
     <p class="label">Places</p>
-    <h1>Where to go with kids in Spring Branch</h1>
+    <h1>Where to go with <span class="script">littles</span> in Spring Branch</h1>
     <p class="lede">Libraries, parks, nature trails and indoor play, with tips from parents who've been.</p>
   </div></section>
   <section class="band"><div class="wrap">
@@ -250,7 +258,7 @@ export function placesPage(data, now) {
       ${Object.entries(PLACE_TYPES)
         .map(([type, label]) => {
           const list = data.places.filter((p) => p.type === type);
-          return list.length ? `<section class="day" data-day><h2 class="day-head">${esc(label)}</h2><div class="places">${list.map(placeCard).join("")}</div><p class="quiet empty-filter" hidden>Nothing matches these filters.</p></section>` : "";
+          return list.length ? `<section class="day" data-day><h2 class="day-head c${Object.keys(PLACE_TYPES).indexOf(type) % 4}"><span>${esc(label)}</span></h2><div class="places">${list.map(placeCard).join("")}</div><p class="quiet empty-filter" hidden>Nothing matches these filters.</p></section>` : "";
         })
         .join("")}
     </div>
@@ -263,7 +271,7 @@ export function newsletterPage(data, now) {
   const body = `
   <section class="page-head"><div class="wrap narrow">
     <p class="label">Newsletter</p>
-    <h1>The Thursday letter</h1>
+    <h1>The Thursday letter ${SPARK}</h1>
     <p class="lede">Every ${esc(config.newsletterDay)} morning: the best things to do with kids in Spring Branch this weekend, next week's storytimes, a rainy-day backup and what's coming up. Free, and you can unsubscribe any time.</p>
     <div class="signup-card">${signupForm(config, "nl")}</div>
   </div></section>
@@ -298,7 +306,7 @@ export function aboutPage(data, now) {
   const body = `
   <section class="page-head"><div class="wrap narrow">
     <p class="label">About</p>
-    <h1>Hi, neighbor.</h1>
+    <h1>Hi, <span class="script">neighbor!</span></h1>
     <p class="lede">${esc(config.name)} is a free guide for Spring Branch families with kids from babies through elementary school. It started with one question every parent here asks on Thursday night: what are we doing this weekend?</p>
   </div></section>
   <section class="band"><div class="wrap narrow prose">
@@ -315,6 +323,6 @@ export function aboutPage(data, now) {
 }
 
 export function notFoundPage(data, now) {
-  const body = `<section class="page-head"><div class="wrap narrow"><h1>That page wandered off.</h1><p class="lede">Try <a href="/">this week's list</a> or the <a href="/events/">full calendar</a>.</p></div></section>`;
+  const body = `<section class="page-head"><div class="wrap narrow"><img class="nf-dino" src="/img/dino-head.png" alt="" width="512" height="512"><h1>Oops, that page wandered off.</h1><p class="lede">Try <a href="/">this week's list</a> or the <a href="/events/">full calendar</a>.</p></div></section>`;
   return layout(data.config, { title: "Page not found", path: "/404.html", body, now });
 }

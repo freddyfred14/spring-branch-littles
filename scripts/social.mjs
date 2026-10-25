@@ -24,59 +24,67 @@ const data = loadAll();
 const { config } = data;
 const date = args.includes("--date") ? args[args.indexOf("--date") + 1] : today(config.timezone);
 
-const C = { bg: "#f5f7f2", ink: "#1d2a23", muted: "#56665c", pine: "#2f5d46", pineSoft: "#e3ede6", sun: "#e9a92c", sunSoft: "#fbefd3", berry: "#b83d64" };
-const FONTS = `<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Figtree:wght@500;600;700&display=swap">`;
-const base = (w, h, inner, bg = C.bg) => `<!doctype html><html><head><meta charset="utf-8">${FONTS}<style>
+// Brand colors and images, matching the website and logo.
+const C = { paper: "#fbf6ec", ink: "#241e1a", muted: "#6d645b", dino: "#9db57f", dinoDeep: "#4b7759", dinoSoft: "#e7efd9", sky: "#4b7ca6", skySoft: "#e0ebf4", sun: "#e9a55a", sunSoft: "#fce7cd", peach: "#f8dcc7" };
+const img = (p) => `data:image/png;base64,${readFileSync(join(ROOT, p)).toString("base64")}`;
+const LOGO = img("public/img/logo.png");
+const DINO = img("public/img/dino-head.png");
+const FONTS = `<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700&family=Nunito:wght@600;700;800&family=Caveat:wght@700&display=swap">`;
+const GRASS = `<svg viewBox="0 0 220 34" width="440" height="68" style="position:absolute;bottom:0"><g fill="none" stroke-linecap="round" stroke-width="4"><path d="M20 33c-1-9-5-16-11-21" stroke="#8f9f5c"/><path d="M25 33c0-10 2-19 6-26" stroke="#9db57f"/><path d="M30 33c2-6 6-11 12-14" stroke="#8f9f5c"/><path d="M120 33c-1-7-4-12-8-16" stroke="#9db57f"/><path d="M125 33c1-8 3-14 7-19" stroke="#8f9f5c"/><path d="M186 33c0-6-2-10-5-13" stroke="#8f9f5c"/><path d="M191 33c1-7 4-12 8-15" stroke="#9db57f"/></g></svg>`;
+const grassRow = `<div style="position:absolute;left:0;right:0;bottom:0;height:68px">${[0, 440, 880].map((x) => GRASS.replace('style="position:absolute;bottom:0"', `style="position:absolute;bottom:0;left:${x}px"`)).join("")}</div>`;
+const SPOTS = [[90, 210, 26, C.dino], [960, 520, 18, C.sky], [70, 900, 16, C.sun], [1000, 160, 14, C.dino]]
+  .map(([x, y, r, c]) => `<div style="position:absolute;left:${x}px;top:${y}px;width:${r * 2}px;height:${r * 2}px;border-radius:50%;background:${c};opacity:.22"></div>`).join("");
+const base = (w, h, inner, bg = C.paper) => `<!doctype html><html><head><meta charset="utf-8">${FONTS}<style>
   * { box-sizing: border-box; margin: 0; }
-  body { width: ${w}px; height: ${h}px; background: ${bg}; color: ${C.ink}; font-family: Figtree, system-ui, sans-serif; overflow: hidden; position: relative; }
-  .serif { font-family: "Young Serif", Georgia, serif; font-weight: 400; }
-  .k { font-size: 30px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
-  .handle { position: absolute; left: 80px; bottom: 64px; font-size: 30px; font-weight: 700; }
-  .count { position: absolute; right: 80px; bottom: 64px; font-size: 30px; font-weight: 600; opacity: .7; }
-  .tag { display: inline-block; font-size: 28px; font-weight: 700; padding: 8px 20px; border-radius: 999px; margin: 0 10px 12px 0; }
-</style></head><body>${inner}</body></html>`;
+  body { width: ${w}px; height: ${h}px; background: ${bg}; color: ${C.ink}; font-family: Nunito, system-ui, sans-serif; overflow: hidden; position: relative; }
+  .fred { font-family: Fredoka, system-ui, sans-serif; font-weight: 700; }
+  .script { font-family: Caveat, cursive; font-weight: 700; color: ${C.sky}; }
+  .k { font-family: Fredoka, sans-serif; font-size: 32px; font-weight: 600; letter-spacing: .05em; text-transform: uppercase; color: ${C.dinoDeep}; }
+  .handle { position: absolute; left: 80px; bottom: 92px; font-family: Caveat, cursive; font-size: 46px; font-weight: 700; color: ${C.sky}; }
+  .count { position: absolute; right: 80px; bottom: 100px; font-family: Fredoka, sans-serif; font-size: 30px; font-weight: 600; color: ${C.muted}; }
+  .tag { display: inline-block; font-size: 30px; font-weight: 800; padding: 8px 22px; border-radius: 999px; margin: 0 10px 12px 0; }
+</style></head><body>${SPOTS}${inner}</body></html>`;
 
 const cover = (wk, n, total) => base(1080, 1350, `
-  <div style="position:absolute;right:-160px;top:-160px;width:620px;height:620px;border-radius:50%;background:${C.sun}"></div>
-  <div style="position:absolute;right:120px;top:300px;width:150px;height:150px;border-radius:50%;background:${C.berry}"></div>
-  <div style="position:absolute;left:80px;top:96px;right:80px">
-    <div class="k" style="color:${C.sunSoft}">Spring Branch Littles</div>
+  <img src="${LOGO}" style="position:absolute;left:50%;top:70px;width:620px;transform:translateX(-50%)">
+  <div style="position:absolute;left:70px;right:70px;top:640px;background:#fff;border-radius:48px;padding:56px 60px;box-shadow:0 14px 0 ${C.dinoSoft};text-align:center">
+    <div class="k">This weekend + next week</div>
+    <h1 class="fred" style="font-size:96px;line-height:1.02;margin:22px 0 14px">${n} things to do with your <span class="script" style="font-size:1.3em">littles</span></h1>
+    <p class="script" style="font-size:54px;color:${C.muted}">${fmtShort(wk.start)} – ${fmtShort(addDays(wk.end, 5))}</p>
   </div>
-  <div style="position:absolute;left:80px;right:80px;bottom:200px;color:#fff">
-    <div class="k" style="color:${C.sun};margin-bottom:28px">This weekend + next week · ${fmtShort(wk.start)} – ${fmtShort(addDays(wk.end, 5))}</div>
-    <h1 class="serif" style="font-size:112px;line-height:1.02">${n} things to do with kids in Spring Branch</h1>
-    <p style="font-size:38px;margin-top:30px;opacity:.9">Houston · for babies through elementary schoolers</p>
-  </div>
-  <div class="handle" style="color:#fff">@${esc(config.instagram)}</div><div class="count" style="color:#fff">1/${total} · swipe →</div>`, C.pine);
+  <div class="count" style="bottom:100px">swipe →</div>${grassRow}`);
 
-const slide = (it, i, total) => base(1080, 1350, `
-  <div style="position:absolute;left:0;top:0;right:0;height:22px;background:${C.sun}"></div>
-  <div style="position:absolute;left:80px;right:80px;top:120px">
-    <div class="k" style="color:${C.pine}">${esc(it.when)}</div>
-    <h2 class="serif" style="font-size:${it.title.length > 32 ? 84 : 100}px;line-height:1.05;margin:36px 0 40px">${esc(it.title)}</h2>
-    <p style="font-size:40px;line-height:1.4;color:${C.muted}">${esc(it.description)}</p>
-    <p style="font-size:36px;font-weight:700;margin-top:40px">📍 ${esc(it.where)}</p>
-    <div style="margin-top:36px">${it.ages.split(", ").map((a) => `<span class="tag" style="background:${C.sunSoft}">${esc(a)}</span>`).join("")}<span class="tag" style="background:${C.pineSoft};color:${C.pine}">${esc(it.cost)}</span>${it.tentative ? `<span class="tag" style="border:3px dashed ${C.berry};color:${C.berry}">Date not final</span>` : ""}</div>
+const colors = [[C.dinoSoft, C.dinoDeep], [C.skySoft, C.sky], [C.sunSoft, "#a8641f"], [C.peach, "#a0583a"]];
+const slide = (it, i, total) => {
+  const [soft, deep] = colors[i % colors.length];
+  return base(1080, 1350, `
+  <div style="position:absolute;left:70px;right:70px;top:170px;max-height:1000px;overflow:hidden;background:#fff;border-radius:52px;padding:70px 64px;box-shadow:0 14px 0 ${soft}">
+    <div style="display:inline-block;background:${soft};color:${deep};font-family:Fredoka;font-weight:600;font-size:34px;padding:12px 30px;border-radius:999px;transform:rotate(-1.5deg)">${esc(it.when)}</div>
+    <h2 class="fred" style="font-size:${it.title.length > 30 ? 84 : 100}px;line-height:1.05;margin:40px 0 30px">${esc(it.title)}</h2>
+    <p style="font-size:40px;line-height:1.42;color:${C.muted};font-weight:600">${esc(it.description)}</p>
+    <p style="font-size:38px;font-weight:800;margin-top:36px;color:${C.ink}">📍 ${esc(it.where)}</p>
+    <div style="margin-top:30px">${it.ages.split(", ").map((a) => `<span class="tag" style="background:${C.sunSoft};color:#7a4d17">${esc(a)}</span>`).join("")}<span class="tag" style="background:${C.dinoSoft};color:${C.dinoDeep}">${esc(it.cost)}</span>${it.tentative ? `<span class="tag" style="border:3px dashed ${C.sun};color:#a2522a">Date not final</span>` : ""}</div>
   </div>
-  <div class="handle" style="color:${C.pine}">@${esc(config.instagram)}</div><div class="count">${i}/${total}</div>`);
+  <img src="${DINO}" style="position:absolute;right:70px;top:50px;width:150px;transform:rotate(8deg)">
+  <div class="handle">@${esc(config.instagram)}</div><div class="count">${i}/${total}</div>${grassRow}`);
+};
 
 const outro = (total) => base(1080, 1350, `
-  <div style="position:absolute;left:80px;right:80px;top:50%;transform:translateY(-50%);text-align:center">
-    <h2 class="serif" style="font-size:96px;line-height:1.05;color:${C.pine}">Want the whole list?</h2>
-    <p style="font-size:42px;line-height:1.4;margin-top:40px;color:${C.muted}">Storytimes, rainy-day spots and next week's events land in your inbox every ${esc(config.newsletterDay)}.</p>
-    <p style="font-size:44px;font-weight:700;margin-top:56px">Free newsletter · link in bio</p>
-    <p style="font-size:34px;margin-top:20px;color:${C.muted}">Save this post for the weekend ♡</p>
+  <img src="${DINO}" style="position:absolute;left:50%;top:150px;width:300px;transform:translateX(-50%)">
+  <div style="position:absolute;left:80px;right:80px;top:480px;text-align:center">
+    <h2 class="fred" style="font-size:100px;line-height:1.02">Want the <span class="script" style="font-size:1.25em">whole</span> list?</h2>
+    <p style="font-size:42px;line-height:1.4;margin-top:34px;color:${C.muted};font-weight:600">Storytimes, rainy-day spots and next week's events land in your inbox every ${esc(config.newsletterDay)}.</p>
+    <div style="display:inline-block;margin-top:50px;background:${C.dinoDeep};color:#fff;font-family:Fredoka;font-weight:600;font-size:46px;padding:22px 52px;border-radius:999px;box-shadow:0 8px 0 #365a42">Free newsletter · link in bio</div>
+    <p class="script" style="font-size:52px;margin-top:40px">save this for the weekend ♡</p>
   </div>
-  <div class="handle" style="color:${C.pine}">@${esc(config.instagram)}</div><div class="count">${total}/${total}</div>`, C.sunSoft);
+  <div class="count">${total}/${total}</div>${grassRow}`, C.dinoSoft);
 
 const ogImage = () => base(1200, 630, `
-  <div style="position:absolute;right:-120px;top:-120px;width:420px;height:420px;border-radius:50%;background:${C.sun}"></div>
-  <div style="position:absolute;right:90px;top:250px;width:90px;height:90px;border-radius:50%;background:${C.berry}"></div>
-  <div style="position:absolute;left:72px;right:300px;top:110px;color:#fff">
-    <div class="k" style="color:${C.sun};font-size:24px">Spring Branch · Houston</div>
-    <h1 class="serif" style="font-size:84px;line-height:1.05;margin-top:22px">Spring Branch Littles</h1>
-    <p style="font-size:34px;margin-top:24px;opacity:.9">Things to do with kids, every week.</p>
-  </div>`, C.pine);
+  <img src="${LOGO}" style="position:absolute;left:60px;top:50%;width:540px;transform:translateY(-50%)">
+  <div style="position:absolute;left:660px;right:60px;top:50%;transform:translateY(-50%)">
+    <h1 class="fred" style="font-size:70px;line-height:1.05">Weekend plans for your <span class="script" style="font-size:1.3em">littles</span>, sorted.</h1>
+    <p style="font-size:30px;margin-top:22px;color:${C.muted};font-weight:600">Things to do with kids in Spring Branch, Houston. Every week.</p>
+  </div>`);
 
 async function render(pages, dir) {
   const browser = await chromium.launch();
