@@ -11,6 +11,7 @@
     "build": "node scripts/build.mjs",
     "serve": "node scripts/serve.mjs",
     "newsletter:preview": "node scripts/newsletter.mjs",
+    "newsletter:html": "node scripts/newsletter.mjs --html newsletter-preview.html",
     "newsletter:send": "node scripts/newsletter.mjs --send",
     "social": "node scripts/social.mjs",
     "instagram:post": "node scripts/instagram.mjs"

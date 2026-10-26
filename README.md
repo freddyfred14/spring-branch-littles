@@ -100,6 +100,7 @@ npm run check              # validate data/
 npm run build              # build the site into dist/
 npm run serve              # preview at http://localhost:4321
 npm run newsletter:preview # print this week's newsletter as Markdown
+npm run newsletter:html    # write the designed email to newsletter-preview.html (open it in a browser)
 npm ci && npx playwright install chromium
 npm run social             # make this weekend's carousel in social/
 ```

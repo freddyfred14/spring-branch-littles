@@ -1,5 +1,6 @@
 // Builds this week's newsletter and (with --send) sends it through Buttondown.
 //   node scripts/newsletter.mjs                 preview this week's issue as Markdown
+//   node scripts/newsletter.mjs --html out.html   write the designed email (what subscribers get) to a file
 //   node scripts/newsletter.mjs --send          send it and save it to data/issues/ for the site archive
 //   node scripts/newsletter.mjs --date 2026-11-09   (default: today, or the coming Monday on a weekend)
 // Env: BUTTONDOWN_API_KEY (required for --send)
@@ -7,7 +8,7 @@
 import { existsSync, writeFileSync, mkdirSync } from "node:fs";
 import { join } from "node:path";
 import { ROOT, loadAll, validate, today, addDays } from "../src/lib.mjs";
-import { buildIssue, toMarkdown } from "../src/newsletter.mjs";
+import { buildIssue, toMarkdown, toHtml } from "../src/newsletter.mjs";
 
 const args = process.argv.slice(2);
 const data = loadAll();
@@ -35,8 +36,15 @@ if (send && existsSync(issuePath)) {
 
 const issue = buildIssue(data, date);
 const markdown = toMarkdown(issue, data.config);
+const html = toHtml(issue, data.config);
 const itemCount = issue.sections.reduce((n, s) => n + s.items.length, 0);
 
+if (args.includes("--html")) {
+  const out = args[args.indexOf("--html") + 1] || "newsletter-preview.html";
+  writeFileSync(out, html);
+  console.log(`Wrote the designed email for ${date} to ${out}`);
+  process.exit(0);
+}
 if (!send) {
   console.log(`Subject: ${issue.subject}\nPreheader: ${issue.preheader}\n\n${markdown}`);
   process.exit(0);
@@ -54,8 +62,14 @@ if (!key) {
 const status = process.env.NEWSLETTER_STATUS || "about_to_send";
 const res = await fetch("https://api.buttondown.com/v1/emails", {
   method: "POST",
-  headers: { Authorization: `Token ${key}`, "Content-Type": "application/json" },
-  body: JSON.stringify({ subject: issue.subject, body: markdown, description: issue.preheader, status }),
+  headers: {
+    Authorization: `Token ${key}`,
+    "Content-Type": "application/json",
+    // Buttondown's API saves everything as a draft unless this header confirms a real send.
+    ...(status === "about_to_send" ? { "X-Buttondown-Live-Dangerously": "true" } : {}),
+  },
+  // "naked" sends our own designed HTML as the whole email, instead of wrapping it in Buttondown's plain template.
+  body: JSON.stringify({ subject: issue.subject, body: html, template: "naked", description: issue.preheader, status }),
 });
 const text = await res.text();
 if (!res.ok) {
