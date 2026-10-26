@@ -861,3 +861,5 @@ body { background-image: none; }
 .post-sources { margin-top: 18px; border-top: 2px solid var(--line); padding-top: 14px; }
 .post-sources h2 { font-size: 20px; margin: 0 0 8px; }
 .post-sources ol { margin: 0; padding-left: 22px; display: grid; gap: 6px; font-size: 15px; }
+.bcards.four { grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); }
+.bcards.four .bcard h3 { font-size: 19px; }

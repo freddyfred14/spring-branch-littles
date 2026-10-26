@@ -471,7 +471,7 @@ export function homePage(data, now) {
     </div></section>`;
   };
   const weekCount = soon.local.length + soon.houston.length + weekly.length;
-  const posts = livePosts(data, now).slice(0, 3);
+  const posts = livePosts(data, now).slice(0, 4);
   const week = Math.floor(Date.parse(`${now}T12:00:00Z`) / (7 * 864e5));
   const spot = [0, 1, 2].map((i) => data.places[(week * 3 + i) % data.places.length]).filter((p, i, a) => a.indexOf(p) === i);
   const body = `
@@ -513,7 +513,7 @@ export function homePage(data, now) {
 
   ${posts.length ? `<section class="band zone"><div class="wrap">
     <div class="sec-head"><div><p class="label">Real talk for parents</p><h2>From the blog ${SPARK_PINK}</h2></div><a class="more" href="/blog/">All posts →</a></div>
-    <div class="bcards">${posts.map((p) => postCard(p)).join("")}</div>
+    <div class="bcards four">${posts.map((p) => postCard(p)).join("")}</div>
   </div></section>` : ""}
 
   ${data.deals.length ? `<section class="band"><div class="wrap">
