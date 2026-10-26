@@ -1,0 +1,166 @@
+{
+  "date": "2026-10-26",
+  "subject": "Halloween week: trick-or-treating, Zoo Boo and more",
+  "preheader": "Welcome to the first Littles List: our favorite kid plans for the next two weeks.",
+  "intro": [
+    "Welcome to the very first Littles List! Every Monday, we'll send our favorite things to do with babies through elementary schoolers in Spring Branch and Memorial over the next two weeks, so you have time to plan.",
+    "It's Halloween week, so costumes are the theme. If you only do one thing, make it CityCentre's free trick-or-treat on Friday evening (bring your own bucket). And if a costume meltdown is in your future, our new article on tantrums is for you."
+  ],
+  "sections": [
+    {
+      "heading": "Story of the week",
+      "items": [
+        {
+          "title": "Greenside, a family-friendly spot with a kids' play structure, is coming to Memorial City",
+          "when": "Houston Chronicle",
+          "where": "",
+          "ages": "",
+          "cost": "",
+          "description": "A new family-friendly hangout built around a one-acre lawn is coming to 1085 Gessner, with a children's play area in the plans. Michelin-recognized Pizzana is among the restaurants opening there this fall.",
+          "paragraphs": [
+            "A new family-friendly hangout built around a one-acre lawn is coming to 1085 Gessner, with a children's play area in the plans. Michelin-recognized Pizzana is among the restaurants opening there this fall."
+          ],
+          "url": "https://springbranchlittles.com/news/#2026-10-24-greenside-memorial-city",
+          "feature": true,
+          "image": {
+            "src": "https://springbranchlittles.com/img/news/greenside-rendering.jpg",
+            "alt": "Rendering of Greenside's garden: kids playing in and around two wooden A-frame playhouses among flowering trees, while parents sit on long benches nearby.",
+            "credit": "Rendering courtesy of MetroNational & Radom Capital / Michael Hsu Office of Architecture"
+          },
+          "moreLinks": []
+        }
+      ]
+    },
+    {
+      "heading": "Top picks · Oct 26–Nov 8",
+      "items": [
+        {
+          "title": "Halloween party for kids",
+          "when": "Thu, Oct 29 · 5 pm–7 pm",
+          "where": "Spring Branch Memorial Library",
+          "ages": "Preschool, Elementary",
+          "cost": "Free",
+          "description": "A costume-friendly Halloween party at the library for ages 4–8.",
+          "url": "https://springbranchlittles.com/events/2026-10-29-sbm-kids-halloween-party/",
+          "tentative": false
+        },
+        {
+          "title": "Free Family Night at the Children's Museum",
+          "when": "Thu, Oct 29 · 5 pm–8 pm",
+          "where": "Children's Museum Houston, 1500 Binz St (worth the drive)",
+          "ages": "Babies, Toddlers, Preschool, Elementary",
+          "cost": "Free",
+          "description": "Free admission Thursday evening, plus trick-or-treating and the Halloween Happy House. Arrive early; it fills up.",
+          "url": "https://springbranchlittles.com/events/2026-10-29-cmh-free-family-night/",
+          "tentative": false
+        },
+        {
+          "title": "CityCentre trick-or-treat",
+          "when": "Fri, Oct 30 · 5 pm–8 pm",
+          "where": "CityCentre",
+          "ages": "Babies, Toddlers, Preschool, Elementary",
+          "cost": "Free",
+          "description": "Kids trick-or-treat at CityCentre shops and restaurants marked with balloons. Rain or shine; bring your own bucket.",
+          "url": "https://springbranchlittles.com/events/2026-10-30-citycentre-trick-or-treat/",
+          "tentative": false
+        },
+        {
+          "title": "Zoo Boo at the Houston Zoo",
+          "when": "Oct 26 – Oct 31 · 9 am–5 pm",
+          "where": "Houston Zoo, 6200 Hermann Park Dr (worth the drive)",
+          "ages": "Babies, Toddlers, Preschool, Elementary",
+          "cost": "Included with zoo admission",
+          "description": "Pumpkins, fall decorations, photo spots and animals getting Halloween treats. Costumes welcome.",
+          "url": "https://springbranchlittles.com/events/2026-10-25-houston-zoo-boo/",
+          "tentative": false
+        },
+        {
+          "title": "Fall Foliage scavenger hunt",
+          "when": "Sat, Nov 7 · 2 pm–4 pm",
+          "where": "Houston Arboretum & Nature Center",
+          "ages": "Babies, Toddlers, Preschool, Elementary",
+          "cost": "Free",
+          "description": "A free family scavenger hunt on the trails about fall leaves, any time between 2 and 4 pm. Turn in your sheet at the Nature Center for a prize.",
+          "url": "https://springbranchlittles.com/events/2026-11-07-arboretum-scavenger-hunt/",
+          "tentative": false
+        },
+        {
+          "title": "Standing Tall tree festival",
+          "when": "Sun, Nov 8 · 9 am–4 pm",
+          "where": "Houston Botanic Garden, 1 Botanic Ln (worth the drive)",
+          "ages": "Toddlers, Preschool, Elementary",
+          "cost": "See listing for cost",
+          "description": "A kids' zone with tree-themed crafts and activities, plus guided walks to meet the garden's native trees.",
+          "url": "https://springbranchlittles.com/events/2026-11-08-hbg-standing-tall/",
+          "tentative": false
+        }
+      ]
+    },
+    {
+      "heading": "Where to eat this week",
+      "items": [
+        {
+          "title": "Feges BBQ",
+          "when": "Spring Branch · $$ · Play area, Patio",
+          "where": "",
+          "description": "Kids eat free on Wednesdays, 5 pm–8 pm. Barbecue with a big patio and a small enclosed play space with a climbing gym tucked beside it. You order at the counter, so no waiting in line with wiggly kids.",
+          "url": "https://fegesbbq.com/locations/spring-branch/",
+          "deal": true
+        },
+        {
+          "title": "The Union Kitchen – Memorial",
+          "when": "Memorial · $$ · Play area, Patio",
+          "where": "",
+          "description": "Free kids' meal on Mondays and Tuesdays. American comfort food with a spacious patio, a play area for kids and live music some nights.",
+          "url": "https://www.theunionkitchen.com/",
+          "deal": true
+        },
+        {
+          "title": "Lazy Oaks Beer Garden",
+          "when": "Spring Branch · $$ · Play area, Patio",
+          "where": "",
+          "description": "A shady, laid-back beer garden with a playground, so kids can climb while grown-ups relax.",
+          "url": "https://www.google.com/maps/search/?api=1&query=Lazy+Oaks+Beer+Garden+10158+Long+Point+Rd+Houston+TX",
+          "deal": true
+        }
+      ]
+    },
+    {
+      "heading": "From the blog",
+      "items": [
+        {
+          "title": "Tantrums aren't a sign you're failing. They're a sign your kid is two.",
+          "when": "4-minute article",
+          "where": "",
+          "description": "Almost every toddler melts down, and most tantrums are over in five minutes. What the research says is really going on, and what actually helps (for them and for you).",
+          "url": "https://springbranchlittles.com/blog/tantrums-and-big-feelings/",
+          "news": true
+        },
+        {
+          "title": "Kids eat free near Spring Branch: a night-by-night cheat sheet",
+          "when": "1-minute read",
+          "where": "",
+          "description": "Monday through Wednesday, there's a kids-eat-free deal near Spring Branch and Memorial every night. Here's where.",
+          "url": "https://springbranchlittles.com/blog/kids-eat-free-spring-branch-cheat-sheet/",
+          "news": true
+        }
+      ]
+    },
+    {
+      "heading": "Mark your calendar",
+      "items": [
+        {
+          "title": "SBISD Thanksgiving break",
+          "when": "Nov 23 – Nov 27 · No school",
+          "where": "",
+          "description": "No school all week. Plan library visits and park days early, since popular spots fill up.",
+          "url": "https://www.springbranchisd.com/events/",
+          "deal": true
+        }
+      ]
+    }
+  ],
+  "buttondownId": "em_2e455n54309928qewpxsp4g796",
+  "status": "draft",
+  "sentAt": "2026-10-26T03:27:20.332Z"
+}
