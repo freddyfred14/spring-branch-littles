@@ -23,7 +23,7 @@
           "url": "https://springbranchlittles.com/news/#2026-10-24-greenside-memorial-city",
           "feature": true,
           "image": {
-            "src": "https://springbranchlittles.com/img/news/greenside-rendering.jpg",
+            "src": "https://springbranchlittles.com/img/news/greenside-rendering-800.jpg",
             "alt": "Rendering of Greenside's garden: kids playing in and around two wooden A-frame playhouses among flowering trees, while parents sit on long benches nearby.",
             "credit": "Rendering courtesy of MetroNational & Radom Capital / Michael Hsu Office of Architecture"
           },
@@ -35,6 +35,10 @@
       "heading": "Top picks · Oct 26–Nov 8",
       "items": [
         {
+          "image": {
+            "src": "https://springbranchlittles.com/img/events/2026-10-29-sbm-kids-halloween-party-800.jpg",
+            "alt": "Illustration: Young kids (ages 4–8) in cute costumes (dinosaur, ladybug, superhero, princess) doing a Halloween craft and dancing at a library party with paper bats and pumpkins on the walls"
+          },
           "title": "Halloween party for kids",
           "when": "Thu, Oct 29 · 5 pm–7 pm",
           "where": "Spring Branch Memorial Library",
@@ -45,6 +49,10 @@
           "tentative": false
         },
         {
+          "image": {
+            "src": "https://springbranchlittles.com/img/events/2026-10-29-cmh-free-family-night-800.jpg",
+            "alt": "Illustration: Excited kids in Halloween costumes exploring a colorful hands-on children's museum in the evening: a giant bubble station and climbing structure, families everywhere"
+          },
           "title": "Free Family Night at the Children's Museum",
           "when": "Thu, Oct 29 · 5 pm–8 pm",
           "where": "Children's Museum Houston, 1500 Binz St (worth the drive)",
@@ -55,6 +63,10 @@
           "tentative": false
         },
         {
+          "image": {
+            "src": "https://springbranchlittles.com/img/events/2026-10-30-citycentre-trick-or-treat-800.jpg",
+            "alt": "Illustration: Little kids in costumes with pumpkin buckets trick-or-treating along an outdoor shopping plaza with shops and restaurants, orange balloons marking the doors, parents nearby, late afternoon golden light"
+          },
           "title": "CityCentre trick-or-treat",
           "when": "Fri, Oct 30 · 5 pm–8 pm",
           "where": "CityCentre",
@@ -65,6 +77,10 @@
           "tentative": false
         },
         {
+          "image": {
+            "src": "https://springbranchlittles.com/img/events/2026-10-25-houston-zoo-boo-800.jpg",
+            "alt": "Illustration: Kids in Halloween costumes (lion, bee, astronaut, witch) walking along a zoo path lined with pumpkins and hay bales, a giraffe in the background, families smiling, sunny fall day"
+          },
           "title": "Zoo Boo at the Houston Zoo",
           "when": "Oct 26 – Oct 31 · 9 am–5 pm",
           "where": "Houston Zoo, 6200 Hermann Park Dr (worth the drive)",
@@ -75,6 +91,10 @@
           "tentative": false
         },
         {
+          "image": {
+            "src": "https://springbranchlittles.com/img/events/2026-11-07-arboretum-scavenger-hunt-800.jpg",
+            "alt": "Illustration: Kids (ages 4–10) with clipboards and crayons on a forest trail, holding up colorful fall leaves to match a scavenger-hunt sheet, parents walking behind"
+          },
           "title": "Fall Foliage scavenger hunt",
           "when": "Sat, Nov 7 · 2 pm–4 pm",
           "where": "Houston Arboretum & Nature Center",
@@ -85,6 +105,10 @@
           "tentative": false
         },
         {
+          "image": {
+            "src": "https://springbranchlittles.com/img/events/2026-11-08-hbg-standing-tall-800.jpg",
+            "alt": "Illustration: A kids' craft tent in a botanic garden: children making tree crafts and hugging a big oak tree, a guide pointing up at the branches, families on a garden path"
+          },
           "title": "Standing Tall tree festival",
           "when": "Sun, Nov 8 · 9 am–4 pm",
           "where": "Houston Botanic Garden, 1 Botanic Ln (worth the drive)",
@@ -129,6 +153,10 @@
       "heading": "From the blog",
       "items": [
         {
+          "image": {
+            "src": "https://springbranchlittles.com/img/blog/tantrums-and-big-feelings-800.jpg",
+            "alt": "Illustration: A frustrated toddler with a pout sitting on a living room rug next to a toppled toy tower, a calm mom kneeling at eye level with open arms, soft afternoon light through the window, tender and reassuring mood"
+          },
           "title": "Tantrums aren't a sign you're failing. They're a sign your kid is two.",
           "when": "4-minute article",
           "where": "",
@@ -137,6 +165,7 @@
           "news": true
         },
         {
+          "image": null,
           "title": "Kids eat free near Spring Branch: a night-by-night cheat sheet",
           "when": "1-minute read",
           "where": "",
@@ -162,5 +191,5 @@
   ],
   "buttondownId": "em_2e455n54309928qewpxsp4g796",
   "status": "draft",
-  "sentAt": "2026-10-26T03:27:20.332Z"
+  "sentAt": "2026-10-26T03:33:17.015Z"
 }
