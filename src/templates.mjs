@@ -492,14 +492,18 @@ export function homePage(data, now) {
 
   <div class="zone">
   <section class="band whatson"><div class="wrap">
-    <div class="sec-head"><div><p class="label">${fmtShort(now)} – ${fmtShort(weekEnd)} · ${weekCount} things to do</p><h2>Events: This Week ${SPARK}</h2></div><a class="more" href="/events/">Coming up →</a></div>
+    <div class="sec-head"><div><p class="label">${fmtShort(now)} – ${fmtShort(weekEnd)} · ${weekCount} things to do</p><h2>Events: This Week ${SPARK}</h2></div></div>
     ${breakNotices(data, now, weekEnd)}
-    ${filterBar("listings")}
   </div></section>
   <div id="listings" class="filterable">
     ${region("local")}
     ${region("houston")}
   </div>
+  <!-- Filters and the link onward come after the events, so the section opens straight onto the listings. -->
+  <section class="band events-foot"><div class="wrap">
+    <p class="label">Narrow it down</p>
+    <div class="events-foot-row">${filterBar("listings")}<a class="more" href="/events/">Coming up →</a></div>
+  </div></section>
   </div>
 
   <section class="band midsignup"><div class="wrap"><div class="mid-card">

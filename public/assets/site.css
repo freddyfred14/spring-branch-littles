@@ -863,3 +863,10 @@ body { background-image: none; }
 .post-sources ol { margin: 0; padding-left: 22px; display: grid; gap: 6px; font-size: 15px; }
 .bcards.four { grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); }
 .bcards.four .bcard h3 { font-size: 19px; }
+
+/* homepage: filters and "Coming up" sit under the event carousels */
+.whatson .sec-head { margin-bottom: 0; }
+.events-foot { padding-block: 4px 40px; }
+.events-foot .wrap { display: grid; gap: 10px; border-top: 2px solid var(--line); padding-top: 22px; }
+.events-foot-row { display: flex; align-items: center; justify-content: space-between; gap: 12px 20px; flex-wrap: wrap; }
+.events-foot .filters { margin-bottom: 0; }
