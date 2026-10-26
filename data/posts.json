@@ -62,7 +62,10 @@
         "label": "American Family Physician. Toilet training (review), 2008.",
         "url": "https://www.aafp.org/pubs/afp/issues/2008/1101/p1059.html"
       }
-    ]
+    ],
+    "image": "/img/blog/potty-training-without-the-power-struggle.jpg",
+    "imageAlt": "Illustration: A happy toddler in a striped shirt sitting on a small colorful potty in a bright, tidy bathroom, holding a picture book, a smiling mom kneeling beside them, soft morning light",
+    "imageCredit": "AI illustration"
   },
   {
     "id": "sleep-regressions-what-the-data-shows",
@@ -130,7 +133,10 @@
         "label": "Gradisar et al. Behavioral interventions for infant sleep problems: a randomized controlled trial. Pediatrics, 2016.",
         "url": "https://pubmed.ncbi.nlm.nih.gov/27221288/"
       }
-    ]
+    ],
+    "image": "/img/blog/sleep-regressions-what-the-data-shows.jpg",
+    "imageAlt": "Illustration: A tired but tender mom gently rocking a sleepy baby in a dim, cozy nursery at night, a soft lamp glow, a crib and a rocking chair, calm and peaceful mood",
+    "imageCredit": "AI illustration"
   },
   {
     "id": "holiday-travel-with-little-kids",
@@ -199,7 +205,10 @@
         "label": "KidsHealth (Nemours). Flying and your child's ears.",
         "url": "https://kidshealth.org/en/parents/flying-ears.html"
       }
-    ]
+    ],
+    "image": "/img/blog/holiday-travel-with-little-kids.jpg",
+    "imageAlt": "Illustration: A young family loading a car for a holiday road trip in a suburban driveway at golden hour, a toddler holding a stuffed animal, a parent buckling a car seat, wrapped gifts in the trunk",
+    "imageCredit": "AI illustration"
   },
   {
     "id": "how-to-get-a-spot-at-storytime",
