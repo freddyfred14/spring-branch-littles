@@ -5,7 +5,7 @@
 //   node scripts/newsletter.mjs --date 2026-11-09   (default: today, or the coming Monday on a weekend)
 // Env: BUTTONDOWN_API_KEY (required for --send)
 //      NEWSLETTER_STATUS = about_to_send (default, sends immediately) | draft (lands in Buttondown for review)
-import { existsSync, writeFileSync, mkdirSync } from "node:fs";
+import { existsSync, readFileSync, writeFileSync, mkdirSync } from "node:fs";
 import { join } from "node:path";
 import { ROOT, loadAll, validate, today, addDays } from "../src/lib.mjs";
 import { buildIssue, toMarkdown, toHtml } from "../src/newsletter.mjs";
@@ -29,7 +29,9 @@ if (errors.length) {
 }
 
 const issuePath = join(ROOT, "data/issues", `${date}.json`);
-if (send && existsSync(issuePath)) {
+// A draft saved earlier is updated in place on a rerun (so fixes reach Buttondown); a sent issue is never resent.
+const earlier = existsSync(issuePath) ? JSON.parse(readFileSync(issuePath, "utf8")) : null;
+if (send && earlier && earlier.status !== "draft") {
   console.log(`Issue for ${date} was already sent. Nothing to do.`);
   process.exit(0);
 }
@@ -60,8 +62,9 @@ if (!key) {
   process.exit(1);
 }
 const status = process.env.NEWSLETTER_STATUS || "about_to_send";
-const res = await fetch("https://api.buttondown.com/v1/emails", {
-  method: "POST",
+const draftId = earlier?.status === "draft" ? earlier.buttondownId : null;
+const res = await fetch(`https://api.buttondown.com/v1/emails${draftId ? `/${draftId}` : ""}`, {
+  method: draftId ? "PATCH" : "POST",
   headers: {
     Authorization: `Token ${key}`,
     "Content-Type": "application/json",
