@@ -181,7 +181,7 @@ Short, useful updates for parents in Spring Branch and Memorial. Each item is a 
 
 ## Sunday: the newsletter intro
 
-The newsletter ("The Littles List") goes out automatically Monday morning. It's **curated, not complete**: a short story of the week, the most compelling Spring Branch & Memorial events of the next two weeks (up to 6), 2–3 restaurants, 2 blog articles, and school-break reminders. Everything else lives on the site's calendar. Don't call it a Monday letter. You choose what goes in and write the opening. Create `data/drafts/<tomorrow's date>.json`:
+The newsletter ("The Littles List") goes out automatically Monday morning. It's **curated, not complete**: a short story of the week, the most compelling Spring Branch & Memorial events of the next two weeks (up to 6), a compact "Every week" list of local storytimes and weekly programs (added automatically from `recurring.json`, no photos), 2–3 restaurants, 2 blog articles, and school-break reminders. Everything else lives on the site's calendar. Don't call it a Monday letter. You choose what goes in and write the opening. Create `data/drafts/<tomorrow's date>.json`:
 
 ```json
 {

@@ -75,6 +75,15 @@ export function topPicks(data, date, draft = {}) {
   return chosen.sort((a, b) => a.date.localeCompare(b.date) || (a.startTime || "").localeCompare(b.startTime || ""));
 }
 
+// Spring Branch & Memorial weekly programs running during the issue's two weeks, Monday first.
+const WEEK = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+export function weeklyPrograms(data, date) {
+  const end = addDays(date, 13);
+  return data.recurring
+    .filter((r) => areaOf(data, r) === "local" && (!r.from || r.from <= end) && (!r.until || r.until >= date))
+    .sort((a, b) => WEEK.indexOf(a.days[0]) - WEEK.indexOf(b.days[0]) || (a.startTime || "").localeCompare(b.startTime || ""));
+}
+
 // Two or three restaurants: the editor's choice, or one with a kids' deal this week plus local favorites,
 // rotating week to week so readers see new places.
 export function weeklyEats(data, date, draft = {}) {
@@ -118,6 +127,19 @@ export function buildIssue(data, date, draft = loadDraft(date)) {
     sections.push({
       heading: `Top picks · ${fmtShort(date)}–${fmtShort(end)}`,
       items: picks.map((e) => item(data, e, `${fmtDateRange(e.date < date ? date : e.date, e.endDate)} · ${fmtTimeRange(e.startTime, e.endTime)}`)),
+    });
+  }
+
+  // Storytimes and other weekly programs: a compact list with no photos, after the picks.
+  const weekly = weeklyPrograms(data, date);
+  if (weekly.length) {
+    sections.push({
+      heading: "Every week",
+      items: weekly.map((r) => ({
+        ...item(data, r, `${r.frequency || r.days.map((d) => `${DAY_LONG[d]}s`).join(" and ")} · ${fmtTimeRange(r.startTime, r.endTime)}`),
+        image: null,
+        weekly: true,
+      })),
     });
   }
 
@@ -179,6 +201,11 @@ export function toMarkdown(issue, config) {
       if (f.image) out.push(`![${f.image.alt}](${f.image.src})`, `_${f.image.credit}_`, "");
       for (const p of f.paragraphs) out.push(p, "");
       out.push(`[Read more →](${f.url})`, "");
+      continue;
+    }
+    if (s.items[0]?.weekly) {
+      for (const i of s.items) out.push(`- **[${i.title}](${i.url})**: ${i.when} · ${i.where} _(${i.ages} · ${i.cost})_`);
+      out.push("");
       continue;
     }
     for (const i of s.items) {
@@ -247,6 +274,17 @@ export function toHtml(issue, config) {
           ${f.paragraphs.map((p) => `<p style="margin:0 0 14px;font-family:${BODY};font-size:15px;line-height:1.55;color:${C.muted}">${rich(p)}</p>`).join("")}
           ${button(f.url, "Read more →", C.green)}
         </td></tr></table></td></tr>`);
+      continue;
+    }
+    if (s.items[0]?.weekly) {
+      // One card with a row per program, so the weekly basics don't crowd out the picks.
+      const rows = s.items.map((i, n) => `<tr><td style="padding:14px 20px;${n ? `border-top:1px solid ${C.line};` : ""}font-family:${BODY};font-size:15px;line-height:1.5;color:${C.ink}">
+          <a href="${h(i.url)}" style="font-family:${DISPLAY};font-size:17px;font-weight:700;color:${C.ink};text-decoration:none">${h(i.title)}</a><br>
+          <b>${h(i.when)}</b> · ${h(i.where)}<br>
+          <span style="font-size:13px;font-weight:700;color:${C.green}">${h(i.ages)} · ${h(i.cost)}</span>
+        </td></tr>`).join("");
+      blocks.push(`<tr><td style="padding:0 20px"><table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:${C.card};border:2px solid ${C.line};border-radius:18px;margin:0 0 6px">${rows}
+        <tr><td style="padding:12px 20px 16px;border-top:1px solid ${C.line};font-family:${BODY};font-size:14px;color:${C.muted}">Some need a free ticket or sign-up. <a href="${site}/events/?source=newsletter" style="color:${C.link};font-weight:700">See details on the calendar →</a></td></tr></table></td></tr>`);
       continue;
     }
     const kind = s.items[0]?.news ? "post" : s.heading.startsWith("Where to eat") ? "eat" : s.heading === "Mark your calendar" ? "note" : "event";
