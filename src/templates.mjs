@@ -1047,7 +1047,7 @@ export function thanksPage(data, now) {
   <section class="page-head"><div class="wrap narrow head-art"><div class="head-copy">
     <p class="label">${esc(config.newsletterName)}</p>
     <h1>You're in! <span class="script pink">Welcome</span> 🦕</h1>
-    <p class="lede">Check your inbox for a quick confirmation email (peek in Promotions if you don't see it). Your first issue arrives this week.</p>
+    <p class="lede">One last step: check your inbox and tap the confirmation link (peek in Promotions if you don't see it). Then watch for The Littles List next Monday morning.</p>
     <p class="event-actions"><a class="btn" href="/">See this week's plans</a><a class="btn btn-soft" href="https://instagram.com/${esc(config.instagram)}">Follow @${esc(config.instagram)}</a></p>
     <p class="quiet">Know a parent who'd love this? Send them <span class="select">${esc(config.url.replace("https://", ""))}/join</span></p>
   </div>${toddlerIllo()}</div></section>`;

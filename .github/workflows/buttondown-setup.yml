@@ -1,0 +1,22 @@
+# One click to finish Buttondown setup: Actions → Buttondown setup → Run workflow.
+# Sends new subscribers to /thanks/ after signing up and to the homepage after confirming. Safe to run again.
+name: Buttondown setup
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  setup:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+      - name: Set the signup redirects
+        env:
+          BUTTONDOWN_API_KEY: ${{ secrets.BUTTONDOWN_API_KEY }}
+        run: node scripts/buttondown-setup.mjs
