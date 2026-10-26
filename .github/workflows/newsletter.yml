@@ -5,6 +5,10 @@ on:
   schedule:
     - cron: "47 11 * * 1" # Monday ~6:47 am Houston in summer, ~5:47 am in winter (GitHub runs on UTC)
   workflow_dispatch:
+    inputs:
+      date:
+        description: "Issue date, YYYY-MM-DD (blank = today, or the coming Monday on a weekend)"
+        required: false
 
 permissions:
   contents: write
@@ -29,7 +33,8 @@ jobs:
         env:
           BUTTONDOWN_API_KEY: ${{ secrets.BUTTONDOWN_API_KEY }}
           NEWSLETTER_STATUS: ${{ vars.NEWSLETTER_STATUS || 'about_to_send' }}
-        run: npm run newsletter:send
+          ISSUE_DATE: ${{ inputs.date }}
+        run: node scripts/newsletter.mjs --send --date "$ISSUE_DATE"
 
       - name: Archive the issue
         run: |

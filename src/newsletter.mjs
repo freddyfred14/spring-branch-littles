@@ -4,7 +4,7 @@ import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { eventPath } from "./calendar.mjs";
 import {
-  ROOT, AGES, PERKS, areaOf, featuredStory, activeDeals, addDays, eventsBetween, fmtDateRange,
+  ROOT, AGES, PERKS, readMinutes, areaOf, featuredStory, activeDeals, addDays, eventsBetween, fmtDateRange,
   fmtTimeRange, fmtShort, whereText, placeById,
 } from "./lib.mjs";
 
@@ -141,7 +141,7 @@ export function buildIssue(data, date, draft = loadDraft(date)) {
   if (posts.length) {
     sections.push({
       heading: "From the blog",
-      items: posts.map((p) => ({ title: p.title, when: `${Math.max(1, Math.round(p.body.join(" ").split(/\s+/).length / 200))}-minute read`, where: "", description: p.summary, url: `${site}/blog/${p.id}/`, news: true })),
+      items: posts.map((p) => ({ title: p.title, when: `${readMinutes(p)}-minute ${p.type === "article" ? "article" : "read"}`, where: "", description: p.summary, url: `${site}/blog/${p.id}/`, news: true })),
     });
   }
 

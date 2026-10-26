@@ -3,7 +3,7 @@
   "preheader": "Welcome to the first Littles List: our favorite kid plans for the next two weeks.",
   "intro": [
     "Welcome to the very first Littles List! Every Monday, we'll send our favorite things to do with babies through elementary schoolers in Spring Branch and Memorial over the next two weeks, so you have time to plan.",
-    "It's Halloween week, so costumes are the theme. If you only do one thing, make it CityCentre's free trick-or-treat on Friday evening (bring your own bucket)."
+    "It's Halloween week, so costumes are the theme. If you only do one thing, make it CityCentre's free trick-or-treat on Friday evening (bring your own bucket). And if a costume meltdown is in your future, our new article on tantrums is for you."
   ],
   "picks": [
     "2026-10-29-sbm-kids-halloween-party",
@@ -13,6 +13,13 @@
     "2026-11-07-arboretum-scavenger-hunt",
     "2026-11-08-hbg-standing-tall"
   ],
-  "restaurants": ["feges-bbq-spring-branch", "union-kitchen-memorial", "lazy-oaks-beer-garden"],
-  "posts": ["how-to-get-a-spot-at-storytime", "kids-eat-free-spring-branch-cheat-sheet"]
+  "restaurants": [
+    "feges-bbq-spring-branch",
+    "union-kitchen-memorial",
+    "lazy-oaks-beer-garden"
+  ],
+  "posts": [
+    "tantrums-and-big-feelings",
+    "kids-eat-free-spring-branch-cheat-sheet"
+  ]
 }

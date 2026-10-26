@@ -1,17 +1,24 @@
 // Builds this week's newsletter and (with --send) sends it through Buttondown.
 //   node scripts/newsletter.mjs                 preview this week's issue as Markdown
 //   node scripts/newsletter.mjs --send          send it and save it to data/issues/ for the site archive
-//   node scripts/newsletter.mjs --date 2026-11-05
+//   node scripts/newsletter.mjs --date 2026-11-09   (default: today, or the coming Monday on a weekend)
 // Env: BUTTONDOWN_API_KEY (required for --send)
 //      NEWSLETTER_STATUS = about_to_send (default, sends immediately) | draft (lands in Buttondown for review)
 import { existsSync, writeFileSync, mkdirSync } from "node:fs";
 import { join } from "node:path";
-import { ROOT, loadAll, validate, today } from "../src/lib.mjs";
+import { ROOT, loadAll, validate, today, addDays } from "../src/lib.mjs";
 import { buildIssue, toMarkdown } from "../src/newsletter.mjs";
 
 const args = process.argv.slice(2);
 const data = loadAll();
-const date = args.includes("--date") ? args[args.indexOf("--date") + 1] : today(data.config.timezone);
+// The issue is dated the Monday it goes out. Run on a weekend (a test, or an early send), it builds the coming
+// Monday's issue; other days, today's.
+function issueDate() {
+  const now = today(data.config.timezone);
+  const dow = new Date(`${now}T12:00:00Z`).getUTCDay();
+  return dow === 6 ? addDays(now, 2) : dow === 0 ? addDays(now, 1) : now;
+}
+const date = args.includes("--date") && args[args.indexOf("--date") + 1] ? args[args.indexOf("--date") + 1] : issueDate();
 const send = args.includes("--send");
 
 const { errors } = validate(data, today(data.config.timezone));
