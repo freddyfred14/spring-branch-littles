@@ -26,7 +26,7 @@ const ICON_MENU = `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M
 
 // The menu bar shows the main pages; the rest sit in the "More" dropdown. On phones, all of it opens from "Menu".
 const NAV = [
-  ["/", "This week"],
+  ["/", "Events: This Week"],
   ["/events/", "Calendar"],
   ["/places/", "Places"],
   ["/eats/", "Kid-friendly eats"],
@@ -492,7 +492,7 @@ export function homePage(data, now) {
 
   <div class="zone">
   <section class="band whatson"><div class="wrap">
-    <div class="sec-head"><div><p class="label">${fmtShort(now)} – ${fmtShort(weekEnd)} · ${weekCount} things to do</p><h2>This week ${SPARK}</h2></div><a class="more" href="/events/">Coming up →</a></div>
+    <div class="sec-head"><div><p class="label">${fmtShort(now)} – ${fmtShort(weekEnd)} · ${weekCount} things to do</p><h2>Events: This Week ${SPARK}</h2></div><a class="more" href="/events/">Coming up →</a></div>
     ${breakNotices(data, now, weekEnd)}
     ${filterBar("listings")}
   </div></section>
