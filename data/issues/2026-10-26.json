@@ -36,20 +36,6 @@
       "items": [
         {
           "image": {
-            "src": "https://springbranchlittles.com/img/events/2026-10-27-sbm-tween-teen-halloween-party-800.jpg",
-            "alt": "Illustration: Tweens (ages 10–14) in fun costumes playing a Halloween game and decorating mini pumpkins at tables in a public library meeting room with orange and purple decorations"
-          },
-          "title": "Halloween party for tweens & teens",
-          "when": "Tue, Oct 27 · 4:30 pm–5:30 pm",
-          "where": "Spring Branch Memorial Library",
-          "ages": "Elementary",
-          "cost": "Free",
-          "description": "A Halloween party at the library for the older kids: tweens and teens. Costumes encouraged.",
-          "url": "https://springbranchlittles.com/events/2026-10-27-sbm-tween-teen-halloween-party/",
-          "tentative": false
-        },
-        {
-          "image": {
             "src": "https://springbranchlittles.com/img/events/2026-10-29-sbm-kids-halloween-party-800.jpg",
             "alt": "Illustration: Young kids (ages 4–8) in cute costumes (dinosaur, ladybug, superhero, princess) doing a Halloween craft and dancing at a library party with paper bats and pumpkins on the walls"
           },
@@ -89,6 +75,83 @@
           "description": "A free family scavenger hunt on the trails about fall leaves, any time between 2 and 4 pm. Turn in your sheet at the Nature Center for a prize.",
           "url": "https://springbranchlittles.com/events/2026-11-07-arboretum-scavenger-hunt/",
           "tentative": false
+        }
+      ]
+    },
+    {
+      "heading": "Every week",
+      "items": [
+        {
+          "image": null,
+          "title": "Tyke Hike at Arrowwood Pond",
+          "when": "Mondays, Nov 2–16 · 9:30 am–10:15 am",
+          "where": "Houston Arboretum & Nature Center",
+          "ages": "Toddlers, Preschool",
+          "cost": "$7 per child (members free)",
+          "description": "A guided nature walk for ages 18 months to 4 years with a grown-up: bugs, leaves, pond critters and lots of stopping to look.",
+          "url": "https://springbranchlittles.com/events/weekly/arboretum-tyke-hikes/",
+          "tentative": false,
+          "weekly": true
+        },
+        {
+          "image": null,
+          "title": "Preschool storytime + craft",
+          "when": "Mondays · 10:30 am",
+          "where": "Spring Branch Memorial Library",
+          "ages": "Preschool",
+          "cost": "Free",
+          "description": "Stories, songs, rhymes and a themed craft for ages 3–6.",
+          "url": "https://springbranchlittles.com/events/weekly/sbm-preschool-storytime/",
+          "tentative": false,
+          "weekly": true
+        },
+        {
+          "image": null,
+          "title": "Stories & Crafts in the Cabin",
+          "when": "Selected Mondays, September–May · 10:30 am–11:30 am",
+          "where": "Edith L. Moore Nature Sanctuary",
+          "ages": "Preschool",
+          "cost": "About $10–12 per child",
+          "description": "A nature story and craft in the sanctuary's log cabin for ages 3–5 with an adult. Siblings with a supervising adult come free.",
+          "url": "https://springbranchlittles.com/events/weekly/edith-moore-stories-crafts/",
+          "tentative": false,
+          "weekly": true
+        },
+        {
+          "image": null,
+          "title": "Baby Bouncers playtime",
+          "when": "Wednesdays · 10:15 am",
+          "where": "Spring Branch Memorial Library",
+          "ages": "Babies, Toddlers",
+          "cost": "Free",
+          "description": "Bouncy songs, rhymes and playtime for crawlers and babies taking their first steps. Two sessions, 10:15 and 11:15.",
+          "url": "https://springbranchlittles.com/events/weekly/sbm-baby-bouncers/",
+          "tentative": false,
+          "weekly": true
+        },
+        {
+          "image": null,
+          "title": "Toddler storytime",
+          "when": "Wednesdays · 10:30 am–11:30 am",
+          "where": "Ring Neighborhood Library",
+          "ages": "Toddlers",
+          "cost": "Free",
+          "description": "Books, songs and movement for ages 18–36 months with a caregiver.",
+          "url": "https://springbranchlittles.com/events/weekly/ring-toddler-storytime/",
+          "tentative": false,
+          "weekly": true
+        },
+        {
+          "image": null,
+          "title": "Tiny Tykes storytime",
+          "when": "Thursdays · 10:15 am",
+          "where": "Spring Branch Memorial Library",
+          "ages": "Toddlers",
+          "cost": "Free",
+          "description": "Interactive storytime for new walkers and their grown-ups: stories, songs and finger plays. Two sessions, 10:15 and 11:15. Some weeks it's outside in the Reading Garden.",
+          "url": "https://springbranchlittles.com/events/weekly/sbm-tiny-tykes/",
+          "tentative": false,
+          "weekly": true
         }
       ]
     },
@@ -166,5 +229,5 @@
   ],
   "buttondownId": "em_2e455n54309928qewpxsp4g796",
   "status": "draft",
-  "sentAt": "2026-10-26T03:37:05.014Z"
+  "sentAt": "2026-10-26T03:40:24.883Z"
 }
