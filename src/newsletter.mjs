@@ -59,17 +59,16 @@ function score(data, e, date) {
 }
 
 // The issue's top picks: what the editor chose in the draft, or the highest-scoring events over the next
-// two weeks. At most 6, at most 2 outside Spring Branch & Memorial, at most 2 at the same place.
+// two weeks. Spring Branch & Memorial only (Surrounding Houston stays on the site), at most 6, at most 2 at the same place.
 export function topPicks(data, date, draft = {}) {
   const end = addDays(date, 13);
-  const upcoming = eventsBetween(data.events.filter((e) => e.kind === "event"), date, end);
+  const upcoming = eventsBetween(data.events.filter((e) => e.kind === "event" && areaOf(data, e) === "local"), date, end);
   if (draft.picks?.length) return draft.picks.map((id) => upcoming.find((e) => e.id === id)).filter(Boolean);
   const chosen = [];
   const perPlace = {};
   for (const e of [...upcoming].sort((a, b) => score(data, b, date) - score(data, a, date) || a.date.localeCompare(b.date))) {
     const place = e.placeId || e.location || e.id;
     if (chosen.length >= 6 || (perPlace[place] || 0) >= 2) continue;
-    if (areaOf(data, e) === "houston" && chosen.filter((x) => areaOf(data, x) === "houston").length >= 2) continue;
     chosen.push(e);
     perPlace[place] = (perPlace[place] || 0) + 1;
   }
@@ -93,10 +92,10 @@ export function weeklyEats(data, date, draft = {}) {
   return out;
 }
 
-// Two short blog posts: the editor's choice, or the newest ones.
+// Two blog articles: the editor's choice, or the newest ones (quick reads only if there aren't two articles).
 export function weeklyPosts(data, date, draft = {}) {
   if (draft.posts?.length) return draft.posts.map((id) => data.posts.find((p) => p.id === id)).filter(Boolean);
-  return data.posts.filter((p) => p.date <= date).sort((a, b) => b.date.localeCompare(a.date)).slice(0, 2);
+  return data.posts.filter((p) => p.date <= date).sort((a, b) => (b.type === "article") - (a.type === "article") || b.date.localeCompare(a.date)).slice(0, 2);
 }
 
 export function buildIssue(data, date, draft = loadDraft(date)) {
@@ -118,11 +117,7 @@ export function buildIssue(data, date, draft = loadDraft(date)) {
   if (picks.length) {
     sections.push({
       heading: `Top picks · ${fmtShort(date)}–${fmtShort(end)}`,
-      items: picks.map((e) => {
-        const it = item(data, e, `${fmtDateRange(e.date < date ? date : e.date, e.endDate)} · ${fmtTimeRange(e.startTime, e.endTime)}`);
-        if (areaOf(data, e) === "houston") it.where += " (worth the drive)";
-        return it;
-      }),
+      items: picks.map((e) => item(data, e, `${fmtDateRange(e.date < date ? date : e.date, e.endDate)} · ${fmtTimeRange(e.startTime, e.endTime)}`)),
     });
   }
 

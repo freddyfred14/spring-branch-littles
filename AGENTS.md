@@ -181,7 +181,7 @@ Short, useful updates for parents in Spring Branch and Memorial. Each item is a 
 
 ## Sunday: the newsletter intro
 
-The newsletter ("The Littles List") goes out automatically Monday morning. It's **curated, not complete**: a short story of the week, the 5–6 most compelling events of the next two weeks, 2–3 restaurants, 2 short blog posts, and school-break reminders. Everything else lives on the site's calendar. Don't call it a Monday letter. You choose what goes in and write the opening. Create `data/drafts/<tomorrow's date>.json`:
+The newsletter ("The Littles List") goes out automatically Monday morning. It's **curated, not complete**: a short story of the week, the most compelling Spring Branch & Memorial events of the next two weeks (up to 6), 2–3 restaurants, 2 blog articles, and school-break reminders. Everything else lives on the site's calendar. Don't call it a Monday letter. You choose what goes in and write the opening. Create `data/drafts/<tomorrow's date>.json`:
 
 ```json
 {
@@ -200,9 +200,9 @@ The newsletter ("The Littles List") goes out automatically Monday morning. It's 
 - If that file already exists, a person wrote it. Leave it alone.
 - **Voice:** a Spring Branch mom texting a friend. Warm, practical and specific. No exclamation-point pileups, no "fun-filled," no emoji in the subject.
 - **Subject:** under 60 characters, and it names real things from the next two weeks.
-- **`picks`: 5–6 events from the next two weeks** (dated events only, from `events.json`), in date order. Choose what a parent would actually rearrange their weekend for: seasonal and one-time events, free festivals, things kids talk about afterward. Mostly Spring Branch & Memorial, at most 2 "worth the drive", at least one for each weekend, and a mix of ages. Skip ordinary weekly programs (they're on the calendar). If you leave `picks` out, the newsletter picks by a simple score, which is worse.
+- **`picks`: up to 6 Spring Branch & Memorial events from the next two weeks** (dated events with `"area": "local"` only, from `events.json`), in date order. Never Surrounding Houston events: the newsletter is neighborhood-only, and those stay on the site. Choose what a parent would actually rearrange their weekend for: seasonal and one-time events, free festivals, things kids talk about afterward. At least one for each weekend when there is one, and a mix of ages. If fewer than 4 good local events are coming up, find more in step 4 before writing the draft. Skip ordinary weekly programs (they're on the calendar). If you leave `picks` out, the newsletter picks by a simple score, which is worse.
 - **`restaurants`: 2–3 ids from `restaurants.json`**, different from last week's (check `data/issues/`). Favor one with a kids' deal in the coming week, and match the season (patios when it's mild, indoor play when it's hot or rainy).
-- **`posts`: the 2 newest blog posts from `data/posts.json`** that haven't been in an issue yet. Agent Reach writes them on Tuesdays.
+- **`posts`: 2 blog articles from `data/posts.json`** (`"type": "article"`, the ones with cover photos), newest first, that haven't been in an issue yet. Use a quick read only when there aren't two articles left. Agent Reach writes them on Tuesdays.
 - **Pick the story of the week.** Choose the most interesting news item for local parents, usually something new from the past week: an opening, a new playground, a big change at a school or library. Set `"featured": true` on it in `data/news.json`, set every other item to `"featured": false`, and give it a `story`: **1–2 short paragraphs, under 100 words in all**, in your own words. What's happening, when, and why a parent would care. That's it; readers click through for more. Only use facts from the source; don't add details. It opens the newsletter and gets the big card on the site. Never feature the same item two weeks in a row.
 - Preview it with `node scripts/newsletter.mjs --date <tomorrow>`. Read it as a busy parent on a phone: under a 3-minute read, every pick worth the space. If a weekend has nothing local worth picking, look harder. A newsletter with nothing to do on a weekend is the worst outcome.
 
