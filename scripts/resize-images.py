@@ -1,9 +1,10 @@
-# Makes an 800px-wide "-800" copy of each event image, which phones load instead of the full size.
+# Makes an 800px-wide "-800" copy of each event and blog image, which phones load instead of the full size.
 # Usage: python3 scripts/resize-images.py   (needs Pillow: pip install pillow)
 from pathlib import Path
 from PIL import Image
 
-for src in sorted(Path(__file__).resolve().parent.parent.joinpath("public/img/events").glob("*.jpg")):
+IMG = Path(__file__).resolve().parent.parent / "public/img"
+for src in sorted([*IMG.joinpath("events").glob("*.jpg"), *IMG.joinpath("blog").glob("*.jpg")]):
     if src.stem.endswith("-800"):
         continue
     small = src.with_name(f"{src.stem}-800.jpg")

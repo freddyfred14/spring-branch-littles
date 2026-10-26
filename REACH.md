@@ -186,6 +186,8 @@ Two short posts every Tuesday. They go in the next Monday newsletter, get shared
 - Write like a friendly local mom, not a blog: no "In today's busy world", no filler intros.
 - Don't repeat a topic from the last 8 weeks. Update an old post (new date) instead if it's still relevant.
 
+**Articles** (`"type": "article"`) are the bigger reads on the topics parents care most about (sleep, potty training, travel, feeding, tantrums, starting school). The owner writes or approves these; write one only when the plan calls for it. Rules: an empathetic mom's voice; every number backed by research and linked inline (`[text](https://...)`) and in `sources`; `"## "` for section headings; `"medical": true` on health topics (adds a "talk to your pediatrician" note); an `imagePrompt` for the cover; and under a 6-minute read (`npm run check` enforces it).
+
 ## Targets (`reach/targets.md`)
 
 A table: `Name | Type | Link | Audience size | Rules or contact route | Status (idea / joined / posted / contacted / yes / no) | Notes`. Types: Facebook group, moms' club, Nextdoor, PTA or school, preschool or MDO, church family ministry, library, kids' business, family service (pediatrician, photographer), media or blogger, community event. List only organizations and public groups, with their public contact page. Never collect personal contact details for individuals.

@@ -206,6 +206,9 @@ export function isRoundup(url) {
   } catch { return false; }
 }
 const DATE_RE = /^\d{4}-\d{2}-\d{2}$/;
+// Reading speed for "N-minute read" labels and the article length limit.
+export const READ_WPM = 230;
+export const readMinutes = (post) => Math.max(1, Math.round(post.body.join(" ").split(/\s+/).filter(Boolean).length / READ_WPM));
 const IMAGE_RE = /^\/img\/(news|events|places|eats|gallery|blog)\/[a-z0-9-]+\.(jpe?g|png|webp)$/;
 
 // Photos are optional everywhere, but when present they need a real file, alt text and a credit.
@@ -394,9 +397,14 @@ export function validate(data, now = today()) {
     if (!p.title || p.title.length > 80) err(w, "title is required and must be under 80 characters");
     if (!DATE_RE.test(p.date || "")) err(w, "date must be YYYY-MM-DD");
     if (!p.summary || p.summary.length > 200) err(w, "summary is required and must be under 200 characters (it's the newsletter teaser)");
+    // Quick reads stay under 250 words; articles (type "article") under a 6-minute read.
+    const article = p.type === "article";
     const words = Array.isArray(p.body) ? p.body.join(" ").split(/\s+/).filter(Boolean).length : 0;
-    if (!Array.isArray(p.body) || !p.body.length || p.body.some((x) => typeof x !== "string")) err(w, "body must be a list of short paragraphs (or list items starting with \"- \")");
-    else if (words > 250) err(w, `body is ${words} words; keep posts under 250 words`);
+    if (p.type != null && !["article", "quick"].includes(p.type)) err(w, 'type must be "article" or "quick"');
+    if (!Array.isArray(p.body) || !p.body.length || p.body.some((x) => typeof x !== "string")) err(w, "body must be a list of paragraphs (\"## \" starts a heading, \"- \" a list item)");
+    else if (!article && words > 250) err(w, `body is ${words} words; keep quick posts under 250 words`);
+    else if (article && words > READ_WPM * 6) err(w, `body is ${words} words; keep articles under a 6-minute read (${READ_WPM * 6} words)`);
+    if (article && (!Array.isArray(p.sources) || !p.sources.length || p.sources.some((x) => !x.label || !/^https:\/\//.test(x.url || "")))) err(w, "articles need sources: a list of {label, url} for the research they cite");
     for (const ref of p.related || []) {
       const [kind, id] = String(ref).split(":");
       if (!GUIDE_KINDS[kind]) err(w, `related "${ref}" must start with event:, weekly:, place: or eats:`);

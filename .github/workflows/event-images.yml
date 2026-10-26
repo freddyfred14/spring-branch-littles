@@ -49,7 +49,7 @@ jobs:
         run: |
           git config user.name "Spring Branch Littles bot"
           git config user.email "bot@users.noreply.github.com"
-          git add data/ public/img/events/
+          git add data/ public/img/events/ public/img/blog/
           if git diff --cached --quiet; then
             echo "No new images."
             echo "changed=false" >> "$GITHUB_OUTPUT"

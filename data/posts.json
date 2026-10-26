@@ -1,5 +1,207 @@
 [
   {
+    "id": "potty-training-without-the-power-struggle",
+    "type": "article",
+    "medical": true,
+    "title": "Potty training without the power struggle: what the research says",
+    "date": "2026-10-25",
+    "summary": "Most kids are ready later than the internet suggests, and starting early often just makes it take longer. A gentle, research-backed guide from one mom to another.",
+    "imagePrompt": "A happy toddler in a striped shirt sitting on a small colorful potty in a bright, tidy bathroom, holding a picture book, a smiling mom kneeling beside them, soft morning light.",
+    "body": [
+      "If you're reading this while a toddler hides behind the couch to fill a diaper, I see you. Potty training can feel like it comes with a deadline: the preschool that wants kids trained by three, the relative who swears you were done at eighteen months, the friend whose daughter learned in a weekend. That's a lot of pressure on something that mostly depends on a little body and brain getting ready on their own schedule.",
+      "Here's the good news. The research is reassuring, and it points toward a calmer way to do this.",
+      "## Most kids are ready later than you think",
+      "In a [study of 267 children published in *Pediatrics*](https://publications.aap.org/pediatrics/article-pdf/1113625/pe0302000e48.pdf), the median age for staying dry during the day was about 32 months for girls and 35 months for boys. That's closer to three than two. Even *showing interest* in the potty, one of the earliest signs, came at around 24 months for girls and 26 months for boys. The researchers concluded that most children don't master the readiness skills until after their second birthday.",
+      "So if your two-year-old couldn't care less about the potty, nothing is wrong. That's what most two-year-olds are like.",
+      "Signs your child may be ready:",
+      "- Staying dry for a couple of hours, or waking up dry from naps.",
+      "- Noticing when they're peeing or pooping, with words or that unmistakable look.",
+      "- Curiosity about the toilet, or wanting to copy you or an older sibling.",
+      "- Pulling pants up and down, and following simple two-step directions.",
+      "- Not liking a wet or dirty diaper.",
+      "## Why starting early can backfire",
+      "A [2003 study in *Pediatrics*](https://pubmed.ncbi.nlm.nih.gov/12671117/) followed about 380 children from the age of 17 to 19 months. Starting intensive training (asking a child to try the potty more than three times a day) before 27 months did **not** mean finishing earlier. It mostly meant training took longer. The study's lead author [told HealthDay](https://www.healthday.com/health-news/child-health/toilet-training-goes-faster-if-time-is-right-512577.html) that children who started before 27 months often took a year or more, while those who started between 27 and 36 months took about five to ten months.",
+      "If you started early, please don't panic. In that study, early starters didn't have more constipation or withholding. It may simply be a longer road, and it's fine to pause and try again in a few months.",
+      "## A gentle way to do it",
+      "- Pick a calm stretch. Not the week a new sibling arrives, you move, or you're traveling for the holidays.",
+      "- Let them practice first. Put a little potty in the bathroom, let them sit on it clothed, and read a book about it together.",
+      "- Offer, don't insist. Try after waking up, after meals, and before bath or the car, and keep it light if they say no.",
+      "- Dress for success. Easy pull-down pants help, and many families start with a few bare-bottom days at home.",
+      "- Celebrate tries, not just wins. Stickers and a silly potty dance are great. Shame and punishment tend to backfire, because a worried child is more likely to hold it in.",
+      "- Expect accidents. Lots of them, for weeks. Keep a change of clothes everywhere and your voice calm.",
+      "## Poop, nights and setbacks",
+      "Many kids pee in the potty well before they're comfortable pooping there. If your child starts holding poop in, or gets constipated, take the pressure off and talk to your pediatrician. Comfort comes first.",
+      "Nights are a separate milestone. Staying dry overnight depends on body maturity, not effort. The [American Academy of Child and Adolescent Psychiatry](https://www.aacap.org/AACAP/Families_and_Youth/Facts_for_Families/FFF-Guide/Bedwetting-018.aspx) estimates that about 20% of five-year-olds and 10% of seven-year-olds still wet the bed, and most outgrow it on their own. Night diapers or pull-ups are not a failure.",
+      "Setbacks are normal too, especially around big changes: a new baby, a new school, an illness, a trip. Go back to the basics, stay calm, and it usually passes.",
+      "## When to call your pediatrician",
+      "- Pain or crying when peeing or pooping, or blood in either.",
+      "- Hard, painful poops or holding it in that lasts more than a few days.",
+      "- A child who was reliably dry and suddenly has lots of accidents.",
+      "- No interest at all by around age four, or anything that just doesn't feel right to you.",
+      "## The part nobody says out loud",
+      "Every child gets there. The kid who trained at two and the kid who trained at almost four will both walk into kindergarten in underwear, and nobody will ever ask which one was first. Your worth as a parent isn't measured in dry pants. Follow your child's lead, protect your relationship, and let this be one more thing you figure out together."
+    ],
+    "sources": [
+      {
+        "label": "Schum et al. Sequential acquisition of toilet-training skills: a descriptive study of gender and age differences in normal children. Pediatrics, 2002.",
+        "url": "https://publications.aap.org/pediatrics/article-pdf/1113625/pe0302000e48.pdf"
+      },
+      {
+        "label": "Blum, Taubman & Nemeth. Relationship between age at initiation of toilet training and duration of training: a prospective study. Pediatrics, 2003.",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/12671117/"
+      },
+      {
+        "label": "HealthDay. Toilet training goes faster if time is right (interview with the study's lead author).",
+        "url": "https://www.healthday.com/health-news/child-health/toilet-training-goes-faster-if-time-is-right-512577.html"
+      },
+      {
+        "label": "American Academy of Child and Adolescent Psychiatry. Bedwetting (Facts for Families).",
+        "url": "https://www.aacap.org/AACAP/Families_and_Youth/Facts_for_Families/FFF-Guide/Bedwetting-018.aspx"
+      },
+      {
+        "label": "American Family Physician. Toilet training (review), 2008.",
+        "url": "https://www.aafp.org/pubs/afp/issues/2008/1101/p1059.html"
+      }
+    ]
+  },
+  {
+    "id": "sleep-regressions-what-the-data-shows",
+    "type": "article",
+    "medical": true,
+    "title": "Sleep regressions: what the data shows (and why you're not doing it wrong)",
+    "date": "2026-10-25",
+    "summary": "If your baby suddenly stopped sleeping, you didn't break anything. What the research really says about night waking, sleep regressions and what helps, from a mom who's been up at 3 a.m. too.",
+    "imagePrompt": "A tired but tender mom gently rocking a sleepy baby in a dim, cozy nursery at night, a soft lamp glow, a crib and a rocking chair, calm and peaceful mood.",
+    "body": [
+      "It's 3 a.m., and the baby who was finally sleeping in long stretches is wide awake again. You've googled it twice. Every article says the same two words: sleep regression. And somewhere in your exhausted brain is a quiet worry that you did something to cause it.",
+      "You didn't. Let's look at what the research actually says, because it's kinder than the internet.",
+      "## Night waking is normal, for longer than you'd think",
+      "A [2018 study in *Pediatrics*](https://healthenews.mcgill.ca/parents-shouldnt-worry-if-their-infant-doesnt-sleep-through-the-night-by-6-12-months-of-age/) followed 388 babies in Canada. At six months, 38% weren't yet sleeping six hours in a row at night, and 57% weren't sleeping eight. At a year, 28% still weren't sleeping six straight hours, and 43% weren't sleeping eight ([HealthDay](https://consumer.healthday.com/pediatrics-15/infant-and-child-care-health-news-410/many-6-month-12-month-olds-do-not-sleep-through-the-night-739481.html) has a good summary).",
+      "Even more reassuring: in these typically developing babies, the researchers found no link between waking at night and later mental or motor development. A baby who wakes up a lot is, very often, just a baby.",
+      "## So are sleep regressions real?",
+      "You'll see them listed at 4, 8, 12 and 18 months, and at two years. The honest answer is that the research doesn't show a clear, predictable dip at those ages. Economist Emily Oster [looked at the evidence](https://parentdata.org/babies/are-sleep-regressions-real/) and found that data on infant sleep shows nighttime stretches getting longer through the first year, with no clear drop at four months.",
+      "That doesn't mean you're imagining it. Rough patches are real. They just tend to have ordinary causes rather than a schedule:",
+      "- New skills. Rolling, crawling, pulling up and walking are exciting enough that some babies practice in the crib at 2 a.m.",
+      "- Separation anxiety. Many babies get clingier in the second half of the first year, and bedtime is a separation.",
+      "- Illness and teeth. Colds, ear infections and new teeth all disrupt sleep for a few nights.",
+      "- Schedule changes. Dropping a nap, a new daycare, travel and daylight saving time can all knock things off for a week or two.",
+      "The phrase sleep regression can make it sound like progress was lost. It wasn't. It's a bump, and most bumps pass in a week or two.",
+      "## How much sleep little kids need",
+      "The American Academy of Sleep Medicine, with the American Academy of Pediatrics' endorsement, [recommends](https://www.sleepfoundation.org/how-sleep-works/how-much-sleep) these totals per 24 hours, naps included:",
+      "- Babies 4 to 12 months: 12 to 16 hours.",
+      "- Toddlers 1 to 2 years: 11 to 14 hours.",
+      "- Preschoolers 3 to 5 years: 10 to 13 hours.",
+      "Those are wide ranges on purpose. Some kids are naturally on the low end, and that's OK if they're generally happy and healthy during the day.",
+      "## What helps during a rough patch",
+      "- Keep the routine boring. The same few steps every night (bath, pajamas, book, song) tell a little brain that sleep is coming.",
+      "- Watch for overtiredness. An earlier bedtime for a few nights often helps more than a later one.",
+      "- Offer comfort, then step back. It's fine to soothe a sick or scared baby. Try not to start something new you can't keep up once the bump passes.",
+      "- Keep sleep safe, even when you're desperate. Babies sleep on their backs, on a firm, flat surface, with no pillows, blankets or bumpers.",
+      "## What about sleep training?",
+      "If you're considering it, here's what the evidence says. A [randomized trial in Australia](https://findanexpert.unimelb.edu.au/scholarlywork/404862-five-year-follow-up-of-harms-and-benefits-of-behavioral-infant-sleep-intervention--randomized-trial) followed 326 children for five years after their parents learned gentle behavioral sleep techniques. It found no lasting harm (and no lasting difference) in children's emotions, behavior, stress or closeness with their parents. A [smaller 2016 trial](https://pubmed.ncbi.nlm.nih.gov/27221288/) of 43 babies found that graduated extinction and bedtime fading improved sleep, with no difference in attachment at 12 months.",
+      "So sleep training is a choice, not a requirement. Responding to every waking is a choice too. Both are loving. The right one is the one your family can live with.",
+      "## Please take care of you",
+      "Sleep deprivation is hard on bodies and moods. Trade nights with a partner if you can, say yes when someone offers to hold the baby while you nap, and lower the bar on everything else for a while.",
+      "If you're feeling hopeless, anxious all the time or not like yourself, please tell your doctor. The free, confidential National Maternal Mental Health Hotline is available 24/7 by call or text at 1-833-852-6262.",
+      "You are not doing it wrong. You're doing one of the hardest jobs there is, in the dark, on not enough sleep. That's what love looks like at 3 a.m."
+    ],
+    "sources": [
+      {
+        "label": "Pennestri et al. Uninterrupted infant sleep, development, and maternal mood. Pediatrics, 2018 (McGill University summary).",
+        "url": "https://healthenews.mcgill.ca/parents-shouldnt-worry-if-their-infant-doesnt-sleep-through-the-night-by-6-12-months-of-age/"
+      },
+      {
+        "label": "HealthDay. Many 6-month and 12-month-olds do not sleep through the night.",
+        "url": "https://consumer.healthday.com/pediatrics-15/infant-and-child-care-health-news-410/many-6-month-12-month-olds-do-not-sleep-through-the-night-739481.html"
+      },
+      {
+        "label": "Emily Oster, ParentData. Are sleep regressions real?",
+        "url": "https://parentdata.org/babies/are-sleep-regressions-real/"
+      },
+      {
+        "label": "Sleep Foundation. How much sleep do we need? (AASM recommendations, endorsed by the AAP).",
+        "url": "https://www.sleepfoundation.org/how-sleep-works/how-much-sleep"
+      },
+      {
+        "label": "Price et al. Five-year follow-up of harms and benefits of behavioral infant sleep intervention: randomized trial. Pediatrics, 2012.",
+        "url": "https://findanexpert.unimelb.edu.au/scholarlywork/404862-five-year-follow-up-of-harms-and-benefits-of-behavioral-infant-sleep-intervention--randomized-trial"
+      },
+      {
+        "label": "Gradisar et al. Behavioral interventions for infant sleep problems: a randomized controlled trial. Pediatrics, 2016.",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/27221288/"
+      }
+    ]
+  },
+  {
+    "id": "holiday-travel-with-little-kids",
+    "type": "article",
+    "title": "Traveling with little kids over the holidays: a calm, realistic plan",
+    "date": "2026-10-25",
+    "summary": "Car or plane, the holidays bring the busiest travel days of the year. What the numbers say about when to go, and the small things that make the trip easier on everyone.",
+    "imagePrompt": "A young family loading a car for a holiday road trip in a suburban driveway at golden hour, a toddler holding a stuffed animal, a parent buckling a car seat, wrapped gifts in the trunk.",
+    "body": [
+      "There's a particular kind of tired that comes from packing for a family trip: the diaper math, the snack strategy, the quiet dread about the car seat on the plane. If you're heading to see family this year, I hope this makes it feel a little more doable.",
+      "## Know what you're up against",
+      "Holiday travel keeps breaking records. AAA [projected 81.8 million Americans](https://newsroom.aaa.com/2025/11/aaa-thanksgiving-travel-forecast-2025/) would travel over Thanksgiving week 2025, nearly 90% of them by car. In the air, the Sunday after Thanksgiving 2025 became the [busiest day in TSA history](https://www.travelpulse.com/news/airlines-airports/thanksgiving-2025-breaks-tsas-all-time-daily-traveler-record), with more than 3.1 million people screened.",
+      "What that means for us:",
+      "- Avoid the peaks if you can. The Wednesday before and the Sunday after a holiday are the crunch. Traveling on the holiday itself, or a day or two earlier or later, usually means calmer roads and shorter lines.",
+      "- Leave early in the day. Morning flights are less likely to be hit by delays that pile up as the day goes on, and kids are fresher too.",
+      "- Pad everything. Whatever the app says, add time. Rushing is when meltdowns (theirs and ours) happen.",
+      "## If you're driving",
+      "- Car seats first. The American Academy of Pediatrics recommends keeping little ones rear-facing as long as their seat allows, and taking puffy coats off before buckling, since thick padding can leave the harness too loose. Tuck a blanket over them instead.",
+      "- Plan stops before anyone needs them. Every couple of hours, let everyone out to stretch, run around and use a real bathroom.",
+      "- Time the long stretch around a nap or bedtime, if your kids sleep in the car.",
+      "- Keep a small bag within reach: wipes, a change of clothes, snacks, a few new-to-them small toys, and a travel potty if you have a newly trained kid.",
+      "## If you're flying",
+      "- Think about the car seat. The [FAA says](https://www.faa.gov/travelers/flychildren) the safest place for a child on a plane is in an approved car seat in their own seat, not on a lap. Lap travel is allowed under age two, but the FAA strongly discourages it. Look for a label that says the seat is certified for use in motor vehicles and aircraft.",
+      "- For bigger toddlers, the FAA-approved CARES harness works for kids who weigh 22 to 44 pounds and are up to 40 inches tall, in their own seat ([FAA](https://www.faa.gov/travelers/flychildren)).",
+      "- Bring the milk. Formula, breast milk and juice in amounts over 3.4 ounces are [allowed in carry-ons](https://tsa.gov/travel/frequently-asked-questions/breast-milk-formula-and-juice-exempt-3-1-1-liquids-rule). Take them out for separate screening. Baby food, teethers and ice packs are allowed too.",
+      "- Help little ears. Swallowing during takeoff and landing helps with pressure, so offer a breast, bottle or pacifier then ([Mayo Clinic](https://www.mayoclinic.com/health/air-travel-with-infant/HQ00197)). For older kids, a drink or snack helps, and [staying awake for the descent](https://kidshealth.org/en/parents/flying-ears.html) helps, because we swallow less while sleeping.",
+      "- Skip the sleepy medicine. Mayo Clinic advises [against giving diphenhydramine](https://www.mayoclinic.com/health/air-travel-with-infant/HQ00197) (Benadryl) to make a baby sleep on a flight. It can backfire, and it isn't safe for every child.",
+      "## Sleep away from home",
+      "Expect a rough night or two. New rooms, late dinners and excitement throw off even great sleepers. Bring the familiar things: the same sleep sack, the white noise machine or app, the favorite book. Keep the bedtime steps the same, even if bedtime itself shifts.",
+      "For babies, keep sleep safe away from home too: on their back, in a portable crib or a hotel crib with a fitted sheet and nothing else. Ask grandparents to put away the heirloom bumpers and quilts.",
+      "## Lower the bar, on purpose",
+      "The goal of a holiday trip with little kids isn't a perfect itinerary. It's time together. Pick one plan a day. Skip the event that lands at naptime. Take turns letting each parent rest. Say no to a fourth house visit without guilt.",
+      "Someday your kids won't remember the delayed flight or the meltdown at the rest stop. They'll remember Grandma's kitchen and the cousins and the feeling of everyone together. That part is worth the snack bag.",
+      "Staying home this year? Our [Thanksgiving break guide](/guides/thanksgiving-break-spring-branch-2026/) has plenty to do close to home."
+    ],
+    "sources": [
+      {
+        "label": "AAA. Thanksgiving travel forecast, 2025.",
+        "url": "https://newsroom.aaa.com/2025/11/aaa-thanksgiving-travel-forecast-2025/"
+      },
+      {
+        "label": "TravelPulse. Thanksgiving 2025 breaks TSA's all-time daily traveler record.",
+        "url": "https://www.travelpulse.com/news/airlines-airports/thanksgiving-2025-breaks-tsas-all-time-daily-traveler-record"
+      },
+      {
+        "label": "American Academy of Pediatrics (HealthyChildren.org). Car seats: information for families.",
+        "url": "https://www.healthychildren.org/English/safety-prevention/on-the-go/Pages/Car-Safety-Seats-Information-for-Families.aspx"
+      },
+      {
+        "label": "American Academy of Pediatrics (HealthyChildren.org). Winter car seat safety tips.",
+        "url": "https://www.healthychildren.org/English/safety-prevention/on-the-go/Pages/Winter-Car-Seat-Safety-Tips.aspx"
+      },
+      {
+        "label": "Federal Aviation Administration. Flying with children.",
+        "url": "https://www.faa.gov/travelers/flychildren"
+      },
+      {
+        "label": "TSA. Breast milk, formula and juice exempt from the 3-1-1 liquids rule.",
+        "url": "https://tsa.gov/travel/frequently-asked-questions/breast-milk-formula-and-juice-exempt-3-1-1-liquids-rule"
+      },
+      {
+        "label": "Mayo Clinic. Air travel with an infant: is it OK?",
+        "url": "https://www.mayoclinic.com/health/air-travel-with-infant/HQ00197"
+      },
+      {
+        "label": "KidsHealth (Nemours). Flying and your child's ears.",
+        "url": "https://kidshealth.org/en/parents/flying-ears.html"
+      }
+    ]
+  },
+  {
     "id": "how-to-get-a-spot-at-storytime",
     "title": "How to actually get a spot at library storytime",
     "date": "2026-10-25",
@@ -13,7 +215,12 @@
       "- Match the age. Baby Bouncers is for crawlers and new walkers, Tiny Tykes for new walkers, and preschool storytime with a craft is for ages 3 to 6.",
       "Every storytime near you, with times, is in the \"Every week\" section of our calendar."
     ],
-    "related": ["weekly:sbm-baby-bouncers", "weekly:sbm-tiny-tykes", "weekly:sbm-preschool-storytime", "weekly:ring-toddler-storytime"]
+    "related": [
+      "weekly:sbm-baby-bouncers",
+      "weekly:sbm-tiny-tykes",
+      "weekly:sbm-preschool-storytime",
+      "weekly:ring-toddler-storytime"
+    ]
   },
   {
     "id": "kids-eat-free-spring-branch-cheat-sheet",
@@ -29,6 +236,9 @@
       "Our pick for a full family night out is Feges: kids eat free on Wednesdays, and there's a play area and a patio.",
       "Every deal, by day, is on our Eats page."
     ],
-    "related": ["eats:feges-bbq-spring-branch", "eats:union-kitchen-memorial"]
+    "related": [
+      "eats:feges-bbq-spring-branch",
+      "eats:union-kitchen-memorial"
+    ]
   }
 ]

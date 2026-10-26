@@ -1,6 +1,6 @@
 // HTML templates. Every page is plain HTML with one shared stylesheet and a small script for filters.
 import {
-  AGES, AREAS, PLACE_TYPES, addDays, fmtDateRange, fmtTimeRange, fmtLong, fmtShort, fmtMonth, dateParts,
+  readMinutes, AGES, AREAS, PLACE_TYPES, addDays, fmtDateRange, fmtTimeRange, fmtLong, fmtShort, fmtMonth, dateParts,
   eventsBetween, recurringBetween, placeById, whereText, weekendOf, areaOf, NEWS_CATEGORIES, currentNews, featuredStory, PERKS, activeDeals, weekday,
 } from "./lib.mjs";
 import { existsSync, readFileSync } from "node:fs";
@@ -32,7 +32,6 @@ const NAV = [
   ["/eats/", "Kid-friendly eats"],
 ];
 const NAV_MORE = [
-  ["/news/", "Neighborhood news"],
   ["/newsletter/", "Newsletter archive"],
   ["/blog/", "Blog"],
   ["/guides/", "Guides"],
@@ -472,8 +471,7 @@ export function homePage(data, now) {
     </div></section>`;
   };
   const weekCount = soon.local.length + soon.houston.length + weekly.length;
-  const story = featuredStory(data, now);
-  const news = currentNews(data, now, 45).filter((n) => n !== story).slice(0, 3);
+  const posts = livePosts(data, now).slice(0, 3);
   const week = Math.floor(Date.parse(`${now}T12:00:00Z`) / (7 * 864e5));
   const spot = [0, 1, 2].map((i) => data.places[(week * 3 + i) % data.places.length]).filter((p, i, a) => a.indexOf(p) === i);
   const body = `
@@ -513,10 +511,9 @@ export function homePage(data, now) {
     </div>
   </div></div></section>
 
-  ${story || news.length ? `<section class="band zone news-band"><div class="wrap">
-    <div class="sec-head"><div><p class="label">What parents should know</p><h2>Neighborhood news ${SPARK_PINK}</h2></div><a class="more" href="/news/">All news →</a></div>
-    ${story ? storyBanner(story) : ""}
-    ${news.length ? `<div class="ncards">${news.map(newsCard).join("")}</div>` : ""}
+  ${posts.length ? `<section class="band zone"><div class="wrap">
+    <div class="sec-head"><div><p class="label">Real talk for parents</p><h2>From the blog ${SPARK_PINK}</h2></div><a class="more" href="/blog/">All posts →</a></div>
+    <div class="bcards">${posts.map((p) => postCard(p)).join("")}</div>
   </div></section>` : ""}
 
   ${data.deals.length ? `<section class="band"><div class="wrap">
@@ -885,20 +882,44 @@ export function guidesIndexPage(data, now) {
   return layout(config, { title: "Guides", path: "/guides/", body, now, description: "Spring Branch Littles guides: holidays, rainy days, birthdays and more for families with little kids." });
 }
 
-// Blog: short, useful reads for parents (under 250 words). Lines starting with "- " become a list.
+// Blog posts: quick reads (under 250 words) and articles (under a 6-minute read).
+// In the body, "## " starts a heading and "- " a list item; text can use **bold** and [links](https://...).
+function inline(text) {
+  return esc(text)
+    .replace(/\*\*(.+?)\*\*/g, "<b>$1</b>")
+    .replace(/\*(.+?)\*/g, "<em>$1</em>")
+    .replace(/\[([^\]]+)\]\((https:\/\/[^)\s]+|\/[^)\s]*)\)/g, (_, label, url) => `<a href="${url}"${url.startsWith("/") ? "" : ' rel="noopener"'}>${label}</a>`);
+}
 function postBody(paragraphs) {
   const out = [];
   let list = [];
   // A short first sentence in a list item reads as its heading, so it's bolded.
-  const bullet = (l) => { const m = l.match(/^([^.:]{3,60}[.:])\s(.+)$/); return m ? `<b>${esc(m[1])}</b> ${esc(m[2])}` : esc(l); };
+  const bullet = (l) => { const m = l.match(/^([^.:*[]{3,60}[.:])\s(.+)$/); return m ? `<b>${esc(m[1])}</b> ${inline(m[2])}` : inline(l); };
   const flush = () => { if (list.length) out.push(`<ul>${list.map((l) => `<li>${bullet(l)}</li>`).join("")}</ul>`); list = []; };
   for (const p of paragraphs) {
     if (p.startsWith("- ")) list.push(p.slice(2));
-    else { flush(); out.push(`<p>${esc(p)}</p>`); }
+    else if (p.startsWith("## ")) { flush(); out.push(`<h2>${inline(p.slice(3))}</h2>`); }
+    else { flush(); out.push(`<p>${inline(p)}</p>`); }
   }
   flush();
   return out.join("");
 }
+const postKind = (p) => (p.type === "article" ? `Article · ${readMinutes(p)}-minute read` : `Quick read · ${readMinutes(p)} min`);
+
+// A blog card: photo (when there is one), what kind of read it is, title and teaser.
+function postCard(p, { big = false } = {}) {
+  return `<article class="bcard${big ? " big" : ""}${p.image ? " has-photo" : ""}">
+    ${p.image ? photo(p) : ""}
+    <div class="bcard-copy">
+      <p class="ncat">${esc(postKind(p))}</p>
+      <h3><a class="card-link" href="/blog/${esc(p.id)}/">${esc(p.title)}</a></h3>
+      <p class="desc${big ? "" : " clamp-3"}">${esc(p.summary)}</p>
+      <span class="nsource">Read it →</span>
+    </div>
+  </article>`;
+}
+// Newest articles first, then quick reads.
+const livePosts = (data, now) => data.posts.filter((p) => p.date <= now).sort((a, b) => Number(b.type === "article") - Number(a.type === "article") || b.date.localeCompare(a.date));
 
 export function postPage(data, post, now) {
   const { config } = data;
@@ -906,11 +927,16 @@ export function postPage(data, post, now) {
   const body = `
   <article>
     <section class="page-head"><div class="wrap narrow">
-      <p class="label"><a href="/blog/">Blog</a> · ${esc(fmtLong(post.date))}</p>
+      <p class="label"><a href="/blog/">Blog</a> · ${esc(fmtLong(post.date))} · ${esc(postKind(post).split(" · ")[1])}</p>
       <h1>${esc(post.title)}</h1>
+      <p class="lede">${esc(post.summary)}</p>
       ${post.image ? photo(post, "event-photo") : ""}
     </div></section>
-    <section class="band"><div class="wrap narrow post-body">${postBody(post.body)}</div></section>
+    <section class="band"><div class="wrap narrow post-body">
+      ${postBody(post.body)}
+      ${post.medical ? `<p class="post-note">This is general information from one parent to another, not medical advice. Your pediatrician knows your child best, so check in with them about anything that worries you.</p>` : ""}
+      ${post.sources?.length ? `<div class="post-sources"><h2>Sources</h2><ol>${post.sources.map((x) => `<li><a href="${esc(x.url)}" rel="noopener">${esc(x.label)}</a></li>`).join("")}</ol></div>` : ""}
+    </div></section>
   </article>
   ${related.length ? `<section class="band"><div class="wrap"><h2 class="guide-sub">Mentioned in this post</h2><div class="ecards">${related.map((x) => x.html).join("")}</div></div></section>` : ""}
   <section class="band"><div class="wrap narrow"><div class="signup-card">
@@ -923,16 +949,24 @@ export function postPage(data, post, now) {
 
 export function blogIndexPage(data, now) {
   const { config } = data;
-  const posts = data.posts.filter((p) => p.date <= now).sort((a, b) => b.date.localeCompare(a.date));
+  const posts = livePosts(data, now);
+  const articles = posts.filter((p) => p.type === "article");
+  const quick = posts.filter((p) => p.type !== "article");
   const body = `
   <section class="page-head"><div class="wrap narrow">
     <p class="label">Blog</p>
-    <h1>Quick reads for <span class="script pink">busy</span> parents</h1>
-    <p class="lede">Short, practical posts about family life in Spring Branch and Memorial. Most take a minute to read.</p>
+    <h1>Real talk for parents of <span class="script pink">littles</span></h1>
+    <p class="lede">Honest, research-backed reads on the big stuff (sleep, potty training, travel), plus quick local tips. Written by a mom, for moms and dads.</p>
   </div></section>
-  <section class="band"><div class="wrap narrow">
-    ${posts.length ? `<ul class="archive">${posts.map((p) => `<li><a href="/blog/${esc(p.id)}/">${esc(p.title)}</a><span>${esc(p.summary)}</span></li>`).join("")}</ul>` : '<p class="quiet">The first posts are on the way.</p>'}
-  </div></section>`;
+  ${articles.length ? `<section class="band zone"><div class="wrap">
+    <div class="sec-head"><div><p class="label">Worth the read</p><h2>Articles ${SPARK_PINK}</h2></div></div>
+    <div class="bcards">${articles.map((p, i) => postCard(p, { big: i === 0 })).join("")}</div>
+  </div></section>` : ""}
+  ${quick.length ? `<section class="band"><div class="wrap">
+    <div class="sec-head"><div><p class="label">One-minute reads</p><h2>Quick local tips ${SPARK}</h2></div></div>
+    <div class="bcards">${quick.map((p) => postCard(p)).join("")}</div>
+  </div></section>` : ""}
+  ${posts.length ? "" : '<section class="band"><div class="wrap"><p class="quiet">The first posts are on the way.</p></div></section>'}`;
   return layout(config, { title: "Blog", path: "/blog/", body, now, description: "Quick reads for parents of little kids in Spring Branch and Memorial, Houston." });
 }
 

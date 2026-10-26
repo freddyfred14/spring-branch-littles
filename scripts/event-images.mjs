@@ -29,6 +29,7 @@ const now = today(config.timezone);
 const files = {
   events: join(ROOT, "data/events.json"),
   recurring: join(ROOT, "data/recurring.json"),
+  posts: join(ROOT, "data/posts.json"),
 };
 const data = Object.fromEntries(Object.entries(files).map(([k, f]) => [k, JSON.parse(readFileSync(f, "utf8"))]));
 
@@ -39,13 +40,17 @@ function scene(x) {
   return `A scene of kids (${ages}) and their grown-ups enjoying "${x.title}" ${x.indoor ? "indoors" : "outdoors"}. ${x.description}`;
 }
 
+// Blog posts get a cover only when they have an imagePrompt (articles); quick reads stay text-only.
 const todo = [
   ...data.events.filter((e) => e.kind === "event" && (e.endDate || e.date) >= now && e.date <= addDays(now, 60)),
   ...data.recurring,
+  ...data.posts.filter((p) => p.imagePrompt),
 ].filter((x) => !x.image);
+const folder = (x) => (data.posts.includes(x) ? "blog" : "events");
 
 console.log(`${todo.length} item(s) need an image; making up to ${MAX}.`);
 mkdirSync(join(ROOT, "public/img/events"), { recursive: true });
+mkdirSync(join(ROOT, "public/img/blog"), { recursive: true });
 
 if (!DRY && todo.length && !MODEL) {
   MODEL = await pickImageModel(KEY);
@@ -66,7 +71,7 @@ for (const x of todo.slice(0, MAX)) {
   }
   try {
     const image = await generateImage(KEY, MODEL, prompt, { quality: QUALITY });
-    const path = `/img/events/${x.id}.jpg`;
+    const path = `/img/${folder(x)}/${x.id}.jpg`;
     writeFileSync(join(ROOT, "public", path), image);
     x.image = path;
     x.imageAlt = `Illustration: ${firstSentence(scene(x))}`;
