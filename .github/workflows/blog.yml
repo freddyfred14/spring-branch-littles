@@ -4,7 +4,7 @@
 # 3. OpenAI makes the two Instagram images (cover + key takeaways); Claude checks every word before anything posts.
 # 4. The carousel posts to Instagram as soon as the images are live on the site.
 # It checks every morning and writes only when the newest post is 2+ days old. Run it by hand from
-# Actions → Blog writer → Run workflow, optionally with a topic.
+# Actions → Blog writer → Run workflow, optionally with a topic. "Images only" retries a carousel whose images failed the check.
 # Needs ANTHROPIC_API_KEY and OPENAI_API_KEY; posting needs IG_USER_ID and IG_ACCESS_TOKEN (without them the
 # images are still made and saved under /social/blog/).
 # Optional repository variables: BLOG_MODEL (default claude-opus-5-5), IG_IMAGE_QUALITY (default high).
@@ -22,6 +22,10 @@ on:
         description: "Write a post even if one went up in the last 2 days"
         type: boolean
         default: false
+      images_only:
+        description: "Don't write a post; just retry the Instagram images for recent posts that don't have them"
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -34,6 +38,7 @@ concurrency:
 
 jobs:
   write:
+    if: ${{ !inputs.images_only }}
     runs-on: ubuntu-latest
     timeout-minutes: 40
     steps:
@@ -111,7 +116,7 @@ jobs:
 
   instagram-images:
     needs: write
-    if: needs.write.outputs.changed == 'true'
+    if: always() && (needs.write.outputs.changed == 'true' || inputs.images_only)
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
@@ -141,7 +146,7 @@ jobs:
 
   deploy:
     needs: [write, instagram-images]
-    if: always() && needs.write.outputs.changed == 'true'
+    if: always() && (needs.write.outputs.changed == 'true' || inputs.images_only)
     uses: ./.github/workflows/deploy.yml
 
   instagram:

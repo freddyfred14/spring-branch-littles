@@ -10,7 +10,7 @@ import { readFileSync, writeFileSync, mkdirSync, existsSync, rmSync } from "node
 import { join } from "node:path";
 import { execFileSync } from "node:child_process";
 import { ROOT, loadAll, today, addDays } from "../src/lib.mjs";
-import { pickImageModel, generateImage } from "../src/openai.mjs";
+import { pickImageModel, generateWithReferences } from "../src/openai.mjs";
 import { postCarousel } from "../src/instagram.mjs";
 
 const data = loadAll();
@@ -29,15 +29,16 @@ if (process.argv.includes("--due")) {
 const STYLE = `An Instagram post for "Spring Branch Littles", a warm local parenting brand. Portrait canvas.
 Style: soft cream background (#FBF6EC); large soft organic blob shapes in muted sage green (#8FAE8B), dusty blue (#5E8DB8) and blush pink (#F2B8C6) tucked into the corners; a few small hand-drawn sage leaf sprigs and short playful dash accents in mustard and coral; flat, clean, modern and airy with plenty of breathing room.
 Typography: chunky, rounded, bold sans-serif (like Fredoka or Baloo) for headlines; a clean rounded sans-serif for smaller text. Text colors: near-black (#1F2A24) and dusty blue (#4E7FAE).
-Layout rules: the top 8% and bottom 8% of the canvas will be cropped off, so put only background and blob shapes there. Keep the band from 8% to 27% of the height empty, plain cream background in the center (our logo is added there afterwards): no text, no logo and no drawings in that band except blob shapes at the far corners.
+Logo: at the top center, place the attached Spring Branch Littles logo exactly as it appears in the attached image (same lettering, colors and green dinosaur), about one third of the canvas width. Don't redraw or change it, and don't let anything overlap it.
+Layout: this will be shown as a 4:5 Instagram post, so fit everything (logo to the bottom pill) inside the middle 82% of the height, and leave the top and bottom edges as plain background with only the corner shapes. Nothing important may touch an edge.
 Spell every piece of text exactly as written below, with the same punctuation, and add no other words, letters, logos or watermarks.`;
-const CTA = `Near the bottom, above the cropped area: a soft blush-pink brush-stroke pill containing two centered lines, "Read the full article at" (smaller) and "springbranchlittles.com" (bold), with a coral circle holding a white right arrow just to the right of the pill.`;
+const CTA = `Near the bottom: a soft blush-pink brush-stroke pill containing two centered lines, "Read the full article at" (smaller) and "springbranchlittles.com" (bold), with a coral circle holding a white right arrow just to the right of the pill.`;
 const RULES = "No recognizable real people, no brand names, nothing scary. Kids look happy and natural; families of different backgrounds.";
 
 function coverPrompt(ig) {
   const c = ig.cover;
   return `${STYLE}
-Below the empty logo band, from top to bottom:
+Below the logo, from top to bottom:
 1. A small pale-sage rounded pill label with spaced-out uppercase gray-green letters: "${c.label}".
 2. A huge two-line headline. Line one in near-black: "${c.headline}" with a short sage brush-stroke underline under part of it. Line two in dusty blue: "${c.highlight}" with small coral and blue dash accents at its ends.
 3. A medium-size subheading in near-black: "${c.subhead}"
@@ -49,7 +50,7 @@ function takeawaysPrompt(ig) {
   const t = ig.takeaways;
   const colors = [["pale sage", "sage"], ["pale blue", "dusty blue"], ["pale butter yellow", "mustard"], ["pale blush pink", "coral"]];
   return `${STYLE}
-Below the empty logo band, from top to bottom:
+Below the logo, from top to bottom:
 1. A small pale-sage rounded pill label with spaced-out uppercase gray-green letters: "KEY TAKEAWAYS".
 2. Small spaced-out uppercase gray text: "FROM OUR LATEST BLOG POST"
 3. A big two-line headline. Line one in near-black: "${t.title}" Line two in dusty blue: "${t.highlight}" with tiny coral and mustard dash accents.
@@ -77,8 +78,8 @@ async function checkImage(jpeg, expected) {
   const prompt = `You are checking an Instagram image before it is posted automatically for a family brand.
 The text that should appear (each piece once, spelled exactly; line breaks and letter case may differ):
 ${expected.map((t) => `- "${t}"`).join("\n")}
-The "Spring Branch Littles" logo with a small dinosaur at the top is expected and is not part of the list.
-Set ok to false if any of these is true: a piece of text is missing, misspelled, garbled or has wrong or extra words; there is other readable text besides the logo; any text is cut off by an edge or covered by the logo; a person looks malformed (extra fingers or limbs, distorted face); or anything is inappropriate for a family brand. List each problem briefly. Otherwise set ok to true with no problems.`;
+The logo at the top is expected and is not part of the list: it must read "SPRING BRANCH" in black capitals and "littles" in blue script, with a smiling green dinosaur. Flag it if it is misspelled, distorted or missing.
+Set ok to false if any of these is true: a piece of text is missing, misspelled, garbled or has wrong or extra words; there is other readable text besides the logo; any text, the logo or the bottom pill is cut off by an edge, or anything overlaps the logo; a person looks malformed (extra fingers or limbs, distorted face); or anything is inappropriate for a family brand. List each problem briefly. Otherwise set ok to true with no problems.`;
   const body = (fallback) => ({
     model: "claude-opus-5-5",
     max_tokens: 2000,
@@ -129,6 +130,7 @@ if (process.argv.includes("--make")) {
     process.exit(1);
   }
   const model = process.env.OPENAI_IMAGE_MODEL || (await pickImageModel(KEY));
+  const logo = { data: readFileSync(join(ROOT, "public/img/logo.png")), type: "image/png", name: "spring-branch-littles-logo.png" };
   const quality = process.env.IG_IMAGE_QUALITY || "high";
   let failed = 0;
   for (const p of todo) {
@@ -138,7 +140,7 @@ if (process.argv.includes("--make")) {
       const raw = join(dirOf(p), `raw-${n}.jpg`);
       const out = join(dirOf(p), `${n}.jpg`);
       for (let attempt = 1; attempt <= 3 && slides.length < n; attempt++) {
-        writeFileSync(raw, await generateImage(KEY, model, prompt, { shape: "portrait", quality }));
+        writeFileSync(raw, await generateWithReferences(KEY, model, prompt, [logo], { shape: "portrait", quality }));
         execFileSync("python3", [join(ROOT, "scripts/ig-compose.py"), raw, out]);
         const check = await checkImage(readFileSync(out), expectedText(p.instagram, kind));
         if (check.ok) slides.push(`${n}.jpg`);
