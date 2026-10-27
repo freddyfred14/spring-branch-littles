@@ -1,7 +1,7 @@
 # Littles City Launch Playbook
 
 For a team opening the next Littles city (Atlanta, Chicago, Denver…) with no context. Built from the Spring Branch pilot, launched Oct 26, 2026.
-**v0.1 (2026-10-25):** almost everything below is **assumed (not yet tested)**. Each Tuesday, results from Spring Branch replace assumptions with **proven (our data)**.
+**v0.2 (2026-10-27):** first real numbers: **67 subscribers about two days after launch, 73% from Facebook links.** Most of the rest is still **assumed (not yet tested)**. Each Tuesday, results from Spring Branch replace assumptions with **proven (our data)**.
 
 ---
 
@@ -36,8 +36,8 @@ Owner time: 30 min/day for 90 days. Money: $10–20/day ads.
 
 | Channel | Cost per subscriber | Subscribers per owner hour | Scales? | Verdict | Evidence |
 |---|---|---|---|---|---|
-| Owner's network (texts) | $0 | 50+ | No (one-time) | Keep for launch | assumed (not yet tested) |
-| Facebook groups / moms' clubs | $0 | 30–60 | Partly (once per 2–3 weeks per group) | Keep | assumed (not yet tested) |
+| Owner's network (texts) | $0 | 50+ | No (one-time) | Keep for launch | assumed; 14 untagged "direct" signups in the first 2 days are probably this |
+| Facebook groups / moms' clubs | $0 | 30–60 | Partly (once per 2–3 weeks per group) | Keep, lead channel | **early proof (our data):** 49 signups from Facebook links in ~2 days of launch week. Per-group numbers unknown (untagged) |
 | Meta ads (Leads + Pixel) | $3–5 | n/a | Yes | Keep if under $5 | assumed (not yet tested) |
 | Nextdoor | $0 | 30–90 (one post) | No | Keep, once | assumed (not yet tested) |
 | SEO guides | $0 | n/a (agent-written) | Slowly | Keep | assumed (not yet tested) |
@@ -50,6 +50,8 @@ Owner time: 30 min/day for 90 days. Money: $10–20/day ads.
 ## 4. Templates that worked
 
 Not proven yet. Spring Branch launch-week templates are in `reach/kits/2026-10-25.md`: personal text (§1), Facebook "this week's picks" post (§2), "plan ahead" post (§3), Nextdoor (§4), district partner email (§7). Their numbers go here after week 1.
+
+Early signal (2026-10-27): Facebook posts with Halloween picks (format of kit §2, "real events with dates first, then 'I'm a local mom, I send this free every Monday'") brought 49 signups in about two days. We can't yet say which post or group was best, because the links weren't tagged.
 
 Patterns we're betting on:
 - **Value first:** 3–4 real events with dates *before* any mention of signing up.
@@ -72,6 +74,9 @@ For a bigger metro: split into several Littles brands by area from day one, and 
 
 - (Watch) Launching outreach before the Pixel and thank-you page are set means the first and warmest signups aren't counted by Meta.
 - (Watch) Metrics not connected at launch: we can't score channels without subscriber counts by source. Connect them before day 1 next time.
+- **(Happened) Untagged links in launch week.** 63 of the first 67 signups had no `?source=` tag, so the best channel worked but we couldn't tell which groups to repeat. Next city: before launch, give the owner a one-page cheat sheet with a ready tagged link for every group and channel on the targets list, and put the exact link in every kit post (not `GROUPNAME` placeholders).
+- **(Happened) "(copy)" in the first issue's subject line** after duplicating a draft in Buttondown. Add a pre-send check: subject, preheader, send day.
+- **(Likely, not proven) Launch timing helped:** launching the week of Halloween gave the owner a naturally useful list to post. Next city: launch 3–7 days before a holiday or school break that parents are actively planning for.
 
 ## 7. Unit economics
 

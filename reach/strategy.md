@@ -29,9 +29,11 @@ Day 0 = Oct 26, 2026 (first issue). All of these are **guesses** until we have t
 
 If week 1 brings fewer than 40, the network and group posts aren't landing; fix the message before adding channels.
 
+**Update 2026-10-27 (first real data):** 67 subscribers about two days after launch, already past the week-1 goal of 60. **49 (73%) came from Facebook links**, 14 direct (probably texts), none from ads. Almost none carried a tag, so we know Facebook works but not which groups. Targets stay as they are until we have a full week (Nov 3); if the pace holds past the Halloween bump, raise day 30 to 300. Priority for week 2: tag every link and keep group posts going, at most one new group every 2–3 days.
+
 ## Channel bets, ranked
 
-Ranked by expected subscribers per hour of the owner's time, then per dollar. Everything is **assumed** until the experiment board says otherwise.
+Ranked by expected subscribers per hour of the owner's time, then per dollar. Everything is **assumed** until the experiment board says otherwise. *Oct 27: Facebook groups have early proof (49 signups in ~2 days); the network is likely the 14 direct. Ranking unchanged until the Nov 3 scoring.*
 
 1. **The owner's network** (est. 50+ per hour). People who already trust her. Personal texts, not a broadcast. Ask each person to forward it to one friend. Do it once, early, and then mention it naturally.
 2. **Local Facebook groups and moms' clubs** (est. 10–20 per post, ~10 min each). The biggest pool of warm local parents. Value first (3–4 real events), say she runs it, follow every group's rules, at most once every 2–3 weeks per group. Spring Valley Moms Club (240+ families), Spring Shadows Moms Club and Memorial Villages Moms come first.

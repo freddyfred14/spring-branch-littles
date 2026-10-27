@@ -35,5 +35,38 @@
     ],
     "updated": "2026-10-25",
     "expires": "2026-11-29"
+  },
+  {
+    "id": "baby-toddler-storytimes-spring-branch-memorial",
+    "title": "Free baby & toddler storytimes in Spring Branch & Memorial: the weekly schedule",
+    "description": "Every week's free library storytimes for babies, toddlers and preschoolers near Spring Branch & Memorial, plus nature walks and cabin story hours.",
+    "intro": [
+      "Storytime is the easiest outing there is with a baby or toddler: it's free, it's indoors, it's under an hour, and nobody minds if your kid wanders off mid-song. Spring Branch has two library systems close together, Harris County's Spring Branch Memorial Library on Corbindale and Houston Public Library's Ring and Hillendahl branches, so there's something most weekday mornings.",
+      "Here's the week at a glance: Monday is preschool storytime with a craft at Spring Branch Memorial, Wednesday is Baby Bouncers there or toddler storytime at Ring, and Thursday is Tiny Tykes for new walkers back at Spring Branch Memorial. Outdoorsy families can add a guided Tyke Hike at the Houston Arboretum (Mondays through Nov 16) or a nature story in the log cabin at Edith L. Moore Nature Sanctuary.",
+      "Library schedules pause for holidays and change between seasons, so check each listing the week you go. We update this page whenever the libraries do."
+    ],
+    "items": [
+      "weekly:sbm-preschool-storytime",
+      "weekly:sbm-baby-bouncers",
+      "weekly:ring-toddler-storytime",
+      "weekly:sbm-tiny-tykes",
+      "weekly:arboretum-tyke-hikes",
+      "weekly:edith-moore-stories-crafts",
+      "place:spring-branch-memorial-library",
+      "place:ring-library",
+      "place:hillendahl-library",
+      "place:houston-arboretum",
+      "place:edith-moore-sanctuary",
+      "place:freed-park"
+    ],
+    "tips": [
+      "Arrive 15 minutes early. Popular storytimes hand out a limited number of free tickets, and they can run out.",
+      "Baby Bouncers and Tiny Tykes both run twice, at 10:15 and 11:15. If the first session is full or your kid naps late, aim for the second.",
+      "Ring Library's toddler storytime opens registration on the library calendar about two weeks ahead, so put a reminder in your phone.",
+      "Make a morning of it: Spring Branch Memorial Library has a playground next door, and Freed Park is a short drive from Ring Library.",
+      "It's fine to step out with a fussy baby and come back. Every storytime librarian has seen it all."
+    ],
+    "updated": "2026-10-27",
+    "expires": null
   }
 ]
