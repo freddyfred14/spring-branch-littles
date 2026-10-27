@@ -1,4 +1,5 @@
 # Twice a week, a Claude agent researches upcoming kids' events in Spring Branch and updates data/.
+# Fridays it does a short weekend check: cancellations, time changes and rain plans for this weekend's events.
 # Guardrails: the agent can only search, read and edit files; only changes under data/ are committed;
 # nothing is committed unless `npm run check` passes. A failed run emails the repo owner (GitHub default).
 name: Research agent
@@ -7,6 +8,7 @@ on:
   schedule:
     - cron: "13 12 * * 0" # Sunday ~7 am Houston: full refresh + write Monday's newsletter intro
     - cron: "13 12 * * 3" # Wednesday ~7 am Houston: mid-week refresh before the weekend posts
+    - cron: "13 12 * * 5" # Friday ~7 am Houston: weekend check (cancellations, changes, rain plans)
   workflow_dispatch:
 
 permissions:
@@ -34,7 +36,7 @@ jobs:
           anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
           prompt: |
-            You are the research editor for Spring Branch Littles. Today is ${{ github.event.schedule == '13 12 * * 0' && 'Sunday (the newsletter goes out tomorrow morning)' || 'a calendar refresh day' }}.
+            You are the research editor for Spring Branch Littles. Today is ${{ github.event.schedule == '13 12 * * 0' && 'Sunday (the newsletter goes out tomorrow morning)' || github.event.schedule == '13 12 * * 5' && 'Friday: do only the "Friday weekend check" in AGENTS.md' || 'a calendar refresh day' }}.
             Read AGENTS.md and follow it exactly. Only edit files under data/. When you are done, run `npm run check` and fix any errors it reports.
           claude_args: >-
             --model claude-sonnet-5-5

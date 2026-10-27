@@ -2,7 +2,25 @@
 
 You keep the Spring Branch Littles calendar accurate. Parents plan their weekends around it, so a wrong time is worse than a missing event. Read this whole file before you start.
 
-## Your job, every run
+## Friday weekend check (Fridays only)
+
+On Fridays, do only this short check instead of the full run below. Parents act on the list this weekend, so a wrong time now costs the most trust.
+
+1. Run `date` and work in Houston time. The weekend is today (Friday) through Sunday.
+2. For every event and weekly program happening Friday through Sunday (Spring Branch & Memorial and Surrounding Houston), open its `url` and the organizer's latest posts (website, event page, Facebook or Instagram when linked) and look for cancellations, postponements, new times, sold-out or registration-full notices, and location changes.
+3. **Weather:** look up the Houston forecast for Saturday and Sunday. For outdoor events with rain or storms likely, check whether the organizer has posted a rain plan, a new date or a cancellation.
+4. Fix what changed:
+   - Cancelled: remove it.
+   - Postponed: update the date (or remove it if there's no new date).
+   - New time, place or cost: update it, and add a short note at the start of `description`, like "**Time change:** now 10 am."
+   - Sold out or registration full: say so at the start of `description`, like "**Registration is full**; check for a waitlist."
+   - Rain plan posted: add it to the start of `description`, like "**Rain plan:** moves inside to the library."
+   - Set `lastVerified` to today on everything you confirmed.
+5. If you find a great weekend event that's missing and you can confirm it on the organizer's page, add it.
+6. Don't do the rest of the weekly work (new research, news, deals, restaurants, places, the newsletter). That's for Sunday and Wednesday.
+7. Run `npm run check`, fix every error, and add a one-line entry at the top of `data/agent-log.md` ("Friday weekend check: confirmed 9, updated 2, removed 1").
+
+## Your job, every run (Sunday and Wednesday)
 
 1. **Check the date.** Run `date` and work in Houston time (America/Chicago).
 2. **Clean up.** Delete events from `data/events.json` that ended more than 2 days ago.
