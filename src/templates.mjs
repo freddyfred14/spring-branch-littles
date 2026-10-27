@@ -26,7 +26,7 @@ const ICON_MENU = `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M
 
 // The menu bar shows the main pages; the rest sit in the "More" dropdown. On phones, all of it opens from "Menu".
 const NAV = [
-  ["/", "Events: This Week"],
+  ["/", "Events: Next 2 Weeks"],
   ["/events/", "Calendar"],
   ["/places/", "Places"],
   ["/eats/", "Kid-friendly eats"],
@@ -284,7 +284,7 @@ const REGION_ART = { local: () => bubblesIllo(), houston: () => kiteIllo() };
 function regionHead(area, extra = "", count = 0) {
   return `<div class="region-head">
     <div class="region-art">${REGION_ART[area]()}</div>
-    <div><p class="label">${esc(AREAS[area].label)}${count ? ` · ${count} this week` : ""}</p><h2>${esc(AREAS[area].title)}</h2></div>
+    <div><p class="label">${esc(AREAS[area].label)}${count ? ` · ${count} in the next 2 weeks` : ""}</p><h2>${esc(AREAS[area].title)}</h2></div>
     ${extra}
   </div>`;
 }
@@ -451,10 +451,11 @@ export function eatsPage(data, now) {
 export function homePage(data, now) {
   const { config } = data;
   const wk = { ...weekendOf(now), now };
-  const weekEnd = addDays(now, 6);
+  // The homepage covers the next two weeks (today through 13 days out); the site rebuilds every morning.
+  const weekEnd = addDays(now, 13);
   const soon = upcomingByArea(data, now, weekEnd);
-  const later = upcomingByArea(data, addDays(now, 7), addDays(now, 120));
-  // Local weekly programs show up on their next date this week, alongside one-off events.
+  const later = upcomingByArea(data, addDays(now, 14), addDays(now, 120));
+  // Local weekly programs show up on their next date, alongside one-off events.
   const weekly = [];
   const seen = new Set();
   // Skip programs that only run on "selected" days; we can't say which date it falls on.
@@ -467,7 +468,7 @@ export function homePage(data, now) {
       ${regionHead(area, more, list.length)}
       ${list.length
         ? `<div class="ecards strip">${list.map((x, i) => eventCard(data, x, i, wk)).join("")}</div>${groupEmpty}`
-        : `<p class="quiet">Nothing listed for this week yet${later[area].length ? `. <a href="/events/#${area}">See what's coming up</a>.` : ", but new events are added every Sunday and Wednesday."}</p>`}
+        : `<p class="quiet">Nothing listed for the next two weeks yet${later[area].length ? `. <a href="/events/#${area}">See what's coming up</a>.` : ", but new events are added every Sunday and Wednesday."}</p>`}
     </div></section>`;
   };
   const weekCount = soon.local.length + soon.houston.length + weekly.length;
@@ -492,7 +493,7 @@ export function homePage(data, now) {
 
   <div class="zone">
   <section class="band whatson"><div class="wrap">
-    <div class="sec-head"><div><p class="label">${fmtShort(now)} – ${fmtShort(weekEnd)} · ${weekCount} things to do</p><h2>Events: This Week ${SPARK}</h2></div></div>
+    <div class="sec-head"><div><p class="label">${fmtShort(now)} – ${fmtShort(weekEnd)} · ${weekCount} things to do</p><h2>Events: Next 2 Weeks ${SPARK}</h2></div></div>
     ${breakNotices(data, now, weekEnd)}
   </div></section>
   <div id="listings" class="filterable">
@@ -560,13 +561,13 @@ export function homePage(data, now) {
     </div>
     <a class="btn btn-ghost" href="https://instagram.com/${esc(config.instagram)}">Follow on Instagram</a>
   </div></section>`;
-  return layout(config, { title: "", path: "/", body, now, description: `${config.description} Updated weekly. This weekend: ${fmtShort(wk.start)}–${fmtShort(wk.end)}.` });
+  return layout(config, { title: "", path: "/", body, now, description: `${config.description} Updated daily. This weekend: ${fmtShort(wk.start)}–${fmtShort(wk.end)}.` });
 }
 
 export function eventsPage(data, now) {
   const { config } = data;
   const wk = { ...weekendOf(now), now };
-  const start = addDays(now, 7);
+  const start = addDays(now, 14);
   const later = upcomingByArea(data, start, addDays(now, 150));
   const region = (area) => {
     const months = new Map();
@@ -579,14 +580,14 @@ export function eventsPage(data, now) {
       ${regionHead(area)}
       ${months.size
         ? [...months.entries()].map(([m, list]) => `<div class="month" data-day><h3 class="month-head">${esc(m)}</h3><div class="ecards">${list.map((x, i) => eventCard(data, x, i, wk)).join("")}</div></div>`).join("") + groupEmpty
-        : `<p class="quiet">Nothing listed after this week yet. New events are added every Sunday and Wednesday.</p>`}
+        : `<p class="quiet">Nothing listed after the next two weeks yet. New events are added every Sunday and Wednesday.</p>`}
     </div></section>`;
   };
   const body = `
   <section class="page-head"><div class="wrap head-art"><div class="head-copy">
     <p class="label">Calendar · from ${fmtShort(start)}</p>
     <h1>Coming up for <span class="script pink">littles</span> ${SPARK}</h1>
-    <p class="lede">Everything after this week, close to home and around Houston, plus the storytimes and playtimes that happen every week. For the next few days, see <a href="/">This week</a>.</p>
+    <p class="lede">Everything after the next two weeks, close to home and around Houston, plus the storytimes and playtimes that happen every week. For the next two weeks, see <a href="/">Events: Next 2 Weeks</a>.</p>
     <p class="jump"><a href="#local">Spring Branch & Memorial</a><a href="#houston">Surrounding Houston</a><a href="#every-week">Every week</a></p>
   </div>${kiteIllo()}</div></section>
   <section class="band whatson"><div class="wrap">
@@ -680,7 +681,7 @@ export function joinPage(data, now) {
     </div>
   </div></section>
   ${picks.length ? `<section class="band"><div class="wrap">
-    <div class="sec-head"><div><p class="label">A taste of what you'll get</p><h2>Coming up soon ${SPARK_PINK}</h2></div><a class="more" href="/">See this week →</a></div>
+    <div class="sec-head"><div><p class="label">A taste of what you'll get</p><h2>Coming up soon ${SPARK_PINK}</h2></div><a class="more" href="/">See the next 2 weeks →</a></div>
     <div class="ecards">${picks.map((x, i) => eventCard(data, x, i, wk)).join("")}</div>
   </div></section>` : ""}`;
   return layout(config, { title: "Join The Littles List", path: "/join/", body, now, description: `${config.newsletterName}: free weekly kid-friendly finds for Spring Branch & Memorial parents.` });
@@ -771,7 +772,7 @@ export function eventPage(data, x, now) {
   const shareText = `${x.title} · ${when}`;
   const body = `
   <section class="page-head event-head"><div class="wrap">
-    <p class="label crumbs"><a href="/">This week</a> · <a href="/events/">Calendar</a> · ${esc(AREAS[areaOf(data, x)].title)}</p>
+    <p class="label crumbs"><a href="/">Next 2 weeks</a> · <a href="/events/">Calendar</a> · ${esc(AREAS[areaOf(data, x)].title)}</p>
     <div class="event-grid">
       <div class="event-art">${eventPhoto(data, x) ? photo(eventPhoto(data, x), "event-photo") : `<div class="event-icon">${dateTile(item, wk)}${THEME_ICONS[themeOf(x)]()}</div>`}</div>
       <div class="event-copy">
@@ -818,7 +819,7 @@ export function searchPage(data, now) {
     <input id="q" class="search-input" type="search" placeholder="Try “storytime”, “free”, “Memorial Park”, “pizza”…" autocomplete="off" autofocus>
     <p class="quiet search-count" aria-live="polite"></p>
     <ul class="search-results" id="results"></ul>
-    <noscript><p class="quiet">Search needs JavaScript. You can also browse <a href="/">This week</a> or the <a href="/events/">Calendar</a>.</p></noscript>
+    <noscript><p class="quiet">Search needs JavaScript. You can also browse <a href="/">the next 2 weeks</a> or the <a href="/events/">Calendar</a>.</p></noscript>
   </div></section>`;
   return layout(data.config, { title: "Search", path: "/search/", body, now, description: "Search kid-friendly events, places, restaurants and news in Spring Branch and Memorial." });
 }
@@ -1053,7 +1054,7 @@ export function thanksPage(data, now) {
     <p class="label">${esc(config.newsletterName)}</p>
     <h1>You're in! <span class="script pink">Welcome</span> 🦕</h1>
     <p class="lede">One last step: check your inbox and tap the confirmation link (peek in Promotions if you don't see it). Then watch for The Littles List next Monday morning.</p>
-    <p class="event-actions"><a class="btn" href="/">See this week's plans</a><a class="btn btn-soft" href="https://instagram.com/${esc(config.instagram)}">Follow @${esc(config.instagram)}</a></p>
+    <p class="event-actions"><a class="btn" href="/">See the next 2 weeks</a><a class="btn btn-soft" href="https://instagram.com/${esc(config.instagram)}">Follow @${esc(config.instagram)}</a></p>
     <p class="quiet">Know a parent who'd love this? Send them <span class="select">${esc(config.url.replace("https://", ""))}/join</span></p>
   </div>${toddlerIllo()}</div></section>`;
   return layout(config, { title: "Thanks for subscribing", path: "/thanks/", body, now });

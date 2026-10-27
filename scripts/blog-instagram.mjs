@@ -33,7 +33,7 @@ Logo: at the top center, place the attached Spring Branch Littles logo exactly a
 Layout: this will be shown as a 4:5 Instagram post, so fit everything (logo to the bottom pill) inside the middle 82% of the height, and leave the top and bottom edges as plain background with only the corner shapes. Nothing important may touch an edge.
 Spell every piece of text exactly as written below, with the same punctuation, and add no other words, letters, logos or watermarks.`;
 const CTA = `Near the bottom: a soft blush-pink brush-stroke pill containing two centered lines, "Read the full article at" (smaller) and "springbranchlittles.com" (bold), with a coral circle holding a white right arrow just to the right of the pill.`;
-const RULES = "No recognizable real people, no brand names, nothing scary. Kids look happy and natural; families of different backgrounds.";
+const RULES = "Show the people exactly as described (their background, age and who they are to each other). No recognizable real people, no brand names, nothing scary. Kids look happy and natural.";
 
 function coverPrompt(ig) {
   const c = ig.cover;

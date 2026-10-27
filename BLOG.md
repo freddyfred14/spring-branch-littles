@@ -50,7 +50,7 @@ Rules:
   "title": "The clocks change Sunday. Your toddler's body clock doesn't care.",
   "date": "2026-10-30",
   "summary": "Under 200 characters. Make a tired parent want to click.",
-  "imagePrompt": "The website cover: a warm, realistic scene that fits the post, landscape. Describe people, place, light and mood. No text, signs or logos.",
+  "imagePrompt": "The website cover: a warm, realistic scene that fits the post, landscape. Describe exactly who the people are (see \"Showing every kind of family\"), the place, light and mood. No text, signs or logos.",
   "body": [
     "Opening paragraph...",
     "## A section heading",
@@ -95,7 +95,7 @@ Two images are drawn from this text, so it must be short. `npm run check` enforc
 - `label`: a short pill label, uppercase, under 20 characters. Usually `PARENT TALK`; `SLEEP TALK`, `REAL TALK`, `HEADS UP` or `THIS WEEK` also work.
 - `headline` (under 22 characters, near-black) and `highlight` (under 24, blue) together are the hook, often the post title cut down. Read them as one sentence: "Stop rushing / potty training."
 - `subhead`: one line under 48 characters that promises the payoff.
-- `scene`: a realistic, happy scene for the middle of the image (under 450 characters). Describe the child or children, ages, setting, a prop or two, and soft natural light. No text, no logos, no real people, nothing scary. Families of different backgrounds across posts.
+- `scene`: a realistic, happy scene for the middle of the image (under 450 characters). Describe who the people are (see "Showing every kind of family"), the children's ages, the setting, a prop or two, and soft natural light. No text, no logos, no real people, nothing scary.
 
 **Takeaways (image 2):** the save-worthy summary.
 - `title` (under 34 characters) and `highlight` (under 22): the post's big idea in two lines.
@@ -109,6 +109,19 @@ Two images are drawn from this text, so it must be short. `npm run check` enforc
 - End with 4–8 hashtags: a mix of topic tags (#pottytraining, #toddlersleep) and local tags (#houstonmoms, #springbranch, #memorialhouston, #houstonparents, #houstonkids).
 - For medical posts, add a line: "General info, not medical advice. Check with your pediatrician."
 - Write it in plain text. Instagram doesn't show bold or links.
+
+## Showing every kind of family
+
+Houston is one of the most diverse cities in the country, and every parent reading should sometimes see a family like theirs. Image models fall back on the same default family unless told otherwise, so you decide who is in each picture and say it plainly.
+
+- **Before writing the image text, read the `imagePrompt` and `instagram.cover.scene` of the last 8 posts** and note who was shown. Choose people who are clearly different from the last few posts.
+- **Rotate across all of these over time:**
+  - Backgrounds: Black, Latino, East Asian, South Asian, Middle Eastern, white, and multiracial families.
+  - Who's the grown-up: moms, dads, two moms, two dads, single parents, grandparents, and multigenerational families. Dads should do everyday caregiving (bedtime, feeding, comforting), not only play.
+  - Now and then: a child or parent with a visible disability or difference (a wheelchair, hearing aids, glasses, a limb difference), different body types, and older and younger parents.
+- **Describe the people explicitly** in both `imagePrompt` and `cover.scene`, for example "a Black dad with a short beard and his 2-year-old daughter" or "a South Asian grandmother in a cardigan reading with her 4-year-old grandson". Use the same family in both images for one post.
+- Show people warmly and naturally, in ordinary homes and Houston places. No stereotypes, costumes or props that stand in for a culture.
+- Never change or regenerate an existing post's images.
 
 ## Guardrails
 

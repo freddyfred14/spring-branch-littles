@@ -21,7 +21,7 @@ if (!KEY && !DRY) {
   process.exit(0);
 }
 
-const STYLE = "Warm, realistic photo-style illustration, landscape 3:2, soft natural light, cheerful and calm, families of different backgrounds.";
+const STYLE = "Warm, realistic photo-style illustration, landscape 3:2, soft natural light, cheerful and calm. Show the people exactly as described; when the description doesn't say, show a family whose background differs from the usual stock photo.";
 const RULES = "No text, no words, no signs, no logos, no brand names, no recognizable real people or real landmarks. Nothing scary.";
 
 const config = JSON.parse(readFileSync(join(ROOT, "site.config.json"), "utf8"));
