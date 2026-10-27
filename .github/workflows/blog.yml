@@ -1,0 +1,168 @@
+# Blog writer: a new research-backed blog post every two days, with an Instagram carousel for it.
+# 1. Claude writes the post (BLOG.md) into data/posts.json.
+# 2. OpenAI makes the website cover; the site redeploys (the newest 4 posts are on the homepage).
+# 3. OpenAI makes the two Instagram images (cover + key takeaways); Claude checks every word before anything posts.
+# 4. The carousel posts to Instagram as soon as the images are live on the site.
+# It checks every morning and writes only when the newest post is 2+ days old. Run it by hand from
+# Actions → Blog writer → Run workflow, optionally with a topic.
+# Needs ANTHROPIC_API_KEY and OPENAI_API_KEY; posting needs IG_USER_ID and IG_ACCESS_TOKEN (without them the
+# images are still made and saved under /social/blog/).
+# Optional repository variables: BLOG_MODEL (default claude-opus-5-5), IG_IMAGE_QUALITY (default high).
+name: Blog writer
+
+on:
+  schedule:
+    - cron: "37 12 * * *" # every day ~7:37 am Houston (6:37 am in winter); writes only when a post is due
+  workflow_dispatch:
+    inputs:
+      topic:
+        description: "Topic to write about (optional), e.g. 'surviving the daylight saving time change'"
+        required: false
+      force:
+        description: "Write a post even if one went up in the last 2 days"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: content
+  cancel-in-progress: false
+
+jobs:
+  write:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+
+      - name: Is a post due?
+        id: due
+        env:
+          FORCE: ${{ inputs.force }}
+          TOPIC: ${{ inputs.topic }}
+        run: |
+          if [ "$FORCE" = "true" ] || [ -n "$TOPIC" ]; then due=true; else due=$(node scripts/blog-instagram.mjs --due); fi
+          echo "Post due: $due"
+          echo "due=$due" >> "$GITHUB_OUTPUT"
+
+      - name: Write the post
+        if: steps.due.outputs.due == 'true'
+        uses: anthropics/claude-code-action@v1
+        with:
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          prompt: |
+            You are the blog writer for Spring Branch Littles. Read BLOG.md and follow it exactly: write one new post.
+            Only edit data/posts.json and reach/blog-ideas.md. When you are done, run `npm run check` and fix any errors it reports.
+            ${{ inputs.topic && format('The owner asked for this topic: {0}', inputs.topic) || '' }}
+          claude_args: >-
+            --model ${{ vars.BLOG_MODEL || 'claude-opus-5-5' }}
+            --max-turns 80
+            --allowedTools "WebSearch,WebFetch,Read,Write,Edit,Glob,Grep,Bash(npm run check),Bash(date*)"
+
+      - name: Keep only the new post
+        if: steps.due.outputs.due == 'true'
+        run: |
+          # The writer may only change data/posts.json and reach/blog-ideas.md; drop anything else before validating.
+          cp data/posts.json "$RUNNER_TEMP/posts.json"
+          [ -f reach/blog-ideas.md ] && cp reach/blog-ideas.md "$RUNNER_TEMP/blog-ideas.md"
+          git reset --hard -q && git clean -fdq
+          cp "$RUNNER_TEMP/posts.json" data/posts.json
+          [ -f "$RUNNER_TEMP/blog-ideas.md" ] && cp "$RUNNER_TEMP/blog-ideas.md" reach/blog-ideas.md
+          npm run check
+
+      - name: Website cover image
+        if: steps.due.outputs.due == 'true'
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          OPENAI_IMAGE_MODEL: ${{ vars.OPENAI_IMAGE_MODEL }}
+          OPENAI_IMAGE_QUALITY: ${{ vars.OPENAI_IMAGE_QUALITY }}
+        run: |
+          node scripts/event-images.mjs
+          pip install --quiet pillow
+          python3 scripts/resize-images.py
+          npm run check
+
+      - name: Commit
+        id: commit
+        if: steps.due.outputs.due == 'true'
+        run: |
+          git config user.name "Spring Branch Littles bot"
+          git config user.email "bot@users.noreply.github.com"
+          git add data/ public/img/ reach/blog-ideas.md 2>/dev/null || git add data/ public/img/
+          if git diff --cached --quiet -- data/posts.json; then
+            echo "No new post was written."
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            git commit -m "Blog post $(TZ=America/Chicago date +%F)"
+            git pull --rebase
+            git push
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+    outputs:
+      changed: ${{ steps.commit.outputs.changed }}
+
+  instagram-images:
+    needs: write
+    if: needs.write.outputs.changed == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: ${{ github.event.repository.default_branch }}
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+      - run: pip install --quiet pillow
+
+      - name: Make and check the Instagram images
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          OPENAI_IMAGE_MODEL: ${{ vars.OPENAI_IMAGE_MODEL }}
+          IG_IMAGE_QUALITY: ${{ vars.IG_IMAGE_QUALITY }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: node scripts/blog-instagram.mjs --make
+
+      - name: Commit images
+        if: always()
+        run: |
+          git config user.name "Spring Branch Littles bot"
+          git config user.email "bot@users.noreply.github.com"
+          git add social/blog
+          git diff --cached --quiet || { git commit -m "Instagram images for the new blog post"; git pull --rebase; git push; }
+
+  deploy:
+    needs: [write, instagram-images]
+    if: always() && needs.write.outputs.changed == 'true'
+    uses: ./.github/workflows/deploy.yml
+
+  instagram:
+    needs: deploy
+    if: always() && needs.deploy.result == 'success'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: ${{ github.event.repository.default_branch }}
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+      - name: Post the carousel
+        env:
+          IG_USER_ID: ${{ secrets.IG_USER_ID }}
+          IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
+        run: node scripts/blog-instagram.mjs --post
+      - name: Record the post
+        run: |
+          git config user.name "Spring Branch Littles bot"
+          git config user.email "bot@users.noreply.github.com"
+          git add social/blog
+          git diff --cached --quiet || { git commit -m "Record Instagram post"; git pull --rebase; git push; }

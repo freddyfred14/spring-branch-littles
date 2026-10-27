@@ -1,5 +1,5 @@
 # Agent Reach: head of growth. Tuesdays it collects the numbers, scores experiments, writes the week's plan and
-# ready-to-paste posts (reach/), publishes a search-friendly guide (data/guides.json), keeps the City Launch
+# ready-to-paste posts (reach/), publishes a search-friendly guide (data/guides.json), suggests blog topics, keeps the City Launch
 # Playbook current, and opens a GitHub issue with the owner's checklist. Fridays it sends a short weekend pulse.
 # Playbook: REACH.md.
 # Run it any time from Actions → Agent Reach → Run workflow, optionally with a focus ("plan for spring break").
@@ -50,7 +50,7 @@ jobs:
           prompt: |
             You are Agent Reach, head of growth for Littles. Read REACH.md and follow it exactly.
             This is the ${{ github.event.schedule == '13 13 * * 5' && 'Friday pulse' || 'Tuesday full run' }}.
-            Only edit files in reach/, data/guides.json and data/posts.json. When you are done, run `npm run check` and fix any errors it reports.
+            Only edit files in reach/ and data/guides.json. When you are done, run `npm run check` and fix any errors it reports.
             ${{ inputs.focus && format('The owner asked you to focus on this run: {0}', inputs.focus) || '' }}
           claude_args: >-
             --model ${{ vars.REACH_MODEL || 'claude-opus-5-5' }}
@@ -65,13 +65,13 @@ jobs:
         run: |
           git config user.name "Spring Branch Littles bot"
           git config user.email "bot@users.noreply.github.com"
-          git add reach/ data/guides.json data/posts.json
-          echo "guides=$(git diff --cached --quiet -- data/guides.json data/posts.json && echo false || echo true)" >> "$GITHUB_OUTPUT"
+          git add reach/ data/guides.json
+          echo "guides=$(git diff --cached --quiet -- data/guides.json && echo false || echo true)" >> "$GITHUB_OUTPUT"
           if git diff --cached --quiet; then
             echo "Nothing to commit."
           else
             git commit -m "Agent Reach $(date -u +%F)"
-            # Drop anything the agent touched outside reach/, guides and posts before syncing.
+            # Drop anything the agent touched outside reach/ and guides before syncing.
             git reset --hard HEAD && git clean -fdq
             git pull --rebase
             git push

@@ -223,6 +223,29 @@ function checkImage(x, w, err) {
 const TIME_RE = /^([01]\d|2[0-3]):[0-5]\d$/;
 const ID_RE = /^[a-z0-9-]+$/;
 
+// The two Instagram images for a blog post are drawn with this text, so it has to be short enough to fit
+// the design: the cover (label, headline in two colors, subhead, scene) and four key takeaways.
+export const IG_LIMITS = { label: 20, headline: 22, highlight: 24, subhead: 48, scene: 450, title: 34, titleHighlight: 22, heading: 36, text: 125, caption: 2000 };
+function checkInstagram(ig, w, err) {
+  const fit = (v, max, name) => {
+    if (typeof v !== "string" || !v.trim()) err(w, `instagram ${name} is required`);
+    else if (v.length > max) err(w, `instagram ${name} is ${v.length} characters; keep it under ${max} so it fits the image`);
+  };
+  const c = ig.cover || {};
+  fit(c.label, IG_LIMITS.label, "cover.label");
+  fit(c.headline, IG_LIMITS.headline, "cover.headline");
+  fit(c.highlight, IG_LIMITS.highlight, "cover.highlight");
+  fit(c.subhead, IG_LIMITS.subhead, "cover.subhead");
+  fit(c.scene, IG_LIMITS.scene, "cover.scene");
+  const t = ig.takeaways || {};
+  fit(t.title, IG_LIMITS.title, "takeaways.title");
+  fit(t.highlight, IG_LIMITS.titleHighlight, "takeaways.highlight");
+  if (!Array.isArray(t.points) || t.points.length !== 4) err(w, "instagram takeaways.points must be exactly 4 {heading, text}");
+  else t.points.forEach((x, i) => { fit(x.heading, IG_LIMITS.heading, `takeaways.points[${i}].heading`); fit(x.text, IG_LIMITS.text, `takeaways.points[${i}].text`); });
+  fit(ig.caption, IG_LIMITS.caption, "caption");
+  if ((ig.caption || "").split("#").length - 1 > 8) err(w, "instagram caption: use at most 8 hashtags");
+}
+
 export function validate(data, now = today()) {
   const errors = [];
   const warnings = [];
@@ -410,6 +433,7 @@ export function validate(data, now = today()) {
       if (!GUIDE_KINDS[kind]) err(w, `related "${ref}" must start with event:, weekly:, place: or eats:`);
       else if (!GUIDE_KINDS[kind].some((x) => x.id === id)) err(w, `related "${ref}" doesn't match any listing`);
     }
+    if (p.instagram != null) checkInstagram(p.instagram, w, err);
     checkImage(p, w, err);
   });
 

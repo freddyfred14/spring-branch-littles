@@ -13,6 +13,7 @@ Once it's set up, it runs on its own:
 | Tue ~8 am | Agent Reach reads the numbers, writes the week's growth plan and posts, publishes a guide, updates the City Launch Playbook, and emails you a checklist. | `agent-reach.yml` |
 | Fri ~8 am | Agent Reach sends a short weekend pulse: 1–3 quick actions. | `agent-reach.yml` |
 | Thu ~6:45 am | The weekend Instagram carousel is made and posted, and the weekend app alert goes out. | `weekend-social.yml` |
+| Every 2 days, ~7:30 am | A new research-backed blog post goes up (the newest 4 are on the homepage), and its two Instagram images (cover + key takeaways) are made, checked and posted. | `blog.yml` |
 | Every morning | The site rebuilds so "This week" always starts today. | `deploy.yml` |
 | 1st of month | The Instagram access token is refreshed. | `refresh-instagram-token.yml` |
 
@@ -88,6 +89,14 @@ Agent Reach is head of growth for the Littles network, with Spring Branch as the
 4. Every signup form records where the person came from: the `?source=` tag on the link they used (ads, group posts, flyers), or the site that sent them. Always use the tagged links from the kits.
 5. Kick it off: **Actions → Agent Reach → Run workflow**. The first run writes the strategy, the experiment board, the targets list and the first City Launch Playbook.
 6. Each week, do the checklist and comment on the issue with what you did and saw ("posted in Spring Shadows Moms, 15 signups"). Add those notes to `reach/log.md` (or tell Claude) so it learns.
+
+### 9. Blog writer + Instagram
+Every two days, a Claude agent writes a research-backed post for parents (its playbook is `BLOG.md`). The post goes on the site with an AI cover photo, and OpenAI draws two Instagram images for it in the brand style: a cover and a "key takeaways" image. Your real logo is placed on both. Before anything posts, Claude reads each finished image and checks every word; an image with a typo or cut-off text is redrawn (up to 3 tries), and if it's still wrong, nothing posts and GitHub emails you. The images are only for Instagram; they live at `/social/blog/<post>/` and aren't linked on the site.
+1. It uses the `ANTHROPIC_API_KEY` and `OPENAI_API_KEY` secrets you already have. Expect roughly $1–2 per post (about $15–30 a month): the writing on Claude Opus, plus three high-quality images and the checks. To spend less, set the repository variables `BLOG_MODEL` to `claude-sonnet-5-5` and `IG_IMAGE_QUALITY` to `medium`.
+2. Posting to Instagram needs `IG_USER_ID` and `IG_ACCESS_TOKEN` (step 5). Until they're set, the images are still made, and you can download them from the site and post them by hand.
+3. Set your Instagram bio link to `https://springbranchlittles.com/blog/` (or `/join/`), because captions say "Full article at the link in our bio".
+4. To ask for a topic, run **Actions → Blog writer → Run workflow** and type it in, or add a line to `reach/blog-ideas.md`. Agent Reach adds ideas there every Tuesday.
+5. To stop a bad post: delete it from `data/posts.json` (and its Instagram post in the app).
 
 ---
 

@@ -518,6 +518,7 @@ export function homePage(data, now) {
   ${posts.length ? `<section class="band zone"><div class="wrap">
     <div class="sec-head"><div><p class="label">Real talk for parents</p><h2>From the blog ${SPARK_PINK}</h2></div><a class="more" href="/blog/">All posts →</a></div>
     <div class="bcards four">${posts.map((p) => postCard(p)).join("")}</div>
+    <p class="see-all"><a class="btn btn-blue" href="/blog/">See all blog posts →</a></p>
   </div></section>` : ""}
 
   ${data.deals.length ? `<section class="band"><div class="wrap">
@@ -922,8 +923,8 @@ function postCard(p, { big = false } = {}) {
     </div>
   </article>`;
 }
-// Newest articles first, then quick reads.
-const livePosts = (data, now) => data.posts.filter((p) => p.date <= now).sort((a, b) => Number(b.type === "article") - Number(a.type === "article") || b.date.localeCompare(a.date));
+// Newest first; on the same day, articles before quick reads.
+const livePosts = (data, now) => data.posts.filter((p) => p.date <= now).sort((a, b) => b.date.localeCompare(a.date) || Number(b.type === "article") - Number(a.type === "article"));
 
 export function postPage(data, post, now) {
   const { config } = data;
@@ -953,25 +954,29 @@ export function postPage(data, post, now) {
 
 export function blogIndexPage(data, now) {
   const { config } = data;
-  const posts = livePosts(data, now);
-  const articles = posts.filter((p) => p.type === "article");
-  const quick = posts.filter((p) => p.type !== "article");
+  const [latest, ...rest] = livePosts(data, now);
+  // Everything after the newest post, grouped by month so the archive stays easy to scan as it grows.
+  const months = [];
+  for (const p of rest) {
+    const m = fmtMonth(p.date);
+    if (months.at(-1)?.month !== m) months.push({ month: m, posts: [] });
+    months.at(-1).posts.push(p);
+  }
   const body = `
   <section class="page-head"><div class="wrap narrow">
     <p class="label">Blog</p>
     <h1>Real talk for parents of <span class="script pink">littles</span></h1>
-    <p class="lede">Honest, research-backed reads on the big stuff (sleep, potty training, travel), plus quick local tips. Written by a mom, for moms and dads.</p>
+    <p class="lede">Honest, research-backed reads on the things that keep parents up at night (sleep, potty training, tantrums, travel), plus quick local tips. A new post every couple of days.</p>
   </div></section>
-  ${articles.length ? `<section class="band zone"><div class="wrap">
-    <div class="sec-head"><div><p class="label">Worth the read</p><h2>Articles ${SPARK_PINK}</h2></div></div>
-    <div class="bcards">${articles.map((p, i) => postCard(p, { big: i === 0 })).join("")}</div>
-  </div></section>` : ""}
-  ${quick.length ? `<section class="band"><div class="wrap">
-    <div class="sec-head"><div><p class="label">One-minute reads</p><h2>Quick local tips ${SPARK}</h2></div></div>
-    <div class="bcards">${quick.map((p) => postCard(p)).join("")}</div>
-  </div></section>` : ""}
-  ${posts.length ? "" : '<section class="band"><div class="wrap"><p class="quiet">The first posts are on the way.</p></div></section>'}`;
-  return layout(config, { title: "Blog", path: "/blog/", body, now, description: "Quick reads for parents of little kids in Spring Branch and Memorial, Houston." });
+  ${latest ? `<section class="band zone"><div class="wrap">
+    <div class="sec-head"><div><p class="label">Just posted</p><h2>Latest ${SPARK_PINK}</h2></div></div>
+    <div class="bcards">${postCard(latest, { big: true })}</div>
+  </div></section>` : '<section class="band"><div class="wrap"><p class="quiet">The first posts are on the way.</p></div></section>'}
+  ${months.map((m, i) => `<section class="band${i % 2 ? " zone" : ""}"><div class="wrap">
+    <div class="sec-head"><div><p class="label">${i ? "Archive" : "More posts"}</p><h2>${esc(m.month)}</h2></div></div>
+    <div class="bcards">${m.posts.map((p) => postCard(p)).join("")}</div>
+  </div></section>`).join("")}`;
+  return layout(config, { title: "Blog", path: "/blog/", body, now, description: "Research-backed reads for parents of little kids in Spring Branch and Memorial, Houston. A new post every couple of days." });
 }
 
 // How to install the app and turn on alerts. site.js shows the steps that fit the visitor's phone.
