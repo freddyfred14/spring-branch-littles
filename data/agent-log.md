@@ -2,6 +2,15 @@
 
 Newest first. The research agent adds an entry each run.
 
+## 2026-10-28 · Wednesday calendar refresh (partial)
+
+- Removed: Levy Park Howl-O-Ween (ended Oct 25).
+- Fixed: library kids' Halloween party (Oct 29) is 4:15–5:15 pm per the branch page, not 5–7. CityCentre trick-or-treat details added (5–6:45 pm, Plaza show at 7). Standing Tall cost is $20 adult / $16 child, members free.
+- Confirmed on organizer pages: CityCentre trick-or-treat, Scream on the Green (Oct 30, 6–9 pm), Día de los Muertos (Nov 1, now "confirmed"), Wings Over Houston (Oct 31–Nov 1; gate times not listed), Standing Tall (Nov 8).
+- Couldn't confirm: Children's Museum Free Family Night (Oct 29). The page showed a 2023 date, so `lastVerified` was left alone. Check the museum's calendar.
+- Library branch page now lists only Book Buddies (Wed 4:45–5:30) as a new item; not added, since its age range and frequency weren't shown. No November events were posted yet.
+- Not done this run: new-event discovery, news refresh, deal and restaurant re-checks, link-report fixes, Zoo Boo/Arboretum/Deck the Hall/Holiday in the Plaza re-checks. Holiday in the Plaza stays tentative.
+
 ## 2026-10-25 · more local events for this week
 
 - Added from the Spring Branch Memorial library branch page (hcpl.net/locations/sm/): Baby Bouncers playtime (Wednesdays 10:15 and 11:15), Halloween party for tweens & teens (Tue Oct 27, 4:30–5:30), Halloween party for kids 4–8 (Thu Oct 29, 5–7). The kids' party also appears on community calendars.
