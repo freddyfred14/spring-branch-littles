@@ -223,9 +223,10 @@ function checkImage(x, w, err) {
 const TIME_RE = /^([01]\d|2[0-3]):[0-5]\d$/;
 const ID_RE = /^[a-z0-9-]+$/;
 
-// The two Instagram images for a blog post are drawn with this text, so it has to be short enough to fit
-// the design: the cover (label, headline in two colors, subhead, scene) and four key takeaways.
-export const IG_LIMITS = { label: 20, headline: 22, highlight: 24, subhead: 48, scene: 450, title: 34, titleHighlight: 22, heading: 36, text: 125, caption: 2000 };
+// A blog post's Instagram carousel is set from this text, so it has to be short enough to fit the design:
+// the cover (label, two-line headline and subhead over the photo described in `scene`), an optional list
+// (3–10 places or items, for roundups) and four key takeaways.
+export const IG_LIMITS = { label: 20, headline: 22, highlight: 24, subhead: 60, scene: 450, title: 34, titleHighlight: 22, heading: 36, text: 125, caption: 2000, listTitle: 60, name: 40, detail: 80 };
 function checkInstagram(ig, w, err) {
   const fit = (v, max, name) => {
     if (typeof v !== "string" || !v.trim()) err(w, `instagram ${name} is required`);
@@ -242,6 +243,13 @@ function checkInstagram(ig, w, err) {
   fit(t.highlight, IG_LIMITS.titleHighlight, "takeaways.highlight");
   if (!Array.isArray(t.points) || t.points.length !== 4) err(w, "instagram takeaways.points must be exactly 4 {heading, text}");
   else t.points.forEach((x, i) => { fit(x.heading, IG_LIMITS.heading, `takeaways.points[${i}].heading`); fit(x.text, IG_LIMITS.text, `takeaways.points[${i}].text`); });
+  if (ig.list != null) {
+    const l = ig.list;
+    if (l.label != null) fit(l.label, IG_LIMITS.label, "list.label");
+    fit(l.title, IG_LIMITS.listTitle, "list.title");
+    if (!Array.isArray(l.items) || l.items.length < 3 || l.items.length > 10) err(w, "instagram list.items must be 3 to 10 {name, detail}");
+    else l.items.forEach((x, i) => { fit(x.name, IG_LIMITS.name, `list.items[${i}].name`); fit(x.detail, IG_LIMITS.detail, `list.items[${i}].detail`); });
+  }
   fit(ig.caption, IG_LIMITS.caption, "caption");
   if ((ig.caption || "").split("#").length - 1 > 8) err(w, "instagram caption: use at most 8 hashtags");
 }

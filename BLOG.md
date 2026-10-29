@@ -1,6 +1,6 @@
 # Blog writer playbook
 
-You write the Spring Branch Littles blog: one new post every two days for parents of babies through early elementary kids in Spring Branch and Memorial, Houston. Each post goes on the website (the newest four sit on the homepage) and becomes a two-image Instagram carousel. Read this whole file before you start.
+You write the Spring Branch Littles blog: one new post every two days for parents of babies through early elementary kids in Spring Branch and Memorial, Houston. Each post goes on the website (the newest four sit on the homepage) and becomes an Instagram carousel (a photo cover, a list for roundups, and key takeaways). Read this whole file before you start.
 
 ## Your job, every run
 
@@ -89,15 +89,19 @@ Rules:
 
 ## The Instagram carousel (`instagram`)
 
-Two images are drawn from this text, so it must be short. `npm run check` enforces the limits.
+The carousel is set from this text in our own fonts, over a photo made from `scene`, so the text must be short. `npm run check` enforces the limits.
 
-**Cover (image 1):** the scroll-stopper.
-- `label`: a short pill label, uppercase, under 20 characters. Usually `PARENT TALK`; `SLEEP TALK`, `REAL TALK`, `HEADS UP` or `THIS WEEK` also work.
-- `headline` (under 22 characters, near-black) and `highlight` (under 24, blue) together are the hook, often the post title cut down. Read them as one sentence: "Stop rushing / potty training."
-- `subhead`: one line under 48 characters that promises the payoff.
-- `scene`: a realistic, happy scene for the middle of the image (under 450 characters). Describe who the people are (see "Showing every kind of family"), the children's ages, the setting, a prop or two, and soft natural light. No text, no logos, no real people, nothing scary.
+**Cover (slide 1):** a full-bleed candid photo with the headline set over the part of the photo without people.
+- `label`: a short label, under 20 characters, shown in small capitals. Usually `PARENT TALK`; `SLEEP TALK`, `PARTY PLANNING`, `HEADS UP` or `THIS WEEK` also work.
+- `headline` (under 22 characters) and `highlight` (under 24, set in a warm accent color) together are the hook, often the post title cut down. Read them as one sentence: "Stop rushing / potty training."
+- `subhead`: one line under 60 characters that promises the payoff.
+- `scene` (under 450 characters): the photo. Write it like a photographer's brief for a real, candid moment: who the people are (see "Showing every kind of family"), the children's ages, what they're doing, where, and the light. Pick a moment with movement or play (climbing a play structure, splashing, reading in a pile on the couch), not people posing for the camera. Put the action low or in the middle of the frame with open sky, trees or wall above, because the headline goes there. No text, signs, logos, brand names or real people; nothing scary.
 
-**Takeaways (image 2):** the save-worthy summary.
+**List (slide 2, roundups only):** when the post is a roundup of places or things (party venues, splash pads, holiday events), add `list` so readers can save it. Leave `list` out for other posts.
+- `label` (optional, under 20 characters, default "The list") and `title` (under 60 characters), like "10 party spots near Spring Branch & Memorial".
+- `items`: 3 to 10, in the post's order, each with a `name` (under 40 characters) and a `detail` (under 80 characters): where it is, who it's best for, and a starting price when the post gives one.
+
+**Takeaways (last slide):** the save-worthy summary.
 - `title` (under 34 characters) and `highlight` (under 22): the post's big idea in two lines.
 - `points`: exactly 4, each with a `heading` (under 36 characters) and `text` (under 125 characters). Every point must be true to the post and its sources; keep any number that's in the post exactly as it is there.
 
@@ -119,7 +123,7 @@ Houston is one of the most diverse cities in the country, and every parent readi
   - Backgrounds: Black, Latino, East Asian, South Asian, Middle Eastern, white, and multiracial families.
   - Who's the grown-up: moms, dads, two moms, two dads, single parents, grandparents, and multigenerational families. Dads should do everyday caregiving (bedtime, feeding, comforting), not only play.
   - Now and then: a child or parent with a visible disability or difference (a wheelchair, hearing aids, glasses, a limb difference), different body types, and older and younger parents.
-- **Describe the people explicitly** in both `imagePrompt` and `cover.scene`, for example "a Black dad with a short beard and his 2-year-old daughter" or "a South Asian grandmother in a cardigan reading with her 4-year-old grandson". Use the same family in both images for one post.
+- **Describe the people explicitly** in both `imagePrompt` and `cover.scene`, for example "a Black dad with a short beard and his 2-year-old daughter" or "a South Asian grandmother in a cardigan reading with her 4-year-old grandson". Use the same family in the website cover and the Instagram photo for one post.
 - Show people warmly and naturally, in ordinary homes and Houston places. No stereotypes, costumes or props that stand in for a culture.
 - Never change or regenerate an existing post's images.
 

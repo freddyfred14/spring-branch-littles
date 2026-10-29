@@ -1,7 +1,8 @@
 # Blog writer: a new research-backed blog post every two days, with an Instagram carousel for it.
 # 1. Claude writes the post (BLOG.md) into data/posts.json.
 # 2. OpenAI makes the website cover; the site redeploys (the newest 4 posts are on the homepage).
-# 3. OpenAI makes the two Instagram images (cover + key takeaways); Claude checks every word before anything posts.
+# 3. OpenAI makes a candid photo; Claude checks it and finds where the headline can go without covering anyone;
+#    the carousel (full-bleed cover, the list for roundups, key takeaways) is rendered with our own fonts and logo.
 # 4. The carousel posts to Instagram as soon as the images are live on the site.
 # It checks every morning and writes only when the newest post is 2+ days old. Run it by hand from
 # Actions → Blog writer → Run workflow, optionally with a topic. "Images only" retries a carousel whose images failed the check.
@@ -126,7 +127,8 @@ jobs:
       - uses: actions/setup-node@v5
         with:
           node-version: 22
-      - run: pip install --quiet pillow
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
 
       - name: Make and check the Instagram images
         env:

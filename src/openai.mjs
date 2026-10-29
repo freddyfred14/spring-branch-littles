@@ -43,25 +43,3 @@ export async function generateImage(key, model, prompt, { shape = "landscape", q
   return Buffer.from(b64, "base64");
 }
 
-// Like generateImage, but the model also gets reference images (e.g. our logo) to place in the design.
-// Uses the image edits endpoint, which takes several input images for gpt-image models.
-export async function generateWithReferences(key, model, prompt, refs, { shape = "portrait", quality = "medium" } = {}) {
-  const form = new FormData();
-  form.append("model", model);
-  form.append("prompt", prompt);
-  form.append("size", SIZES[shape].gpt);
-  form.append("quality", quality);
-  form.append("output_format", "jpeg");
-  form.append("output_compression", "85");
-  for (const r of refs) form.append("image[]", new Blob([r.data], { type: r.type || "image/png" }), r.name || "reference.png");
-  const res = await fetch("https://api.openai.com/v1/images/edits", { method: "POST", headers: { Authorization: `Bearer ${key}` }, body: form });
-  const body = await res.json();
-  if (!res.ok) {
-    const err = new Error(body.error?.message || `HTTP ${res.status}`);
-    err.fatal = /model|verif|billing|quota/i.test(err.message);
-    throw err;
-  }
-  const b64 = body.data?.[0]?.b64_json;
-  if (!b64) throw new Error("the response had no image");
-  return Buffer.from(b64, "base64");
-}
