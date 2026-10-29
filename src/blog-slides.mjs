@@ -50,19 +50,21 @@ const DOT_COLORS = [C.green, C.sky, C.sun, C.pink];
 function coverHtml(ig, photo, textArea) {
   const top = textArea !== "bottom";
   const c = ig.cover;
-  // One sticker card across the top (or bottom) of the photo, with the logo stuck on its corner, so the
-  // photo keeps all the room it can and no plain background shows.
+  // One sticker card across the top (or bottom) of the photo, and the logo as a round brand sticker half on the
+  // card's edge and half on the photo, like a seal on a magazine cover.
   return page(`
   <img src="${photo}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
-  <div style="position:absolute;left:44px;right:44px;${top ? "top:44px" : "bottom:60px"}">
-    <div id="copy" style="background:#fffaf1;border:5px solid #fff;border-radius:40px;padding:150px 44px 34px;transform:rotate(-1deg);box-shadow:0 12px 0 ${C.sun};max-height:560px;overflow:hidden;font-size:84px">
+  <div style="position:absolute;left:44px;right:44px;${top ? "top:56px" : "bottom:170px"}">
+    <div id="copy" style="background:#fffaf1;border:5px solid #fff;border-radius:40px;padding:62px 44px 40px;transform:rotate(-1deg);box-shadow:0 12px 0 ${C.sun};max-height:470px;overflow:hidden;font-size:84px">
       <h1 class="fred" style="font-weight:700;font-size:1em;line-height:1.04;letter-spacing:-.01em;white-space:nowrap">${esc(c.headline)}<br><span style="color:${C.sky};display:inline-block">${esc(c.highlight)}${WAVE(C.sun)}</span></h1>
-      <p style="font-weight:800;font-size:32px;line-height:1.3;margin-top:14px;color:${C.green}">${esc(c.subhead)}</p>
+      <p style="font-weight:800;font-size:32px;line-height:1.3;margin-top:14px;max-width:640px;text-wrap:balance;color:${C.green}">${esc(c.subhead)}</p>
     </div>
-    <div style="position:absolute;left:40px;top:58px">${pill(c.label, C.pink, -3)}</div>
-    <img src="${dataUrl("public/img/logo.png")}" style="position:absolute;right:-6px;top:-36px;width:212px;transform:rotate(4deg);filter:drop-shadow(0 6px 0 rgba(0,0,0,.08))">
-    <div style="position:absolute;right:214px;top:-30px">${DASHES(64, -20)}</div>
-    <div style="position:absolute;left:-22px;bottom:-26px">${STAR(54, C.sun, -12)}</div>
+    <div style="position:absolute;left:40px;top:-26px">${pill(c.label, C.pink, -3)}</div>
+    <div style="position:absolute;right:6px;bottom:-150px;width:270px;height:270px;border-radius:50%;background:#fffaf1;border:8px solid #fff;box-shadow:0 10px 0 ${C.sun}, 0 18px 30px rgba(0,0,0,.18);transform:rotate(8deg);display:flex;align-items:center;justify-content:center">
+      <img src="${dataUrl("public/img/logo.png")}" style="width:206px;margin-top:-6px">
+    </div>
+    <div style="position:absolute;right:250px;bottom:-80px">${DASHES(60, -35)}</div>
+    <div style="position:absolute;left:-22px;${top ? "bottom:-26px" : "top:-30px"}">${STAR(54, C.sun, -12)}</div>
   </div>
   <div class="fred" style="position:absolute;${top ? "bottom:48px" : "top:52px"};right:56px;background:${C.sun};color:#fff;font-weight:700;font-size:30px;border-radius:999px;padding:12px 28px;box-shadow:0 5px 0 rgba(0,0,0,.15)">Swipe →</div>`);
 }
