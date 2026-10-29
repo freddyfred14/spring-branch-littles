@@ -7,7 +7,7 @@
 //   node scripts/blog-instagram.mjs --post   post made-but-unposted carousels (the site must be deployed first)
 // Env: OPENAI_API_KEY, OPENAI_IMAGE_MODEL, IG_IMAGE_QUALITY (default high), ANTHROPIC_API_KEY (the checks),
 //      IG_USER_ID + IG_ACCESS_TOKEN (posting). DRY_RUN=1 prints the photo prompts. Needs Playwright.
-import { readFileSync, writeFileSync, mkdirSync, existsSync, rmSync } from "node:fs";
+import { readFileSync, writeFileSync, mkdirSync, existsSync } from "node:fs";
 import { join } from "node:path";
 import { ROOT, loadAll, today, addDays } from "../src/lib.mjs";
 import { pickImageModel, generateImage } from "../src/openai.mjs";
@@ -110,8 +110,9 @@ if (process.argv.includes("--make")) {
     mkdirSync(dirOf(p), { recursive: true });
     const photo = join(dirOf(p), "photo.jpg");
     let slides = null;
+    // A photo kept from an earlier run is tried first, so a text or design change re-renders without a new photo.
     for (let attempt = 1; attempt <= 3 && !slides; attempt++) {
-      writeFileSync(photo, await generateImage(KEY, model, photoPrompt(p.instagram), { shape: "portrait", quality }));
+      if (attempt > 1 || !existsSync(photo)) writeFileSync(photo, await generateImage(KEY, model, photoPrompt(p.instagram), { shape: "portrait", quality }));
       const shot = await checkPhoto(readFileSync(photo), p.instagram.cover.scene);
       if (!shot.ok) {
         console.log(`${p.id} photo, try ${attempt}: redoing (${shot.problems.join("; ")})`);
@@ -128,7 +129,6 @@ if (process.argv.includes("--make")) {
         }
       }
     }
-    rmSync(photo, { force: true });
     if (slides) {
       writeFileSync(metaOf(p), JSON.stringify({ postId: p.id, caption: p.instagram.caption, slides, madeAt: new Date().toISOString() }, null, 2) + "\n");
       console.log(`Made Instagram images for ${p.id}.`);

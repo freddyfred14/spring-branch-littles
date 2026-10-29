@@ -28,25 +28,28 @@ const page = (inner, bg = C.paper) => `<!doctype html><html><head><meta charset=
 </style></head><body>${inner}
 <script>
   // Shrink a block's text until it fits its box, so long titles never overflow.
-  window.fit = (sel, min) => { for (const el of document.querySelectorAll(sel)) { let s = parseFloat(getComputedStyle(el).fontSize); while (el.scrollHeight > el.clientHeight + 1 && s > min) { s -= 1; el.style.fontSize = s + "px"; } } };
+  window.fit = (sel, min) => { for (const el of document.querySelectorAll(sel)) { let s = parseFloat(getComputedStyle(el).fontSize); while ((el.scrollHeight > el.clientHeight + 1 || el.scrollWidth > el.clientWidth + 1) && s > min) { s -= 1; el.style.fontSize = s + "px"; } } };
 </script></body></html>`;
 
 function coverHtml(ig, photo, textArea) {
   const top = textArea !== "bottom";
-  const shade = top
-    ? "linear-gradient(to bottom, rgba(24,18,12,.72) 0%, rgba(24,18,12,.45) 32%, rgba(24,18,12,0) 52%)"
-    : "linear-gradient(to top, rgba(24,18,12,.78) 0%, rgba(24,18,12,.5) 30%, rgba(24,18,12,0) 52%)";
+  // A soft cream fade (the site's paper color) over the side without people, so the full-color logo and
+  // dark type read clearly without a box.
+  const cream = (a) => `rgba(251,246,236,${a})`;
+  const shade = `linear-gradient(to ${top ? "bottom" : "top"}, ${cream(0.97)} 0%, ${cream(0.92)} 34%, ${cream(0.6)} 46%, ${cream(0)} 62%)`;
   const c = ig.cover;
   return page(`
   <img src="${photo}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
   <div style="position:absolute;inset:0;background:${shade}"></div>
-  <div id="copy" style="position:absolute;left:72px;right:72px;${top ? "top:78px" : "bottom:120px"};max-height:520px;overflow:hidden;color:#fff;font-size:100px">
-    <p class="label" style="color:#fff;opacity:.92;margin-bottom:22px">${esc(c.label)}</p>
-    <h1 class="fred" style="font-weight:700;font-size:1em;line-height:1.02;letter-spacing:-.01em;text-shadow:0 2px 18px rgba(0,0,0,.25)">${esc(c.headline)}<br><span style="color:${C.sun}">${esc(c.highlight)}</span></h1>
-    <p style="font-weight:700;font-size:38px;line-height:1.3;margin-top:24px;max-width:860px;text-shadow:0 1px 10px rgba(0,0,0,.3)">${esc(c.subhead)}</p>
+  <div style="position:absolute;left:72px;right:72px;${top ? "top:64px" : "bottom:64px"};display:flex;flex-direction:column">
+    <img src="${dataUrl("public/img/logo.png")}" style="width:280px;display:block;margin:0 0 26px -6px">
+    <div id="copy" style="max-height:440px;overflow:hidden;font-size:96px">
+      <p class="label" style="color:${C.green};margin-bottom:16px">${esc(c.label)}</p>
+      <h1 class="fred" style="font-weight:700;font-size:1em;line-height:1.04;letter-spacing:-.01em;white-space:nowrap">${esc(c.headline)}<br><span style="color:${C.sky}">${esc(c.highlight)}</span></h1>
+      <p style="font-weight:700;font-size:36px;line-height:1.3;margin-top:20px;max-width:880px">${esc(c.subhead)}</p>
+    </div>
   </div>
-  <div style="position:absolute;${top ? "bottom:46px" : "top:46px"};left:72px;background:rgba(251,246,236,.94);border-radius:22px;padding:10px 18px"><img src="${dataUrl("public/img/logo-sm.png")}" style="height:84px;display:block"></div>
-  <div style="position:absolute;${top ? "bottom:66px" : "top:70px"};right:72px;font-weight:800;font-size:28px;color:#fff;text-shadow:0 1px 8px rgba(0,0,0,.45)">Swipe →</div>`);
+  <div style="position:absolute;${top ? "bottom:60px" : "top:66px"};right:72px;font-weight:800;font-size:28px;color:#fff;text-shadow:0 1px 8px rgba(0,0,0,.5)">Swipe →</div>`);
 }
 
 function listHtml(ig, n, total) {

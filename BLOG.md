@@ -93,7 +93,7 @@ The carousel is set from this text in our own fonts, over a photo made from `sce
 
 **Cover (slide 1):** a full-bleed candid photo with the headline set over the part of the photo without people.
 - `label`: a short label, under 20 characters, shown in small capitals. Usually `PARENT TALK`; `SLEEP TALK`, `PARTY PLANNING`, `HEADS UP` or `THIS WEEK` also work.
-- `headline` (under 22 characters) and `highlight` (under 24, set in a warm accent color) together are the hook, often the post title cut down. Read them as one sentence: "Stop rushing / potty training."
+- `headline` (under 26 characters) and `highlight` (under 24, set in the accent blue) together are the hook, often the post title cut down. Read them as one sentence: "Stop rushing / potty training."
 - `subhead`: one line under 60 characters that promises the payoff.
 - `scene` (under 450 characters): the photo. Write it like a photographer's brief for a real, candid moment: who the people are (see "Showing every kind of family"), the children's ages, what they're doing, where, and the light. Pick a moment with movement or play (climbing a play structure, splashing, reading in a pile on the couch), not people posing for the camera. Put the action low or in the middle of the frame with open sky, trees or wall above, because the headline goes there. No text, signs, logos, brand names or real people; nothing scary.
 

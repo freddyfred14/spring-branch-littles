@@ -226,7 +226,7 @@ const ID_RE = /^[a-z0-9-]+$/;
 // A blog post's Instagram carousel is set from this text, so it has to be short enough to fit the design:
 // the cover (label, two-line headline and subhead over the photo described in `scene`), an optional list
 // (3–10 places or items, for roundups) and four key takeaways.
-export const IG_LIMITS = { label: 20, headline: 22, highlight: 24, subhead: 60, scene: 450, title: 34, titleHighlight: 22, heading: 36, text: 125, caption: 2000, listTitle: 60, name: 40, detail: 80 };
+export const IG_LIMITS = { label: 20, headline: 26, highlight: 24, subhead: 60, scene: 450, title: 34, titleHighlight: 22, heading: 36, text: 125, caption: 2000, listTitle: 60, name: 40, detail: 80 };
 function checkInstagram(ig, w, err) {
   const fit = (v, max, name) => {
     if (typeof v !== "string" || !v.trim()) err(w, `instagram ${name} is required`);
