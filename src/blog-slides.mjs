@@ -60,7 +60,7 @@ function coverHtml(ig, photo, textArea) {
       <p style="font-weight:800;font-size:32px;line-height:1.3;margin-top:14px;max-width:640px;text-wrap:balance;color:${C.green}">${esc(c.subhead)}</p>
     </div>
     <div style="position:absolute;left:40px;top:-26px">${pill(c.label, C.pink, -3)}</div>
-    <div style="position:absolute;right:6px;bottom:-150px;width:270px;height:270px;border-radius:50%;background:#fffaf1;border:8px solid #fff;box-shadow:0 10px 0 ${C.sun}, 0 18px 30px rgba(0,0,0,.18);transform:rotate(8deg);display:flex;align-items:center;justify-content:center">
+    <div style="position:absolute;right:6px;bottom:-150px;width:270px;height:270px;border-radius:50%;background:#fffaf1;border:8px solid #fff;box-shadow:0 10px 0 ${C.sun}, 10px 22px 0 4px rgba(25,16,8,.42), 14px 40px 46px 10px rgba(25,16,8,.55);transform:rotate(8deg) translateY(-6px);display:flex;align-items:center;justify-content:center">
       <img src="${dataUrl("public/img/logo.png")}" style="width:206px;margin-top:-6px">
     </div>
     <div style="position:absolute;right:250px;bottom:-80px">${DASHES(60, -35)}</div>
