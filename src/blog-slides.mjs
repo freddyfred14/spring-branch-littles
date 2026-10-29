@@ -77,7 +77,7 @@ function listHtml(ig, n, total) {
   ${at(900, 120, STAR(46, C.sun, 14))}${at(990, 250, STAR(30, C.pink, -10))}
   <div style="position:absolute;left:64px;right:180px;top:64px">
     ${pill(l.label || "The list", C.pink, -2)}
-    <h2 class="fred" style="font-weight:700;font-size:56px;line-height:1.05;margin-top:22px;display:inline-block">${esc(l.title)}${WAVE(C.sun)}</h2>
+    <h2 class="fred" style="font-weight:700;font-size:56px;line-height:1.05;margin-top:22px;display:inline-block;text-wrap:balance">${esc(l.title)}${WAVE(C.sun)}</h2>
   </div>
   <ol id="items" style="position:absolute;left:64px;right:64px;top:292px;bottom:196px;list-style:none;overflow:hidden;font-size:34px;display:flex;flex-direction:column;gap:9px">
     ${l.items.map((x, i) => `<li style="display:flex;gap:.6em;align-items:center;background:#fff;border-radius:22px;padding:.22em .7em;line-height:1.12;box-shadow:0 4px 0 rgba(75,119,89,.18)">
