@@ -1,0 +1,75 @@
+# Makes a one-off Instagram carousel (a holiday roundup, an announcement) from social/special/<name>/carousel.json:
+# OpenAI makes the cover photo, Claude checks it, the slides are rendered in the blog carousel design, the site
+# redeploys so Instagram can fetch them, and it posts if Instagram is connected.
+# Run it from Actions → Special carousel → Run workflow with the folder name, e.g. halloween-2026.
+name: Special carousel
+
+on:
+  workflow_dispatch:
+    inputs:
+      name:
+        description: "Folder under social/special/, e.g. halloween-2026"
+        required: true
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: content
+  cancel-in-progress: false
+
+jobs:
+  make:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - name: Make and check the carousel
+        env:
+          NAME: ${{ inputs.name }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          OPENAI_IMAGE_MODEL: ${{ vars.OPENAI_IMAGE_MODEL }}
+          IG_IMAGE_QUALITY: ${{ vars.IG_IMAGE_QUALITY }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: node scripts/blog-instagram.mjs --special "$NAME"
+      - name: Commit
+        if: always()
+        run: |
+          git config user.name "Spring Branch Littles bot"
+          git config user.email "bot@users.noreply.github.com"
+          git add social/special
+          git diff --cached --quiet || { git commit -m "Instagram carousel: ${{ inputs.name }}"; git pull --rebase; git push; }
+
+  deploy:
+    needs: make
+    uses: ./.github/workflows/deploy.yml
+
+  instagram:
+    needs: deploy
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: ${{ github.event.repository.default_branch }}
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+      - name: Post the carousel
+        env:
+          NAME: ${{ inputs.name }}
+          IG_USER_ID: ${{ secrets.IG_USER_ID }}
+          IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
+        run: node scripts/blog-instagram.mjs --post-special "$NAME"
+      - name: Record the post
+        run: |
+          git config user.name "Spring Branch Littles bot"
+          git config user.email "bot@users.noreply.github.com"
+          git add social/special
+          git diff --cached --quiet || { git commit -m "Record Instagram post"; git pull --rebase; git push; }

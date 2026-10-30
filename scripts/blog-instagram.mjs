@@ -85,6 +85,67 @@ const COVER_SCHEMA = {
 };
 const checkCover = (jpeg) => askClaude(jpeg, `This is a finished Instagram cover: a photo with a headline set over it and a small logo badge. Set ok to false if the headline, label, subhead or logo covers any person's face or head, if any text is hard to read against the photo, or if any text is cut off by an edge. List each problem briefly; otherwise ok is true.`, COVER_SCHEMA);
 
+// Makes a post's carousel into dir: a checked photo, the slides, and post.json. Returns true when it worked.
+async function makeCarousel(ig, dir, label, KEY, model, quality) {
+  mkdirSync(dir, { recursive: true });
+  const photo = join(dir, "photo.jpg");
+  // A photo kept from an earlier run is tried first, so a text or design change re-renders without a new photo.
+  for (let attempt = 1; attempt <= 3; attempt++) {
+    if (attempt > 1 || !existsSync(photo)) writeFileSync(photo, await generateImage(KEY, model, photoPrompt(ig), { shape: "portrait", quality }));
+    const shot = await checkPhoto(readFileSync(photo), ig.cover.scene);
+    if (!shot.ok) {
+      console.log(`${label} photo, try ${attempt}: redoing (${shot.problems.join("; ")})`);
+      continue;
+    }
+    // Set the headline where Claude found no people; if the finished cover still crowds someone, try the other side.
+    for (const area of [shot.textArea, shot.textArea === "top" ? "bottom" : "top"]) {
+      const slides = await renderSlides(ig, photo, area, dir);
+      const cover = await checkCover(readFileSync(join(dir, slides[0])));
+      console.log(`${label} cover (text ${area}), try ${attempt}: ${cover.ok ? "looks right" : `not yet (${cover.problems.join("; ")})`}`);
+      if (cover.ok) {
+        writeFileSync(join(dir, "post.json"), JSON.stringify({ caption: ig.caption, slides, madeAt: new Date().toISOString() }, null, 2) + "\n");
+        return true;
+      }
+    }
+  }
+  return false;
+}
+
+// ---------- Special carousels ----------
+// One-off carousels (a holiday roundup, an announcement) live in social/special/<name>/carousel.json with the
+// same fields as a post's `instagram` (cover, lists, caption). --special <name> makes them; --post-special posts.
+if (process.argv.includes("--special")) {
+  const name = process.argv[process.argv.indexOf("--special") + 1];
+  const dir = join(ROOT, "social/special", name);
+  const ig = JSON.parse(readFileSync(join(dir, "carousel.json"), "utf8"));
+  const KEY = process.env.OPENAI_API_KEY;
+  if (!KEY || !process.env.ANTHROPIC_API_KEY) {
+    console.log("::error::OPENAI_API_KEY and ANTHROPIC_API_KEY are both needed.");
+    process.exit(1);
+  }
+  const model = process.env.OPENAI_IMAGE_MODEL || (await pickImageModel(KEY));
+  const ok = await makeCarousel(ig, dir, name, KEY, model, process.env.IG_IMAGE_QUALITY || "high");
+  console.log(ok ? `Made the ${name} carousel.` : `::warning::${name}: no photo passed the checks after 3 tries.`);
+  process.exit(ok ? 0 : 1);
+}
+if (process.argv.includes("--post-special")) {
+  const name = process.argv[process.argv.indexOf("--post-special") + 1];
+  const meta = join(ROOT, "social/special", name, "post.json");
+  if (!process.env.IG_ACCESS_TOKEN || !process.env.IG_USER_ID) {
+    console.log(`Instagram isn't connected yet, so nothing was posted. The slides are on the site under /social/special/${name}/.`);
+    process.exit(0);
+  }
+  const m = JSON.parse(readFileSync(meta, "utf8"));
+  if (m.instagramId) {
+    console.log(`Already posted (${m.instagramId}).`);
+    process.exit(0);
+  }
+  const id = await postCarousel(m.slides.map((f) => `${config.url}/social/special/${name}/${f}`), m.caption);
+  writeFileSync(meta, JSON.stringify({ ...m, instagramId: id, postedAt: new Date().toISOString() }, null, 2) + "\n");
+  console.log(`Posted ${name} to Instagram (${id}).`);
+  process.exit(0);
+}
+
 // ---------- Make ----------
 if (process.argv.includes("--make")) {
   const todo = live.filter((p) => p.instagram && p.date >= addDays(now, -7) && !existsSync(metaOf(p)));
@@ -107,30 +168,10 @@ if (process.argv.includes("--make")) {
   const quality = process.env.IG_IMAGE_QUALITY || "high";
   let failed = 0;
   for (const p of todo) {
-    mkdirSync(dirOf(p), { recursive: true });
-    const photo = join(dirOf(p), "photo.jpg");
-    let slides = null;
-    // A photo kept from an earlier run is tried first, so a text or design change re-renders without a new photo.
-    for (let attempt = 1; attempt <= 3 && !slides; attempt++) {
-      if (attempt > 1 || !existsSync(photo)) writeFileSync(photo, await generateImage(KEY, model, photoPrompt(p.instagram), { shape: "portrait", quality }));
-      const shot = await checkPhoto(readFileSync(photo), p.instagram.cover.scene);
-      if (!shot.ok) {
-        console.log(`${p.id} photo, try ${attempt}: redoing (${shot.problems.join("; ")})`);
-        continue;
-      }
-      // Set the headline where Claude found no people; if the finished cover still crowds someone, try the other side.
-      for (const area of [shot.textArea, shot.textArea === "top" ? "bottom" : "top"]) {
-        const files = await renderSlides(p.instagram, photo, area, dirOf(p));
-        const cover = await checkCover(readFileSync(join(dirOf(p), files[0])));
-        console.log(`${p.id} cover (text ${area}), try ${attempt}: ${cover.ok ? "looks right" : `not yet (${cover.problems.join("; ")})`}`);
-        if (cover.ok) {
-          slides = files;
-          break;
-        }
-      }
-    }
-    if (slides) {
-      writeFileSync(metaOf(p), JSON.stringify({ postId: p.id, caption: p.instagram.caption, slides, madeAt: new Date().toISOString() }, null, 2) + "\n");
+    if (await makeCarousel(p.instagram, dirOf(p), p.id, KEY, model, quality)) {
+      // Keep the post id with the slides, for the posting step.
+      const meta = JSON.parse(readFileSync(metaOf(p), "utf8"));
+      writeFileSync(metaOf(p), JSON.stringify({ postId: p.id, ...meta }, null, 2) + "\n");
       console.log(`Made Instagram images for ${p.id}.`);
     } else {
       failed++;

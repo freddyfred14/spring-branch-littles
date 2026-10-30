@@ -1,7 +1,7 @@
 // Renders a blog post's Instagram carousel (1080×1350 JPEGs) from its `instagram` text and a photo:
 //   1. the cover: the photo full bleed, with the headline set over the part of the photo without people
-//   2. the list (when the post has one): the places or items, numbered
-//   3. the key takeaways
+//   2. the list (when the post has one), or several lists for a holiday roundup: numbered places or events
+//   3. the key takeaways (blog posts)
 // The type and layout are ours (real fonts, the real logo), so nothing is drawn by the image model except
 // the photo. Needs Playwright with Chromium.
 import { readFileSync, writeFileSync } from "node:fs";
@@ -69,8 +69,10 @@ function coverHtml(ig, photo, textArea) {
   <div class="fred" style="position:absolute;${top ? "bottom:48px" : "top:52px"};right:56px;background:${C.sun};color:#fff;font-weight:700;font-size:30px;border-radius:999px;padding:12px 28px;box-shadow:0 5px 0 rgba(0,0,0,.15)">Swipe →</div>`);
 }
 
-function listHtml(ig, n, total) {
-  const l = ig.list;
+function listHtml(l, n, total, bg = C.greenSoft) {
+  // Short lists get bigger cards so the page stays full; long ones start smaller and shrink to fit.
+  const k = l.items.length;
+  const [size, gap, pad] = k <= 3 ? [46, 26, 0.7] : k <= 5 ? [42, 22, 0.55] : k <= 7 ? [38, 14, 0.36] : [34, 9, 0.22];
   return page(`
   ${spots([[930, 60, 34, C.dinoDeep, 0.18], [1000, 170, 16, C.dinoDeep, 0.22], [40, 1010, 22, C.dinoDeep, 0.15], [880, 300, 10, C.dinoDeep, 0.2]])}
   ${at(900, 120, STAR(46, C.sun, 14))}${at(990, 250, STAR(30, C.pink, -10))}
@@ -78,14 +80,14 @@ function listHtml(ig, n, total) {
     ${pill(l.label || "The list", C.pink, -2)}
     <h2 class="fred" style="font-weight:700;font-size:56px;line-height:1.05;margin-top:22px;display:inline-block;text-wrap:balance">${esc(l.title)}${WAVE(C.sun)}</h2>
   </div>
-  <ol id="items" style="position:absolute;left:64px;right:64px;top:292px;bottom:196px;list-style:none;overflow:hidden;font-size:34px;display:flex;flex-direction:column;gap:9px">
-    ${l.items.map((x, i) => `<li style="display:flex;gap:.6em;align-items:center;background:#fff;border-radius:22px;padding:.22em .7em;line-height:1.12;box-shadow:0 4px 0 rgba(75,119,89,.18)">
+  <ol id="items" style="position:absolute;left:64px;right:64px;top:292px;bottom:196px;list-style:none;overflow:hidden;font-size:${size}px;display:flex;flex-direction:column;gap:${gap}px">
+    ${l.items.map((x, i) => `<li style="display:flex;gap:.6em;align-items:center;background:#fff;border-radius:22px;padding:${pad}em .7em;line-height:1.12;box-shadow:0 4px 0 rgba(75,119,89,.18)">
       <span class="fred" style="flex:none;width:1.7em;height:1.7em;border-radius:50%;background:${DOT_COLORS[i % 4]};color:#fff;font-weight:700;display:flex;align-items:center;justify-content:center;font-size:.9em">${i + 1}</span>
       <span><b style="font-weight:800">${esc(x.name)}</b><br><span style="font-size:.8em;color:${C.muted};font-weight:700">${esc(x.detail)}</span></span>
     </li>`).join("")}
   </ol>
-  ${peekingDino("Save this for later!")}
-  ${footer(`Link in bio · ${n}/${total}`)}`, C.greenSoft);
+  ${peekingDino(l.say || "Save this for later!")}
+  ${footer(`Link in bio · ${n}/${total}`)}`, bg);
 }
 
 function takeawaysHtml(ig, n, total) {
@@ -113,10 +115,14 @@ function takeawaysHtml(ig, n, total) {
 export async function renderSlides(ig, photoPath, textArea, outDir) {
   const { chromium } = require("playwright");
   const photo = `data:image/jpeg;base64,${readFileSync(photoPath).toString("base64")}`;
+  // A blog post has one optional `list`; other carousels (holiday roundups) can have several `lists` and
+  // no takeaways.
+  const lists = ig.lists || (ig.list ? [ig.list] : []);
+  const total = 1 + lists.length + (ig.takeaways ? 1 : 0);
   const pages = [["1.jpg", coverHtml(ig, photo, textArea), "#copy", 64]];
-  const total = ig.list ? 3 : 2;
-  if (ig.list) pages.push(["2.jpg", listHtml(ig, 2, total), "#items", 22]);
-  pages.push([`${total}.jpg`, takeawaysHtml(ig, total, total), "#points", 22]);
+  const tints = [C.greenSoft, C.skySoft, C.sunSoft, C.pinkSoft];
+  lists.forEach((l, i) => pages.push([`${i + 2}.jpg`, listHtml(l, i + 2, total, tints[i % tints.length]), "#items", 22]));
+  if (ig.takeaways) pages.push([`${total}.jpg`, takeawaysHtml(ig, total, total), "#points", 22]);
   const browser = await chromium.launch();
   try {
     const tab = await browser.newPage({ viewport: { width: W, height: H } });
