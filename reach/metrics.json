@@ -41,5 +41,35 @@
     "issuesSent": 1,
     "upcomingEvents": 12,
     "guides": 1
+  },
+  {
+    "date": "2026-10-30",
+    "newsletterSubscribers": 105,
+    "newSubscribers7d": 105,
+    "newBySource7d": {
+      "ref:facebook.com": 60,
+      "direct": 19,
+      "ref:lm.facebook.com": 4,
+      "ref:l.instagram.com": 1,
+      "ref:l.facebook.com": 12,
+      "unknown": 2,
+      "confirmed": 6,
+      "ref:m.facebook.com": 1
+    },
+    "lastIssue": {
+      "subject": "Halloween week: trick-or-treating, a library costume party and more (copy)",
+      "sent": "2026-10-27T13:05:00.108916Z",
+      "recipients": 66,
+      "openRate": 0,
+      "clickRate": 0,
+      "unsubscribes": 0
+    },
+    "instagramFollowers": null,
+    "visits7d": null,
+    "topPages": null,
+    "topReferrers": null,
+    "issuesSent": 1,
+    "upcomingEvents": 9,
+    "guides": 2
   }
 ]

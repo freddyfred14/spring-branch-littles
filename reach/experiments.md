@@ -30,4 +30,5 @@ None yet. Results get scored here every Tuesday: scale, iterate or kill. First c
 
 ## Notes
 
+- **2026-10-30: still no tags.** 105 subscribers, 77 from Facebook links, 0 tagged. Facebook kept adding (+28 since Tue) with no visible new posts. E3 and E4 show no signs of being live. Friday plan asks the owner for group names in one reply.
 - **2026-10-27: attribution gap.** 63 of 67 signups had no tag (49 from Facebook links, 14 direct). The site saves `?source=` whenever a link has it, so these links went out without the tag. Fix: one ready-made tagged link per group in every kit, and the owner tells us where she posted. Without tags, E2 can't kill or scale individual groups.
