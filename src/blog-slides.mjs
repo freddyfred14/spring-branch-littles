@@ -29,7 +29,7 @@ const page = (inner, bg = C.paper) => `<!doctype html><html><head><meta charset=
 <script>
   // Size a block's text to its box: grow it (up to max) so short headlines fill the space, then shrink it
   // (down to min) so long ones never overflow.
-  window.fit = (sel, min, max) => { for (const el of document.querySelectorAll(sel)) { const over = () => el.scrollHeight > el.clientHeight + 1 || el.scrollWidth > el.clientWidth + 1; let s = parseFloat(getComputedStyle(el).fontSize); while (max && s < max && !over()) { s += 2; el.style.fontSize = s + "px"; } while (over() && s > min) { s -= 1; el.style.fontSize = s + "px"; } } };
+  window.fit = (sel, min, max) => { for (const el of document.querySelectorAll(sel)) { const over = () => el.scrollHeight > el.clientHeight + 1 || el.scrollWidth > el.clientWidth + 1 || [...el.children].some((c) => c.scrollWidth > c.clientWidth + 1); let s = parseFloat(getComputedStyle(el).fontSize); while (max && s < max && !over()) { s += 2; el.style.fontSize = s + "px"; } while (over() && s > min) { s -= 1; el.style.fontSize = s + "px"; } } };
 </script></body></html>`;
 
 // Playful pieces borrowed from the logo: the baby dinosaur, its spots, and the little orange "ta-da" dashes.
