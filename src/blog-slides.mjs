@@ -57,13 +57,13 @@ function coverHtml(ig, photo, textArea) {
   <div style="position:absolute;left:44px;right:44px;${top ? "top:56px" : "bottom:170px"}">
     <div id="copy" style="background:#fffaf1;border:5px solid #fff;border-radius:40px;padding:62px 44px 40px;transform:rotate(-1deg);box-shadow:0 12px 0 ${C.sun};max-height:470px;overflow:hidden;font-size:84px">
       <h1 class="fred" style="font-weight:700;font-size:1em;line-height:1.04;letter-spacing:-.01em;white-space:nowrap">${esc(c.headline)}<br><span style="color:${C.sky};display:inline-block">${esc(c.highlight)}${WAVE(C.sun)}</span></h1>
-      <p style="font-weight:800;font-size:32px;line-height:1.3;margin-top:14px;max-width:640px;text-wrap:balance;color:${C.green}">${esc(c.subhead)}</p>
+      <p style="font-weight:800;font-size:32px;line-height:1.3;margin-top:14px;max-width:600px;text-wrap:balance;color:${C.green}">${esc(c.subhead)}</p>
     </div>
     <div style="position:absolute;left:40px;top:-26px">${pill(c.label, C.pink, -3)}</div>
-    <div style="position:absolute;right:6px;bottom:-150px;width:270px;height:270px;border-radius:50%;background:#fffaf1;border:8px solid #fff;box-shadow:0 10px 0 ${C.sun}, 10px 22px 0 4px rgba(25,16,8,.42), 14px 40px 46px 10px rgba(25,16,8,.55);transform:rotate(8deg) translateY(-6px);display:flex;align-items:center;justify-content:center">
-      <img src="${dataUrl("public/img/logo.png")}" style="width:206px;margin-top:-6px">
+    <div style="position:absolute;right:10px;bottom:-96px;width:236px;height:236px;border-radius:50%;background:#fffaf1;border:8px solid #fff;box-shadow:0 10px 0 ${C.sun}, 10px 22px 0 4px rgba(25,16,8,.42), 14px 40px 46px 10px rgba(25,16,8,.55);transform:rotate(8deg) translateY(-6px);display:flex;align-items:center;justify-content:center">
+      <img src="${dataUrl("public/img/logo.png")}" style="width:182px;margin-top:-6px">
     </div>
-    <div style="position:absolute;right:250px;bottom:-80px">${DASHES(60, -35)}</div>
+    <div style="position:absolute;right:226px;bottom:-40px">${DASHES(56, -35)}</div>
     <div style="position:absolute;left:-22px;${top ? "bottom:-26px" : "top:-30px"}">${STAR(54, C.sun, -12)}</div>
   </div>
   <div class="fred" style="position:absolute;${top ? "bottom:48px" : "top:52px"};right:56px;background:${C.sun};color:#fff;font-weight:700;font-size:30px;border-radius:999px;padding:12px 28px;box-shadow:0 5px 0 rgba(0,0,0,.15)">Swipe →</div>`);
@@ -96,9 +96,9 @@ function takeawaysHtml(ig, n, total) {
   return page(`
   ${spots([[960, 70, 30, C.sun, 0.25], [880, 210, 14, C.pink, 0.35], [36, 760, 18, C.sky, 0.25], [1010, 640, 12, C.green, 0.3]])}
   ${at(940, 140, DASHES(80, 15))}
-  <div style="position:absolute;left:64px;right:200px;top:64px">
+  <div style="position:absolute;left:64px;right:150px;top:64px">
     ${pill("Key takeaways", C.sky, -2)}
-    <h2 class="fred" style="font-weight:700;font-size:62px;line-height:1.05;margin-top:22px">${esc(t.title)}<br><span style="color:${C.pink};display:inline-block">${esc(t.highlight)}${WAVE(C.sun)}</span></h2>
+    <h2 id="ttitle" class="fred" style="font-weight:700;font-size:62px;line-height:1.05;margin-top:22px;white-space:nowrap;overflow:hidden">${esc(t.title)}<br><span style="color:${C.pink};display:inline-block">${esc(t.highlight)}${WAVE(C.sun)}</span></h2>
   </div>
   <div id="points" style="position:absolute;left:64px;right:64px;top:340px;bottom:210px;display:flex;flex-direction:column;gap:22px;overflow:hidden;font-size:29px">
     ${t.points.map((x, i) => `<div style="display:flex;gap:24px;align-items:center;background:#fff;border-radius:30px;padding:22px 28px;box-shadow:0 7px 0 ${tints[i][1]};transform:rotate(${i % 2 ? 0.6 : -0.6}deg)">
@@ -119,17 +119,18 @@ export async function renderSlides(ig, photoPath, textArea, outDir) {
   // no takeaways.
   const lists = ig.lists || (ig.list ? [ig.list] : []);
   const total = 1 + lists.length + (ig.takeaways ? 1 : 0);
-  const pages = [["1.jpg", coverHtml(ig, photo, textArea), "#copy", 64]];
+  // Each page: file name, HTML, and the blocks to shrink-to-fit with their smallest allowed font size.
+  const pages = [["1.jpg", coverHtml(ig, photo, textArea), [["#copy", 64]]]];
   const tints = [C.greenSoft, C.skySoft, C.sunSoft, C.pinkSoft];
-  lists.forEach((l, i) => pages.push([`${i + 2}.jpg`, listHtml(l, i + 2, total, tints[i % tints.length]), "#items", 22]));
-  if (ig.takeaways) pages.push([`${total}.jpg`, takeawaysHtml(ig, total, total), "#points", 22]);
+  lists.forEach((l, i) => pages.push([`${i + 2}.jpg`, listHtml(l, i + 2, total, tints[i % tints.length]), [["#items", 22]]]));
+  if (ig.takeaways) pages.push([`${total}.jpg`, takeawaysHtml(ig, total, total), [["#ttitle", 40], ["#points", 22]]]);
   const browser = await chromium.launch();
   try {
     const tab = await browser.newPage({ viewport: { width: W, height: H } });
-    for (const [file, html, fitSel, min] of pages) {
+    for (const [file, html, fits] of pages) {
       await tab.setContent(html, { waitUntil: "networkidle" });
       await tab.evaluate(() => document.fonts.ready);
-      await tab.evaluate(([s, m]) => window.fit(s, m), [fitSel, min]);
+      for (const [sel, min] of fits) await tab.evaluate(([s, m]) => window.fit(s, m), [sel, min]);
       writeFileSync(join(outDir, file), await tab.screenshot({ type: "jpeg", quality: 90 }));
     }
   } finally {

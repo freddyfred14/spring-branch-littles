@@ -74,8 +74,8 @@ const PHOTO_SCHEMA = {
   additionalProperties: false,
 };
 const checkPhoto = (jpeg, scene) => askClaude(jpeg, `You are checking a photo before it becomes a family brand's Instagram cover. It was asked to show: ${scene}
-It will be shown center-cropped to 4:5 (about 8% off the top and bottom), with a headline over either the top 40% or the bottom 40% of that frame.
-Set textArea to "top" if the top 40% has no faces or heads, "bottom" if the bottom 40% has none (prefer "top" if both work), or "none" if both bands have faces.
+It will be shown center-cropped to 4:5 (about 8% off the top and bottom), with a headline card over either the top third or the bottom third of that frame.
+Set textArea to "top" if no face is in the top third (the tops of heads and hair may reach into it), "bottom" if no face is in the bottom third, preferring "top" when both work; or "none" if faces are in both.
 Set ok to false if: textArea is "none"; any person looks malformed (extra or missing fingers or limbs, a distorted face); there is readable text, a sign or a logo; it looks obviously artificial or glossy rather than like a real candid photo; the people don't match the description; or anything is inappropriate for a family brand. List each problem briefly.`, PHOTO_SCHEMA);
 const COVER_SCHEMA = {
   type: "object",
