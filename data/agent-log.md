@@ -2,6 +2,12 @@
 
 Newest first. The research agent adds an entry each run.
 
+## 2026-10-30 · Friday weekend check
+
+- Friday weekend check: confirmed 4, updated 1, removed 0. Confirmed on organizer pages: CityCentre trick-or-treat (Fri, 5–6:45 pm, rain or shine), Scream on the Green (Fri, 6–9 pm; costume contest needs pre-registration), Día de los Muertos at the Children's Museum (Sun, 9–5; several permanent galleries listed as temporarily closed), Wings Over Houston (Oct 31–Nov 1; gates 8 am, flying about 10:30).
+- Weather (NWS): Sat 50% showers/storms, Sun dry. Wings Over Houston got a rain-plan note (flies unless severe, no rain date). Scream on the Green (Fri) showed no rain notice.
+- No weekly programs run Fri–Sun in Spring Branch/Memorial, and no local weekend events are listed. Library calendars were not re-checked (not part of this check).
+
 ## 2026-10-28 · Wednesday calendar refresh (partial)
 
 - Removed: Levy Park Howl-O-Ween (ended Oct 25).
