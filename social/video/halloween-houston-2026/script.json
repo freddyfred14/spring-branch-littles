@@ -1,0 +1,19 @@
+{
+  "title": "Halloween in Houston",
+  "theme": "halloween",
+  "lines": [
+    { "say": "Hi friends! I'm Danny the Dino, and Halloween is almost here! Here's what to do around Houston this weekend.", "action": "wave" },
+    { "say": "Friday from five to eight, trick-or-treat store to store at CityCentre. It's free!", "action": "point",
+      "card": { "when": "Fri, Oct 30 · 5–8 pm", "title": "CityCentre trick-or-treat", "detail": "Store-to-store candy · free" } },
+    { "say": "Or head downtown to Scream on the Green at Discovery Green, Friday from six to nine. Also free!", "action": "point",
+      "card": { "when": "Fri, Oct 30 · 6–9 pm", "title": "Scream on the Green", "detail": "Discovery Green · free" } },
+    { "say": "Saturday is the very last day of Zoo Boo at the Houston Zoo.", "action": "point",
+      "card": { "when": "Sat, Oct 31 · 9 am–5 pm", "title": "Zoo Boo, last day!", "detail": "Houston Zoo · with zoo admission" } },
+    { "say": "And Saturday night, grab a flashlight and trick-or-treat your own neighborhood!", "action": "point",
+      "card": { "when": "Sat, Oct 31 · at dusk", "title": "Trick-or-treat night", "detail": "Your street · bring a flashlight" } },
+    { "say": "On Sunday, celebrate Día de los Muertos at the Children's Museum.", "action": "point",
+      "card": { "when": "Sun, Nov 1 · 9 am–5 pm", "title": "Día de los Muertos", "detail": "Children's Museum · with admission" } },
+    { "say": "Happy haunting, little monsters! Follow Spring Branch Littles for more fun plans!", "action": "jump" }
+  ],
+  "caption": "Danny the Dino has your Halloween weekend in Houston covered! 🎃🦕\n\nFri: CityCentre trick-or-treat (5–8 pm, free) or Scream on the Green at Discovery Green (6–9 pm, free)\nSat: Last day of Zoo Boo, then trick-or-treat your street at dusk\nSun: Día de los Muertos at the Children's Museum\n\nWhat's your little monster dressing up as? 👻\n\nTimes can change, so check before you go. Follow @springbranchlittles for kid-friendly plans every week.\n\n#halloween #houstonkids #houstonmoms #trickortreat #springbranch #memorialhouston #dannythedino"
+}

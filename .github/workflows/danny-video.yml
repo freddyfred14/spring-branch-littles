@@ -1,0 +1,51 @@
+# Makes a Danny the Dino video from social/video/<name>/script.json: OpenAI voices Danny, the animation is
+# rendered frame by frame (src/danny.mjs) and ffmpeg makes social/video/<name>/danny.mp4 for Reels and Stories.
+# Run it from Actions → Danny video → Run workflow with the folder name, e.g. halloween-houston-2026.
+# Optional repository variables: DANNY_VOICE (default coral), DANNY_TTS_MODEL (default gpt-4o-mini-tts).
+name: Danny video
+
+on:
+  workflow_dispatch:
+    inputs:
+      name:
+        description: "Folder under social/video/, e.g. halloween-houston-2026"
+        required: true
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: content
+  cancel-in-progress: false
+
+jobs:
+  video:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - run: command -v ffmpeg || (sudo apt-get update && sudo apt-get install -y ffmpeg)
+      - name: Make the video
+        env:
+          NAME: ${{ inputs.name }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          DANNY_VOICE: ${{ vars.DANNY_VOICE }}
+          DANNY_TTS_MODEL: ${{ vars.DANNY_TTS_MODEL }}
+        run: node scripts/danny-video.mjs "$NAME"
+      - name: Commit
+        run: |
+          git config user.name "Spring Branch Littles bot"
+          git config user.email "bot@users.noreply.github.com"
+          git add social/video
+          git diff --cached --quiet || { git commit -m "Danny video: ${{ inputs.name }}"; git pull --rebase; git push; }
+
+  deploy:
+    needs: video
+    uses: ./.github/workflows/deploy.yml

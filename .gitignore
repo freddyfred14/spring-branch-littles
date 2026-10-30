@@ -3,3 +3,4 @@ dist/
 .DS_Store
 .env
 newsletter-preview.html
+social/video/*/voice.wav
