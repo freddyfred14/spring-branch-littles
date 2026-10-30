@@ -74,7 +74,7 @@ function subscribePopup(config) {
 </dialog>`;
 }
 
-export function layout(config, { title, description, path, body, now }) {
+export function layout(config, { title, description, path, body, now, image, imageAlt }) {
   const full = title ? `${title} · ${config.name}` : `${config.name} · ${config.tagline}`;
   const canonical = `${config.url}${path}`;
   return `<!doctype html>
@@ -89,7 +89,9 @@ export function layout(config, { title, description, path, body, now }) {
 <meta property="og:description" content="${esc(description || config.description)}">
 <meta property="og:url" content="${esc(canonical)}">
 <meta property="og:type" content="website">
-<meta property="og:image" content="${esc(config.url)}/og.png">
+<meta property="og:image" content="${esc(config.url)}${esc(image || "/og.png")}">${image && imageAlt ? `
+<meta property="og:image:alt" content="${esc(imageAlt)}">` : ""}
+<meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="/favicon.png" type="image/png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="manifest" href="/manifest.webmanifest">${config.metaPixelId ? `
@@ -807,7 +809,7 @@ export function eventPage(data, x, now) {
     <p>${esc(config.newsletterName)}: two weeks of plans, free, every Monday.</p>
     ${signupForm(config, "event")}
   </div></div></section>`;
-  return layout(config, { title: x.title, path, body, now, description: `${when}. ${x.description}` });
+  return layout(config, { title: x.title, path, body, now, description: `${when}. ${x.description}`, image: x.image, imageAlt: x.imageAlt });
 }
 
 export function searchPage(data, now) {
@@ -950,7 +952,8 @@ export function postPage(data, post, now) {
     <p>${esc(config.newsletterName)}: two weeks of kid-friendly plans in Spring Branch and Memorial, plus a couple of quick reads. Free.</p>
     ${signupForm(config, "post")}
   </div></div></section>`;
-  return layout(config, { title: post.title, path: `/blog/${post.id}/`, body, now, description: post.summary });
+  // Shared links (texts, Facebook, Slack) preview with the post's own photo.
+  return layout(config, { title: post.title, path: `/blog/${post.id}/`, body, now, description: post.summary, image: post.image, imageAlt: post.imageAlt });
 }
 
 export function blogIndexPage(data, now) {
