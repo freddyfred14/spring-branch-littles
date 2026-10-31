@@ -1,9 +1,11 @@
-# Link check: 9 of 58 need a look
+# Link check: 11 of 57 need a look
 
 | Verdict | Kind | Listing | Status | Page title | Mentions listing | Link (→ redirect) |
 |---|---|---|---|---|---|---|
 | WRONG PAGE? (doesn't mention it) | events | SBISD Thanksgiving break | 200 | Client Challenge | 0% | https://www.springbranchisd.com/events/ |
 | WRONG PAGE? (doesn't mention it) | events | SBISD winter break | 200 | Client Challenge | 0% | https://www.springbranchisd.com/events/ |
+| WRONG PAGE? (doesn't mention it) | events | Halloween party for tweens & teens | 200 | Spring Branch Memorial Branch Library / Harris County Public Library | 25% | https://hcpl.net/locations/sm/ |
+| WRONG PAGE? (doesn't mention it) | events | Halloween party for kids | 200 | Spring Branch Memorial Branch Library / Harris County Public Library | 0% | https://hcpl.net/locations/sm/ |
 | WRONG PAGE? (doesn't mention it) | recurring | Baby Bouncers playtime | 200 | Events / Harris County Public Library / BiblioCommons | 33% | https://hcpl.bibliocommons.com/v2/events?q=Baby%20Bouncer |
 | WRONG PAGE? (doesn't mention it) | recurring | Toddler storytime | 200 | Houston Public Library - Visit us | 0% | https://calendar.houstonlibrary.org/ |
 | BROKEN (403) | restaurants | The Union Kitchen – Memorial | 403 |  | 0% | https://www.theunionkitchen.com/ |
@@ -18,12 +20,9 @@
 | OK | events | Standing Tall tree festival | 200 | Standing Tall / Houston Botanic Garden | 100% | https://hbg.org/event/standing-tall/ |
 | OK | events | Mayor's Deck the Hall tree lighting | 200 | Reliant Presents Deck the Hall | 100% | https://cohips.houstontx.gov/deckthehall/index.html |
 | OK | events | Zoo Boo at the Houston Zoo | 200 | Zoo Boo 2026 / Halloween & Fall Activities at Houston Zoo | 100% | https://www.houstonzoo.org/events/zoo-boo/ |
-| OK | events | Howl-O-Ween dog parade & costume contest | 200 | Howl-o-ween Dog Parade and Costume Contest presented by H-E-B - Levy Park | 100% | https://www.levyparkhouston.org/events/howl-o-ween-dog-parade-and-costume-contest-presented-by-h-e-b/ |
 | OK | events | Free Family Night at the Children's Museum | 200 | Get Spooky with Me: Free Family Night / Children&#x27;s Museum Houston | 100% | https://www.cmhouston.org/events/get-spooky-with-me-free-family-night |
 | OK | events | Scream on the Green | 200 | Scream on the Green® - Discovery Green | 100% | https://www.discoverygreen.com/signature-experiences/scream-on-the-green/ |
 | OK | events | Wings Over Houston Airshow | 200 | Wings Over Houston 2026 / Airshow / AIR SHOW INSIDER® | 100% | https://wingsoverhouston.com/ |
-| OK | events | Halloween party for tweens & teens | 200 | Spring Branch Memorial Branch Library / Harris County Public Library | 100% | https://hcpl.net/locations/sm/ |
-| OK | events | Halloween party for kids | 200 | Spring Branch Memorial Branch Library / Harris County Public Library | 100% | https://hcpl.net/locations/sm/ |
 | OK | recurring | Preschool storytime + craft | 200 | Events / Harris County Public Library / BiblioCommons | 100% | https://hcpl.bibliocommons.com/v2/events?q=Preschool%20Storytime |
 | OK | recurring | Tiny Tykes storytime | 200 | Events / Harris County Public Library / BiblioCommons | 67% | https://hcpl.bibliocommons.com/v2/events?q=Tiny%20Tykes |
 | OK | recurring | Stories & Crafts in the Cabin | 200 | Programs/ Edith Moore / Birds Houston | 100% | https://birdshouston.org/conservation/sanctuaries/edith-moore/programs.html |
@@ -50,7 +49,7 @@
 | MAP (not checked) | restaurants | The Decoy | - |  | % | https://www.google.com/maps/search/?api=1&query=The+Decoy+Witte+Rd+Houston+TX |
 | OK | restaurants | Yard House | 200 | Yard House: World’s Largest Selection of Draft Beer | 100% | https://www.yardhouse.com/ |
 | MAP (not checked) | restaurants | Blue Agave Cantina | - |  | % | https://www.google.com/maps/search/?api=1&query=Blue+Agave+Cantina+14555+Grisby+Rd+Houston+TX |
-| OK | restaurants | Recess | 200 | Bistro at Recess / Family Restaurant in River Oaks, Houston | 100% | https://www.recess-htx.com/ |
+| OK | restaurants | Recess | 200 | Recess | 100% | https://www.recess-htx.com/ |
 | OK | restaurants | Betsy's at Evelyn's Park | 200 | Evelyn's Park Conservancy / Enrich your every day. | 100% | https://www.evelynspark.org/ |
 | OK | restaurants | The Lake House at Discovery Green | 200 | Discovery Green - Downtown Park and Events in Houston, Texas | 100% | https://www.discoverygreen.com/ |
 | MAP (not checked) | restaurants | Tia Maria's | - |  | % | https://www.google.com/maps/search/?api=1&query=Tia+Maria%27s+Mexican+Restaurant+4618+Dacoma+St+Houston+TX |
