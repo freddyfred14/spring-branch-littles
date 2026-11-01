@@ -333,7 +333,8 @@
     "featured": true,
     "area": "local",
     "lastVerified": "2026-11-01",
-    "id": "2026-12-04-memorial-park-neighborhood-nights-holiday",    "title": "Neighborhood Nights: Holiday Edition",
+    "id": "2026-12-04-memorial-park-neighborhood-nights-holiday",
+    "title": "Neighborhood Nights: Holiday Edition",
     "date": "2026-12-04",
     "ages": [
       "baby",
@@ -346,7 +347,10 @@
     "imagePrompt": "Families on picnic blankets on a park lawn at dusk watching an outdoor movie on a big screen, kids in winter coats holding cups of cocoa, a small toy train and twinkling holiday lights nearby, Santa waving. Cozy and festive.",
     "sources": [
       "https://www.memorialparkconservancy.org/visit/event-calendar"
-    ]
+    ],
+    "image": "/img/events/2026-12-04-memorial-park-neighborhood-nights-holiday.jpg",
+    "imageAlt": "Illustration: Families on picnic blankets on a park lawn at dusk watching an outdoor movie on a big screen, kids in winter coats holding cups of cocoa, a small toy train and twinkling holiday lights nearby, Santa waving",
+    "imageCredit": "AI illustration"
   },
   {
     "kind": "event",
@@ -372,7 +376,10 @@
     ],
     "description": "A Spanish-language nature walk for ages 18 months to 4 with a grown-up: a story, a sensory activity and a stroller-friendly hike. Younger siblings welcome. Parking is $6.50.",
     "url": "https://houstonarboretum.org/event/tyke-hikes-en-espanol/2026-11-15/",
-    "imagePrompt": "A naturalist leads toddlers and preschoolers with parents along a shady woodland trail, kids pointing at leaves and a pond, strollers on the path. Dappled autumn light, warm and friendly."
+    "imagePrompt": "A naturalist leads toddlers and preschoolers with parents along a shady woodland trail, kids pointing at leaves and a pond, strollers on the path. Dappled autumn light, warm and friendly.",
+    "image": "/img/events/2026-11-15-arboretum-tyke-hikes-espanol.jpg",
+    "imageAlt": "Illustration: A naturalist leads toddlers and preschoolers with parents along a shady woodland trail, kids pointing at leaves and a pond, strollers on the path",
+    "imageCredit": "AI illustration"
   },
   {
     "kind": "event",
@@ -397,6 +404,9 @@
     ],
     "description": "Make a wreath, ornaments and handmade gifts from grapevine, branches, berries and pinecones with hands-on help. Ages 5 and up with an adult; wear clothes that can get messy.",
     "url": "https://houstonarboretum.org/event/homemade-holidays/2026-12-05/1/",
-    "imagePrompt": "Kids (ages 6–10) and parents at long tables in a nature center making wreaths and ornaments from grapevine, pinecones and red berries, greenery everywhere, warm light. Festive and crafty."
+    "imagePrompt": "Kids (ages 6–10) and parents at long tables in a nature center making wreaths and ornaments from grapevine, pinecones and red berries, greenery everywhere, warm light. Festive and crafty.",
+    "image": "/img/events/2026-12-05-arboretum-homemade-holidays.jpg",
+    "imageAlt": "Illustration: Kids (ages 6–10) and parents at long tables in a nature center making wreaths and ornaments from grapevine, pinecones and red berries, greenery everywhere, warm light",
+    "imageCredit": "AI illustration"
   }
 ]

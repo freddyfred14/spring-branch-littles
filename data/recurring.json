@@ -51,7 +51,10 @@
       "https://houstonarboretum.org/events/"
     ],
     "lastVerified": "2026-11-01",
-    "imagePrompt": "Babies (6–15 months) with caregivers sitting on a grassy nature-play area, patting sand, leaves and sticks in shallow bins, dappled shade, a spare change of clothes on a blanket. Calm, joyful and messy."
+    "imagePrompt": "Babies (6–15 months) with caregivers sitting on a grassy nature-play area, patting sand, leaves and sticks in shallow bins, dappled shade, a spare change of clothes on a blanket. Calm, joyful and messy.",
+    "image": "/img/events/arboretum-hatchlings.jpg",
+    "imageAlt": "Illustration: Babies (6–15 months) with caregivers sitting on a grassy nature-play area, patting sand, leaves and sticks in shallow bins, dappled shade, a spare change of clothes on a blanket",
+    "imageCredit": "AI illustration"
   },
   {
     "id": "sbm-tiny-tykes",
