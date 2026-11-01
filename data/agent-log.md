@@ -2,6 +2,19 @@
 
 Newest first. The research agent adds an entry each run.
 
+## 2026-11-01 · Sunday full run
+
+- **Removed:** Free Family Night (Oct 29), library tween party (Oct 27) and kids' party (Oct 29), all over 2 days ago. Also removed the Monday "Preschool storytime + craft" at Spring Branch Memorial: the HCPL calendar shows no upcoming sessions. I took it out of two guides and one post's related list. Restore it if the branch confirms it still runs.
+- **Added:** Neighborhood Nights: Holiday Edition (Memorial Park, Fri Dec 4; free, Frozen at 6 pm; the page lists 8 and 9 pm end times, so `endTime` is null). Homemade Holidays workshop (Arboretum, Dec 5; ages 5+, paid). Tyke Hikes en español (Arboretum, Sun Nov 15). Hatchlings baby class (Nov 4, 11, 18) is listed as full per the Arboretum.
+- **Updated:** Holiday in the Plaza is now confirmed (Sat Nov 28, 12–4 pm, Santa and reindeer; the page shows no year, but Nov 28 is a Saturday in 2026). Deck the Hall is confirmed for Sat Dec 5 at Hermann Square, no start time yet. Tyke Hikes run Mondays Nov 2, 9, 16 and Dec 7, 14, 21, with two sessions each day. Scavenger hunt details tightened. Feges kids-eat-free Wednesday is confirmed (5–8 pm).
+- **Confirmed on organizer pages:** Baby Bouncers and Tiny Tykes (Nov 4 and 5), scavenger hunt, Tyke Hikes, Holiday in the Plaza, Deck the Hall.
+- **Story of the week:** Memorial Park's Camp Logan Playground (Greenside was last week's).
+- **Couldn't confirm:** Ring toddler storytime (HPL calendar didn't render, `lastVerified` left alone). Edith Moore Stories & Crafts (no 2026 dates on the page). Union Kitchen and Black-eyed Pea deals (403 or homepage only). Spring Valley Village's 2nd annual tree lighting has no date yet; its kids' coloring contest runs Nov 2–23. Memorial City Santa and Caring Santa dates were not found, and its events page lists no kids' events. SBISD calendar page 404'd and the events page blocks robots, so break dates were left as is.
+- **Local events are thin:** only a few local events in the next 2 weeks. The Nov 14 Memorial Park star party was skipped because the page gives no family info. No new neighborhood news items were found with reliable dates, so none were added.
+- Link report: the SBISD, Houston Chronicle and library rows look like robot blocks or search pages, so they were left alone.
+- Photo ideas for the owner: the Camp Logan Playground construction, Neighborhood Nights (Dec 4).
+- Draft written: `data/drafts/2026-11-02.json`. Its `picks` include Dec 4, which the newsletter's two-week window drops.
+
 ## 2026-10-30 · Friday weekend check
 
 - Friday weekend check: confirmed 4, updated 1, removed 0. Confirmed on organizer pages: CityCentre trick-or-treat (Fri, 5–6:45 pm, rain or shine), Scream on the Green (Fri, 6–9 pm; costume contest needs pre-registration), Día de los Muertos at the Children's Museum (Sun, 9–5; several permanent galleries listed as temporarily closed), Wings Over Houston (Oct 31–Nov 1; gates 8 am, flying about 10:30).
