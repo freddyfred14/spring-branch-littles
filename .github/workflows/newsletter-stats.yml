@@ -1,0 +1,30 @@
+# Pulls the newsletter's numbers from Buttondown into reports/newsletter-stats.md.
+# Runs Tuesday and Thursday mornings (a day and three days after the Monday send), or any time by hand.
+name: Newsletter stats
+
+on:
+  schedule:
+    - cron: "23 12 * * 2,4"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  stats:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+      - name: Pull the numbers
+        env:
+          BUTTONDOWN_API_KEY: ${{ secrets.BUTTONDOWN_API_KEY }}
+        run: node scripts/newsletter-stats.mjs
+      - name: Commit
+        run: |
+          git config user.name "Spring Branch Littles bot"
+          git config user.email "bot@users.noreply.github.com"
+          git add reports/newsletter-stats.md reports/newsletter-stats.json
+          git diff --cached --quiet || { git commit -m "Newsletter stats $(date -u +%F)"; git pull --rebase; git push; }
