@@ -9,6 +9,10 @@ on:
       date:
         description: "Issue date, YYYY-MM-DD (blank = today, or the coming Monday on a weekend)"
         required: false
+      send_now:
+        description: "Send to all subscribers now, even if NEWSLETTER_STATUS is set to draft (approves the draft)"
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -32,7 +36,7 @@ jobs:
       - name: Send newsletter
         env:
           BUTTONDOWN_API_KEY: ${{ secrets.BUTTONDOWN_API_KEY }}
-          NEWSLETTER_STATUS: ${{ vars.NEWSLETTER_STATUS || 'about_to_send' }}
+          NEWSLETTER_STATUS: ${{ inputs.send_now && 'about_to_send' || vars.NEWSLETTER_STATUS || 'about_to_send' }}
           ISSUE_DATE: ${{ inputs.date }}
         run: node scripts/newsletter.mjs --send --date "$ISSUE_DATE"
 

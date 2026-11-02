@@ -172,13 +172,15 @@ export function buildIssue(data, date, draft = loadDraft(date)) {
     });
   }
 
+  // School breaks, plus any editor's pick that's further out than two weeks (a save-the-date), so a pick the
+  // subject line mentions never silently disappears.
   const breaks = eventsBetween(data.events.filter((e) => e.kind === "school-break"), date, addDays(date, 45));
-  if (breaks.length) {
-    sections.push({
-      heading: "Mark your calendar",
-      items: breaks.map((e) => ({ title: e.title, when: `${fmtDateRange(e.date, e.endDate)} · No school`, where: "", description: e.description, url: e.url, deal: true })),
-    });
-  }
+  const ahead = (draft.picks || []).map((id) => data.events.find((e) => e.id === id)).filter((e) => e && e.date > end && e.date <= addDays(date, 60));
+  const marks = [
+    ...ahead.map((e) => ({ title: e.title, when: `${fmtDateRange(e.date, e.endDate)} · ${fmtTimeRange(e.startTime, e.endTime)}`, where: "", description: e.description, url: `${site}${eventPath(e)}`, deal: true, sort: e.date })),
+    ...breaks.map((e) => ({ title: e.title, when: `${fmtDateRange(e.date, e.endDate)} · No school`, where: "", description: e.description, url: e.url, deal: true, sort: e.date })),
+  ].sort((x, y) => x.sort.localeCompare(y.sort));
+  if (marks.length) sections.push({ heading: "Mark your calendar", items: marks.map(({ sort, ...m }) => m) });
 
   const lead = picks.find((e) => e.featured) || picks[0];
   return {
