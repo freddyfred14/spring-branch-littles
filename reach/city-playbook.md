@@ -1,7 +1,7 @@
 # Littles City Launch Playbook
 
 For a team opening the next Littles city (Atlanta, Chicago, Denver…) with no context. Built from the Spring Branch pilot, launched Oct 26, 2026.
-**v0.2 (2026-10-27):** first real numbers: **67 subscribers about two days after launch, 73% from Facebook links.** Most of the rest is still **assumed (not yet tested)**. Each Tuesday, results from Spring Branch replace assumptions with **proven (our data)**.
+**v0.3 (2026-11-03):** first full week: **114 subscribers on day 8, about 4 in 5 from Facebook group posts; second issue 65.5% opens, 8.8% clicks, 0 unsubscribes.** Ads, Nextdoor, partners and print are still **assumed (not yet tested)**. Each Tuesday, results from Spring Branch replace assumptions with **proven (our data)**.
 
 ---
 
@@ -10,6 +10,7 @@ For a team opening the next Littles city (Atlanta, Chicago, Denver…) with no c
 - [ ] **Pick the area tight.** One recognizable cluster of neighborhoods (Spring Branch & Memorial ≈ 6 ZIP codes), not the whole metro. Parents care about 15 minutes from home. Bigger cities get several Littles brands, not one big one.
 - [ ] **Domain + handles:** `<area>littles.com`, Instagram, Facebook Page, Nextdoor business page. Same name everywhere.
 - [ ] **Seed the listings before launch:** at least 10–15 dated local events in the next 3 weeks, 5+ weekly programs (library storytimes first), 12+ places (parks, libraries, free indoor play), 8+ kid-friendly restaurants and kids-eat-free deals. Spring Branch launched with 13 events, 7 weekly programs, 14 places, 12 restaurants, 7 deals.
+- [ ] **Keep a 6-week runway of dated events, not 3.** Spring Branch's third issue (Nov 9) had only 2 top picks for its two-week window, because the launch seeding was front-loaded around Halloween. Before launch, also seed the 4–6 weeks *after* the launch holiday (the quiet stretch), and have the research agent add 5+ dated events a week from week 2.
 - [ ] **School calendar:** the main district's breaks for the year (they drive the whole marketing calendar).
 - [ ] **Newsletter:** Buttondown with the thank-you page set to `/thanks/` (that's how the Pixel counts signups); a "forward to a friend" line in every issue.
 - [ ] **Meta:** Business portfolio, Page linked to Instagram, ad account, Pixel on the site firing "Lead" on `/thanks/`. Do this before any outreach so every signup is counted.
@@ -32,12 +33,14 @@ Owner time: 30 min/day for 90 days. Money: $10–20/day ads.
 | 7–8 | Scale whichever channel has the lowest cost per subscriber; second wave of groups | ~2 h/wk | $70–140 | |
 | 9–12 | Referral push; partners on autopilot; move to 30 min/week | ~1 h/wk | $70–140 | ~900 by day 90 |
 
+**Spring Branch actuals:** 105 by day 4 (Oct 30), almost all from launch-week Facebook posts plus texts, $0 spent. Then only +9 from day 4 to day 8 (Nov 3) with no new posts. So week 1 beat the plan by about 2×, and week 2 shows the cost of not having the second wave ready.
+
 ## 3. Channel scorecard
 
 | Channel | Cost per subscriber | Subscribers per owner hour | Scales? | Verdict | Evidence |
 |---|---|---|---|---|---|
-| Owner's network (texts) | $0 | 50+ | No (one-time) | Keep for launch | assumed; 14 untagged "direct" signups in the first 2 days are probably this |
-| Facebook groups / moms' clubs | $0 | 30–60 | Partly (once per 2–3 weeks per group) | Keep, lead channel | **early proof (our data):** 49 signups from Facebook links in ~2 days of launch week. Per-group numbers unknown (untagged) |
+| Facebook groups / moms' clubs | $0 | 30–60 (est.: a few posts brought ~90) | Partly (once per 2–3 weeks per group) | **Keep, lead channel** | **proven (our data):** about 90 of the first 114 subscribers came from Facebook links in 9 days. A post's signups come mostly in its first ~5 days, then a tail (Spring Branch: +67 by day 1, +38 more by day 4, then +9 in days 4–8 with no new posts). Per-group numbers unknown (untagged) |
+| Owner's network (texts) | $0 | 50+ | No (one-time) | Keep for launch | probable, not proven: ~20–30 untagged "direct" signups across the first 9 days |
 | Meta ads (Leads + Pixel) | $3–5 | n/a | Yes | Keep if under $5 | assumed (not yet tested) |
 | Nextdoor | $0 | 30–90 (one post) | No | Keep, once | assumed (not yet tested) |
 | SEO guides | $0 | n/a (agent-written) | Slowly | Keep | assumed (not yet tested) |
@@ -50,6 +53,8 @@ Owner time: 30 min/day for 90 days. Money: $10–20/day ads.
 ## 4. Templates that worked
 
 Not proven yet. Spring Branch launch-week templates are in `reach/kits/2026-10-25.md`: personal text (§1), Facebook "this week's picks" post (§2), "plan ahead" post (§3), Nextdoor (§4), district partner email (§7). Their numbers go here after week 1.
+
+**Subject lines (proven, our data):** "Leaf scavenger hunt, Tyke Hikes and a Frozen movie night" (issue 2, Nov 2): **65.5% opens, 8.8% clicks, 0 unsubscribes** to 113 subscribers. Pattern: name 2–3 specific, concrete things, at least one free and one a kid would get excited about. (Issue 1's stats weren't collected.)
 
 Early signal (2026-10-27): Facebook posts with Halloween picks (format of kit §2, "real events with dates first, then 'I'm a local mom, I send this free every Monday'") brought 49 signups in about two days. We can't yet say which post or group was best, because the links weren't tagged.
 
@@ -76,8 +81,13 @@ For a bigger metro: split into several Littles brands by area from day one, and 
 - (Watch) Metrics not connected at launch: we can't score channels without subscriber counts by source. Connect them before day 1 next time.
 - **(Happened) Untagged links in launch week.** 63 of the first 67 signups had no `?source=` tag, so the best channel worked but we couldn't tell which groups to repeat. Next city: before launch, give the owner a one-page cheat sheet with a ready tagged link for every group and channel on the targets list, and put the exact link in every kit post (not `GROUPNAME` placeholders).
 - **(Happened) "(copy)" in the first issue's subject line** after duplicating a draft in Buttondown. Add a pre-send check: subject, preheader, send day.
+- **(Happened) Asking the owner to type group names into links didn't work.** Two weeks of kits used `fb-<group-name>` placeholders, and 0 of ~90 Facebook signups were tagged. The owner was also too busy to report where she posted. Fix: put **numbered, ready-to-paste tags** in every post (`fb-thanksgiving-1`, `-2`) and ask for a one-line reply mapping numbers to groups. Make the tagged link the only link in the post.
+- **(Happened) Launch momentum fades fast without new posts.** Spring Branch went +67 → +38 → +9 over successive 3–4-day stretches once posting stopped. Plan the second wave of group posts for days 4–14 *before* launch, not after you see the dip.
+- **(Happened) Owner bandwidth was lower than the 30-min/day plan.** The launch-week group posts happened and worked, but the next plans' 5–6 to-dos (tagged posts, Nextdoor, Pixel, ads) never showed up in the data. Start new owners on 2–3 to-dos a week, the most important one first, and grow from there.
+- **(Happened) Kit times went stale within a day** (a library moved its party time the day after the kit). Kits now tell the owner to re-check times on the day of posting.
+- **(Watch) Send time drifted:** issue 1 went out Mon 8:05 am, issue 2 at 10:57 am. Fix the send time at setup (around 7 am Monday).
 - **(Likely, not proven) Launch timing helped:** launching the week of Halloween gave the owner a naturally useful list to post. Next city: launch 3–7 days before a holiday or school break that parents are actively planning for.
 
 ## 7. Unit economics
 
-Not enough data yet. Will track: blended cost per subscriber, open-rate retention by month, and the subscriber count where local sponsorships become realistic (to be estimated once we have open rates).
+First data point (2026-11-03): 114 subscribers in 9 days at **$0 ad spend** (blended cost per subscriber $0 so far; no paid test yet). Open rate in month 1: 65.5%. Will track: blended cost per subscriber, open-rate retention by month, and the subscriber count where local sponsorships become realistic (to be estimated once we have open rates).

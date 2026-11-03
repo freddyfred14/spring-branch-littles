@@ -41,7 +41,7 @@
     "description": "Every week's free library storytimes for babies, toddlers and preschoolers near Spring Branch & Memorial, plus nature walks and cabin story hours.",
     "intro": [
       "Storytime is the easiest outing there is with a baby or toddler: it's free, it's indoors, it's under an hour, and nobody minds if your kid wanders off mid-song. Spring Branch has two library systems close together, Harris County's Spring Branch Memorial Library on Corbindale and Houston Public Library's Ring and Hillendahl branches, so there's something most weekday mornings.",
-      "Here's the week at a glance: Monday is preschool storytime with a craft at Spring Branch Memorial, Wednesday is Baby Bouncers there or toddler storytime at Ring, and Thursday is Tiny Tykes for new walkers back at Spring Branch Memorial. Outdoorsy families can add a guided Tyke Hike at the Houston Arboretum (Mondays through Nov 16) or a nature story in the log cabin at Edith L. Moore Nature Sanctuary.",
+      "Here's the week at a glance: Wednesday is Baby Bouncers at Spring Branch Memorial or toddler storytime at Ring, and Thursday is Tiny Tykes for new walkers back at Spring Branch Memorial. Spring Branch Memorial also runs a preschool storytime with a craft for ages 3–6 (check the branch calendar for this month's day). Outdoorsy families can add a guided Tyke Hike at the Houston Arboretum (select Mondays: Nov 9 and 16, then Dec 7, 14 and 21) or a nature story in the log cabin at Edith L. Moore Nature Sanctuary.",
       "Library schedules pause for holidays and change between seasons, so check each listing the week you go. We update this page whenever the libraries do."
     ],
     "items": [
@@ -64,7 +64,37 @@
       "Make a morning of it: Spring Branch Memorial Library has a playground next door, and Freed Park is a short drive from Ring Library.",
       "It's fine to step out with a fussy baby and come back. Every storytime librarian has seen it all."
     ],
-    "updated": "2026-10-27",
+    "updated": "2026-11-03",
     "expires": null
+  },
+  {
+    "id": "holiday-events-santa-kids-spring-branch-memorial-2026",
+    "title": "Holiday events & free Santa photos with kids near Spring Branch & Memorial (2026)",
+    "description": "Free Santa photos, a Frozen movie night, a tree lighting and a kids' wreath workshop near Spring Branch & Memorial, Nov 28–Dec 5, 2026.",
+    "intro": [
+      "The holiday season starts the Saturday after Thanksgiving break, and the best of it is close to home. CityCentre's Holiday in the Plaza on Sat Nov 28 has Santa, two of his reindeer and free professional photos. The next weekend, Memorial Park's Neighborhood Nights turns into a holiday movie night on Fri Dec 4, with Frozen on the lawn and photos with Santa, Anna and Elsa.",
+      "On Sat Dec 5 you can pick a crafty morning or a big night out: the Houston Arboretum's Homemade Holidays workshop has kids 5 and up making wreaths and ornaments, and downtown the Mayor's Deck the Hall tree lighting ends with fireworks.",
+      "Most of this is free, outdoors and weather-dependent, so check each listing the day before. We'll add more lights, Santa visits and holiday storytimes here as they're announced."
+    ],
+    "items": [
+      "event:2026-citycentre-holiday-in-the-plaza",
+      "event:2026-12-04-memorial-park-neighborhood-nights-holiday",
+      "event:2026-12-05-arboretum-homemade-holidays",
+      "event:2026-12-05-deck-the-hall",
+      "event:2026-sbisd-winter-break",
+      "place:citycentre",
+      "place:houston-arboretum",
+      "place:memorial-park-playground",
+      "place:frolics-castle"
+    ],
+    "tips": [
+      "Santa leaves Holiday in the Plaza at 4 pm. Go early, after lunch and before nap-time meltdowns, and bring something for the SPCA donation if you can.",
+      "Neighborhood Nights doesn't allow strollers or bikes. Bring a blanket, a carrier for the baby and layers: the lawn gets cold once the sun goes down.",
+      "Homemade Holidays has two sessions (11 am and 1 pm), each with its own tickets. Book early, and dress kids in clothes that can get sticky.",
+      "Toddler not a fan of Santa? Totally normal. A wave from across the plaza still counts as a holiday photo.",
+      "Outdoor holiday events can change for weather. Check the listing the morning of."
+    ],
+    "updated": "2026-11-03",
+    "expires": "2026-12-06"
   }
 ]

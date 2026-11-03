@@ -71,5 +71,34 @@
     "issuesSent": 1,
     "upcomingEvents": 9,
     "guides": 2
+  },
+  {
+    "date": "2026-11-03",
+    "newsletterSubscribers": 114,
+    "newSubscribers7d": 68,
+    "newBySource7d": {
+      "ref:l.instagram.com": 2,
+      "ref:facebook.com": 42,
+      "direct": 9,
+      "ref:lm.facebook.com": 3,
+      "ref:l.facebook.com": 6,
+      "unknown": 1,
+      "confirmed": 5
+    },
+    "lastIssue": {
+      "subject": "Leaf scavenger hunt, Tyke Hikes and a Frozen movie night",
+      "sent": "2026-11-02T16:57:28.938966Z",
+      "recipients": 113,
+      "openRate": 65.5,
+      "clickRate": 8.8,
+      "unsubscribes": 0
+    },
+    "instagramFollowers": null,
+    "visits7d": null,
+    "topPages": null,
+    "topReferrers": null,
+    "issuesSent": 2,
+    "upcomingEvents": 7,
+    "guides": 2
   }
 ]

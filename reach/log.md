@@ -2,6 +2,19 @@
 
 Newest first. The owner can add notes here too ("posted in X group, 15 signups").
 
+## 2026-11-03 · Tuesday full run · focus: Thanksgiving-guide push with numbered tags
+- Metrics: **114 subscribers** (+47 since last Tue, +9 since Fri). Sources (7d): Facebook referrers 51 (facebook.com 42, l. 6, lm. 3), direct 9, confirmed 5, l.instagram.com 2, unknown 1. **Still 0 tagged.** Nov 2 issue ("Leaf scavenger hunt, Tyke Hikes and a Frozen movie night") went to 113 at 10:57 am CST: **65.5% opens, 8.8% clicks, 0 unsubs**. Issue stats are coming through now; Oct 27 still reads 0%. Visits, conversion and IG are still null. 7 upcoming events, 2 → 3 guides.
+- Owner logged nothing again and didn't reply with group names. No sign of Nextdoor, Pixel/ads or tagged posts. So this week's list is 3 to-dos (~20 min), and the one must-do is a single group post.
+- Scored: **E2 scale** (Facebook ≈ 4 in 5 of all signups); **E1 closed, unmeasured**; E3 and E4 never started and are re-set. E5 starts with **numbered tags** (`fb-thanksgiving-1/-2`), so the owner doesn't have to type group names. Added E13 (share the holiday guide Nov 27–Dec 3).
+- `strategy.md`: Facebook moved to #1 and the network to #2 (the data: ~90 of 114 from Facebook; the network was one-time and unmeasured). **Day-30 target held at 250, not raised to 300**, because the +9 in four days shows the launch tail fading and we need ~45/week from new posts. Open-rate target met. Trimmed to stay under 1,200 words.
+- Published guide `holiday-events-santa-kids-spring-branch-memorial-2026` (4 events + winter break + 4 places; expires Dec 6), to share after Thanksgiving. Fixed the storytime guide: removed the unsupported "Monday preschool storytime" claim and updated the Tyke Hike dates.
+- Content risk: the Nov 9 issue has only 2 top picks. Asked the research agent for Nov 7–Dec 6 events (library Thanksgiving-week programs, Santa, tree lightings, Hillendahl storytime, the day of SBM's preschool storytime).
+- Blog ideas +3 (sick-day rules, gratitude with toddlers, too many toys before gift season).
+- Targets 41 → 47 (Rummel Creek, Housman, Ridgecrest, Treasure Forest, Pine Shadows PTAs; St. Cecilia Catholic School). No Memorial-area MOPS group found on the open web.
+- Playbook v0.3: Facebook proven, first subject-line data, 6-week event runway, numbered tags, momentum fade, owner bandwidth, send-time drift, Spring Branch actuals.
+- Plan + kit: `plans/2026-11-03.md`, `kits/2026-11-03.md`. Requests: more events, backfill Oct 27 stats, label `confirmed`/`unknown`, a fixed ~7 am Monday send time.
+- `npm run check`: passes (14 warnings, all "never verified" listings for the research agent).
+
 ## 2026-10-30 · Friday pulse · focus: keep Facebook going, get the group names
 - Metrics: **105 subscribers** (+38 since Tue). Sources (7d): Facebook referrers 77 (facebook.com 60, l. 12, lm. 4, m. 1), direct 19, confirmed 6, unknown 2, l.instagram.com 1. **Still 0 tagged signups**, so no `fb-`, `nextdoor-post-1` or `ig-story-halloween` activity is visible; owner logged nothing. Last issue still 0% opens/clicks 3 days after send: treated as a broken stats pull, not real. 9 upcoming events, 2 guides.
 - Read: Facebook signups kept coming (+28 since Tue) with no sign of new posts, so the early posts have a long tail. On pace for 250 by day 30; decide Tue Nov 3 whether to raise it to 300.
