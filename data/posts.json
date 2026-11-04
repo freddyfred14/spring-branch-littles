@@ -1034,5 +1034,129 @@
     "image": "/img/blog/thanksgiving-picky-toddler.jpg",
     "imageAlt": "Illustration: A warm, realistic, candid photo of a cozy Thanksgiving dinner at a long family table in a Houston home, landscape",
     "imageCredit": "AI illustration"
+  },
+  {
+    "id": "sick-kid-stay-home-from-daycare",
+    "type": "article",
+    "medical": true,
+    "title": "Runny nose, no fever? Your kid can probably go to daycare.",
+    "date": "2026-11-04",
+    "summary": "Green snot, a cough, a fever at 6 am: what pediatricians and Texas child care rules actually say about keeping little ones home, and when it's fine to send them in.",
+    "imagePrompt": "A warm, realistic, candid photo on a cozy living room couch on a gray November morning in a Houston home, landscape. A Latina mom in her thirties with a curvy build and long dark hair in a loose bun sits under a knitted blanket with her 3-year-old son, who has tousled black hair and small hearing aids. In pajamas, cheeks a little pink, he leans on her and points at a picture book while she smiles and feels his forehead with the back of her hand. Tissues on the side table, soft window light, tender mood. No text, signs, logos or brand names.",
+    "body": [
+      "It's 6:15 am. Your toddler's nose is running like a faucet, there was a cough at 3 am, and you have a meeting at 9. You're standing in the kitchen with a thermometer in one hand and your phone in the other, trying to decide: is this a stay-home day?",
+      "If you've done this math more times than you can count since September, you're not alone. November in Houston brings colds, flu and RSV all at once, and little kids seem to catch every single one.",
+      "Here's the reassuring part: the pediatricians' rules are simpler, and often more relaxed, than most of us think.",
+      "## First, why it feels like they're always sick",
+      "Because they kind of are. The American Academy of Pediatrics says [most children have around 8 to 10 colds](https://healthychildren.org/English/health-issues/conditions/ear-nose-throat/pages/Children-and-Colds.aspx) in their first two years alone, and kids in child care may have even more. A typical cold fades over 7 to 10 days, so one can roll right into the next.",
+      "There's a small silver lining. In [a Tucson study that followed about 1,000 children](https://experts.arizona.edu/en/publications/influence-of-attendance-at-day-care-on-the-common-cold-from-birth/) from birth, kids in large day care had more frequent colds at age 2, but fewer by age 6 and in the early school years. The researchers think those early colds help build immunity. It doesn't make the 3 am coughing easier, but it does mean it's not forever.",
+      "## The three questions pediatricians ask",
+      "The AAP's [guidance for child care programs](https://www.healthychildren.org/English/family-life/work-and-child-care/Pages/When-to-Keep-Your-Child-Home-from-Child-Care.aspx) boils it down to three questions. A child should stay home if the illness:",
+      "- Keeps them from comfortably joining in the usual activities.",
+      "- Needs more care than teachers can give without shortchanging the other kids.",
+      "- Risks spreading a serious illness to others.",
+      "That first one is the big one. A kid who wants to lie on the couch all morning isn't going to have a good day in a busy classroom, whatever the thermometer says.",
+      "## What counts as a fever (and when it matters)",
+      "The AAP defines a fever for child care as a temperature [above 101°F by any method](https://www.healthychildren.org/English/family-life/work-and-child-care/Pages/When-to-Keep-Your-Child-Home-from-Child-Care.aspx). Fever plus a change in behavior or other symptoms, like a sore throat, rash, vomiting or diarrhea, means a day at home.",
+      "Here in Texas, licensed child care centers follow state rules. They [can't accept a child](https://www.law.cornell.edu/regulations/texas/26-Tex-Admin-Code-SS-746-3601) with a fever above 101°F by mouth, or above 100°F by ear, armpit or forehead, together with behavior changes or other signs of illness. Your center's own policy may be stricter, so it's worth rereading the handbook.",
+      "When can they go back? For a cough or cold with a fever, the AAP says to wait until the fever has been gone for at least 24 hours without fever-reducing medicine. The [CDC's advice for respiratory viruses](https://www.cdc.gov/respiratory-viruses/prevention/precautions-when-sick.html) like flu, RSV and COVID is similar: back to normal activities once symptoms are getting better overall and there's been no fever, without medicine, for 24 hours.",
+      "That \"without medicine\" part matters. A dose of fever reducer at breakfast can hide a fever that comes roaring back by lunch, and then you're getting the call anyway.",
+      "## Usually fine to send in",
+      "This is the list that surprises parents. According to the AAP, these alone [don't require staying home](https://www.healthychildren.org/English/family-life/work-and-child-care/Pages/When-to-Keep-Your-Child-Home-from-Child-Care.aspx):",
+      "- A cough or cold without fever or other signs of illness.",
+      "- A runny nose, whatever color the mucus is. Yes, green too.",
+      "- Pinkeye with eye discharge but no fever.",
+      "- An ear infection, as long as your child is acting like themselves.",
+      "- A rash without fever or behavior changes.",
+      "- Hand, foot and mouth disease, unless there's fever or drooling from mouth sores (though health departments can ask for exclusion during outbreaks).",
+      "## Usually a stay-home day",
+      "- Fever with behavior changes or other symptoms.",
+      "- Vomiting two or more times in the past 24 hours.",
+      "- Diarrhea that's more frequent than usual by more than two stools a day, leaks out of the diaper, or causes accidents in a potty-trained kid.",
+      "- A rash with fever or behavior changes, until a doctor says it isn't contagious.",
+      "- Strep throat, until at least 12 hours after starting antibiotics.",
+      "- Mouth sores with drooling they can't control.",
+      "## If daycare sends them home anyway",
+      "It happens, and often for things the guidelines say are fine. In [a 2010 study of 305 child care centers](https://pmc.ncbi.nlm.nih.gov/articles/PMC3047469/) in Wisconsin, directors would have sent home 57% of children with mild illnesses that national guidelines don't consider a reason to stay home. More than 62% had never heard of those guidelines.",
+      "That has real costs for families. In [a University of Michigan survey of 630 parents](https://www.sciencedaily.com/releases/2014/06/140623130855.htm), among parents whose sick kids couldn't go to child care, 26% had used urgent care and 25% had gone to an emergency room. Parents who needed a doctor's note for their child to return were more likely to end up there.",
+      "If this keeps happening, a calm, friendly conversation with the director can help. Bring the AAP's list, ask how they decide, and remember that teachers are juggling a room full of runny noses too.",
+      "## Call the pediatrician right away if",
+      "- Your baby is under 3 months and seems sick at all. For babies under 2 months, the AAP says a temperature above 100.4°F needs urgent medical advice.",
+      "- Your child is breathing fast or working hard to breathe, or the skin pulls in between the ribs.",
+      "- Lips or nails look blue.",
+      "- They're unusually sleepy, hard to wake or can't be comforted.",
+      "- A rash spreads quickly and looks like bruises or tiny purple spots. The AAP says to call 911.",
+      "## Try this week",
+      "- Find your center's illness policy and note its fever number and return rules.",
+      "- Check your thermometer's batteries, and decide which method you'll use.",
+      "- Line up a backup for sick days now: a partner, grandparent, friend or a trade with another family.",
+      "- Save your pediatrician's after-hours nurse line in your phone.",
+      "You know your child better than any chart does. If they seem off, trust that. And if you sent them in with a runny nose and a happy face? You followed the pediatricians' playbook. Pour the coffee."
+    ],
+    "sources": [
+      {
+        "label": "American Academy of Pediatrics, Council on Early Childhood (HealthyChildren.org). When to keep your child home from child care, updated 2024.",
+        "url": "https://www.healthychildren.org/English/family-life/work-and-child-care/Pages/When-to-Keep-Your-Child-Home-from-Child-Care.aspx"
+      },
+      {
+        "label": "American Academy of Pediatrics (HealthyChildren.org). Children and colds.",
+        "url": "https://healthychildren.org/English/health-issues/conditions/ear-nose-throat/pages/Children-and-Colds.aspx"
+      },
+      {
+        "label": "Texas Administrative Code, 26 TAC § 746.3601. What type of illness would prohibit a child from attending the child-care center? (via Cornell Legal Information Institute).",
+        "url": "https://www.law.cornell.edu/regulations/texas/26-Tex-Admin-Code-SS-746-3601"
+      },
+      {
+        "label": "Centers for Disease Control and Prevention. Preventing spread of respiratory viruses when you're sick, 2025.",
+        "url": "https://www.cdc.gov/respiratory-viruses/prevention/precautions-when-sick.html"
+      },
+      {
+        "label": "Ball TM, Holberg CJ, Aldous MB, Martinez FD, Wright AL. Influence of attendance at day care on the common cold from birth through 13 years of age. Archives of Pediatrics & Adolescent Medicine, 2002.",
+        "url": "https://experts.arizona.edu/en/publications/influence-of-attendance-at-day-care-on-the-common-cold-from-birth/"
+      },
+      {
+        "label": "Hashikawa AN, et al. Unnecessary child care exclusions in a state that endorses national exclusion guidelines. Pediatrics, 2010.",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3047469/"
+      },
+      {
+        "label": "ScienceDaily (University of Michigan). Working parents resort to emergency or urgent care visits to get kids back into child care, 2014.",
+        "url": "https://www.sciencedaily.com/releases/2014/06/140623130855.htm"
+      }
+    ],
+    "instagram": {
+      "cover": {
+        "label": "HEADS UP",
+        "headline": "Runny nose, no fever?",
+        "highlight": "Daycare is OK.",
+        "subhead": "When to keep them home, by pediatricians' rules.",
+        "scene": "A Latina mom in her thirties with a curvy build and long dark hair in a loose bun sits on a cozy couch under a knitted blanket with her 3-year-old son, who has tousled black hair and small hearing aids. He leans on her in pajamas, pointing at a picture book, while she smiles and checks his forehead with the back of her hand. Soft gray morning window light; the action sits low with a plain wall above."
+      },
+      "takeaways": {
+        "title": "Watch the kid,",
+        "highlight": "not just the snot.",
+        "points": [
+          {
+            "heading": "A runny nose alone is fine.",
+            "text": "The AAP says coughs and colds without fever don't require staying home, whatever color the mucus is."
+          },
+          {
+            "heading": "Fever plus acting sick = home.",
+            "text": "Texas centers can't take a child over 101°F by mouth (100°F ear, armpit or forehead) who also seems ill."
+          },
+          {
+            "heading": "Wait 24 hours fever-free.",
+            "text": "For a cold or cough with fever, go back after 24 hours without fever and without fever-reducing medicine."
+          },
+          {
+            "heading": "Know the urgent red flags.",
+            "text": "A sick baby under 3 months, hard breathing, blue lips or a fast-spreading purple rash: call right away."
+          }
+        ]
+      },
+      "caption": "Green snot at 6 am does not automatically mean a sick day.\n\nThe AAP says a cough or runny nose without fever usually isn't a reason to keep a little one home. What matters more: a fever plus acting sick, vomiting twice in a day, or a kid who just can't join in.\n\nAfter a fever, wait 24 hours fever-free without medicine before sending them back.\n\nAnd line up your sick-day backup now. November is coming for all of us.\n\nWhat's your sick-day plan when you both work? Share it below.\n\nFull article at the link in our bio. Follow @springbranchlittles for kid-friendly plans in Spring Branch & Memorial.\n\nGeneral info, not medical advice. Check with your pediatrician.\n\n#sickkids #daycarelife #coldandfluseason #houstonmoms #houstonparents #springbranch #memorialhouston"
+    },
+    "image": "/img/blog/sick-kid-stay-home-from-daycare.jpg",
+    "imageAlt": "Illustration: A warm, realistic, candid photo on a cozy living room couch on a gray November morning in a Houston home, landscape",
+    "imageCredit": "AI illustration"
   }
 ]
