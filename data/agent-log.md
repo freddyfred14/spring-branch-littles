@@ -2,6 +2,15 @@
 
 Newest first. The research agent adds an entry each run.
 
+## 2026-11-04 · Wednesday calendar refresh (partial)
+
+- **Removed:** CityCentre trick-or-treat, Scream on the Green, Zoo Boo, Wings Over Houston and Día de los Muertos, all ended more than 2 days ago.
+- **Confirmed on organizer pages:** Arboretum scavenger hunt (Nov 7, 2–4 pm, free), Standing Tall (Nov 8, 9–4, $20/$16), Tyke Hikes en español (Nov 15, 11 am, not sold out), Neighborhood Nights (Dec 4; page now says 5–8 pm, so `endTime` set to 20:00).
+- **Arboretum heads-up:** the grounds are closed most of Sunday Nov 8 for a charity walk (reopens at noon at the 610 entrance and 2 pm at Woodway). Nothing listed is affected.
+- **Couldn't confirm:** HCPL Spring Branch Memorial search returned no results (the page may not have rendered), so no new library programs were added and the weekly programs were not re-checked. HPL, SBISD, Memorial City, the deals and restaurants and the news items were not re-checked this run. CityCentre's events page lists Holiday in the Plaza on Nov 28 but its URL says "nov-27"; the listing date was left as is.
+- **Not added:** the Nov 14 Memorial Park star party (no family info on the page). Web searches found no new dated local kids' events.
+- **Still thin:** the local calendar has only the Nov 7 and Nov 15 events in the next 3 weeks, plus Holiday in the Plaza on Nov 28. This run fell short of the 8–12 target and needs a fuller pass.
+
 ## 2026-11-01 · Sunday full run
 
 - **Removed:** Free Family Night (Oct 29), library tween party (Oct 27) and kids' party (Oct 29), all over 2 days ago. Also removed the Monday "Preschool storytime + craft" at Spring Branch Memorial: the HCPL calendar shows no upcoming sessions. I took it out of two guides and one post's related list. Restore it if the branch confirms it still runs.
