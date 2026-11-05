@@ -1,18 +1,18 @@
 {
-  "pulledAt": "2026-11-03T13:23:44.027Z",
-  "subscribers": 114,
-  "unconfirmed": 0,
+  "pulledAt": "2026-11-05T13:29:23.667Z",
+  "subscribers": 115,
+  "unconfirmed": 1,
   "issues": [
     {
       "date": "2026-11-02",
       "subject": "Leaf scavenger hunt, Tyke Hikes and a Frozen movie night",
       "recipients": 113,
       "delivered": 112,
-      "opens": 74,
+      "opens": 76,
       "clicks": 10,
       "unsubscribes": 0,
       "complaints": 0,
-      "openRate": "66.1%",
+      "openRate": "67.9%",
       "clickRate": "8.9%"
     },
     {
