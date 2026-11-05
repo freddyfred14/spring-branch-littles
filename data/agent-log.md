@@ -2,6 +2,14 @@
 
 Newest first. The research agent adds an entry each run.
 
+## 2026-11-04 · Wednesday calendar refresh (second pass, evening)
+
+- **Changed:** nothing in the listings. A second sweep found no new events that meet the rules.
+- **Confirmed again:** Memorial Park's calendar shows Neighborhood Nights (Dec 4, free; this page says 5–8 pm). The Arboretum calendar shows Tyke Hikes en español (Nov 15, 11 am), Homemade Holidays (Dec 5), Tyke Hikes (Nov 9, 16) and Hatchlings (Nov 11, 18). The Arboretum is mostly closed on Sunday Nov 8.
+- **Couldn't confirm:** the HCPL branch search again returned no events (probably not rendering). Memorial City's events page lists no kids' events or Santa dates. Spring Valley Village's tree lighting still has no date; its coloring contest for ages 3–10 runs Nov 2–23. Eventbrite ZIP searches (77024, Spring Branch) returned no dated local 2026 events. HPL, SBISD, deals, restaurants and news were not re-checked.
+- **Still thin:** the local calendar remains below the 8–12 target. It needs a pass with a browser that can render the HCPL and HPL calendars.
+- Photo idea for the owner: Holiday in the Plaza (Nov 28).
+
 ## 2026-11-04 · Wednesday calendar refresh (partial)
 
 - **Removed:** CityCentre trick-or-treat, Scream on the Green, Zoo Boo, Wings Over Houston and Día de los Muertos, all ended more than 2 days ago.
