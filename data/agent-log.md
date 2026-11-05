@@ -2,6 +2,14 @@
 
 Newest first. The research agent adds an entry each run.
 
+## 2026-11-04 · Wednesday calendar refresh (third pass, HCPL rendered)
+
+- **Added (HCPL Spring Branch Memorial, all free):** Tween & Teen Chess Club (Nov 5, ages 8–18), Homeschool Hangout music workshop (Nov 9, ages 6–18, 1 spot left), Tween Graphic Novel Book Club (Nov 10, register by Nov 7), Fall Leaf Sunprints (Nov 19). Each links to its own HCPL event page.
+- **Confirmed on the HCPL calendar:** Baby Bouncer (Wed 10:15 and 11:15) and Tiny Tykes (Thu 10:15 and 11:15). Neither is listed for Nov 25–26 (Thanksgiving week); both resume in December. Book Buddies is full. Canceled on the calendar and not added: DIY Festive Headbands (Nov 21) and Coffee and Coloring (Dec 12), both adult programs.
+- **The HCPL branch calendar renders with `?locations=SM`.** Earlier passes got nothing; this one worked.
+- **Couldn't confirm:** the HPL calendar can't be filtered to Ring or Hillendahl through the search, so Ring toddler storytime was not re-verified (`lastVerified` left alone). A web search found no 2026 dates for Memorial City or Memorial District holiday events. Deals, restaurants, news and SBISD links were not re-checked.
+- **Still thin:** the local calendar remains below the 8–12 target.
+
 ## 2026-11-04 · Wednesday calendar refresh (second pass, evening)
 
 - **Changed:** nothing in the listings. A second sweep found no new events that meet the rules.
