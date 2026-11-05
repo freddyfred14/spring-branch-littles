@@ -9,7 +9,9 @@
     "endTime": "17:30",
     "placeId": "spring-branch-memorial-library",
     "location": null,
-    "ages": ["elementary"],
+    "ages": [
+      "elementary"
+    ],
     "free": true,
     "cost": null,
     "indoor": true,
@@ -20,7 +22,10 @@
     "featured": false,
     "area": "local",
     "lastVerified": "2026-11-04",
-    "imagePrompt": "Elementary-age kids and a few older tweens sit at small tables in a bright library playing chess, one child thoughtfully moving a knight while friends watch. Warm, friendly, concentrated."
+    "imagePrompt": "Elementary-age kids and a few older tweens sit at small tables in a bright library playing chess, one child thoughtfully moving a knight while friends watch. Warm, friendly, concentrated.",
+    "image": "/img/events/2026-11-05-sbm-library-chess-club.jpg",
+    "imageAlt": "Illustration: Elementary-age kids and a few older tweens sit at small tables in a bright library playing chess, one child thoughtfully moving a knight while friends watch",
+    "imageCredit": "AI illustration"
   },
   {
     "id": "2026-11-09-sbm-library-homeschool-music",
@@ -32,7 +37,9 @@
     "endTime": "15:30",
     "placeId": "spring-branch-memorial-library",
     "location": null,
-    "ages": ["elementary"],
+    "ages": [
+      "elementary"
+    ],
     "free": true,
     "cost": null,
     "indoor": true,
@@ -43,7 +50,10 @@
     "featured": false,
     "area": "local",
     "lastVerified": "2026-11-04",
-    "imagePrompt": "A group of kids around ages 6 to 12 in a library room making playful music together with hand percussion, shakers and their own voices, a musician guiding them with a smile. Bright and lively."
+    "imagePrompt": "A group of kids around ages 6 to 12 in a library room making playful music together with hand percussion, shakers and their own voices, a musician guiding them with a smile. Bright and lively.",
+    "image": "/img/events/2026-11-09-sbm-library-homeschool-music.jpg",
+    "imageAlt": "Illustration: A group of kids around ages 6 to 12 in a library room making playful music together with hand percussion, shakers and their own voices, a musician guiding them with a smile",
+    "imageCredit": "AI illustration"
   },
   {
     "id": "2026-11-10-sbm-library-tween-graphic-novel-club",
@@ -55,7 +65,9 @@
     "endTime": "17:30",
     "placeId": "spring-branch-memorial-library",
     "location": null,
-    "ages": ["elementary"],
+    "ages": [
+      "elementary"
+    ],
     "free": true,
     "cost": null,
     "indoor": true,
@@ -66,7 +78,10 @@
     "featured": false,
     "area": "local",
     "lastVerified": "2026-11-04",
-    "imagePrompt": "A circle of tweens on beanbags in a library teen corner, each holding a colorful graphic novel, laughing and pointing at pages while discussing. Bright and cozy."
+    "imagePrompt": "A circle of tweens on beanbags in a library teen corner, each holding a colorful graphic novel, laughing and pointing at pages while discussing. Bright and cozy.",
+    "image": "/img/events/2026-11-10-sbm-library-tween-graphic-novel-club.jpg",
+    "imageAlt": "Illustration: A circle of tweens on beanbags in a library teen corner, each holding a colorful graphic novel, laughing and pointing at pages while discussing",
+    "imageCredit": "AI illustration"
   },
   {
     "id": "2026-11-19-sbm-library-leaf-sunprints",
@@ -78,7 +93,9 @@
     "endTime": "17:30",
     "placeId": "spring-branch-memorial-library",
     "location": null,
-    "ages": ["elementary"],
+    "ages": [
+      "elementary"
+    ],
     "free": true,
     "cost": null,
     "indoor": false,
@@ -89,7 +106,10 @@
     "featured": false,
     "area": "local",
     "lastVerified": "2026-11-04",
-    "imagePrompt": "Kids outside a library holding colorful fall leaves over blue light-sensitive paper in the afternoon sun, a librarian showing them how to press the leaves flat. Warm autumn light, curious faces."
+    "imagePrompt": "Kids outside a library holding colorful fall leaves over blue light-sensitive paper in the afternoon sun, a librarian showing them how to press the leaves flat. Warm autumn light, curious faces.",
+    "image": "/img/events/2026-11-19-sbm-library-leaf-sunprints.jpg",
+    "imageAlt": "Illustration: Kids outside a library holding colorful fall leaves over blue light-sensitive paper in the afternoon sun, a librarian showing them how to press the leaves flat",
+    "imageCredit": "AI illustration"
   },
   {
     "id": "2026-sbisd-thanksgiving-break",
