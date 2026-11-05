@@ -60,9 +60,14 @@ Start with the organizers' own calendars, then use listing sites to discover eve
 - Memorial Park Conservancy event calendar: memorialparkconservancy.org/visit/event-calendar
 - Memorial Villages city sites (bunkerhilltx.gov, hedwigtx.gov, hunterscreektx.org, pineypt.org, springvalleytx.com) and Memorial Villages Police Department
 - Church and school events open to the public (trunk-or-treats, fall festivals, Christmas markets): search "Memorial Drive" + the event type
-- Discovery only (always confirm at the source before listing): juliesheets.com (Memorial monthly calendars), Macaroni Kid Greater NW Houston, Mommy Poppins Houston, Greater Houston Moms, Houston on the Cheap, Kids Out and About Houston, Eventbrite "Spring Branch, Houston", The Buzz Magazines (Memorial edition)
+- **Eventbrite, by ZIP code** (every run): local kids' businesses, gyms, studios, churches and nonprofits post family events here that appear nowhere else. Search for each core ZIP code, **77024** (Memorial, the Villages, CityCentre, Memorial City) and **77055** (Spring Branch, Long Point, Spring Branch East), then 77080, 77043, 77079 and 77041. Use web searches such as `site:eventbrite.com kids 77024`, `site:eventbrite.com family "Spring Branch" Houston`, `site:eventbrite.com toddler Memorial Houston`, and open Eventbrite's own location pages (eventbrite.com/d/tx--houston/kids--events/ and its "family & education" category) and check each event's address. An Eventbrite page created by the organizer counts as the organizer's own page, so it can be the `url`.
+- **Partiful, public events only:** some local businesses (play cafés, studios, kids' boutiques) share a public Partiful link for open events. Search `site:partiful.com Houston kids` / `site:partiful.com Spring Branch` / `site:partiful.com Memorial Houston`. List one only when the page is clearly public and hosted by a business or organization, for an event anyone can attend. Never list private parties, invitations or anything that shows guests' names.
+- **Other public listings to scan:** AllEvents (allevents.in/houston), Meetup family groups, and public Facebook event pages from local businesses, churches and HOAs. Use them to find events, then confirm with the organizer.
+- Discovery only (always confirm at the source before listing): juliesheets.com (Memorial monthly calendars), Macaroni Kid Greater NW Houston, Mommy Poppins Houston, Greater Houston Moms, Houston on the Cheap, Kids Out and About Houston, The Buzz Magazines (Memorial edition)
 
-Search ideas: "Memorial Houston kids events [month year]", "Spring Branch Houston kids event [month year]", "storytime [branch name] [month]", "trunk or treat Spring Branch", "Memorial City [holiday] 2026", "CityCentre kids [month]".
+Search ideas: "Memorial Houston kids events [month year]", "Spring Branch Houston kids event [month year]", "77024 kids events [month]", "77055 family event [month]", "storytime [branch name] [month]", "trunk or treat Spring Branch", "Memorial City [holiday] 2026", "CityCentre kids [month]", "Long Point kids", "Spring Valley Village family".
+
+**Check the address on every listing-site find.** Spring Branch & Memorial (`"area": "local"`) is the ZIPs above plus the Villages; anything else is Surrounding Houston or skipped.
 
 ## Rules for accuracy
 
