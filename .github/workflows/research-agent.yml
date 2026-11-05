@@ -29,6 +29,9 @@ jobs:
       - uses: actions/setup-node@v5
         with:
           node-version: 22
+      # A real browser for calendars that only load with JavaScript (scripts/render-page.mjs).
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
 
       - name: Run research agent
         uses: anthropics/claude-code-action@v1
@@ -41,7 +44,7 @@ jobs:
           claude_args: >-
             --model claude-sonnet-5-5
             --max-turns 120
-            --allowedTools "WebSearch,WebFetch,Read,Write,Edit,Glob,Grep,Bash(npm run check),Bash(node scripts/newsletter.mjs*),Bash(date*)"
+            --allowedTools "WebSearch,WebFetch,Read,Write,Edit,Glob,Grep,Bash(npm run check),Bash(node scripts/newsletter.mjs*),Bash(node scripts/render-page.mjs*),Bash(date*)"
 
       - name: Validate
         run: npm run check

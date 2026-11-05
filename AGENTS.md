@@ -47,6 +47,12 @@ Only edit files in `data/`. Never edit code, templates or workflows.
 
 Start with the organizers' own calendars, then use listing sites to discover events and confirm them at the source.
 
+**Calendars that need a browser.** Many event calendars only show their events after JavaScript runs, so WebFetch sees an empty page. For those, use `node scripts/render-page.mjs <url>` (add `--links` to get each event's own link). Always use it for the HCPL and HPL library calendars, Eventbrite search pages, Memorial City and CityCentre event pages, and any page where WebFetch comes back with no events. For example:
+- `node scripts/render-page.mjs "https://hcpl.bibliocommons.com/v2/events?locations=SM" --links` (Spring Branch Memorial branch)
+- `node scripts/render-page.mjs "https://calendar.houstonlibrary.org/calendar?cid=-1&t=d&d=0000-00-00&cal=-1&ct=48&inc=0" --links` (HPL; then filter to the Ring and Hillendahl branches)
+- `node scripts/render-page.mjs "https://www.eventbrite.com/d/tx--houston/kids--events/" --links`
+If a URL pattern stops working, open the library's events page with the tool and follow its own filters and links.
+
 - Harris County Public Library events (Spring Branch Memorial branch): hcpl.net
 - Houston Public Library calendar (Ring, Hillendahl, Spring Branch-area branches): houstonlibrary.org / calendar.houstonlibrary.org
 - Houston Parks & Recreation: houstontx.gov/parks
