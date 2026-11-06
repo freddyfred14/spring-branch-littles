@@ -2,6 +2,10 @@
 
 Newest first. The research agent adds an entry each run.
 
+## 2026-11-06 · Friday weekend check
+
+Friday weekend check: confirmed 2, updated 1, removed 0. Arboretum scavenger hunt (Sat 2–4 pm) and Standing Tall at Houston Botanic Garden (Sun, $20/$16, rain or shine) are confirmed; added a rain-plan note to Standing Tall because Sunday looks showery (Space City Weather, Nov 5). Saturday looks mostly dry. The Bunny Hive's schedule is behind a booking tool, so I couldn't confirm it and left its `lastVerified` alone. The Arboretum is closed most of Sunday Nov 8 for a charity walk (already noted).
+
 ## 2026-11-04 · Wednesday calendar refresh (third pass, HCPL rendered)
 
 - **Added (HCPL Spring Branch Memorial, all free):** Tween & Teen Chess Club (Nov 5, ages 8–18), Homeschool Hangout music workshop (Nov 9, ages 6–18, 1 spot left), Tween Graphic Novel Book Club (Nov 10, register by Nov 7), Fall Leaf Sunprints (Nov 19). Each links to its own HCPL event page.
