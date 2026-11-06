@@ -2,6 +2,13 @@
 
 Newest first. The owner can add notes here too ("posted in X group, 15 signups").
 
+## 2026-11-06 · Friday pulse · focus: restart growth with one Sunday-night Thanksgiving post
+- Metrics: **116 subscribers** (+2 since Tue). 7d: 11 new (ref:facebook.com 10, l.instagram.com 1). **0 tagged**, so `fb-thanksgiving-1` (due Wed Nov 4) shows no trace; owner logged nothing and didn't reply. Nov 2 issue now **67.3% opens**, 8.8% clicks, 0 unsubs. 10 upcoming events, 3 guides.
+- Read: without new posts, growth is ~1/day (launch tail almost gone). At that pace day 30 (Nov 24) lands near 135 vs the 250 target. Flagged in the plan; target reset decision on Tue Nov 10 after seeing this weekend's post. Retention is strong, so the problem is purely reach.
+- Plan + kit: `plans/2026-11-06.md`, `kits/2026-11-06.md`. 2 to-dos (~15 min): Thanksgiving guide post Sun Nov 8 7–8 pm (`fb-thanksgiving-1`, the one must-do, plus a one-line reply with the group name) and a Sat 8–9 am Story (scavenger hunt, Standing Tall, Mon Tyke Hike; `ig-story-weekend-nov7`). E5 re-set: post 2 moved to Wed Nov 11; scoring Nov 17.
+- Playbook note for Tue: owner execution is the bottleneck, not the channel. Two weeks of to-dos with no visible trace; consider a "one post per week, same night" rhythm as the default owner commitment for new cities.
+- `npm run check`: passes (14 warnings, all "never verified" listings for the research agent).
+
 ## 2026-11-03 · Tuesday full run · focus: Thanksgiving-guide push with numbered tags
 - Metrics: **114 subscribers** (+47 since last Tue, +9 since Fri). Sources (7d): Facebook referrers 51 (facebook.com 42, l. 6, lm. 3), direct 9, confirmed 5, l.instagram.com 2, unknown 1. **Still 0 tagged.** Nov 2 issue ("Leaf scavenger hunt, Tyke Hikes and a Frozen movie night") went to 113 at 10:57 am CST: **65.5% opens, 8.8% clicks, 0 unsubs**. Issue stats are coming through now; Oct 27 still reads 0%. Visits, conversion and IG are still null. 7 upcoming events, 2 → 3 guides.
 - Owner logged nothing again and didn't reply with group names. No sign of Nextdoor, Pixel/ads or tagged posts. So this week's list is 3 to-dos (~20 min), and the one must-do is a single group post.
