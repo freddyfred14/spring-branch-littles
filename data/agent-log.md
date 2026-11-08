@@ -2,6 +2,16 @@
 
 Newest first. The research agent adds an entry each run.
 
+## 2026-11-08 · Sunday run
+
+- **Removed:** Tween & Teen Chess Club (Nov 5, ended more than 2 days ago).
+- **Added:** Classical Sing Move Play: Music of the Nutcracker (Dec 1, ages 2–5, Spring Branch Memorial library; the page doesn't say whether registration is needed).
+- **Updated from the HCPL branch calendar:** Homeschool Hangout music workshop is now full (waitlist); Tween Graphic Novel Book Club registration is closed; Leaf Sunprints confirmed. Baby Bouncer and Tiny Tykes confirmed for Nov 11–19. Book Buddies is still full.
+- **Newsletter:** wrote `drafts/2026-11-09.json`. Featured story is now Greenside (Camp Logan was featured last week).
+- **Couldn't confirm / not done:** web searches found no 2026 dates for Memorial City Santa or tree lighting, Hedwig/Spring Valley/Bunker Hill tree lightings, or new local news, so I added no news items. HPL (Ring, Hillendahl) not re-checked; HCPL page 2 not read. Deals, restaurants, places and SBISD links were not re-verified; Union Kitchen (403) and Black-Eyed Pea (homepage) links left as is. The Arboretum's Nov 14 Spanish nature hikes (free, first come) were seen but not added.
+- **Still thin:** the local calendar is well below the 8–12 target, especially the coming weekend (only Tyke Hikes Sunday Nov 15 the following week; nothing local Nov 14).
+- Photo idea for the owner: Holiday in the Plaza (Nov 28), Neighborhood Nights (Dec 4).
+
 ## 2026-11-06 · Friday weekend check
 
 Friday weekend check: confirmed 2, updated 1, removed 0. Arboretum scavenger hunt (Sat 2–4 pm) and Standing Tall at Houston Botanic Garden (Sun, $20/$16, rain or shine) are confirmed; added a rain-plan note to Standing Tall because Sunday looks showery (Space City Weather, Nov 5). Saturday looks mostly dry. The Bunny Hive's schedule is behind a booking tool, so I couldn't confirm it and left its `lastVerified` alone. The Arboretum is closed most of Sunday Nov 8 for a charity walk (already noted).
