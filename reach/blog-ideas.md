@@ -4,7 +4,7 @@ Topic requests for the Blog writer (`BLOG.md`). Newest at the top; the writer ta
 
 - **Fever, cough or runny nose: when to keep a little one home from daycare or preschool:** what pediatric guidance says about fever thresholds (and 24 hours fever-free), which symptoms really matter, and what's usually fine to send in. Why now: November brings the colds, flu and RSV wave, "can I send her in?" questions come up constantly in parent groups, and parents forward this to their partners. (done 2026-11-04)
 - **Gratitude with toddlers and preschoolers, realistically:** what thankfulness looks like at 2, 4 and 6 (and why "say thank you!" isn't it yet), plus small traditions that work at a Thanksgiving table with little kids. Why now: Thanksgiving is Nov 26; it pairs with the picky-toddler post and our Thanksgiving-break guide. (done 2026-11-06)
-- **Too many toys? What the research says before gift season:** the toddler study where fewer toys meant longer, deeper play, rotating toys, and kind ways to ask grandparents for experiences instead. Why now: holiday wish lists and Black Friday (Nov 27); it bridges into our holiday-events guide.
+- **Too many toys? What the research says before gift season:** the toddler study where fewer toys meant longer, deeper play, rotating toys, and kind ways to ask grandparents for experiences instead. Why now: holiday wish lists and Black Friday (Nov 27); it bridges into our holiday-events guide. (done 2026-11-08)
 
 - **Screen time for young kids, without the guilt:** what the AAP and WHO recommend for babies through age 6 (video chat is different), why content and co-viewing beat counting minutes, background TV and screens before bed, and realistic strategies for busy parents. Requested by the owner. (done 2026-10-29)
 
