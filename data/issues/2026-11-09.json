@@ -1,0 +1,243 @@
+{
+  "date": "2026-11-09",
+  "subject": "Tyke Hikes, leaf sunprints and Santa at CityCentre",
+  "preheader": "Plus: a new lawn-and-playhouse hangout is coming to Memorial City.",
+  "intro": [
+    "It's a quiet stretch in Spring Branch, but there are a few good ones. Sunday, Nov 15 is Tyke Hikes en español at the Arboretum for your 18-months-to-4 crowd, and on Thursday, Nov 19 the Spring Branch Memorial library has a free leaf sunprint craft for older kids and tweens.",
+    "Thanksgiving week is a school break (Nov 23–27), so pencil in Saturday, Nov 28 for Santa and reindeer in the CityCentre plaza, and Friday, Dec 4 for the free Frozen movie night in Memorial Park. One heads-up: the library's homeschool workshop and tween book club are already full, so skip those unless you're on the list."
+  ],
+  "sections": [
+    {
+      "heading": "Story of the week",
+      "items": [
+        {
+          "title": "Greenside, a family-friendly spot with a kids' play structure, is coming to Memorial City",
+          "when": "Houston Chronicle",
+          "where": "",
+          "ages": "",
+          "cost": "",
+          "description": "A new family-friendly hangout built around a one-acre lawn is coming to 1085 Gessner, with a children's play area in the plans. Michelin-recognized Pizzana is among the restaurants opening there this fall.",
+          "paragraphs": [
+            "A new family-friendly hangout built around a one-acre lawn is coming to 1085 Gessner, with a children's play area in the plans. Michelin-recognized Pizzana is among the restaurants opening there this fall."
+          ],
+          "url": "https://springbranchlittles.com/news/#2026-10-24-greenside-memorial-city",
+          "feature": true,
+          "image": {
+            "src": "https://springbranchlittles.com/img/news/greenside-rendering-800.jpg",
+            "alt": "Rendering of Greenside's garden: kids playing in and around two wooden A-frame playhouses among flowering trees, while parents sit on long benches nearby.",
+            "credit": "Rendering courtesy of MetroNational & Radom Capital / Michael Hsu Office of Architecture"
+          },
+          "moreLinks": []
+        }
+      ]
+    },
+    {
+      "heading": "Top picks · Nov 9–Nov 22",
+      "items": [
+        {
+          "image": {
+            "src": "https://springbranchlittles.com/img/events/2026-11-15-arboretum-tyke-hikes-espanol-800.jpg",
+            "alt": "Illustration: A naturalist leads toddlers and preschoolers with parents along a shady woodland trail, kids pointing at leaves and a pond, strollers on the path"
+          },
+          "title": "Tyke Hikes en español",
+          "when": "Sun, Nov 15 · 11 am–11:45 am",
+          "where": "Houston Arboretum & Nature Center",
+          "ages": "Toddlers, Preschool",
+          "cost": "$7 per child (members free)",
+          "description": "A Spanish-language nature walk for ages 18 months to 4 with a grown-up: a story, a sensory activity and a stroller-friendly hike. Younger siblings welcome. Parking is $6.50.",
+          "url": "https://springbranchlittles.com/events/2026-11-15-arboretum-tyke-hikes-espanol/",
+          "tentative": false
+        },
+        {
+          "image": {
+            "src": "https://springbranchlittles.com/img/events/2026-11-19-sbm-library-leaf-sunprints-800.jpg",
+            "alt": "Illustration: Kids outside a library holding colorful fall leaves over blue light-sensitive paper in the afternoon sun, a librarian showing them how to press the leaves flat"
+          },
+          "title": "Fall Leaf Sunprints",
+          "when": "Thu, Nov 19 · 4:30 pm–5:30 pm",
+          "where": "Spring Branch Memorial Library",
+          "ages": "Elementary",
+          "cost": "Free",
+          "description": "A STEM craft for kids and tweens: pick fall leaves outside and use light-sensitive paper to make blue cyanotype sunprints.",
+          "url": "https://springbranchlittles.com/events/2026-11-19-sbm-library-leaf-sunprints/",
+          "tentative": false
+        }
+      ]
+    },
+    {
+      "heading": "Every week",
+      "items": [
+        {
+          "image": null,
+          "title": "Tyke Hike at Arrowwood Pond",
+          "when": "Select Mondays: Nov 2, 9, 16, then Dec 7, 14, 21 · 9:30 am–10:15 am",
+          "where": "Houston Arboretum & Nature Center",
+          "ages": "Toddlers, Preschool",
+          "cost": "$7 per child (members free)",
+          "description": "A naturalist leads a story, a simple nature activity and a stroller-friendly trail hike for ages 18 months to 4 with a grown-up. Two sessions, 9:30 and 10:30 am.",
+          "url": "https://springbranchlittles.com/events/weekly/arboretum-tyke-hikes/",
+          "tentative": false,
+          "weekly": true
+        },
+        {
+          "image": null,
+          "title": "Stories & Crafts in the Cabin",
+          "when": "Selected Mondays, September–May · 10:30 am–11:30 am",
+          "where": "Edith L. Moore Nature Sanctuary",
+          "ages": "Preschool",
+          "cost": "About $10–12 per child",
+          "description": "A nature story and craft in the sanctuary's log cabin for ages 3–5 with an adult. Siblings with a supervising adult come free.",
+          "url": "https://springbranchlittles.com/events/weekly/edith-moore-stories-crafts/",
+          "tentative": false,
+          "weekly": true
+        },
+        {
+          "image": null,
+          "title": "Hatchlings outdoor play for babies",
+          "when": "Wednesdays, Nov 4, 11 and 18 · 10 am–11 am",
+          "where": "Houston Arboretum & Nature Center",
+          "ages": "Babies",
+          "cost": "$12 members / $15 nonmembers per child and caregiver",
+          "description": "**Registration is full** for 2026 classes; check for a waitlist. Messy outdoor play with sand, mud, sticks and leaves for ages 0–18 months with a caregiver. Bring a change of clothes.",
+          "url": "https://springbranchlittles.com/events/weekly/arboretum-hatchlings/",
+          "tentative": false,
+          "weekly": true
+        },
+        {
+          "image": null,
+          "title": "Baby Bouncers playtime",
+          "when": "Wednesdays · 10:15 am",
+          "where": "Spring Branch Memorial Library",
+          "ages": "Babies, Toddlers",
+          "cost": "Free",
+          "description": "Bouncy songs, rhymes and playtime for crawlers and babies taking their first steps. Two sessions, 10:15 and 11:15.",
+          "url": "https://springbranchlittles.com/events/weekly/sbm-baby-bouncers/",
+          "tentative": false,
+          "weekly": true
+        },
+        {
+          "image": null,
+          "title": "Toddler storytime",
+          "when": "Wednesdays · 10:30 am–11:30 am",
+          "where": "Ring Neighborhood Library",
+          "ages": "Toddlers",
+          "cost": "Free",
+          "description": "Books, songs and movement for ages 18–36 months with a caregiver.",
+          "url": "https://springbranchlittles.com/events/weekly/ring-toddler-storytime/",
+          "tentative": false,
+          "weekly": true
+        },
+        {
+          "image": null,
+          "title": "Tiny Tykes storytime",
+          "when": "Thursdays · 10:15 am",
+          "where": "Spring Branch Memorial Library",
+          "ages": "Toddlers",
+          "cost": "Free",
+          "description": "Interactive storytime for new walkers and their grown-ups: stories, songs and finger plays. Two sessions, 10:15 and 11:15. Some weeks it's outside in the Reading Garden.",
+          "url": "https://springbranchlittles.com/events/weekly/sbm-tiny-tykes/",
+          "tentative": false,
+          "weekly": true
+        }
+      ]
+    },
+    {
+      "heading": "Where to eat this week",
+      "items": [
+        {
+          "title": "Feges BBQ",
+          "when": "Spring Branch · $$ · Play area, Patio",
+          "where": "",
+          "description": "Kids eat free on Wednesdays, 5 pm–8 pm. Barbecue with a big patio and a small enclosed play space with a climbing gym tucked beside it. You order at the counter, so no waiting in line with wiggly kids.",
+          "url": "https://fegesbbq.com/locations/spring-branch/",
+          "deal": true
+        },
+        {
+          "title": "Yard House",
+          "when": "CityCentre · $$ · Kids' menu, Lawn to run",
+          "where": "",
+          "description": "Big menu, kids' menu, and it sits right on CityCentre's plaza lawn, where kids can run around before or after dinner.",
+          "url": "https://www.yardhouse.com/",
+          "deal": true
+        },
+        {
+          "title": "Blue Agave Cantina",
+          "when": "Energy Corridor · $$ · Play area, Patio",
+          "where": "",
+          "description": "Tex-Mex near Terry Hershey Park with a patio playground. Pair it with an afternoon on the trails.",
+          "url": "https://www.google.com/maps/search/?api=1&query=Blue+Agave+Cantina+14555+Grisby+Rd+Houston+TX",
+          "deal": true
+        }
+      ]
+    },
+    {
+      "heading": "From the blog",
+      "items": [
+        {
+          "image": {
+            "src": "https://springbranchlittles.com/img/blog/gratitude-toddlers-preschoolers-thanksgiving-800.jpg",
+            "alt": "Illustration: A warm, realistic, candid photo in a Houston family kitchen on a sunny November afternoon, landscape"
+          },
+          "title": "Forced \"thank yous\" aren't gratitude. Here's what works at 2, 4 and 6.",
+          "when": "4-minute article",
+          "where": "",
+          "description": "Your toddler won't say thank you on cue? That's not ungrateful, it's development. What thankfulness really looks like in little kids, plus Thanksgiving traditions that work.",
+          "url": "https://springbranchlittles.com/blog/gratitude-toddlers-preschoolers-thanksgiving/",
+          "news": true
+        },
+        {
+          "image": {
+            "src": "https://springbranchlittles.com/img/blog/sick-kid-stay-home-from-daycare-800.jpg",
+            "alt": "Illustration: A warm, realistic, candid photo on a cozy living room couch on a gray November morning in a Houston home, landscape"
+          },
+          "title": "Runny nose, no fever? Your kid can probably go to daycare.",
+          "when": "4-minute article",
+          "where": "",
+          "description": "Green snot, a cough, a fever at 6 am: what pediatricians and Texas child care rules actually say about keeping little ones home, and when it's fine to send them in.",
+          "url": "https://springbranchlittles.com/blog/sick-kid-stay-home-from-daycare/",
+          "news": true
+        }
+      ]
+    },
+    {
+      "heading": "Mark your calendar",
+      "items": [
+        {
+          "title": "SBISD Thanksgiving break",
+          "when": "Nov 23 – Nov 27 · No school",
+          "where": "",
+          "description": "No school all week. Plan library visits and park days early, since popular spots fill up.",
+          "url": "https://www.springbranchisd.com/events/",
+          "deal": true
+        },
+        {
+          "title": "Holiday in the Plaza",
+          "when": "Sat, Nov 28 · 12 pm–4 pm",
+          "where": "",
+          "description": "Meet Santa and two of his reindeer, with free professional photos, plus holiday singing and dancing. A donation for the SPCA is welcome. Santa leaves at 4 pm, so arrive on time; weather permitting.",
+          "url": "https://springbranchlittles.com/events/2026-citycentre-holiday-in-the-plaza/",
+          "deal": true
+        },
+        {
+          "title": "Neighborhood Nights: Holiday Edition",
+          "when": "Fri, Dec 4 · 5 pm",
+          "where": "",
+          "description": "A free holiday evening on the lawn: Frozen movie at 6 pm, photos with Santa, Anna and Elsa, letters to Santa, a train ride, cocoa and food trucks. Bring a blanket; no strollers or bikes. Listing end time varies (8 or 9 pm).",
+          "url": "https://springbranchlittles.com/events/2026-12-04-memorial-park-neighborhood-nights-holiday/",
+          "deal": true
+        },
+        {
+          "title": "SBISD winter break",
+          "when": "Dec 21 – Jan 4 · No school",
+          "where": "",
+          "description": "Two weeks off school. We'll round up winter break camps and indoor ideas in December.",
+          "url": "https://www.springbranchisd.com/events/",
+          "deal": true
+        }
+      ]
+    }
+  ],
+  "buttondownId": "em_448vq6qymc9yd8y69z19tk53q1",
+  "status": "draft",
+  "sentAt": "2026-11-09T12:37:50.120Z"
+}
