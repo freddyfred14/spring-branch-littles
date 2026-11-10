@@ -1,8 +1,20 @@
 {
-  "pulledAt": "2026-11-05T13:29:23.667Z",
-  "subscribers": 115,
+  "pulledAt": "2026-11-10T13:23:32.524Z",
+  "subscribers": 116,
   "unconfirmed": 1,
   "issues": [
+    {
+      "date": "2026-11-09",
+      "subject": "Tyke Hikes, leaf sunprints and Santa at CityCentre",
+      "recipients": 116,
+      "delivered": 115,
+      "opens": 67,
+      "clicks": 16,
+      "unsubscribes": 0,
+      "complaints": 0,
+      "openRate": "58.3%",
+      "clickRate": "13.9%"
+    },
     {
       "date": "2026-11-02",
       "subject": "Leaf scavenger hunt, Tyke Hikes and a Frozen movie night",
