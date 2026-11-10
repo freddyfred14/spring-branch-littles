@@ -8,9 +8,15 @@ ICE = impact / confidence / ease, 1–10 each. Keep 3–6 running. Every signup 
 
 | ID | Idea | Channel | ICE (I/C/E = total) | Hypothesis | Tag | Success threshold | Dates | Status | Result |
 |---|---|---|---|---|---|---|---|---|---|
-| E5 | Share the Thanksgiving-break guide in 2 groups, using numbered tags | Facebook groups + guide | 8/7/9 = 24 | A useful guide converts at least as well as an events list, and ready-made numbered links finally get tagged signups | `fb-thanksgiving-1`, `fb-thanksgiving-2` | 15+ signups per post; any tagged signup proves the links get used | Nov 4–18 | Running | Nov 6: 0 `fb-thanksgiving-` signups, so post 1 hadn't gone out. Re-set: post 1 Sun Nov 8 (kit 2026-11-06 §1, "17 days" hook); post 2 Wed Nov 11 ("two weeks' notice" hook, kit 2026-11-03 §2). Score Tue Nov 17. |
-| E4 | One neighbor post on Nextdoor | Nextdoor | 6/6/9 = 21 | A neighborly post brings 5–15 signups with almost no effort | `nextdoor-post-1` | 8+ signups in 7 days | Re-set: Nov 5–12 | Running (optional to-do) | Not posted Oct 29–Nov 3 (0 `nextdoor-` signups). New copy in kit 2026-11-03 §4 (scavenger hunt + Thanksgiving guide). |
-| E3 | Meta ads: plan-ahead vs storytime vs holidays, $10/day total | Meta ads | 8/6/7 = 21 | At least one concept lands under $4 per subscriber in 7 days | `meta-plan-ahead`, `meta-storytime`, `meta-holidays` | Best ad under $4/subscriber; any ad over $5 gets cut | Re-set: start within 2 days of the Pixel going live; run 7 days | Waiting on the Pixel | Still no `meta-` signups on Nov 3. The Nov 3 plan asks the owner a yes/no on the Pixel and ads. |
+| E5 | Share the Thanksgiving-break guide in a group, using a numbered tag | Facebook groups + guide | 8/7/9 = 24 | A useful guide converts at least as well as an events list, and a ready-made numbered link finally gets tagged signups | `fb-thanksgiving-1` (backup: `text-thanksgiving`) | 15+ signups from the post; any tagged signup proves the links get used | Nov 4–18 | Running | Nov 6: not posted. Nov 10: still 0 `fb-thanksgiving-` signups (3 signups all week). Cut to **one** post, any night Nov 11–15 (kit 2026-11-10 §1); post 2 dropped. Score Tue Nov 17. |
+| E14 | Evergreen guides bring signups from Google with no owner time | SEO guides | 6/4/10 = 20 | With 4 guides live (rainy day and storytimes are evergreen), Google starts sending a trickle | none: watch `ref:google.*` in `newBySource7d` | 1+ Google signup by Dec 8; 5+ by Jan 23 | Nov 10–Dec 8 | Running (no owner work) | Started Nov 10 with the rainy-day guide. |
+
+## Paused (waiting on owner time)
+
+| ID | Idea | Tag | Threshold | Why paused | Restart when |
+|---|---|---|---|---|---|
+| E4 | One neighbor post on Nextdoor | `nextdoor-post-1` | 8+ signups in 7 days | Not posted Oct 29–Nov 10 (0 `nextdoor-` signups) | Thanksgiving week (Nov 23–27) if the owner has time; copy in kit 2026-11-03 §4 |
+| E3 | Meta ads: plan-ahead vs storytime vs holidays, $10/day total | `meta-plan-ahead`, `meta-storytime`, `meta-holidays` | Best ad under $4/subscriber; cut any over $5 | No Pixel or `meta-` signups in 2+ weeks | Within 2 days of the owner saying the Pixel is live; run 7 days |
 
 ## Up next (backlog, ranked)
 
@@ -34,6 +40,7 @@ ICE = impact / confidence / ease, 1–10 each. Keep 3–6 running. Every signup 
 
 ## Notes
 
+- **2026-11-10: owner time is the constraint.** 3 signups in 7 days, 0 tagged, no reply in two weeks. Kept one owner to-do (E5, one post); paused E3 and E4; added E14 (Google, zero owner time). The Nov 9 issue got 58.6% opens, 13.8% clicks (best yet) and 0 unsubscribes, so the product is fine; only reach has stopped.
 - **2026-11-03: first scoring.** 114 subscribers; the Nov 2 issue got 65.5% opens, 8.8% clicks, 0 unsubscribes. E2 scaled, E1 closed unmeasured, E3/E4 never started (re-set). Introduced numbered tags. Kept 3 running (one of them optional) because the owner logged nothing for two weeks and the last two plans' to-dos show no trace in the data.
 - **2026-10-30: still no tags.** 105 subscribers, 77 from Facebook links, 0 tagged. Facebook kept adding (+28 since Tue) with no visible new posts. E3 and E4 show no signs of being live. Friday plan asks the owner for group names in one reply.
 - **2026-10-27: attribution gap.** 63 of 67 signups had no tag (49 from Facebook links, 14 direct). The site saves `?source=` whenever a link has it, so these links went out without the tag. Fix: one ready-made tagged link per group in every kit, and the owner tells us where she posted. Without tags, E2 can't kill or scale individual groups.

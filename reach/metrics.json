@@ -124,5 +124,29 @@
     "issuesSent": 2,
     "upcomingEvents": 10,
     "guides": 3
+  },
+  {
+    "date": "2026-11-10",
+    "newsletterSubscribers": 116,
+    "newSubscribers7d": 3,
+    "newBySource7d": {
+      "ref:facebook.com": 2,
+      "ref:l.instagram.com": 1
+    },
+    "lastIssue": {
+      "subject": "Tyke Hikes, leaf sunprints and Santa at CityCentre",
+      "sent": "2026-11-09T23:54:51.767088Z",
+      "recipients": 116,
+      "openRate": 58.6,
+      "clickRate": 13.8,
+      "unsubscribes": 0
+    },
+    "instagramFollowers": null,
+    "visits7d": null,
+    "topPages": null,
+    "topReferrers": null,
+    "issuesSent": 3,
+    "upcomingEvents": 8,
+    "guides": 3
   }
 ]

@@ -29,10 +29,10 @@
       "Libraries usually close or shorten hours around Thanksgiving, and storytimes can pause on holiday weeks. Check the branch calendar the week before.",
       "Do outdoor plans early in the week and save the free indoor spots for whichever day it rains.",
       "Frolic's Castle at Memorial City Mall requires socks, and weekday mornings are the quietest.",
-      "Ring Library's toddler storytime opens registration about two weeks ahead, so sign up around Nov 9.",
+      "Ring Library's toddler storytime opens registration about two weeks ahead, so check the library calendar now for the break week.",
       "Kids-eat-free nights change without notice, especially on holiday weeks. Call the restaurant before you go."
     ],
-    "updated": "2026-10-25",
+    "updated": "2026-11-10",
     "expires": "2026-11-29"
   },
   {
@@ -96,5 +96,36 @@
     ],
     "updated": "2026-11-03",
     "expires": "2026-12-06"
+  },
+  {
+    "id": "rainy-day-free-indoor-play-kids-spring-branch-memorial",
+    "title": "Rainy day with little kids in Spring Branch & Memorial: free indoor play",
+    "description": "Free indoor play spots and storytimes for babies, toddlers and preschoolers near Spring Branch & Memorial, for rainy, cold or too-hot days.",
+    "intro": [
+      "Houston weather cancels a lot of park mornings: a storm rolls in, a cold front blows through, or it's August. The good news is that Spring Branch and Memorial have free indoor options most days of the week, close to home.",
+      "The big one is Frolic's Castle at Memorial City Mall, a free three-story play castle for kids under 48 inches with a separate toddler area. For smaller kids there's the free indoor play area at Christ the King Presbyterian on Silber, open to the public some weekday mornings. And the three libraries nearby run free storytimes: Baby Bouncers on Wednesdays and Tiny Tykes on Thursdays at Spring Branch Memorial, plus toddler storytime at Ring on Wednesdays.",
+      "If you don't mind a short drive into town, two Heights-area spots are built for rainy days: The Bunny Hive's classes for babies through kindergarten, and Recess, a restaurant with two indoor playgrounds. We'll add more free indoor spots here as we find them."
+    ],
+    "items": [
+      "place:frolics-castle",
+      "place:christ-the-king-play",
+      "weekly:sbm-baby-bouncers",
+      "weekly:sbm-tiny-tykes",
+      "weekly:ring-toddler-storytime",
+      "place:spring-branch-memorial-library",
+      "place:ring-library",
+      "place:hillendahl-library",
+      "place:bunny-hive-houston",
+      "eats:recess-houston"
+    ],
+    "tips": [
+      "Frolic's Castle requires socks, so keep a spare pair in the diaper bag. Weekday mornings are the quietest; rainy Saturdays are the busiest.",
+      "Christ the King's play area hours vary by source. Call the church before you go.",
+      "Baby Bouncers and Tiny Tykes each run twice, at 10:15 and 11:15. If the first session is full, wait for the second.",
+      "On the first rainy day after a dry spell, everyone has the same idea. Go right at opening or after lunch.",
+      "Libraries are free indoor space even when there's no storytime: the picture-book corner and a stack of new books can fill an hour."
+    ],
+    "updated": "2026-11-10",
+    "expires": null
   }
 ]

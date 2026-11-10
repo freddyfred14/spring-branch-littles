@@ -1,6 +1,6 @@
 # Spring Branch Littles: 90-day growth strategy
 
-Written 2026-10-25; updated 2026-11-03. Change only when our data says so.
+Written 2026-10-25; updated 2026-11-10. Change only when our data says so.
 
 ## Positioning
 
@@ -9,34 +9,30 @@ What we're not: a blog, an ad circular, or a citywide list where half the events
 
 ## Targets
 
-Day 0 = Oct 26, 2026 (first issue). All of these are **guesses** until we have two weeks of our own data.
+Day 0 = Oct 26, 2026 (first issue). **Reset 2026-11-10** from 250 / 550 / 900 (see the update below). Conversion and ad targets are still guesses.
 
 | | Day 30 (Nov 24) | Day 60 (Dec 24) | Day 90 (Jan 23) |
 |---|---|---|---|
-| Subscribers | **250** | 550 | 900 |
-| New per week | 60 | 75 | 85 |
+| Subscribers | **140** | 260 | 400 |
+| New per week | 12 | 30 | 35 |
 | `/join/` conversion, warm traffic | 30% | 30% | 30% |
 | `/join/` conversion, ads | 15% | 18% | 20% |
 | Open rate | 55%+ | 50%+ | 50%+ |
 | Meta cost per subscriber | under $4 | under $3 | under $3 |
 | Unsubscribes per issue | under 1% | under 1% | under 1% |
 
-**How the first 250 add up (the launch math):**
-- Owner's own network (texts, group chats, forwards): 50–80
-- Facebook groups and moms' clubs (6–8 posts at 10–20 each): 80–120
-- Meta ads ($10/day for 3 weeks ≈ $210 at $3–4): 50–70
-- Nextdoor, Instagram, partners, flyers: 20–40
+**How we get to 400 (the math, Nov 10):** 116 now. One group post a week for 10 weeks at ~20 each: +200. Guides, forwards, Instagram and the `/thanks/` share prompt: +5–8 a week ≈ +50–80. Holiday and winter-break guides give the posts their hook. Ads, Nextdoor, partners and flyers are upside, not in the base.
 
 
-**Update 2026-10-27:** 67 subscribers two days in, 73% from Facebook links, almost none tagged.
+**History:** day 8 (Nov 3): 114, about 4 in 5 from Facebook links; Nov 2 issue 65.5% opens. Target held at 250 then.
 
-**Update 2026-11-03 (first full week):** **114 subscribers on day 8.** Facebook links brought about 4 in 5. The Nov 2 issue got **65.5% opens** (target 55%+, met), 8.8% clicks and 0 unsubscribes. **Day-30 target stays at 250, not 300.** Signups slowed to +9 between Fri Oct 30 and Tue Nov 3: the launch posts' tail is fading, and no new posts, ads or Nextdoor went out. We need about 45 a week for three weeks, which takes about 2 new group posts a week. Raise the target only if E5 posts average 15+. The owner has logged nothing in two weeks, so plans now ask for 2–3 small to-dos a week.
+**Update 2026-11-10 (day 15): targets reset to 140 / 260 / 400.** Only +2 in a week (3 new, 0 tagged). No new posts in two weeks; without posts we grow 2–3 a week, and 250 would have needed +134 in two weeks. The new targets assume **one group post a week** (15–30 each is a guess; launch posts brought ~100) plus a small trickle, and **no ads**. Ads holding under $4 would add ~15 a week per $10/day. Raise the targets when two posts in a row bring 15+. The Nov 9 issue got 58.6% opens, 13.8% clicks, 0 unsubscribes: the product is fine; owner time is the limit. Plans ask for **one must-do a week**, and growth that needs no owner time (guides, a `/thanks/` share prompt, the forward line) moves up.
 
 ## Channel bets, ranked
 
-Ranked by expected subscribers per hour of the owner's time, then per dollar. Everything is **assumed** until the experiment board says otherwise. *Nov 3 re-rank: Facebook groups move to #1 (proven: about 4 in 5 of the first 114). The network drops to #2: it was a one-time push and we couldn't measure it (E1 closed). Each Facebook post now carries a numbered tag, so we can rank groups.*
+Ranked by expected subscribers per hour of the owner's time, then per dollar. **Assumed** unless marked proven. *Nov 3: Facebook groups moved to #1 (proven); the network to #2 (one-time, unmeasured).*
 
-1. **Local Facebook groups and moms' clubs** (**proven:** roughly 90 signups from launch-week posts; per-post numbers unknown, ~10 min each). The biggest pool of warm local parents. Value first (3–4 real events or a guide), say she runs it, follow every group's rules, at most once every 2–3 weeks per group. About 2 posts a week through Dec 6, each with a numbered tag (`fb-thanksgiving-1`…). Lead with guides: Thanksgiving break now, holiday events from Nov 27, storytimes in between.
+1. **Local Facebook groups and moms' clubs** (**proven:** ~90 signups from launch-week posts; ~10 min each). Value first (3–4 real events or a guide), say she runs it, follow every group's rules, at most once every 2–3 weeks per group. **One post a week**, same night, each with a numbered tag. Lead with guides: Thanksgiving now, holiday events from Nov 27, winter break in December.
 2. **The owner's network** (assumed 50+ per hour, done once). People who already trust her. The launch texts probably account for most of the ~25 direct signups. Don't repeat the blast; the "forward this" line in every issue carries it on.
 3. **Meta ads** (est. $3–5 per subscriber, almost no owner time after setup). The only channel that scales with money. Leads objective with the Pixel, ZIPs 77024/77055/77080/77043/77079/77041. Start with three concepts and kill the losers after 5–7 days.
 4. **Seasonal SEO guides + Facebook shares** (zero owner time for the guide, ~5 min to share). Thanksgiving break and winter break guides give her something genuinely useful to post in groups, which beats "please subscribe".
@@ -56,7 +52,6 @@ Ranked by expected subscribers per hour of the owner's time, then per dollar. Ev
 | Oct 26–31 | Halloween week, first issue | Network texts, first 2–3 group posts with the Halloween picks, set up the Pixel, start ads |
 | Nov 2–13 | **2–3 weeks before Thanksgiving break** | Publish and share the Thanksgiving-break guide; group posts #2; ads on "plan-ahead" + a new "Thanksgiving break" concept; first partner emails |
 | Nov 23–27 | SBISD Thanksgiving break | Daily Stories with picks; Nextdoor post; ask readers to forward |
-| Nov 28 | Holiday in the Plaza (CityCentre, date may change) | Holiday content starts |
 | Nov 27–Dec 3 | Holiday kickoff (Holiday in the Plaza Nov 28, Frozen night Dec 4) | Share the holiday-events guide (published Nov 3) in groups (E13); Santa Reel |
 | Dec 1–12 | **2–3 weeks before winter break**, holiday events | Winter-break guide; "holidays" ad concept; media pitch; giveaway |
 | Dec 21–Jan 4 | SBISD winter break | Indoor/rainy-day guide refresh; lighter posting; ads keep running |

@@ -2,6 +2,18 @@
 
 Newest first. The owner can add notes here too ("posted in X group, 15 signups").
 
+## 2026-11-10 · Tuesday full run · focus: one Thanksgiving post; targets reset to the owner's real bandwidth
+- Metrics: **116 subscribers** (+2 since last Tue). 7d: 3 new (ref:facebook.com 2, l.instagram.com 1), **0 tagged** again, so neither the Nov 4 nor the Nov 8 `fb-thanksgiving-1` slot was used. Nov 9 issue ("Tyke Hikes, leaf sunprints and Santa at CityCentre", sent Sun 5:54 pm CST to 116): **58.6% opens, 13.8% clicks (best yet), 0 unsubs**, pulled ~14 h after send. Visits, conversion and IG still null. 8 upcoming events, 3 → 4 guides. Owner logged nothing and hasn't replied in two weeks.
+- Scored: no experiment reached its end date. E5 cut to one post (any night Nov 11–15), scored Nov 17. **E3 (ads) and E4 (Nextdoor) paused**: two weeks with no trace. Added **E14** (guides → Google, zero owner time, to Dec 8).
+- `strategy.md`: **targets reset 250/550/900 → 140/260/400.** Why: without posts we grow 2–3/week, and the old day-30 number needed +134 in two weeks. New base = one group post a week, no ads; ads are upside. Facebook bet now "one post a week, same night". Trimmed to 1,200 words.
+- Published guide `rainy-day-free-indoor-play-kids-spring-branch-memorial` (10 listings, evergreen). Refreshed the Thanksgiving guide (stale "register around Nov 9" tip). Asked the research agent for more indoor play listings.
+- Blog ideas +3 (Thanksgiving Day with a baby/toddler, holiday lights and bedtimes, non-toy gifts).
+- Targets 47 → 53 (Spring Branch Presbyterian Academy, St. Christopher's Day School, Memorial Church of Christ Friendship School, Memorial Drive Christian Church Children's Program, Pines Presbyterian Preschool (may be closed; verify), Slowpokes Spring Branch).
+- Playbook v0.4: week-3 stall and baseline (2–3/week without posts), revised owner-commitment default (one big launch week, then one post a week), Instagram auto-posts proven small, issue-3 subject data, subject-line pitfall.
+- Plan + kit: `plans/2026-11-10.md`, `kits/2026-11-10.md`. One must-do (~10 min): Thanksgiving guide post, tag `fb-thanksgiving-1`. Optional: rainy-day Story (`ig-story-rainy-day`), a one-word reply. Backup text (`text-thanksgiving`).
+- Requests: subject line skips closed/tween events, more events for Nov 14–Dec 13 (the Nov 16 issue is thin), indoor play listings, `/thanks/` share prompt, label `confirmed`/`unknown`, backfill Oct 27 stats. Send time moved to Sunday ~6 pm on its own; fine for Sunday-night planners, so I dropped the 7 am Monday request.
+- `npm run check`: passes (14 warnings, all "never verified" listings for the research agent).
+
 ## 2026-11-06 · Friday pulse · focus: restart growth with one Sunday-night Thanksgiving post
 - Metrics: **116 subscribers** (+2 since Tue). 7d: 11 new (ref:facebook.com 10, l.instagram.com 1). **0 tagged**, so `fb-thanksgiving-1` (due Wed Nov 4) shows no trace; owner logged nothing and didn't reply. Nov 2 issue now **67.3% opens**, 8.8% clicks, 0 unsubs. 10 upcoming events, 3 guides.
 - Read: without new posts, growth is ~1/day (launch tail almost gone). At that pace day 30 (Nov 24) lands near 135 vs the 250 target. Flagged in the plan; target reset decision on Tue Nov 10 after seeing this weekend's post. Retention is strong, so the problem is purely reach.
