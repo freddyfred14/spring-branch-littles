@@ -1,5 +1,5 @@
 {
-  "pulledAt": "2026-11-10T13:23:32.524Z",
+  "pulledAt": "2026-11-12T13:30:31.600Z",
   "subscribers": 116,
   "unconfirmed": 1,
   "issues": [
@@ -8,12 +8,12 @@
       "subject": "Tyke Hikes, leaf sunprints and Santa at CityCentre",
       "recipients": 116,
       "delivered": 115,
-      "opens": 67,
-      "clicks": 16,
+      "opens": 70,
+      "clicks": 17,
       "unsubscribes": 0,
       "complaints": 0,
-      "openRate": "58.3%",
-      "clickRate": "13.9%"
+      "openRate": "60.9%",
+      "clickRate": "14.8%"
     },
     {
       "date": "2026-11-02",
