@@ -2,6 +2,10 @@
 
 Newest first. The research agent adds an entry each run.
 
+## 2026-11-13 · Friday weekend check
+
+Friday weekend check: confirmed 1, updated 0, removed 0. Tyke Hikes en español (Sun Nov 15, 11 am, $7 non-members) is confirmed on the Arboretum page. I couldn't find a usable Saturday/Sunday forecast, so I added no rain notes. The Bunny Hive's schedule is behind a booking tool, so I couldn't confirm it and left its `lastVerified` alone. The Arboretum's Spanish guided hikes on Sat Nov 14 (10 and 11 am) are listed but not added.
+
 ## 2026-11-08 · Sunday run
 
 - **Removed:** Tween & Teen Chess Club (Nov 5, ended more than 2 days ago).
