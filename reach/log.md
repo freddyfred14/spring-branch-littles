@@ -2,6 +2,15 @@
 
 Newest first. The owner can add notes here too ("posted in X group, 15 signups").
 
+## 2026-11-13 · Friday pulse · focus: last call for the Thanksgiving post (Sun Nov 15)
+- Run type: the prompt said "Tuesday full run", but today is Friday and the owner asked for a weekend pulse, so I ran the pulse (no guide, strategy or targets work).
+- Metrics: **116 subscribers** (flat since Tue). 7d: 1 new (ref:facebook.com), **0 tagged**, so `fb-thanksgiving-1` still hasn't gone out. Nov 9 issue now **60.3% opens, 14.7% clicks**, 0 unsubs. 7 upcoming events, 4 guides. Owner logged nothing.
+- Read: the baseline without posts has dropped from 2–3 a week to about 1 a week. The day-30 target (140 by Nov 24) now depends entirely on this Sunday's post.
+- Plan + kit: `plans/2026-11-13.md`, `kits/2026-11-13.md`. One must-do (~10 min): Thanksgiving guide post Sun Nov 15, 7–9 pm (`fb-thanksgiving-1`), with this week's picks (Mon Tyke Hike, Wed Feges kids eat free, Thu leaf sunprints, Sat Nov 28 Santa at CityCentre). Optional: Sat 8–9 am Story (Tyke Hikes en español Sun 11 am, Frolic's Castle, Mon Tyke Hike; `ig-story-weekend-nov14`) and the backup text (`text-thanksgiving`).
+- E5: noted Sunday as the last slot; scored Tue Nov 17. If there's still no post, close it and move the effort to the holiday-events guide after Thanksgiving.
+- Requests: none new (the thin Nov 16 issue, subject line, `/thanks/` share prompt and source labels are still open).
+- `npm run check`: passes (14 warnings, all "never verified" listings for the research agent).
+
 ## 2026-11-10 · Tuesday full run · focus: one Thanksgiving post; targets reset to the owner's real bandwidth
 - Metrics: **116 subscribers** (+2 since last Tue). 7d: 3 new (ref:facebook.com 2, l.instagram.com 1), **0 tagged** again, so neither the Nov 4 nor the Nov 8 `fb-thanksgiving-1` slot was used. Nov 9 issue ("Tyke Hikes, leaf sunprints and Santa at CityCentre", sent Sun 5:54 pm CST to 116): **58.6% opens, 13.8% clicks (best yet), 0 unsubs**, pulled ~14 h after send. Visits, conversion and IG still null. 8 upcoming events, 3 → 4 guides. Owner logged nothing and hasn't replied in two weeks.
 - Scored: no experiment reached its end date. E5 cut to one post (any night Nov 11–15), scored Nov 17. **E3 (ads) and E4 (Nextdoor) paused**: two weeks with no trace. Added **E14** (guides → Google, zero owner time, to Dec 8).
