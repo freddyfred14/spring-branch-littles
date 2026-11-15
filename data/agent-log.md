@@ -2,6 +2,16 @@
 
 Newest first. The research agent adds an entry each run.
 
+## 2026-11-15 · Sunday run
+
+- **Removed:** four events that ended more than 2 days ago (Arboretum scavenger hunt Nov 7, Standing Tall Nov 8, Homeschool Hangout Nov 9, tween book club Nov 10).
+- **Added (HCPL Spring Branch Memorial, all free, each on its own event page):** Baby Godzilla Party (Nov 18, two sessions), Tiny Tykes Pajama Story Time (Nov 19, two sessions), Pinecone Gnomes (Dec 2, ages 4-8).
+- **Updated:** Hatchlings cost corrected to $10 members / $15 nonmembers; Nov 18 is its last class until January. Confirmed on library and Arboretum calendars: Baby Bouncer, Tiny Tykes, Leaf Sunprints, Nutcracker Sing Move Play, Tyke Hikes (Nov 16, Dec 7), Tyke Hikes en español.
+- **Newsletter:** wrote `drafts/2026-11-16.json`. Story of the week is Camp Logan Playground (Greenside ran last week, so it's no longer featured).
+- **Couldn't confirm / not done:** no 2026 dates for the Memorial City lights event, Memorial City tree lighting or Hedwig/Spring Valley events, and I found no new local news worth adding. Memorial City's holidays page lists Sensory Santa (Dec 6 and 13, 9-10 am, reservations) and Christmas with Santa at The Westin (Dec 13, 10 am-1 pm), but no cost, so I didn't add them. No local event found for the Nov 21-22 weekend. HPL (Ring, Hillendahl) not re-checked; the Ring storytime link is still the general calendar. Deals, restaurants, places, CityCentre and Memorial Park Conservancy pages not re-verified. SBISD links (Client Challenge), Union Kitchen (403) and Black-Eyed Pea (homepage) left as is.
+- **Still thin:** the local calendar is below the 8-12 target.
+- Photo idea for the owner: Holiday in the Plaza (Nov 28), Neighborhood Nights (Dec 4).
+
 ## 2026-11-13 · Friday weekend check
 
 Friday weekend check: confirmed 1, updated 0, removed 0. Tyke Hikes en español (Sun Nov 15, 11 am, $7 non-members) is confirmed on the Arboretum page. I couldn't find a usable Saturday/Sunday forecast, so I added no rain notes. The Bunny Hive's schedule is behind a booking tool, so I couldn't confirm it and left its `lastVerified` alone. The Arboretum's Spanish guided hikes on Sat Nov 14 (10 and 11 am) are listed but not added.
