@@ -51,7 +51,10 @@
     ],
     "description": "A special Baby Bouncer playtime for crawlers and first steppers: little ones rampage through a pretend city wearing dinosaur tails. A second session runs 11:15 to 11:45. Space is limited; tickets at the info desk 15 minutes before.",
     "url": "https://hcpl.bibliocommons.com/v2/events/6a7f8c5b3f18f80030bb3304",
-    "imagePrompt": "Crawling babies and early walkers wearing little green dinosaur tails stomp through a cardboard city of blocks on a library carpet while smiling parents sit nearby. Bright, silly and joyful."
+    "imagePrompt": "Crawling babies and early walkers wearing little green dinosaur tails stomp through a cardboard city of blocks on a library carpet while smiling parents sit nearby. Bright, silly and joyful.",
+    "image": "/img/events/2026-11-18-sbm-library-baby-godzilla.jpg",
+    "imageAlt": "Illustration: Crawling babies and early walkers wearing little green dinosaur tails stomp through a cardboard city of blocks on a library carpet while smiling parents sit nearby",
+    "imageCredit": "AI illustration"
   },
   {
     "id": "2026-11-19-sbm-library-leaf-sunprints",
@@ -104,7 +107,10 @@
     ],
     "description": "A bedtime-themed Tiny Tykes storytime with songs and rhymes for walkers. Pajamas encouraged. A second session runs 11:15 to 11:45. Free tickets are handed out 15 minutes before and run out once the program starts.",
     "url": "https://hcpl.bibliocommons.com/v2/events/6a808068aafa6100295cccac",
-    "imagePrompt": "Toddlers in cozy pajamas holding stuffed animals sit on a rug in a library children area while a librarian reads a bedtime picture book. Warm lamp light, joyful and sleepy."
+    "imagePrompt": "Toddlers in cozy pajamas holding stuffed animals sit on a rug in a library children area while a librarian reads a bedtime picture book. Warm lamp light, joyful and sleepy.",
+    "image": "/img/events/2026-11-19-sbm-library-pajama-story-time.jpg",
+    "imageAlt": "Illustration: Toddlers in cozy pajamas holding stuffed animals sit on a rug in a library children area while a librarian reads a bedtime picture book",
+    "imageCredit": "AI illustration"
   },
   {
     "id": "2026-sbisd-thanksgiving-break",
@@ -211,7 +217,10 @@
     ],
     "description": "After-school craft for ages 4 to 8 (preschool through 2nd grade): each child makes a little gnome from a pinecone. The page doesn't mention registration.",
     "url": "https://hcpl.bibliocommons.com/v2/events/6aee4d870b801373af92678f",
-    "imagePrompt": "Children around a library craft table gluing felt hats and beards onto pinecones to make tiny gnomes, pom-poms and glue sticks scattered about. Cheerful and cozy."
+    "imagePrompt": "Children around a library craft table gluing felt hats and beards onto pinecones to make tiny gnomes, pom-poms and glue sticks scattered about. Cheerful and cozy.",
+    "image": "/img/events/2026-12-02-sbm-library-pinecone-gnomes.jpg",
+    "imageAlt": "Illustration: Children around a library craft table gluing felt hats and beards onto pinecones to make tiny gnomes, pom-poms and glue sticks scattered about",
+    "imageCredit": "AI illustration"
   },
   {
     "kind": "event",
