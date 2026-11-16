@@ -3,7 +3,7 @@
   "subject": "Thanksgiving week + a little holiday magic (Santa's number inside)",
   "preheader": "Pajama storytime, Santa at CityCentre, and holiday hotlines your kids can call.",
   "intro": [
-    "Thanksgiving break is almost here (no school Nov 23–27), so this week is your calm before the holiday rush. The library carries it with a Baby Godzilla Party for crawlers on Wednesday and Tiny Tykes Pajama Story Time on Thursday (jammies encouraged), then the season kicks off Saturday, Nov 28 with Santa and his reindeer at CityCentre. For a little extra magic, scroll down to Holiday Fun for phone numbers your kids can call, from Santa to the Grinch."
+    "Thanksgiving break is almost here (no school Nov 23–27), so this week is your calm before the holiday rush. The library carries it with a Baby Godzilla Party for crawlers on Wednesday and Tiny Tykes Pajama Story Time on Thursday (jammies encouraged), then the season kicks off Saturday, Nov 28 with Santa and his reindeer at CityCentre. For a little extra magic, scroll down to Holiday Fun for phone numbers your kids can call (just tap to dial), from Santa to the Grinch."
   ],
   "sections": [
     {
@@ -16,11 +16,96 @@
           "paragraphs": [],
           "url": null,
           "image": {
-            "src": "https://springbranchlittles.com/img/newsletter/holiday-contact-list-2026.jpg",
-            "alt": "Kid-Friendly Contact List, Holiday Season Edition: phone numbers to call Santa (English and Spanish), the North Pole Line, the Christmas Wish Line, the NORAD Santa Tracker, the Grinch Hotline, Call a Carol, Hogwarts Admissions and a Bedtime Story Line.",
+            "src": "https://springbranchlittles.com/img/newsletter/holiday-contacts-top.jpg",
+            "alt": "Spring Branch Littles Kid-Friendly Contact List, Holiday Season Edition: helpful numbers for magical moments",
             "credit": ""
           },
-          "moreLinks": []
+          "moreLinks": [],
+          "contacts": [
+            {
+              "icon": "https://springbranchlittles.com/img/newsletter/holiday-icon-santa.jpg",
+              "title": "Talk to Santa",
+              "text": "Leave a message for Santa!",
+              "phones": [
+                {
+                  "label": "605-313-0691",
+                  "tel": "tel:+16053130691"
+                }
+              ]
+            },
+            {
+              "icon": "https://springbranchlittles.com/img/newsletter/holiday-icon-santa-es.jpg",
+              "title": "Santa en Español",
+              "text": "Deja un mensaje para Santa.",
+              "phones": [
+                {
+                  "label": "605-313-4001",
+                  "tel": "tel:+16053134001"
+                }
+              ]
+            },
+            {
+              "icon": "https://springbranchlittles.com/img/newsletter/holiday-icon-norad.jpg",
+              "title": "NORAD Santa Tracker",
+              "text": "Follow Santa's journey around the world.",
+              "phones": [
+                {
+                  "label": "1-877-446-6723",
+                  "tel": "tel:+18774466723"
+                }
+              ]
+            },
+            {
+              "icon": "https://springbranchlittles.com/img/newsletter/holiday-icon-grinch.jpg",
+              "title": "The Grinch Hotline",
+              "text": "Leave a message for the Grinch!",
+              "phones": [
+                {
+                  "label": "979-205-7067",
+                  "tel": "tel:+19792057067"
+                }
+              ]
+            },
+            {
+              "icon": "https://springbranchlittles.com/img/newsletter/holiday-icon-carol.jpg",
+              "title": "Call a Carol",
+              "text": "Hear a classic holiday tune (Dec 10–16, 2026).",
+              "phones": [
+                {
+                  "label": "217-332-1882",
+                  "tel": "tel:+12173321882"
+                }
+              ]
+            },
+            {
+              "icon": "https://springbranchlittles.com/img/newsletter/holiday-icon-hogwarts.jpg",
+              "title": "Hogwarts Admissions",
+              "text": "Find out if you're a good fit for Hogwarts.",
+              "phones": [
+                {
+                  "label": "781-452-4077",
+                  "tel": "tel:+17814524077"
+                }
+              ]
+            },
+            {
+              "icon": "https://springbranchlittles.com/img/newsletter/holiday-icon-bedtime.jpg",
+              "title": "Bedtime Story Line",
+              "text": "A special story for kids ages 3–7.",
+              "phones": [
+                {
+                  "label": "559-600-8253",
+                  "tel": "tel:+15596008253"
+                },
+                {
+                  "label": "712-832-8555",
+                  "tel": "tel:+17128328555"
+                }
+              ]
+            }
+          ],
+          "footerImage": "https://springbranchlittles.com/img/newsletter/holiday-contacts-bottom.jpg",
+          "background": "#fcf6ea"
         }
       ]
     },
@@ -175,5 +260,5 @@
   ],
   "buttondownId": "em_7k150s76wr8b6tm1hxd4b0g3yg",
   "status": "draft",
-  "sentAt": "2026-11-16T22:16:13.859Z"
+  "sentAt": "2026-11-16T22:22:43.503Z"
 }
