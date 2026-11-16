@@ -111,8 +111,17 @@ export function buildIssue(data, date, draft = loadDraft(date)) {
   const sections = [];
   const site = data.config.url;
 
+  // A draft can swap the story of the week for its own feature (e.g. "Holiday Fun" with a graphic):
+  // { "feature": { "heading", "title"?, "text"?, "image", "imageAlt", "url"? } }
+  const custom = draft.feature;
+  if (custom) {
+    sections.push({
+      heading: custom.heading || "This week",
+      items: [{ feature: true, title: custom.title || "", when: "", paragraphs: custom.text ? [custom.text] : [], url: custom.url ? (custom.url.startsWith("/") ? `${site}${custom.url}` : custom.url) : null, image: custom.image ? { src: custom.image.startsWith("/") ? `${site}${custom.image}` : custom.image, alt: custom.imageAlt || "", credit: custom.imageCredit || "" } : null, moreLinks: [] }],
+    });
+  }
   // The story of the week stays short in the email: a picture, two or three sentences and a link.
-  const story = (draft.featureId && data.news.find((n) => n.id === draft.featureId)) || featuredStory(data, date);
+  const story = custom ? null : (draft.featureId && data.news.find((n) => n.id === draft.featureId)) || featuredStory(data, date);
   if (story) {
     sections.push({
       heading: "Story of the week",
@@ -131,7 +140,8 @@ export function buildIssue(data, date, draft = loadDraft(date)) {
   }
 
   // Storytimes and other weekly programs: a compact list with no photos, after the picks.
-  const weekly = weeklyPrograms(data, date);
+  // A draft can leave out sections for one week: { "hide": ["weekly"] }.
+  const weekly = (draft.hide || []).includes("weekly") ? [] : weeklyPrograms(data, date);
   if (weekly.length) {
     sections.push({
       heading: "Every week",
@@ -192,17 +202,24 @@ export function buildIssue(data, date, draft = loadDraft(date)) {
   };
 }
 
+// A "share with a friend" link that opens the reader's email app with a note and the sign-up link filled in.
+function shareMailto(site) {
+  const body = `I get this free weekly email with kid-friendly plans around Spring Branch and Memorial, and I think you'd like it too: ${site}/join/?source=forward`;
+  return `mailto:?subject=${encodeURIComponent("Kid-friendly plans near Spring Branch")}&body=${encodeURIComponent(body)}`;
+}
+
 export function toMarkdown(issue, config) {
   const out = [];
   for (const p of issue.intro) out.push(p, "");
+  out.push(`[💌 Share with a friend](${shareMailto(config.url)})`, "");
   for (const s of issue.sections) {
     out.push(`## ${s.heading}`, "");
     if (s.items[0]?.feature) {
       const f = s.items[0];
-      out.push(`### ${f.title}`, "");
-      if (f.image) out.push(`![${f.image.alt}](${f.image.src})`, `_${f.image.credit}_`, "");
+      if (f.title) out.push(`### ${f.title}`, "");
+      if (f.image) out.push(`![${f.image.alt}](${f.image.src})`, ...(f.image.credit ? [`_${f.image.credit}_`] : []), "");
       for (const p of f.paragraphs) out.push(p, "");
-      out.push(`[Read more →](${f.url})`, "");
+      if (f.url) out.push(`[Read more →](${f.url})`, "");
       continue;
     }
     if (s.items[0]?.weekly) {
@@ -270,12 +287,12 @@ export function toHtml(issue, config) {
     if (s.items[0]?.feature) {
       const f = s.items[0];
       blocks.push(`<tr><td style="padding:0 20px"><table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:${C.card};border:3px solid ${C.sun};border-radius:18px">
-        ${f.image ? `<tr><td><a href="${h(f.url)}"><img src="${h(f.image.src)}" width="560" alt="${h(f.image.alt)}" style="display:block;width:100%;max-width:560px;height:auto;border-radius:15px 15px 0 0;border:0"></a></td></tr>` : ""}
-        <tr><td style="padding:18px 20px 20px">
-          <h3 style="margin:0 0 8px;font-family:${DISPLAY};font-size:22px;line-height:1.25;font-weight:700;color:${C.ink}">${h(f.title)}</h3>
+        ${f.image ? `<tr><td>${f.url ? `<a href="${h(f.url)}">` : ""}<img src="${h(f.image.src)}" width="560" alt="${h(f.image.alt)}" style="display:block;width:100%;max-width:560px;height:auto;border-radius:15px ${f.title || f.paragraphs.length || f.url ? "15px 0 0" : ""};border:0">${f.url ? "</a>" : ""}</td></tr>` : ""}
+        ${f.title || f.paragraphs.length || f.url ? `<tr><td style="padding:18px 20px 20px">
+          ${f.title ? `<h3 style="margin:0 0 8px;font-family:${DISPLAY};font-size:22px;line-height:1.25;font-weight:700;color:${C.ink}">${h(f.title)}</h3>` : ""}
           ${f.paragraphs.map((p) => `<p style="margin:0 0 14px;font-family:${BODY};font-size:15px;line-height:1.55;color:${C.muted}">${rich(p)}</p>`).join("")}
-          ${button(f.url, "Read more →", C.green)}
-        </td></tr></table></td></tr>`);
+          ${f.url ? button(f.url, "Read more →", C.green) : ""}
+        </td></tr>` : ""}</table></td></tr>`);
       continue;
     }
     if (s.items[0]?.weekly) {
@@ -313,6 +330,7 @@ export function toHtml(issue, config) {
   <tr><td align="center" style="padding:0 20px 14px;font-family:${DISPLAY};font-size:15px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:${C.green}">${h(config.newsletterName)} · ${h(new Date(`${issue.date}T12:00:00Z`).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric", timeZone: "UTC" }))}</td></tr>
   <tr><td style="padding:0 20px"><table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:${C.card};border-radius:18px"><tr><td style="padding:20px 22px 6px">
     ${issue.intro.map((p) => `<p style="margin:0 0 14px;font-family:${BODY};font-size:16px;line-height:1.6;color:${C.ink}">${rich(p)}</p>`).join("")}
+    <p style="margin:0 0 16px">${button(shareMailto(site), "💌 Share with a friend", C.pink)}</p>
   </td></tr></table></td></tr>
   ${blocks.join("\n")}
   <tr><td style="padding:24px 20px 0"><table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#fbe3ea;border-radius:18px"><tr><td align="center" style="padding:22px 22px 24px">
