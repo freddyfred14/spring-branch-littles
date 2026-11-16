@@ -1,0 +1,259 @@
+{
+  "date": "2026-11-16",
+  "subject": "Baby Godzilla, pajama storytime and Santa at CityCentre",
+  "preheader": "Plus: a quiet Thanksgiving week and a plan for the Nov 21 weekend.",
+  "intro": [
+    "This is a gentle stretch before the holiday rush, and the library is carrying it. On Wednesday, Nov 18, Spring Branch Memorial has a Baby Godzilla Party (dinosaur tails for your crawlers), and Thursday, Nov 19 is Tiny Tykes Pajama Story Time for the walkers. Jammies are encouraged.",
+    "Heads-up: Thanksgiving week is a school break (Nov 23–27), and I couldn't find a local event for the Nov 21–22 weekend, so a lap around Memorial Park or the Arboretum trails is your best bet. The library's baby and toddler programs aren't listed for Thanksgiving week and come back in December. Then Saturday, Nov 28 brings Santa and the reindeer to the CityCentre plaza."
+  ],
+  "sections": [
+    {
+      "heading": "Story of the week",
+      "items": [
+        {
+          "title": "Memorial Park's new Camp Logan Playground is under construction",
+          "when": "CultureMap Houston",
+          "where": "",
+          "ages": "",
+          "cost": "",
+          "description": "Part of the 100-acre Memorial Groves project, the new playground will have giant helmets, army crates and even a huge loaf of bread to climb, inspired by the park's WWI history. A visitor center, restrooms and trails are coming too. Completion is targeted for late 2027.",
+          "paragraphs": [
+            "Part of the 100-acre Memorial Groves project, the new playground will have giant helmets, army crates and even a huge loaf of bread to climb, inspired by the park's WWI history. A visitor center, restrooms and trails are coming too. Completion is targeted for late 2027."
+          ],
+          "url": "https://springbranchlittles.com/news/#2026-10-24-memorial-groves-playground",
+          "feature": true,
+          "image": null,
+          "moreLinks": []
+        }
+      ]
+    },
+    {
+      "heading": "Top picks · Nov 16–Nov 29",
+      "items": [
+        {
+          "image": {
+            "src": "https://springbranchlittles.com/img/events/2026-11-18-sbm-library-baby-godzilla-800.jpg",
+            "alt": "Illustration: Crawling babies and early walkers wearing little green dinosaur tails stomp through a cardboard city of blocks on a library carpet while smiling parents sit nearby"
+          },
+          "title": "Baby Godzilla Party (Baby Bouncer special)",
+          "when": "Wed, Nov 18 · 10:15 am–10:45 am",
+          "where": "Spring Branch Memorial Library",
+          "ages": "Babies",
+          "cost": "Free",
+          "description": "A special Baby Bouncer playtime for crawlers and first steppers: little ones rampage through a pretend city wearing dinosaur tails. A second session runs 11:15 to 11:45. Space is limited; tickets at the info desk 15 minutes before.",
+          "url": "https://springbranchlittles.com/events/2026-11-18-sbm-library-baby-godzilla/",
+          "tentative": false
+        },
+        {
+          "image": {
+            "src": "https://springbranchlittles.com/img/events/2026-11-19-sbm-library-pajama-story-time-800.jpg",
+            "alt": "Illustration: Toddlers in cozy pajamas holding stuffed animals sit on a rug in a library children area while a librarian reads a bedtime picture book"
+          },
+          "title": "Tiny Tykes Pajama Story Time",
+          "when": "Thu, Nov 19 · 10:15 am–10:45 am",
+          "where": "Spring Branch Memorial Library",
+          "ages": "Toddlers",
+          "cost": "Free",
+          "description": "A bedtime-themed Tiny Tykes storytime with songs and rhymes for walkers. Pajamas encouraged. A second session runs 11:15 to 11:45. Free tickets are handed out 15 minutes before and run out once the program starts.",
+          "url": "https://springbranchlittles.com/events/2026-11-19-sbm-library-pajama-story-time/",
+          "tentative": false
+        },
+        {
+          "image": {
+            "src": "https://springbranchlittles.com/img/events/2026-11-19-sbm-library-leaf-sunprints-800.jpg",
+            "alt": "Illustration: Kids outside a library holding colorful fall leaves over blue light-sensitive paper in the afternoon sun, a librarian showing them how to press the leaves flat"
+          },
+          "title": "Fall Leaf Sunprints",
+          "when": "Thu, Nov 19 · 4:30 pm–5:30 pm",
+          "where": "Spring Branch Memorial Library",
+          "ages": "Elementary",
+          "cost": "Free",
+          "description": "A STEM craft for kids and tweens: pick fall leaves outside and use light-sensitive paper to make blue cyanotype sunprints.",
+          "url": "https://springbranchlittles.com/events/2026-11-19-sbm-library-leaf-sunprints/",
+          "tentative": false
+        },
+        {
+          "image": {
+            "src": "https://springbranchlittles.com/img/events/2026-citycentre-holiday-in-the-plaza-800.jpg",
+            "alt": "Illustration: An outdoor plaza at dusk with a giant decorated Christmas tree and twinkle lights, kids in winter hats meeting a friendly Santa and a reindeer in a small pen, families holding hot cocoa"
+          },
+          "title": "Holiday in the Plaza",
+          "when": "Sat, Nov 28 · 12 pm–4 pm",
+          "where": "CityCentre",
+          "ages": "Babies, Toddlers, Preschool, Elementary",
+          "cost": "Free",
+          "description": "Meet Santa and two of his reindeer, with free professional photos, plus holiday singing and dancing. A donation for the SPCA is welcome. Santa leaves at 4 pm, so arrive on time; weather permitting.",
+          "url": "https://springbranchlittles.com/events/2026-citycentre-holiday-in-the-plaza/",
+          "tentative": false
+        }
+      ]
+    },
+    {
+      "heading": "Every week",
+      "items": [
+        {
+          "image": null,
+          "title": "Tyke Hike at Arrowwood Pond",
+          "when": "Select Mondays: Nov 2, 9, 16, then Dec 7, 14, 21 · 9:30 am–10:15 am",
+          "where": "Houston Arboretum & Nature Center",
+          "ages": "Toddlers, Preschool",
+          "cost": "$7 per child (members free)",
+          "description": "A naturalist leads a story, a simple nature activity and a stroller-friendly trail hike for ages 18 months to 4 with a grown-up. Two sessions, 9:30 and 10:30 am.",
+          "url": "https://springbranchlittles.com/events/weekly/arboretum-tyke-hikes/",
+          "tentative": false,
+          "weekly": true
+        },
+        {
+          "image": null,
+          "title": "Stories & Crafts in the Cabin",
+          "when": "Selected Mondays, September–May · 10:30 am–11:30 am",
+          "where": "Edith L. Moore Nature Sanctuary",
+          "ages": "Preschool",
+          "cost": "About $10–12 per child",
+          "description": "A nature story and craft in the sanctuary's log cabin for ages 3–5 with an adult. Siblings with a supervising adult come free.",
+          "url": "https://springbranchlittles.com/events/weekly/edith-moore-stories-crafts/",
+          "tentative": false,
+          "weekly": true
+        },
+        {
+          "image": null,
+          "title": "Hatchlings outdoor play for babies",
+          "when": "Wednesdays, Nov 4, 11 and 18 · 10 am–11 am",
+          "where": "Houston Arboretum & Nature Center",
+          "ages": "Babies",
+          "cost": "$10 members / $15 nonmembers per child and caregiver",
+          "description": "**Registration is full** for 2026 classes; check for a waitlist. Messy outdoor play with sand, mud, sticks and leaves for ages 0–18 months with a caregiver. Bring a change of clothes.",
+          "url": "https://springbranchlittles.com/events/weekly/arboretum-hatchlings/",
+          "tentative": false,
+          "weekly": true
+        },
+        {
+          "image": null,
+          "title": "Baby Bouncers playtime",
+          "when": "Wednesdays · 10:15 am",
+          "where": "Spring Branch Memorial Library",
+          "ages": "Babies, Toddlers",
+          "cost": "Free",
+          "description": "Bouncy songs, rhymes and playtime for crawlers and babies taking their first steps. Two sessions, 10:15 and 11:15.",
+          "url": "https://springbranchlittles.com/events/weekly/sbm-baby-bouncers/",
+          "tentative": false,
+          "weekly": true
+        },
+        {
+          "image": null,
+          "title": "Toddler storytime",
+          "when": "Wednesdays · 10:30 am–11:30 am",
+          "where": "Ring Neighborhood Library",
+          "ages": "Toddlers",
+          "cost": "Free",
+          "description": "Books, songs and movement for ages 18–36 months with a caregiver.",
+          "url": "https://springbranchlittles.com/events/weekly/ring-toddler-storytime/",
+          "tentative": false,
+          "weekly": true
+        },
+        {
+          "image": null,
+          "title": "Tiny Tykes storytime",
+          "when": "Thursdays · 10:15 am",
+          "where": "Spring Branch Memorial Library",
+          "ages": "Toddlers",
+          "cost": "Free",
+          "description": "Interactive storytime for new walkers and their grown-ups: stories, songs and finger plays. Two sessions, 10:15 and 11:15. Some weeks it's outside in the Reading Garden.",
+          "url": "https://springbranchlittles.com/events/weekly/sbm-tiny-tykes/",
+          "tentative": false,
+          "weekly": true
+        }
+      ]
+    },
+    {
+      "heading": "Where to eat this week",
+      "items": [
+        {
+          "title": "Lupe Tortilla",
+          "when": "Memorial · $$ · Play area, Patio",
+          "where": "",
+          "description": "Tex-Mex with an outdoor play area, a Houston family favorite for fajita night.",
+          "url": "https://www.lupetortilla.com/",
+          "deal": true
+        },
+        {
+          "title": "Ciro's Italian Grill",
+          "when": "Memorial · $$ · Play area, Patio",
+          "where": "",
+          "description": "Family-owned Italian spot with a two-story space, wood-fired pizza, a gelato bar and a patio with room for kids to play.",
+          "url": "https://www.google.com/maps/search/?api=1&query=Ciro%27s+Italian+Grill+9755+Katy+Fwy+Houston+TX",
+          "deal": true
+        },
+        {
+          "title": "Lazy Oaks Beer Garden",
+          "when": "Spring Branch · $$ · Play area, Patio",
+          "where": "",
+          "description": "A shady, laid-back beer garden with a playground, so kids can climb while grown-ups relax.",
+          "url": "https://www.google.com/maps/search/?api=1&query=Lazy+Oaks+Beer+Garden+10158+Long+Point+Rd+Houston+TX",
+          "deal": true
+        }
+      ]
+    },
+    {
+      "heading": "From the blog",
+      "items": [
+        {
+          "image": {
+            "src": "https://springbranchlittles.com/img/blog/thanksgiving-day-baby-toddler-naps-800.jpg",
+            "alt": "Illustration: A warm, realistic, candid photo in a cozy guest bedroom at a relative's Houston home on Thanksgiving afternoon, landscape"
+          },
+          "title": "Your toddler will skip the Thanksgiving nap. Here's how to survive it.",
+          "when": "4-minute article",
+          "where": "",
+          "description": "A loud house, a late dinner and no crib in sight. How to save the nap, make a relative's home safe in 10 minutes and leave early without guilt.",
+          "url": "https://springbranchlittles.com/blog/thanksgiving-day-baby-toddler-naps/",
+          "news": true
+        },
+        {
+          "image": {
+            "src": "https://springbranchlittles.com/img/blog/screens-thanksgiving-school-break-800.jpg",
+            "alt": "Illustration: A warm, realistic, candid photo in a sunny Houston backyard on a cool late-November morning, landscape"
+          },
+          "title": "Five days off school? You don't need zero screens. You need a plan.",
+          "when": "4-minute article",
+          "where": "",
+          "description": "SBISD is out Nov 23–27. Why loose days turn into screen marathons, and a no-guilt plan that makes screens a tool, not the whole day.",
+          "url": "https://springbranchlittles.com/blog/screens-thanksgiving-school-break/",
+          "news": true
+        }
+      ]
+    },
+    {
+      "heading": "Mark your calendar",
+      "items": [
+        {
+          "title": "SBISD Thanksgiving break",
+          "when": "Nov 23 – Nov 27 · No school",
+          "where": "",
+          "description": "No school all week. Plan library visits and park days early, since popular spots fill up.",
+          "url": "https://www.springbranchisd.com/events/",
+          "deal": true
+        },
+        {
+          "title": "Neighborhood Nights: Holiday Edition",
+          "when": "Fri, Dec 4 · 5 pm",
+          "where": "",
+          "description": "A free holiday evening on the lawn: Frozen movie at 6 pm, photos with Santa, Anna and Elsa, letters to Santa, a train ride, cocoa and food trucks. Bring a blanket; no strollers or bikes. Listing end time varies (8 or 9 pm).",
+          "url": "https://springbranchlittles.com/events/2026-12-04-memorial-park-neighborhood-nights-holiday/",
+          "deal": true
+        },
+        {
+          "title": "SBISD winter break",
+          "when": "Dec 21 – Jan 4 · No school",
+          "where": "",
+          "description": "Two weeks off school. We'll round up winter break camps and indoor ideas in December.",
+          "url": "https://www.springbranchisd.com/events/",
+          "deal": true
+        }
+      ]
+    }
+  ],
+  "buttondownId": "em_7k150s76wr8b6tm1hxd4b0g3yg",
+  "status": "draft",
+  "sentAt": "2026-11-16T14:07:41.157Z"
+}
