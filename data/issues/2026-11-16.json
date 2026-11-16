@@ -1,28 +1,25 @@
 {
   "date": "2026-11-16",
-  "subject": "Baby Godzilla, pajama storytime and Santa at CityCentre",
-  "preheader": "Plus: a quiet Thanksgiving week and a plan for the Nov 21 weekend.",
+  "subject": "Thanksgiving week + a little holiday magic (Santa's number inside)",
+  "preheader": "Pajama storytime, Santa at CityCentre, and holiday hotlines your kids can call.",
   "intro": [
-    "This is a gentle stretch before the holiday rush, and the library is carrying it. On Wednesday, Nov 18, Spring Branch Memorial has a Baby Godzilla Party (dinosaur tails for your crawlers), and Thursday, Nov 19 is Tiny Tykes Pajama Story Time for the walkers. Jammies are encouraged.",
-    "Heads-up: Thanksgiving week is a school break (Nov 23–27), and I couldn't find a local event for the Nov 21–22 weekend, so a lap around Memorial Park or the Arboretum trails is your best bet. The library's baby and toddler programs aren't listed for Thanksgiving week and come back in December. Then Saturday, Nov 28 brings Santa and the reindeer to the CityCentre plaza."
+    "Thanksgiving break is almost here (no school Nov 23–27), so this week is your calm before the holiday rush. The library carries it with a Baby Godzilla Party for crawlers on Wednesday and Tiny Tykes Pajama Story Time on Thursday (jammies encouraged), then the season kicks off Saturday, Nov 28 with Santa and his reindeer at CityCentre. For a little extra magic, scroll down to Holiday Fun for phone numbers your kids can call, from Santa to the Grinch."
   ],
   "sections": [
     {
-      "heading": "Story of the week",
+      "heading": "Holiday Fun",
       "items": [
         {
-          "title": "Memorial Park's new Camp Logan Playground is under construction",
-          "when": "CultureMap Houston",
-          "where": "",
-          "ages": "",
-          "cost": "",
-          "description": "Part of the 100-acre Memorial Groves project, the new playground will have giant helmets, army crates and even a huge loaf of bread to climb, inspired by the park's WWI history. A visitor center, restrooms and trails are coming too. Completion is targeted for late 2027.",
-          "paragraphs": [
-            "Part of the 100-acre Memorial Groves project, the new playground will have giant helmets, army crates and even a huge loaf of bread to climb, inspired by the park's WWI history. A visitor center, restrooms and trails are coming too. Completion is targeted for late 2027."
-          ],
-          "url": "https://springbranchlittles.com/news/#2026-10-24-memorial-groves-playground",
           "feature": true,
-          "image": null,
+          "title": "",
+          "when": "",
+          "paragraphs": [],
+          "url": null,
+          "image": {
+            "src": "https://springbranchlittles.com/img/newsletter/holiday-contact-list-2026.jpg",
+            "alt": "Kid-Friendly Contact List, Holiday Season Edition: phone numbers to call Santa (English and Spanish), the North Pole Line, the Christmas Wish Line, the NORAD Santa Tracker, the Grinch Hotline, Call a Carol, Hogwarts Admissions and a Bedtime Story Line.",
+            "credit": ""
+          },
           "moreLinks": []
         }
       ]
@@ -85,83 +82,6 @@
           "description": "Meet Santa and two of his reindeer, with free professional photos, plus holiday singing and dancing. A donation for the SPCA is welcome. Santa leaves at 4 pm, so arrive on time; weather permitting.",
           "url": "https://springbranchlittles.com/events/2026-citycentre-holiday-in-the-plaza/",
           "tentative": false
-        }
-      ]
-    },
-    {
-      "heading": "Every week",
-      "items": [
-        {
-          "image": null,
-          "title": "Tyke Hike at Arrowwood Pond",
-          "when": "Select Mondays: Nov 2, 9, 16, then Dec 7, 14, 21 · 9:30 am–10:15 am",
-          "where": "Houston Arboretum & Nature Center",
-          "ages": "Toddlers, Preschool",
-          "cost": "$7 per child (members free)",
-          "description": "A naturalist leads a story, a simple nature activity and a stroller-friendly trail hike for ages 18 months to 4 with a grown-up. Two sessions, 9:30 and 10:30 am.",
-          "url": "https://springbranchlittles.com/events/weekly/arboretum-tyke-hikes/",
-          "tentative": false,
-          "weekly": true
-        },
-        {
-          "image": null,
-          "title": "Stories & Crafts in the Cabin",
-          "when": "Selected Mondays, September–May · 10:30 am–11:30 am",
-          "where": "Edith L. Moore Nature Sanctuary",
-          "ages": "Preschool",
-          "cost": "About $10–12 per child",
-          "description": "A nature story and craft in the sanctuary's log cabin for ages 3–5 with an adult. Siblings with a supervising adult come free.",
-          "url": "https://springbranchlittles.com/events/weekly/edith-moore-stories-crafts/",
-          "tentative": false,
-          "weekly": true
-        },
-        {
-          "image": null,
-          "title": "Hatchlings outdoor play for babies",
-          "when": "Wednesdays, Nov 4, 11 and 18 · 10 am–11 am",
-          "where": "Houston Arboretum & Nature Center",
-          "ages": "Babies",
-          "cost": "$10 members / $15 nonmembers per child and caregiver",
-          "description": "**Registration is full** for 2026 classes; check for a waitlist. Messy outdoor play with sand, mud, sticks and leaves for ages 0–18 months with a caregiver. Bring a change of clothes.",
-          "url": "https://springbranchlittles.com/events/weekly/arboretum-hatchlings/",
-          "tentative": false,
-          "weekly": true
-        },
-        {
-          "image": null,
-          "title": "Baby Bouncers playtime",
-          "when": "Wednesdays · 10:15 am",
-          "where": "Spring Branch Memorial Library",
-          "ages": "Babies, Toddlers",
-          "cost": "Free",
-          "description": "Bouncy songs, rhymes and playtime for crawlers and babies taking their first steps. Two sessions, 10:15 and 11:15.",
-          "url": "https://springbranchlittles.com/events/weekly/sbm-baby-bouncers/",
-          "tentative": false,
-          "weekly": true
-        },
-        {
-          "image": null,
-          "title": "Toddler storytime",
-          "when": "Wednesdays · 10:30 am–11:30 am",
-          "where": "Ring Neighborhood Library",
-          "ages": "Toddlers",
-          "cost": "Free",
-          "description": "Books, songs and movement for ages 18–36 months with a caregiver.",
-          "url": "https://springbranchlittles.com/events/weekly/ring-toddler-storytime/",
-          "tentative": false,
-          "weekly": true
-        },
-        {
-          "image": null,
-          "title": "Tiny Tykes storytime",
-          "when": "Thursdays · 10:15 am",
-          "where": "Spring Branch Memorial Library",
-          "ages": "Toddlers",
-          "cost": "Free",
-          "description": "Interactive storytime for new walkers and their grown-ups: stories, songs and finger plays. Two sessions, 10:15 and 11:15. Some weeks it's outside in the Reading Garden.",
-          "url": "https://springbranchlittles.com/events/weekly/sbm-tiny-tykes/",
-          "tentative": false,
-          "weekly": true
         }
       ]
     },
@@ -255,5 +175,5 @@
   ],
   "buttondownId": "em_7k150s76wr8b6tm1hxd4b0g3yg",
   "status": "draft",
-  "sentAt": "2026-11-16T14:07:41.157Z"
+  "sentAt": "2026-11-16T22:16:13.859Z"
 }
