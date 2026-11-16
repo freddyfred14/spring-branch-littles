@@ -114,10 +114,14 @@ export function buildIssue(data, date, draft = loadDraft(date)) {
   // A draft can swap the story of the week for its own feature (e.g. "Holiday Fun" with a graphic):
   // { "feature": { "heading", "title"?, "text"?, "image", "imageAlt", "url"? } }
   const custom = draft.feature;
+  const abs = (u) => (u.startsWith("/") ? `${site}${u}` : u);
   if (custom) {
     sections.push({
       heading: custom.heading || "This week",
-      items: [{ feature: true, title: custom.title || "", when: "", paragraphs: custom.text ? [custom.text] : [], url: custom.url ? (custom.url.startsWith("/") ? `${site}${custom.url}` : custom.url) : null, image: custom.image ? { src: custom.image.startsWith("/") ? `${site}${custom.image}` : custom.image, alt: custom.imageAlt || "", credit: custom.imageCredit || "" } : null, moreLinks: [] }],
+      items: [{ feature: true, title: custom.title || "", when: "", paragraphs: custom.text ? [custom.text] : [], url: custom.url ? abs(custom.url) : null, image: custom.image ? { src: abs(custom.image), alt: custom.imageAlt || "", credit: custom.imageCredit || "" } : null, moreLinks: [],
+        // Optional tap-to-call list: { "contacts": [{ "icon", "title", "text", "phones": ["605-313-0691"] }], "footerImage", "background" }
+        contacts: custom.contacts?.map((c) => ({ ...c, icon: c.icon ? abs(c.icon) : null, phones: c.phones.map((n) => ({ label: n, tel: telOf(n) })) })) || null,
+        footerImage: custom.footerImage ? abs(custom.footerImage) : null, background: custom.background || null }],
     });
   }
   // The story of the week stays short in the email: a picture, two or three sentences and a link.
@@ -202,6 +206,12 @@ export function buildIssue(data, date, draft = loadDraft(date)) {
   };
 }
 
+// A phone number as a tap-to-call link target: "1-877-446-6723" → "tel:+18774466723".
+function telOf(n) {
+  const d = n.replace(/\D/g, "");
+  return `tel:+${d.length === 10 ? `1${d}` : d}`;
+}
+
 // A "share with a friend" link that opens the reader's email app with a note and the sign-up link filled in.
 function shareMailto(site) {
   const body = `I get this free weekly email with kid-friendly plans around Spring Branch and Memorial, and I think you'd like it too: ${site}/join/?source=forward`;
@@ -218,6 +228,7 @@ export function toMarkdown(issue, config) {
       const f = s.items[0];
       if (f.title) out.push(`### ${f.title}`, "");
       if (f.image) out.push(`![${f.image.alt}](${f.image.src})`, ...(f.image.credit ? [`_${f.image.credit}_`] : []), "");
+      if (f.contacts) out.push(...f.contacts.map((c) => `- **${c.title}**: ${c.text} ${c.phones.map((n) => `[${n.label}](${n.tel})`).join(" or ")}`), "");
       for (const p of f.paragraphs) out.push(p, "");
       if (f.url) out.push(`[Read more →](${f.url})`, "");
       continue;
@@ -284,6 +295,21 @@ export function toHtml(issue, config) {
   const blocks = [];
   for (const s of issue.sections) {
     blocks.push(sectionHead(s.heading));
+    if (s.items[0]?.contacts) {
+      // A designed list (header art, one row per number, footer art) where every number is a tap-to-call link.
+      const f = s.items[0];
+      const rows = f.contacts.map((c) => `<tr><td style="padding:6px 14px;border-top:1px solid ${C.line}"><table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr>
+          <td width="76" valign="middle">${c.icon ? `<img src="${h(c.icon)}" width="72" alt="" style="display:block;width:72px;height:auto;border:0">` : ""}</td>
+          <td valign="middle" style="padding:6px 4px 6px 10px"><p style="margin:0;font-family:${DISPLAY};font-size:19px;font-weight:700;line-height:1.2;color:#2f5233">${h(c.title)}</p><p style="margin:2px 0 6px;font-family:${BODY};font-size:13px;line-height:1.35;color:${C.muted}">${h(c.text)}</p>${c.phones.map((n) => `<a href="${h(n.tel)}" style="display:inline-block;margin:2px 6px 2px 0;background:#e3ebd2;border-radius:999px;padding:7px 14px;font-family:${BODY};font-size:15px;font-weight:800;color:${C.ink};text-decoration:none;white-space:nowrap">📞 ${h(n.label)}</a>`).join("")}</td>
+        </tr></table></td></tr>`).join("");
+      blocks.push(`<tr><td style="padding:0 20px"><table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:${f.background || "#fcf6ea"};border:3px solid ${C.sun};border-radius:18px;overflow:hidden">
+        ${f.image ? `<tr><td><img src="${h(f.image.src)}" width="560" alt="${h(f.image.alt)}" style="display:block;width:100%;max-width:560px;height:auto;border-radius:15px 15px 0 0;border:0"></td></tr>` : ""}
+        ${rows}
+        <tr><td align="center" style="padding:10px 14px 4px;font-family:${BODY};font-size:13px;font-weight:700;color:${C.green}">Tap a number to call it from your phone.</td></tr>
+        ${f.footerImage ? `<tr><td><img src="${h(f.footerImage)}" width="560" alt="Save these numbers for a little extra holiday magic!" style="display:block;width:100%;max-width:560px;height:auto;border-radius:0 0 15px 15px;border:0"></td></tr>` : ""}
+      </table></td></tr>`);
+      continue;
+    }
     if (s.items[0]?.feature) {
       const f = s.items[0];
       blocks.push(`<tr><td style="padding:0 20px"><table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:${C.card};border:3px solid ${C.sun};border-radius:18px">
