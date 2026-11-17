@@ -1,8 +1,20 @@
 {
-  "pulledAt": "2026-11-12T13:30:31.600Z",
+  "pulledAt": "2026-11-17T13:28:59.723Z",
   "subscribers": 116,
   "unconfirmed": 1,
   "issues": [
+    {
+      "date": "2026-11-16",
+      "subject": "Thanksgiving break is coming + a little holiday magic (Santa's number inside)",
+      "recipients": 116,
+      "delivered": 116,
+      "opens": 77,
+      "clicks": 8,
+      "unsubscribes": 0,
+      "complaints": 0,
+      "openRate": "66.4%",
+      "clickRate": "6.9%"
+    },
     {
       "date": "2026-11-09",
       "subject": "Tyke Hikes, leaf sunprints and Santa at CityCentre",

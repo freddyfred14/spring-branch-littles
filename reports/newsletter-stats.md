@@ -1,9 +1,10 @@
 # Newsletter stats
 
-Pulled 2026-11-12 13:30 UTC. Confirmed subscribers: **116** (plus 1 who haven't confirmed).
+Pulled 2026-11-17 13:28 UTC. Confirmed subscribers: **116** (plus 1 who haven't confirmed).
 
 | Sent | Subject | Delivered | Opens | Open rate | Clicks | Click rate | Unsubscribes |
 |---|---|---|---|---|---|---|---|
+| 2026-11-16 | Thanksgiving break is coming + a little holiday magic (Santa's number inside) | 116 of 116 | 77 | 66.4% | 8 | 6.9% | 0 |
 | 2026-11-09 | Tyke Hikes, leaf sunprints and Santa at CityCentre | 115 of 116 | 70 | 60.9% | 17 | 14.8% | 0 |
 | 2026-11-02 | Leaf scavenger hunt, Tyke Hikes and a Frozen movie night | 112 of 113 | 76 | 67.9% | 10 | 8.9% | 0 |
 | 2026-10-27 | Halloween week: trick-or-treating, a library costume party and more (copy) | 66 of 66 | 0 | 0% | 0 | 0% | 0 |
