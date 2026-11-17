@@ -70,19 +70,22 @@
   {
     "id": "holiday-events-santa-kids-spring-branch-memorial-2026",
     "title": "Holiday events & free Santa photos with kids near Spring Branch & Memorial (2026)",
-    "description": "Free Santa photos, a Frozen movie night, a tree lighting and a kids' wreath workshop near Spring Branch & Memorial, Nov 28–Dec 5, 2026.",
+    "description": "Free Santa photos, a Frozen movie night, a Nutcracker music class, a tree lighting and holiday crafts for kids near Spring Branch & Memorial, Nov 28–Dec 5.",
     "intro": [
-      "The holiday season starts the Saturday after Thanksgiving break, and the best of it is close to home. CityCentre's Holiday in the Plaza on Sat Nov 28 has Santa, two of his reindeer and free professional photos. The next weekend, Memorial Park's Neighborhood Nights turns into a holiday movie night on Fri Dec 4, with Frozen on the lawn and photos with Santa, Anna and Elsa.",
-      "On Sat Dec 5 you can pick a crafty morning or a big night out: the Houston Arboretum's Homemade Holidays workshop has kids 5 and up making wreaths and ornaments, and downtown the Mayor's Deck the Hall tree lighting ends with fireworks.",
-      "Most of this is free, outdoors and weather-dependent, so check each listing the day before. We'll add more lights, Santa visits and holiday storytimes here as they're announced."
+      "The holiday season starts the Saturday after Thanksgiving break, and the best of it is close to home. CityCentre’s Holiday in the Plaza on Sat Nov 28 (noon to 4 pm) has Santa, two of his reindeer and free professional photos.",
+      "The first week of December is packed. Spring Branch Memorial Library has two free after-school programs: a Nutcracker music-and-movement class for ages 2 to 5 on Tue Dec 1, and a pinecone gnome craft for ages 4 to 8 on Wed Dec 2. On Fri Dec 4, Memorial Park’s Neighborhood Nights turns into a holiday movie night, with Frozen on the lawn and photos with Santa, Anna and Elsa.",
+      "On Sat Dec 5 you can pick a crafty morning or a big night out: the Houston Arboretum’s Homemade Holidays workshop has kids 5 and up making wreaths and ornaments, and downtown the Mayor’s Deck the Hall tree lighting ends with fireworks. Most of this is free, and the outdoor events depend on the weather, so check each listing the day before. We’ll add more lights, Santa visits and holiday storytimes as they’re announced."
     ],
     "items": [
       "event:2026-citycentre-holiday-in-the-plaza",
+      "event:2026-12-01-sbm-library-nutcracker-sing-move-play",
+      "event:2026-12-02-sbm-library-pinecone-gnomes",
       "event:2026-12-04-memorial-park-neighborhood-nights-holiday",
       "event:2026-12-05-arboretum-homemade-holidays",
       "event:2026-12-05-deck-the-hall",
       "event:2026-sbisd-winter-break",
       "place:citycentre",
+      "place:spring-branch-memorial-library",
       "place:houston-arboretum",
       "place:memorial-park-playground",
       "place:frolics-castle"
@@ -91,10 +94,11 @@
       "Santa leaves Holiday in the Plaza at 4 pm. Go early, after lunch and before nap-time meltdowns, and bring something for the SPCA donation if you can.",
       "Neighborhood Nights doesn't allow strollers or bikes. Bring a blanket, a carrier for the baby and layers: the lawn gets cold once the sun goes down.",
       "Homemade Holidays has two sessions (11 am and 1 pm), each with its own tickets. Book early, and dress kids in clothes that can get sticky.",
+      "The library’s Nutcracker class and gnome craft are after school (4:15 to 5:15 pm), and the listings don’t mention registration. Call the branch the day before to check whether you need a ticket.",
       "Toddler not a fan of Santa? Totally normal. A wave from across the plaza still counts as a holiday photo.",
       "Outdoor holiday events can change for weather. Check the listing the morning of."
     ],
-    "updated": "2026-11-03",
+    "updated": "2026-11-17",
     "expires": "2026-12-06"
   },
   {

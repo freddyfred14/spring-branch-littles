@@ -1,7 +1,7 @@
 # Littles City Launch Playbook
 
 For a team opening the next Littles city (Atlanta, Chicago, Denver…) with no context. Built from the Spring Branch pilot, launched Oct 26, 2026.
-**v0.4 (2026-11-10):** **116 subscribers on day 15.** About 100 came in the first 8 days from launch-week Facebook posts and texts; then growth nearly stopped (+2 in week 3) when posting stopped. Three issues in: 58.6–67% opens, 13.8% clicks on issue 3, 0 unsubscribes. The lesson so far: the product retains; **reach depends entirely on the owner posting**, so plan for her real bandwidth. Ads, Nextdoor, partners and print are still **assumed (not yet tested)**. Each Tuesday, results from Spring Branch replace assumptions with **proven (our data)**.
+**v0.5 (2026-11-17):** **116 subscribers on day 22, flat for three weeks.** About 100 came in the first 8 days from launch-week Facebook posts and texts; then growth stopped when posting stopped (11 → 3 → 1 → 0 signups a week). Four issues in: 58.6–67.3% opens, 7.8–14.7% clicks, 0 unsubscribes. The lesson so far: the product retains; **reach depends entirely on the owner posting**, so plan for her real bandwidth. Ads, Nextdoor, partners and print are still **assumed (not yet tested)**. Each Tuesday, results from Spring Branch replace assumptions with **proven (our data)**.
 
 ---
 
@@ -33,7 +33,7 @@ Owner time: 30 min/day for 90 days. Money: $10–20/day ads.
 | 7–8 | Scale whichever channel has the lowest cost per subscriber; second wave of groups | ~2 h/wk | $70–140 | |
 | 9–12 | Referral push; partners on autopilot; move to 30 min/week | ~1 h/wk | $70–140 | ~900 by day 90 |
 
-**Spring Branch actuals:** 105 by day 4 (Oct 30), almost all from launch-week Facebook posts plus texts, $0 spent. Then only +9 from day 4 to day 8 (Nov 3) with no new posts. So week 1 beat the plan by about 2×, and week 2 shows the cost of not having the second wave ready. Week 3 (Nov 3–10): +2, with no new posts, ads or Nextdoor. Day-30 target reset from 250 to 140. **Baseline without posts: about 2–3 signups a week** (Facebook tail + Instagram), at a 116-subscriber list.
+**Spring Branch actuals:** 105 by day 4 (Oct 30), almost all from launch-week Facebook posts plus texts, $0 spent. Then only +9 from day 4 to day 8 (Nov 3) with no new posts. So week 1 beat the plan by about 2×, and week 2 shows the cost of not having the second wave ready. Week 3 (Nov 3–10): +2, with no new posts, ads or Nextdoor. Day-30 target reset from 250 to 140. **Baseline without posts: about 2–3 signups a week** (Facebook tail + Instagram), at a 116-subscriber list. Week 4 (Nov 10–17): **0**. The post-launch tail lasts about three weeks, then the baseline without new posts is zero (Instagram auto-posts included).
 
 **Revised default for new cities (Nov 10):** plan the launch around **one big week** (texts + 2–3 group posts, ~2 hours) and then **one group post a week on the same night** (~10 min), not 30 min a day. Treat ads as the way to grow without owner time, and set them up *before* launch while the owner is most motivated.
 
@@ -45,8 +45,8 @@ Owner time: 30 min/day for 90 days. Money: $10–20/day ads.
 | Owner's network (texts) | $0 | 50+ | No (one-time) | Keep for launch | probable, not proven: ~20–30 untagged "direct" signups across the first 9 days |
 | Meta ads (Leads + Pixel) | $3–5 | n/a | Yes | Keep if under $5 | assumed (not yet tested) |
 | Nextdoor | $0 | 30–90 (one post) | No | Keep, once | assumed (not yet tested) |
-| SEO guides | $0 | n/a (agent-written) | Slowly | Keep | assumed (not yet tested). 4 guides live by day 15 (Thanksgiving, storytimes, holiday events, rainy day); 0 Google signups yet. E14 watches `ref:google` to Dec 8 |
-| Instagram (auto-posted carousels) | $0 | n/a (automatic) | Slowly | Keep | **proven small (our data):** 1–2 `l.instagram.com` signups a week with no owner effort |
+| SEO guides | $0 | n/a (agent-written) | Slowly | Keep | assumed (not yet tested). 4 guides live by day 15 (Thanksgiving, storytimes, holiday events, rainy day); 0 Google signups by day 22. Don't count on SEO in the first two months. E14 watches `ref:google` to Dec 8 |
+| Instagram (auto-posted carousels) | $0 | n/a (automatic) | Slowly | Keep | **proven small (our data):** 0–2 `l.instagram.com` signups a week with no owner effort (0 in week 4) |
 | Partners (districts, libraries, PTAs) | $0 | 5–15 | Compounds | Keep | assumed (not yet tested) |
 | Instagram organic | $0 | low | Slowly | Trust + Collabs only | assumed (not yet tested) |
 | Print flyers | ~$1 | low | No | Test | assumed (not yet tested) |
@@ -57,7 +57,7 @@ Owner time: 30 min/day for 90 days. Money: $10–20/day ads.
 
 Not proven yet. Spring Branch launch-week templates are in `reach/kits/2026-10-25.md`: personal text (§1), Facebook "this week's picks" post (§2), "plan ahead" post (§3), Nextdoor (§4), district partner email (§7). Their numbers go here after week 1.
 
-**Subject lines (proven, our data):** "Leaf scavenger hunt, Tyke Hikes and a Frozen movie night" (issue 2, Nov 2): **65.5% opens (67.3% after 4 days), 8.8% clicks, 0 unsubscribes** to 113 subscribers. "Tyke Hikes, leaf sunprints and Santa at CityCentre" (issue 3, Nov 9, sent ~5:55 pm Sunday): **58.6% opens, 13.8% clicks, 0 unsubscribes** to 116 (pulled about 14 hours after send, so opens will rise). Santa in the subject may explain the higher clicks; one data point. Pattern: name 2–3 specific, concrete things, at least one free and one a kid would get excited about. (Issue 1's stats weren't collected.)
+**Subject lines (proven, our data):** "Leaf scavenger hunt, Tyke Hikes and a Frozen movie night" (issue 2, Nov 2): **65.5% opens (67.3% after 4 days), 8.8% clicks, 0 unsubscribes** to 113 subscribers. "Tyke Hikes, leaf sunprints and Santa at CityCentre" (issue 3, Nov 9, sent ~5:55 pm Sunday): **58.6% opens, 13.8% clicks, 0 unsubscribes** to 116 (pulled about 14 hours after send, so opens will rise). Santa in the subject may explain the higher clicks; one data point. "Thanksgiving break is coming + a little holiday magic (Santa's number inside)" (issue 4, Nov 16, Sunday evening): **67.2% opens (best yet), 7.8% clicks, 0 unsubscribes** to 116, a day after send. A curiosity hook ("Santa's number inside") lifted opens; clicks dropped, maybe because the issue had fewer dated picks. Pattern: name 2–3 specific, concrete things, at least one free and one a kid would get excited about. (Issue 1's stats weren't collected.)
 
 Early signal (2026-10-27): Facebook posts with Halloween picks (format of kit §2, "real events with dates first, then 'I'm a local mom, I send this free every Monday'") brought 49 signups in about two days. We can't yet say which post or group was best, because the links weren't tagged.
 
@@ -80,6 +80,9 @@ For a bigger metro: split into several Littles brands by area from day one, and 
 
 ## 6. Pitfalls
 
+- **(Happened) Growth fell to zero in week 4 and stayed there.** With one person doing all the posting, a busy month stops the whole engine. Next city: before launch, (a) set up ads so there's growth that needs no owner time, (b) ship the share prompt on the thank-you page and the forward line, and (c) line up a second person (a co-host, a partner org or a friend in the groups) who can post the weekly guide.
+- **(Learned) Tags work on any page, not only `/join/`.** The site saves the first `?source=` a visitor arrives with, on any page, for 30 days. So posts can link a useful guide with a tag (`/guides/<id>/?source=fb-holiday-1`) instead of a bare signup link. That's more value-first, and it's still tracked.
+
 - (Watch) Launching outreach before the Pixel and thank-you page are set means the first and warmest signups aren't counted by Meta.
 - (Watch) Metrics not connected at launch: we can't score channels without subscriber counts by source. Connect them before day 1 next time.
 - **(Happened) Untagged links in launch week.** 63 of the first 67 signups had no `?source=` tag, so the best channel worked but we couldn't tell which groups to repeat. Next city: before launch, give the owner a one-page cheat sheet with a ready tagged link for every group and channel on the targets list, and put the exact link in every kit post (not `GROUPNAME` placeholders).
@@ -95,4 +98,4 @@ For a bigger metro: split into several Littles brands by area from day one, and 
 
 ## 7. Unit economics
 
-First data point (2026-11-03): 114 subscribers in 9 days at **$0 ad spend** (blended cost per subscriber $0 so far; no paid test yet). Open rate in month 1: 58.6–67% across issues 2–3, with 0 unsubscribes in 3 issues (2026-11-10). Will track: blended cost per subscriber, open-rate retention by month, and the subscriber count where local sponsorships become realistic (to be estimated once we have open rates).
+First data point (2026-11-03): 114 subscribers in 9 days at **$0 ad spend** (blended cost per subscriber $0 so far; no paid test yet). Open rate in month 1: 58.6–67.3% across issues 2–4, with 0 unsubscribes in 4 issues (2026-11-17). Retention is not the problem; acquisition is. Will track: blended cost per subscriber, open-rate retention by month, and the subscriber count where local sponsorships become realistic (to be estimated once we have open rates).

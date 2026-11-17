@@ -1,6 +1,6 @@
 # Spring Branch Littles: 90-day growth strategy
 
-Written 2026-10-25; updated 2026-11-10. Change only when our data says so.
+Written 2026-10-25; updated 2026-11-17. Change only when our data says so.
 
 ## Positioning
 
@@ -24,9 +24,9 @@ Day 0 = Oct 26, 2026 (first issue). **Reset 2026-11-10** from 250 / 550 / 900 (s
 **How we get to 400 (the math, Nov 10):** 116 now. One group post a week for 10 weeks at ~20 each: +200. Guides, forwards, Instagram and the `/thanks/` share prompt: +5–8 a week ≈ +50–80. Holiday and winter-break guides give the posts their hook. Ads, Nextdoor, partners and flyers are upside, not in the base.
 
 
-**History:** day 8 (Nov 3): 114, about 4 in 5 from Facebook links; Nov 2 issue 65.5% opens. Target held at 250 then.
+**History:** day 8 (Nov 3): 114, ~4 in 5 from Facebook links. **Nov 10 (day 15): reset 250/550/900 → 140/260/400**: no posts for two weeks, +2 that week; the new base assumes one group post a week (15–30 each, a guess) and no ads.
 
-**Update 2026-11-10 (day 15): targets reset to 140 / 260 / 400.** Only +2 in a week (3 new, 0 tagged). No new posts in two weeks; without posts we grow 2–3 a week, and 250 would have needed +134 in two weeks. The new targets assume **one group post a week** (15–30 each is a guess; launch posts brought ~100) plus a small trickle, and **no ads**. Ads holding under $4 would add ~15 a week per $10/day. Raise the targets when two posts in a row bring 15+. The Nov 9 issue got 58.6% opens, 13.8% clicks, 0 unsubscribes: the product is fine; owner time is the limit. Plans ask for **one must-do a week**, and growth that needs no owner time (guides, a `/thanks/` share prompt, the forward line) moves up.
+**Update 2026-11-17 (day 22): day 30 will miss (≈116–135 vs 140).** 0 signups in 7 days; weekly signups fell 11 → 3 → 1 → 0 with no posts, so **the baseline without posting is now zero**. Retention is excellent (67.2% opens on Nov 16, 0 unsubscribes in 4 issues): the product works; reach stops when posting stops. Not resetting day 60/90 yet: one 5-minute post a week from Nov 18 still reaches ~260 by Dec 24 if posts bring ~20. **Rule:** if no tagged signup by Dec 1, reset to a no-owner baseline and rank zero-owner-time growth (the `/thanks/` share prompt, guides, the newsletter forward line) above everything. Plans now ask for one 5-minute post that links our guides, and offer "reply December" as an honest opt-out.
 
 ## Channel bets, ranked
 
@@ -50,9 +50,9 @@ Ranked by expected subscribers per hour of the owner's time, then per dollar. **
 | When | What's happening | What we do |
 |---|---|---|
 | Oct 26–31 | Halloween week, first issue | Network texts, first 2–3 group posts with the Halloween picks, set up the Pixel, start ads |
-| Nov 2–13 | **2–3 weeks before Thanksgiving break** | Publish and share the Thanksgiving-break guide; group posts #2; ads on "plan-ahead" + a new "Thanksgiving break" concept; first partner emails |
+| Nov 18–22 | Last week before the break | One post linking the Thanksgiving and holiday guides (E13, `fb-holiday-1`) |
 | Nov 23–27 | SBISD Thanksgiving break | Daily Stories with picks; Nextdoor post; ask readers to forward |
-| Nov 27–Dec 3 | Holiday kickoff (Holiday in the Plaza Nov 28, Frozen night Dec 4) | Share the holiday-events guide (published Nov 3) in groups (E13); Santa Reel |
+| Nov 27–Dec 3 | Holiday kickoff (Santa Nov 28, Nutcracker class Dec 1, Frozen night Dec 4) | Optional second holiday post (`fb-holiday-2`); Santa Story; publish the winter-break guide Dec 1 |
 | Dec 1–12 | **2–3 weeks before winter break**, holiday events | Winter-break guide; "holidays" ad concept; media pitch; giveaway |
 | Dec 21–Jan 4 | SBISD winter break | Indoor/rainy-day guide refresh; lighter posting; ads keep running |
 | Jan 5–23 | Back to school, New Year routines | Referral push; spring-semester classes and storytimes; plan the 30-min-a-week mode |

@@ -2,6 +2,19 @@
 
 Newest first. The owner can add notes here too ("posted in X group, 15 signups").
 
+## 2026-11-17 · Tuesday full run · focus: one 5-minute post covering the break + Santa
+- Metrics: **116 subscribers** (flat for the third week). 7d: **0 new** (`newBySource7d` empty). Nov 16 issue ("Thanksgiving break is coming + a little holiday magic (Santa's number inside)", sent Sun 4:26 pm CST to 116): **67.2% opens (best yet), 7.8% clicks, 0 unsubs**. Visits, conversion and IG still null. 9 upcoming events, 4 guides. Owner logged nothing; no reply in three weeks.
+- Scored: **E5 closed, not run** (four slots, 0 `fb-thanksgiving-`/`text-thanksgiving` signups). **E13 started early** as one post covering the break and Santa (`fb-holiday-1`, Nov 18–22; optional `fb-holiday-2` Nov 29–Dec 2). E14: 0 Google signups. Moved E12 and E11 to Jan 5–16 and E6 to Dec 1–14.
+- `strategy.md`: added the Nov 17 update (day 30 will miss 140; baseline without posting is now zero; reset rule if no tagged signup by Dec 1). Why: weekly signups 11 → 3 → 1 → 0 with no posts. Day 60/90 kept for now. Calendar rows updated. 1,189 words.
+- Found in `public/assets/site.js`: the first `?source=` is saved on **any** page for 30 days, so the kit now links the guides directly with the tag (more value-first, still tracked). Added to the playbook.
+- Guide: improved `holiday-events-santa-kids-spring-branch-memorial-2026` with the Dec 1 Nutcracker Sing Move Play (ages 2–5) and the Dec 2 Pinecone Gnomes craft (ages 4–8), plus the library as a place and a registration tip. Winter-break guide planned for Dec 1 once the research agent finds 8+ listings (only one dated event after Dec 5).
+- Blog ideas +3: winter break with no routine, holiday travel with a baby/toddler, newborns at holiday gatherings in RSV/flu season.
+- Targets: no new entries (53, past the 50 goal); nothing to update until the owner names groups or a partner replies.
+- Playbook v0.5: week-4 zero baseline, single-owner pitfall (set up ads, the share prompt and a second poster before launch), tags work on any page, issue-4 subject data, SEO not to be counted on in the first two months.
+- Plan + kit: `plans/2026-11-17.md`, `kits/2026-11-17.md`. One must-do (~5 min): post §1 any night Nov 18–22 (`fb-holiday-1`); backup text §2 (`text-holiday`); "reply December" opt-out offered. Ready for later: §3 `fb-holiday-2`, §4 Santa Story (`ig-story-santa`), a newsletter mention.
+- Requests: `/thanks/` share prompt (top priority, tag `thanks-share`), a guides line in each newsletter, research for Dec 7–Jan 4 events, source labels, visits and IG metrics.
+- `npm run check`: passes (14 warnings, all "never verified" listings for the research agent).
+
 ## 2026-11-13 · Friday pulse · focus: last call for the Thanksgiving post (Sun Nov 15)
 - Run type: the prompt said "Tuesday full run", but today is Friday and the owner asked for a weekend pulse, so I ran the pulse (no guide, strategy or targets work).
 - Metrics: **116 subscribers** (flat since Tue). 7d: 1 new (ref:facebook.com), **0 tagged**, so `fb-thanksgiving-1` still hasn't gone out. Nov 9 issue now **60.3% opens, 14.7% clicks**, 0 unsubs. 7 upcoming events, 4 guides. Owner logged nothing.
