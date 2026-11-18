@@ -2,6 +2,15 @@
 
 Newest first. The research agent adds an entry each run.
 
+## 2026-11-18 · Wednesday run
+
+- **Removed:** Tyke Hikes en español (Nov 15, ended more than 2 days ago).
+- **Added:** Homeschool Hangout: Make Snow Slime (Dec 7, ages 6-18, HCPL Spring Branch Memorial; registration required, opens Nov 23).
+- **Confirmed on the HCPL Spring Branch Memorial calendar today:** Baby Godzilla Party, Tiny Tykes Pajama Story Time, Fall Leaf Sunprints, Nutcracker Sing Move Play, Pinecone Gnomes. Their `lastVerified` is now 2026-11-18.
+- **Seen but not added:** Chess Club (ages 8-18, Dec 3; the page text says "Thursday, December 4", so the date conflicts), Buttercup's Tavern Yule Celebration (Dec 5; listed for adults and teens), Book Buddies (registration full, 10-week program).
+- **Couldn't confirm / not done:** a web search found no 2026 dates for Memorial City Lights, Santa or tree lighting (only 2025 listings), so nothing added. I did not re-check HPL (Ring, Hillendahl), Eventbrite/Partiful ZIP searches, other organizers' calendars, news, deals, restaurants, places or the recurring list this run. Link-report items (SBISD Client Challenge, Union Kitchen 403, Black-Eyed Pea homepage, HPL storytime general calendar) left as is. No newsletter (Sundays only).
+- **Still thin:** the local calendar is well below the 8-12 target, and I found nothing local for Nov 21-22.
+
 ## 2026-11-15 · Sunday run
 
 - **Removed:** four events that ended more than 2 days ago (Arboretum scavenger hunt Nov 7, Standing Tall Nov 8, Homeschool Hangout Nov 9, tween book club Nov 10).
