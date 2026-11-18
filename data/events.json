@@ -309,7 +309,10 @@
     "featured": false,
     "area": "local",
     "lastVerified": "2026-11-18",
-    "imagePrompt": "Kids around a library table stirring white sparkly snow-like slime in bowls, wearing aprons, with a librarian helping. Bright, messy and cheerful."
+    "imagePrompt": "Kids around a library table stirring white sparkly snow-like slime in bowls, wearing aprons, with a librarian helping. Bright, messy and cheerful.",
+    "image": "/img/events/2026-12-07-sbm-library-homeschool-snow-slime.jpg",
+    "imageAlt": "Illustration: Kids around a library table stirring white sparkly snow-like slime in bowls, wearing aprons, with a librarian helping",
+    "imageCredit": "AI illustration"
   },
   {
     "id": "2026-sbisd-winter-break",
