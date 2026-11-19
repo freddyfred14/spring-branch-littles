@@ -1,6 +1,6 @@
 {
-  "pulledAt": "2026-11-17T13:28:59.723Z",
-  "subscribers": 116,
+  "pulledAt": "2026-11-19T13:34:48.921Z",
+  "subscribers": 115,
   "unconfirmed": 1,
   "issues": [
     {
@@ -8,12 +8,12 @@
       "subject": "Thanksgiving break is coming + a little holiday magic (Santa's number inside)",
       "recipients": 116,
       "delivered": 116,
-      "opens": 77,
-      "clicks": 8,
-      "unsubscribes": 0,
+      "opens": 83,
+      "clicks": 11,
+      "unsubscribes": 1,
       "complaints": 0,
-      "openRate": "66.4%",
-      "clickRate": "6.9%"
+      "openRate": "71.6%",
+      "clickRate": "9.5%"
     },
     {
       "date": "2026-11-09",
@@ -21,11 +21,11 @@
       "recipients": 116,
       "delivered": 115,
       "opens": 70,
-      "clicks": 17,
+      "clicks": 18,
       "unsubscribes": 0,
       "complaints": 0,
       "openRate": "60.9%",
-      "clickRate": "14.8%"
+      "clickRate": "15.7%"
     },
     {
       "date": "2026-11-02",
