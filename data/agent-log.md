@@ -2,6 +2,15 @@
 
 Newest first. The research agent adds an entry each run.
 
+## 2026-11-20 · Friday weekend check
+
+Friday weekend check: confirmed 0, updated 0, removed 0, added 0.
+
+- **Nothing dated Nov 20-22** is in `events.json`. The only weekly program running Fri-Sun is The Bunny Hive Houston classes. Its page shows no schedule and no cancellation notice (the schedule is behind a booking widget), so I left `lastVerified` as is.
+- **Weather:** sources conflict. ABC13 (Nov 18) says a fairly nice weekend, highs near 80. FOX 26 (Nov 20) mentions rain chances Friday through Monday. Nothing outdoor is listed this weekend, so no rain plans to add.
+- **Not added:** Houston Princess Day (Nov 21, Red Oak Ballroom at CityCentre) turned up only on an aggregator, with no organizer page I could confirm, so I skipped it. The Greater Houston Moms Children's Museum free family night looked like last year's date.
+- Thanksgiving break (SBISD, Nov 23-27) starts Monday and was not re-checked, because the SBISD site blocks robots.
+
 ## 2026-11-18 · Wednesday run
 
 - **Removed:** Tyke Hikes en español (Nov 15, ended more than 2 days ago).
