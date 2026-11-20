@@ -192,5 +192,26 @@
     "issuesSent": 4,
     "upcomingEvents": 9,
     "guides": 4
+  },
+  {
+    "date": "2026-11-20",
+    "newsletterSubscribers": 115,
+    "newSubscribers7d": 0,
+    "newBySource7d": {},
+    "lastIssue": {
+      "subject": "Thanksgiving break is coming + a little holiday magic (Santa's number inside)",
+      "sent": "2026-11-16T22:26:47.779987Z",
+      "recipients": 116,
+      "openRate": 71.6,
+      "clickRate": 9.5,
+      "unsubscribes": 1
+    },
+    "instagramFollowers": null,
+    "visits7d": null,
+    "topPages": null,
+    "topReferrers": null,
+    "issuesSent": 4,
+    "upcomingEvents": 7,
+    "guides": 4
   }
 ]

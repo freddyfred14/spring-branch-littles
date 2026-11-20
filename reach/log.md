@@ -2,6 +2,16 @@
 
 Newest first. The owner can add notes here too ("posted in X group, 15 signups").
 
+## 2026-11-20 · Friday pulse · focus: Sunday-night post before Thanksgiving break
+- Metrics: **115 subscribers** (−1: 0 new in 7d, 1 unsub). `newBySource7d` empty, so `fb-holiday-1` hasn't gone out. Nov 16 issue now **71.6% opens (best ever)**, 9.5% clicks, 1 unsub. 7 upcoming events, 4 guides. Owner logged nothing (four weeks without a reply).
+- Checked the source: the CityCentre URL slug says "nov-27", but the venue page confirms **Sat Nov 28, 12–4 pm**, so the listing and copy are right.
+- No dated events this weekend (Nov 21–22), so no weekend-picks Story. The pulse points everything at Sunday night instead.
+- Plan + kit: `plans/2026-11-20.md`, `kits/2026-11-20.md`. One must-do (~5 min): §1 post Sun Nov 22, 7–9 pm (`fb-holiday-1`), refreshed for the night before the break. Optional: Santa Story (`ig-story-santa`), backup text (`text-holiday`). "Reply December" opt-out repeated.
+- E13: Sunday noted as the last good slot for post 1; scored Tue Dec 1.
+- Playbook note for Tue: first unsubscribe, after 4 issues, while opens kept rising. Retention isn't the problem; reach is.
+- Requests: none new.
+- `npm run check`: passes (14 warnings, all "never verified" listings for the research agent).
+
 ## 2026-11-17 · Tuesday full run · focus: one 5-minute post covering the break + Santa
 - Metrics: **116 subscribers** (flat for the third week). 7d: **0 new** (`newBySource7d` empty). Nov 16 issue ("Thanksgiving break is coming + a little holiday magic (Santa's number inside)", sent Sun 4:26 pm CST to 116): **67.2% opens (best yet), 7.8% clicks, 0 unsubs**. Visits, conversion and IG still null. 9 upcoming events, 4 guides. Owner logged nothing; no reply in three weeks.
 - Scored: **E5 closed, not run** (four slots, 0 `fb-thanksgiving-`/`text-thanksgiving` signups). **E13 started early** as one post covering the break and Santa (`fb-holiday-1`, Nov 18–22; optional `fb-holiday-2` Nov 29–Dec 2). E14: 0 Google signups. Moved E12 and E11 to Jan 5–16 and E6 to Dec 1–14.
