@@ -128,7 +128,7 @@
     "url": "https://www.citycentrehouston.com/event/nov-27-holiday-in-the-plaza",
     "status": "confirmed",
     "featured": true,
-    "lastVerified": "2026-11-01",
+    "lastVerified": "2026-11-22",
     "area": "local",
     "imagePrompt": "An outdoor plaza at dusk with a giant decorated Christmas tree and twinkle lights, kids in winter hats meeting a friendly Santa and a reindeer in a small pen, families holding hot cocoa. Cozy and magical.",
     "image": "/img/events/2026-citycentre-holiday-in-the-plaza.jpg",
@@ -207,7 +207,7 @@
     "status": "confirmed",
     "featured": true,
     "area": "local",
-    "lastVerified": "2026-11-04",
+    "lastVerified": "2026-11-22",
     "id": "2026-12-04-memorial-park-neighborhood-nights-holiday",
     "title": "Neighborhood Nights: Holiday Edition",
     "date": "2026-12-04",
@@ -272,7 +272,7 @@
     "status": "confirmed",
     "featured": false,
     "area": "local",
-    "lastVerified": "2026-11-01",
+    "lastVerified": "2026-11-22",
     "id": "2026-12-05-arboretum-homemade-holidays",
     "title": "Homemade Holidays wreath and ornament workshop",
     "date": "2026-12-05",
@@ -336,5 +336,31 @@
     "featured": false,
     "lastVerified": "2026-10-24",
     "area": "local"
+  },
+  {
+    "id": "2026-12-18-sbm-library-hot-cocoa-movie",
+    "kind": "event",
+    "title": "Hot Cocoa & a Movie",
+    "date": "2026-12-18",
+    "endDate": null,
+    "startTime": "16:00",
+    "endTime": "17:45",
+    "placeId": "spring-branch-memorial-library",
+    "location": null,
+    "ages": [
+      "preschool",
+      "elementary"
+    ],
+    "free": true,
+    "cost": null,
+    "indoor": true,
+    "description": "Cozy up with hot cocoa and a holiday movie at the library. Festive gear is encouraged, pajamas included. The listing is tagged family, kids and tweens and doesn't name the movie.",
+    "registration": null,
+    "url": "https://hcpl.bibliocommons.com/v2/events/6aee4c0c938566ae4f57c07e",
+    "status": "confirmed",
+    "featured": false,
+    "area": "local",
+    "lastVerified": "2026-11-22",
+    "imagePrompt": "Kids in festive pajamas and Santa hats sit on beanbags in a library meeting room, holding mugs of cocoa and watching a movie on a screen. Warm lights, a small decorated tree."
   }
 ]

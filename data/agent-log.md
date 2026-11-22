@@ -2,6 +2,16 @@
 
 Newest first. The research agent adds an entry each run.
 
+## 2026-11-22 · Sunday run
+
+- **Added:** Hot Cocoa & a Movie (Dec 18, 4-5:45 pm, HCPL Spring Branch Memorial, free; the page doesn't name the movie).
+- **Confirmed today:** CityCentre Holiday in the Plaza (Nov 28, 12-4), Memorial Park Neighborhood Nights (Dec 4; the page shows both 5-8 and 5-9 pm, so the listing keeps its note), Arboretum Homemade Holidays (Dec 5, cost matches), and the HCPL Baby Bouncer and Tiny Tykes sessions in December.
+- **Removed:** the expired storytime-cancellation news item (expired Nov 21).
+- **Newsletter:** wrote `drafts/2026-11-23.json`. Story of the week is Greenside (last week's was Camp Logan). It ran on Nov 9, but not last week. I found no newer local news I could verify, so the news list is thin.
+- **Not added:** Feges "A Very Feges Christmas" (Dec 20) showed up only in a search snippet with no year; Feges's own page doesn't mention it. Memorial City Sensory Santa (Dec 6 and 13) still has no cost listed. Memorial City Lights has no 2026 date. Chess Club (Dec 3) and the Dec 17 S'mores movie are for tweens and teens.
+- **Couldn't do:** SBISD's site blocks robots, so the Thanksgiving and winter break entries weren't re-verified. HPL (Ring, Hillendahl), Eventbrite and Partiful ZIP searches, Houston-area events, deals, restaurants, places and link-report fixes were not done this run. Link-report items (SBISD, Union Kitchen 403, Black-Eyed Pea and library general-calendar links) are unchanged.
+- **Still thin:** the local calendar is well below the 8-12 target, and nothing local turned up for the Nov 28-29 weekend besides CityCentre.
+
 ## 2026-11-20 · Friday weekend check
 
 Friday weekend check: confirmed 0, updated 0, removed 0, added 0.
