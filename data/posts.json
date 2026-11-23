@@ -2045,5 +2045,118 @@
     "image": "/img/blog/winter-break-routine-little-kids.jpg",
     "imageAlt": "Illustration: A warm, realistic, candid photo at a Houston neighborhood playground on a cool, sunny December morning, landscape",
     "imageCredit": "AI illustration"
+  },
+  {
+    "id": "holiday-travel-sleep-baby-toddler",
+    "type": "article",
+    "medical": true,
+    "title": "Your toddler won't sleep well at Grandma's the first night. Neither will you.",
+    "date": "2026-11-23",
+    "summary": "A strange room, a play yard and a time change: why holiday trips scramble little kids' sleep, and the small, research-backed fixes that help them settle.",
+    "imagePrompt": "A warm, realistic, candid photo in a cozy guest bedroom at a grandparents' home on a December evening, landscape. A Korean American dad in his thirties with black-rimmed glasses and a gray hoodie kneels beside a portable play yard, laughing softly as his 18-month-old daughter in a striped sleep sack stands holding the rail. His 4-year-old son in dinosaur pajamas sits cross-legged on the bed with a picture book. One small lamp gives a dim amber glow, a suitcase lies open on the floor, and a plain wall rises above them. No text, signs, logos or brand names.",
+    "body": [
+      "If you've ever stood in a dark guest room at 2 a.m., whisper-singing to a baby who is suddenly wide awake in a borrowed play yard, I'm right there with you. Holiday trips are full of good things: cousins, Grandma's cooking, someone else doing the dishes. Sleep usually isn't one of them.",
+      "Here's what helps: a rough first night is normal for little kids, and for grown-ups too. A few small, research-backed tricks can make night two (and the trip home) a lot easier.",
+      "This post is all about sleep. For car seats, flights and airport tips, see our [holiday travel guide](/blog/holiday-travel-with-little-kids/).",
+      "## Why the first night is the hardest",
+      "Sleep scientists have a name for it: the \"first-night effect.\" In [a Brown University study of 35 adults](https://pmc.ncbi.nlm.nih.gov/articles/PMC4864126/) sleeping in an unfamiliar lab, one side of the brain stayed more alert during deep sleep, like a night watchman. It reacted more to strange sounds and woke people up more easily. By their next session in the lab, the effect was gone.",
+      "That study was in adults, so we can't say kids' brains do exactly the same thing. But pediatric sleep specialists see the pattern constantly. A Stanford Children's sleep doctor puts it plainly: [\"kids don't sleep well in new environments\"](https://healthier.stanfordchildrens.org/en/all-i-want-for-christmas-is-a-good-nights-sleep/), and you shouldn't \"expect perfect sleep right away.\"",
+      "So if night one is choppy, it doesn't mean the whole trip is ruined. It means the room is new.",
+      "## Make the new room feel like home (and keep it safe)",
+      "Little kids sleep by routine and by smell, feel and sound. Bring those with you:",
+      "- Pack the familiar stuff: the same sleep sack, the lovey for kids old enough for one, and the same two bedtime books. The AAP even suggests [bringing your own crib sheet](https://www.healthychildren.org/English/safety-prevention/on-the-go/Pages/Hotel-Dangers-that-Put-Baby-Safety-at-Risk.aspx) if your baby isn't used to new places.",
+      "- Do a trial run. If your baby will sleep in a play yard or your toddler in a travel bed, Stanford's sleep specialist suggests [trying it at home one to two nights](https://healthier.stanfordchildrens.org/en/all-i-want-for-christmas-is-a-good-nights-sleep/) before you leave.",
+      "- Keep the bedtime steps exactly the same, even if bedtime itself shifts. Bath, pajamas, books, song, lights out.",
+      "For babies, safe sleep comes along on the trip too. The AAP recommends putting babies [on their back, on a firm, flat surface, with only a fitted sheet](https://www.healthychildren.org/English/ages-stages/baby/sleep/Pages/a-parents-guide-to-safe-sleep.aspx), and avoiding bed-sharing, couches and armchairs. When you're exhausted at a relative's house, the AAP's advice is to [resist the big bed and use a portable crib or play yard](https://www.healthychildren.org/English/safety-prevention/on-the-go/Pages/Hotel-Dangers-that-Put-Baby-Safety-at-Risk.aspx). A few quick checks when you arrive:",
+      "- Make sure a borrowed or hotel crib has no broken or missing parts and only its original mattress. Many hotels will lend one if you ask when you book.",
+      "- Set it up away from cords, lamps and TVs, or anything that could fall in.",
+      "- Leave Grandma's heirloom quilt and bumpers in the closet. A wearable blanket keeps baby warm instead.",
+      "## Dim the lights earlier than you think",
+      "Holiday evenings are bright: overhead lights, a glowing tree, a TV in every room. That matters more for little kids than we'd guess. In [a University of Colorado study](https://pmc.ncbi.nlm.nih.gov/articles/PMC5835497/), an hour of bright light before bed cut preschoolers' melatonin, the hormone that makes us sleepy, by 87.6%. In most of the kids, it still hadn't bounced halfway back 50 minutes after the lights went off.",
+      "The study was small (10 kids, ages 3 to 5), but the lesson is easy to use:",
+      "- In the hour before bed, move your little one somewhere with lamps instead of overhead lights.",
+      "- Make the room dark. A spare blanket or a towel over a bright window works in a pinch.",
+      "- Keep it cool and quiet, not lit by a TV.",
+      "If you use white noise, mind the volume. In [a study of 14 infant sound machines](https://chop.edu/news/white-noise-not-right-noise), every one was louder than the 50-decibel limit for hospital nurseries at full volume, and some topped 85 decibels. Children's Hospital of Philadelphia suggests keeping the volume low and placing the machine (or phone) more than 200 centimeters, about 6 and a half feet, from the crib.",
+      "## One hour or two: handling the time change",
+      "Houston is on Central time, so Grandma on the East Coast is an hour ahead and the cousins in California are two hours behind. Here's what experts suggest:",
+      "- **Short trip (a few days)?** Stanford's sleep specialist says [staying on your home schedule](https://healthier.stanfordchildrens.org/en/all-i-want-for-christmas-is-a-good-nights-sleep/) will likely cause the least disruption. A 7:30 bedtime in Houston is just 8:30 in Atlanta.",
+      "- **Longer trip?** Shift naps and bedtime 30 to 60 minutes over a few days before you leave, earlier if you're heading east and later if you're heading west. The AAP's daylight saving advice works the same way: [nudge naps and bedtime a few minutes each day](https://www.healthychildren.org/English/healthy-living/sleep/Pages/daylight-saving-time-dont-lose-sleep-over-it.aspx) in the direction of the change.",
+      "- **Use the sun.** Light is one of the strongest cues for the body clock. After flying east, get outside early in the morning. After flying west, aim for afternoon sunshine.",
+      "- **Give it time.** Kids can take [three to four days](https://healthier.stanfordchildrens.org/en/all-i-want-for-christmas-is-a-good-nights-sleep/) to adjust to big time-zone shifts. One or two hours is usually quicker.",
+      "Thinking about melatonin or any sleep aid for the trip? Ask your pediatrician first, before you pack it.",
+      "## Pack it or pick it up there?",
+      "- **Pack:** the sleep sack, the lovey, the bedtime books, a familiar crib sheet, a nightlight, and your phone's white-noise app.",
+      "- **Pick up there:** diapers, wipes, snacks and bath stuff. They take up suitcase space and you can buy them almost anywhere.",
+      "- **Ask ahead:** whether the hotel or your relatives have a play yard you can use, so you can check it before bedtime instead of at bedtime.",
+      "## Lower the bar, then come home",
+      "Expect one rough night, maybe two. Then it usually gets better. A late bedtime at the family party won't undo months of good sleep. Once you're home, go right back to your usual routine and, as we said in our [winter break post](/blog/winter-break-routine-little-kids/), keep bedtime steady and the rest will follow.",
+      "This week, try a test night in the play yard or travel bed at home, and pack a \"bedtime bag\" with the sheet, sleep sack, books and lovey. Future you, standing in Grandma's guest room at bedtime, will be glad you did."
+    ],
+    "sources": [
+      {
+        "label": "Tamaki M, Bang JW, Watanabe T, Sasaki Y. Night watch in one brain hemisphere during sleep associated with the first-night effect in humans. Current Biology, 2016.",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4864126/"
+      },
+      {
+        "label": "Akacem LD, Wright KP Jr, LeBourgeois MK. Sensitivity of the circadian system to evening bright light in preschool-age children. Physiological Reports, 2018.",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5835497/"
+      },
+      {
+        "label": "Children's Hospital of Philadelphia. White noise: not the right noise, 2014.",
+        "url": "https://chop.edu/news/white-noise-not-right-noise"
+      },
+      {
+        "label": "Stanford Medicine Children's Health. All I want for Christmas is a good night's sleep, 2018.",
+        "url": "https://healthier.stanfordchildrens.org/en/all-i-want-for-christmas-is-a-good-nights-sleep/"
+      },
+      {
+        "label": "McCarthy C. Hotel safety tips for parents of young children. HealthyChildren.org (AAP).",
+        "url": "https://www.healthychildren.org/English/safety-prevention/on-the-go/Pages/Hotel-Dangers-that-Put-Baby-Safety-at-Risk.aspx"
+      },
+      {
+        "label": "American Academy of Pediatrics. A parent's guide to safe sleep. HealthyChildren.org.",
+        "url": "https://www.healthychildren.org/English/ages-stages/baby/sleep/Pages/a-parents-guide-to-safe-sleep.aspx"
+      },
+      {
+        "label": "Esparham A. Daylight saving time: don't lose sleep over it. HealthyChildren.org (AAP).",
+        "url": "https://www.healthychildren.org/English/healthy-living/sleep/Pages/daylight-saving-time-dont-lose-sleep-over-it.aspx"
+      }
+    ],
+    "instagram": {
+      "cover": {
+        "label": "SLEEP TALK",
+        "headline": "New bed, new time zone?",
+        "highlight": "Sleep can still work.",
+        "subhead": "Holiday travel sleep tips for babies and toddlers",
+        "scene": "A Korean American dad in his thirties with black-rimmed glasses and a gray hoodie kneels beside a portable play yard in a cozy guest bedroom, laughing softly as his 18-month-old daughter in a striped sleep sack stands holding the rail. His 4-year-old son in dinosaur pajamas sits on the bed with a picture book. Dim amber lamp light; action low, plain wall above."
+      },
+      "takeaways": {
+        "title": "Night one is rough.",
+        "highlight": "Night two is better.",
+        "points": [
+          {
+            "heading": "The first night is the hardest.",
+            "text": "New rooms make sleep lighter, even for adults. Kids usually settle once the room feels familiar."
+          },
+          {
+            "heading": "Bring home with you.",
+            "text": "Same sleep sack, sheet, books and bedtime steps. For babies: on their back, firm flat surface, nothing else in the crib."
+          },
+          {
+            "heading": "Dim the lights an hour early.",
+            "text": "Bright light before bed cut preschoolers' melatonin by 87.6% in one study. Lamps, not overhead lights."
+          },
+          {
+            "heading": "Short trip? Stay on home time.",
+            "text": "For longer trips, shift bedtime 30 to 60 minutes over a few days, and use morning or afternoon sun."
+          }
+        ]
+      },
+      "caption": "That 2 a.m. wake-up in Grandma's guest room? Totally normal.\n\nNew rooms make everyone sleep lighter on the first night, kids and grown-ups alike.\nBring the familiar stuff: same sleep sack, same sheet, same books, same bedtime steps.\nDim the lights an hour before bed. Bright light pushes little kids' sleepy hormone way down.\nGoing one hour east for a few days? It's often easiest to just stay on Houston time.\n\nWhat's your best trick for sleep away from home?\n\nFull article at the link in our bio. Follow @springbranchlittles for kid-friendly plans in Spring Branch & Memorial.\n\nGeneral info, not medical advice. Check with your pediatrician.\n\n#toddlersleep #babysleep #travelwithkids #houstonmoms #springbranch #memorialhouston #houstonparents"
+    },
+    "image": "/img/blog/holiday-travel-sleep-baby-toddler.jpg",
+    "imageAlt": "Illustration: A warm, realistic, candid photo in a cozy guest bedroom at a grandparents' home on a December evening, landscape",
+    "imageCredit": "AI illustration"
   }
 ]
