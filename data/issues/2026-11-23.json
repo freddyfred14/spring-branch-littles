@@ -1,0 +1,257 @@
+{
+  "date": "2026-11-23",
+  "subject": "Santa at CityCentre, a free Frozen night and Nutcracker music",
+  "preheader": "Plus: a quiet week to rest, then a busy first weekend of December.",
+  "intro": [
+    "No school this week (Nov 23–27), so enjoy the slow days. Saturday, Nov 28 brings Santa and two reindeer to CityCentre from 12 to 4 for free photos, and the next week has Nutcracker music for toddlers and pinecone gnomes at the Spring Branch Memorial library.",
+    "Mark Friday, Dec 4: Memorial Park's free Neighborhood Nights kicks off the holiday lights with a Frozen movie at 6 pm. Bring a blanket. The Arboretum's wreath workshop is Saturday, Dec 5, and tickets are needed."
+  ],
+  "sections": [
+    {
+      "heading": "Story of the week",
+      "items": [
+        {
+          "title": "Greenside, a family-friendly spot with a kids' play structure, is coming to Memorial City",
+          "when": "Houston Chronicle",
+          "where": "",
+          "ages": "",
+          "cost": "",
+          "description": "A new family-friendly hangout built around a one-acre lawn is coming to 1085 Gessner, with a children's play area in the plans. Michelin-recognized Pizzana is among the restaurants opening there this fall.",
+          "paragraphs": [
+            "A new family-friendly hangout built around a one-acre lawn is coming to 1085 Gessner, with a children's play area in the plans. Michelin-recognized Pizzana is among the restaurants opening there this fall."
+          ],
+          "url": "https://springbranchlittles.com/news/#2026-10-24-greenside-memorial-city",
+          "feature": true,
+          "image": {
+            "src": "https://springbranchlittles.com/img/news/greenside-rendering-800.jpg",
+            "alt": "Rendering of Greenside's garden: kids playing in and around two wooden A-frame playhouses among flowering trees, while parents sit on long benches nearby.",
+            "credit": "Rendering courtesy of MetroNational & Radom Capital / Michael Hsu Office of Architecture"
+          },
+          "moreLinks": []
+        }
+      ]
+    },
+    {
+      "heading": "Top picks · Nov 23–Dec 6",
+      "items": [
+        {
+          "image": {
+            "src": "https://springbranchlittles.com/img/events/2026-citycentre-holiday-in-the-plaza-800.jpg",
+            "alt": "Illustration: An outdoor plaza at dusk with a giant decorated Christmas tree and twinkle lights, kids in winter hats meeting a friendly Santa and a reindeer in a small pen, families holding hot cocoa"
+          },
+          "title": "Holiday in the Plaza",
+          "when": "Sat, Nov 28 · 12 pm–4 pm",
+          "where": "CityCentre",
+          "ages": "Babies, Toddlers, Preschool, Elementary",
+          "cost": "Free",
+          "description": "Meet Santa and two of his reindeer, with free professional photos, plus holiday singing and dancing. A donation for the SPCA is welcome. Santa leaves at 4 pm, so arrive on time; weather permitting.",
+          "url": "https://springbranchlittles.com/events/2026-citycentre-holiday-in-the-plaza/",
+          "tentative": false
+        },
+        {
+          "image": {
+            "src": "https://springbranchlittles.com/img/events/2026-12-01-sbm-library-nutcracker-sing-move-play-800.jpg",
+            "alt": "Illustration: Toddlers and preschoolers dancing and waving scarves to classical music in a library meeting room, a music leader smiling and leading, parents clapping along"
+          },
+          "title": "Classical Sing Move Play: Music of the Nutcracker",
+          "when": "Tue, Dec 1 · 4:15 pm–5:15 pm",
+          "where": "Spring Branch Memorial Library",
+          "ages": "Toddlers, Preschool",
+          "cost": "Free",
+          "description": "A music and movement class for ages 2 to 5 where kids sing, move and play to Tchaikovsky's Nutcracker music, in the library meeting room. The page doesn't mention registration; call the branch to confirm.",
+          "url": "https://springbranchlittles.com/events/2026-12-01-sbm-library-nutcracker-sing-move-play/",
+          "tentative": false
+        },
+        {
+          "image": {
+            "src": "https://springbranchlittles.com/img/events/2026-12-02-sbm-library-pinecone-gnomes-800.jpg",
+            "alt": "Illustration: Children around a library craft table gluing felt hats and beards onto pinecones to make tiny gnomes, pom-poms and glue sticks scattered about"
+          },
+          "title": "Pinecone Gnomes craft",
+          "when": "Wed, Dec 2 · 4:15 pm–5:15 pm",
+          "where": "Spring Branch Memorial Library",
+          "ages": "Preschool, Elementary",
+          "cost": "Free",
+          "description": "After-school craft for ages 4 to 8 (preschool through 2nd grade): each child makes a little gnome from a pinecone. The page doesn't mention registration.",
+          "url": "https://springbranchlittles.com/events/2026-12-02-sbm-library-pinecone-gnomes/",
+          "tentative": false
+        },
+        {
+          "image": {
+            "src": "https://springbranchlittles.com/img/events/2026-12-04-memorial-park-neighborhood-nights-holiday-800.jpg",
+            "alt": "Illustration: Families on picnic blankets on a park lawn at dusk watching an outdoor movie on a big screen, kids in winter coats holding cups of cocoa, a small toy train and twinkling holiday lights nearby, Santa waving"
+          },
+          "title": "Neighborhood Nights: Holiday Edition",
+          "when": "Fri, Dec 4 · 5 pm",
+          "where": "Memorial Park, Clay Family Eastern Glades, 6502 Memorial Dr",
+          "ages": "Babies, Toddlers, Preschool, Elementary",
+          "cost": "Free",
+          "description": "A free holiday evening on the lawn: Frozen movie at 6 pm, photos with Santa, Anna and Elsa, letters to Santa, a train ride, cocoa and food trucks. Bring a blanket; no strollers or bikes. Listing end time varies (8 or 9 pm).",
+          "url": "https://springbranchlittles.com/events/2026-12-04-memorial-park-neighborhood-nights-holiday/",
+          "tentative": false
+        },
+        {
+          "image": {
+            "src": "https://springbranchlittles.com/img/events/2026-12-05-arboretum-homemade-holidays-800.jpg",
+            "alt": "Illustration: Kids (ages 6–10) and parents at long tables in a nature center making wreaths and ornaments from grapevine, pinecones and red berries, greenery everywhere, warm light"
+          },
+          "title": "Homemade Holidays wreath and ornament workshop",
+          "when": "Sat, Dec 5 · 11 am–12:30 pm",
+          "where": "Houston Arboretum & Nature Center",
+          "ages": "Elementary",
+          "cost": "$11 per child ages 5–12; $27 members / $42 nonmembers (adults)",
+          "description": "Make a wreath, ornaments and handmade gifts from grapevine, branches, berries and pinecones with hands-on help. Ages 5 and up with an adult; wear clothes that can get messy.",
+          "url": "https://springbranchlittles.com/events/2026-12-05-arboretum-homemade-holidays/",
+          "tentative": false
+        }
+      ]
+    },
+    {
+      "heading": "Every week",
+      "items": [
+        {
+          "image": null,
+          "title": "Tyke Hike at Arrowwood Pond",
+          "when": "Select Mondays: Nov 2, 9, 16, then Dec 7, 14, 21 · 9:30 am–10:15 am",
+          "where": "Houston Arboretum & Nature Center",
+          "ages": "Toddlers, Preschool",
+          "cost": "$7 per child (members free)",
+          "description": "A naturalist leads a story, a simple nature activity and a stroller-friendly trail hike for ages 18 months to 4 with a grown-up. Two sessions, 9:30 and 10:30 am.",
+          "url": "https://springbranchlittles.com/events/weekly/arboretum-tyke-hikes/",
+          "tentative": false,
+          "weekly": true
+        },
+        {
+          "image": null,
+          "title": "Stories & Crafts in the Cabin",
+          "when": "Selected Mondays, September–May · 10:30 am–11:30 am",
+          "where": "Edith L. Moore Nature Sanctuary",
+          "ages": "Preschool",
+          "cost": "About $10–12 per child",
+          "description": "A nature story and craft in the sanctuary's log cabin for ages 3–5 with an adult. Siblings with a supervising adult come free.",
+          "url": "https://springbranchlittles.com/events/weekly/edith-moore-stories-crafts/",
+          "tentative": false,
+          "weekly": true
+        },
+        {
+          "image": null,
+          "title": "Baby Bouncers playtime",
+          "when": "Wednesdays · 10:15 am",
+          "where": "Spring Branch Memorial Library",
+          "ages": "Babies, Toddlers",
+          "cost": "Free",
+          "description": "Bouncy songs, rhymes and playtime for crawlers and babies taking their first steps. Two sessions, 10:15 and 11:15.",
+          "url": "https://springbranchlittles.com/events/weekly/sbm-baby-bouncers/",
+          "tentative": false,
+          "weekly": true
+        },
+        {
+          "image": null,
+          "title": "Toddler storytime",
+          "when": "Wednesdays · 10:30 am–11:30 am",
+          "where": "Ring Neighborhood Library",
+          "ages": "Toddlers",
+          "cost": "Free",
+          "description": "Books, songs and movement for ages 18–36 months with a caregiver.",
+          "url": "https://springbranchlittles.com/events/weekly/ring-toddler-storytime/",
+          "tentative": false,
+          "weekly": true
+        },
+        {
+          "image": null,
+          "title": "Tiny Tykes storytime",
+          "when": "Thursdays · 10:15 am",
+          "where": "Spring Branch Memorial Library",
+          "ages": "Toddlers",
+          "cost": "Free",
+          "description": "Interactive storytime for new walkers and their grown-ups: stories, songs and finger plays. Two sessions, 10:15 and 11:15. Some weeks it's outside in the Reading Garden.",
+          "url": "https://springbranchlittles.com/events/weekly/sbm-tiny-tykes/",
+          "tentative": false,
+          "weekly": true
+        }
+      ]
+    },
+    {
+      "heading": "Where to eat this week",
+      "items": [
+        {
+          "title": "Feges BBQ",
+          "when": "Spring Branch · $$ · Play area, Patio",
+          "where": "",
+          "description": "Kids eat free on Wednesdays, 5 pm–8 pm. Barbecue with a big patio and a small enclosed play space with a climbing gym tucked beside it. You order at the counter, so no waiting in line with wiggly kids.",
+          "url": "https://fegesbbq.com/locations/spring-branch/",
+          "deal": true
+        },
+        {
+          "title": "Blue Agave Cantina",
+          "when": "Energy Corridor · $$ · Play area, Patio",
+          "where": "",
+          "description": "Tex-Mex near Terry Hershey Park with a patio playground. Pair it with an afternoon on the trails.",
+          "url": "https://www.google.com/maps/search/?api=1&query=Blue+Agave+Cantina+14555+Grisby+Rd+Houston+TX",
+          "deal": true
+        },
+        {
+          "title": "The Decoy",
+          "when": "Spring Branch · $$ · Patio, Lawn to run",
+          "where": "",
+          "description": "A family- and pet-friendly sand volleyball spot with three courts, cornhole and yard games. Best for an easy early dinner while kids play in the sand.",
+          "url": "https://www.google.com/maps/search/?api=1&query=The+Decoy+Witte+Rd+Houston+TX",
+          "deal": true
+        }
+      ]
+    },
+    {
+      "heading": "From the blog",
+      "items": [
+        {
+          "image": {
+            "src": "https://springbranchlittles.com/img/blog/winter-break-routine-little-kids-800.jpg",
+            "alt": "Illustration: A warm, realistic, candid photo at a Houston neighborhood playground on a cool, sunny December morning, landscape"
+          },
+          "title": "Two weeks of winter break doesn't need a schedule. It needs two anchors.",
+          "when": "4-minute article",
+          "where": "",
+          "description": "SBISD is off Dec 21 to Jan 4. You don't need a color-coded plan to keep little ones sane, just steady sleep, a simple day shape and an easy way back.",
+          "url": "https://springbranchlittles.com/blog/winter-break-routine-little-kids/",
+          "news": true
+        },
+        {
+          "image": {
+            "src": "https://springbranchlittles.com/img/blog/newborn-holiday-visitors-rsv-flu-season-800.jpg",
+            "alt": "Illustration: A warm, realistic, candid photo in a bright Houston family kitchen on a December afternoon, landscape"
+          },
+          "title": "Grandma wants to kiss the baby. In RSV season, you're allowed to say no.",
+          "when": "4-minute article",
+          "where": "",
+          "description": "A newborn, a houseful of relatives and peak RSV and flu season. What pediatric guidance says about visitors, kisses and vaccines, plus kind scripts for saying no.",
+          "url": "https://springbranchlittles.com/blog/newborn-holiday-visitors-rsv-flu-season/",
+          "news": true
+        }
+      ]
+    },
+    {
+      "heading": "Mark your calendar",
+      "items": [
+        {
+          "title": "SBISD Thanksgiving break",
+          "when": "Nov 23 – Nov 27 · No school",
+          "where": "",
+          "description": "No school all week. Plan library visits and park days early, since popular spots fill up.",
+          "url": "https://www.springbranchisd.com/events/",
+          "deal": true
+        },
+        {
+          "title": "SBISD winter break",
+          "when": "Dec 21 – Jan 4 · No school",
+          "where": "",
+          "description": "Two weeks off school. We'll round up winter break camps and indoor ideas in December.",
+          "url": "https://www.springbranchisd.com/events/",
+          "deal": true
+        }
+      ]
+    }
+  ],
+  "buttondownId": "em_0t9zvsek0c9s4byhfa8chwxsrt",
+  "status": "draft",
+  "sentAt": "2026-11-23T12:42:00.275Z"
+}
