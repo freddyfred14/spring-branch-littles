@@ -8,30 +8,6 @@
   ],
   "sections": [
     {
-      "heading": "Story of the week",
-      "items": [
-        {
-          "title": "Greenside, a family-friendly spot with a kids' play structure, is coming to Memorial City",
-          "when": "Houston Chronicle",
-          "where": "",
-          "ages": "",
-          "cost": "",
-          "description": "A new family-friendly hangout built around a one-acre lawn is coming to 1085 Gessner, with a children's play area in the plans. Michelin-recognized Pizzana is among the restaurants opening there this fall.",
-          "paragraphs": [
-            "A new family-friendly hangout built around a one-acre lawn is coming to 1085 Gessner, with a children's play area in the plans. Michelin-recognized Pizzana is among the restaurants opening there this fall."
-          ],
-          "url": "https://springbranchlittles.com/news/#2026-10-24-greenside-memorial-city",
-          "feature": true,
-          "image": {
-            "src": "https://springbranchlittles.com/img/news/greenside-rendering-800.jpg",
-            "alt": "Rendering of Greenside's garden: kids playing in and around two wooden A-frame playhouses among flowering trees, while parents sit on long benches nearby.",
-            "credit": "Rendering courtesy of MetroNational & Radom Capital / Michael Hsu Office of Architecture"
-          },
-          "moreLinks": []
-        }
-      ]
-    },
-    {
       "heading": "Top picks · Nov 23–Dec 6",
       "items": [
         {
@@ -64,7 +40,7 @@
         },
         {
           "image": {
-            "src": "https://springbranchlittles.com/img/events/2026-12-02-sbm-library-pinecone-gnomes-800.jpg",
+            "src": "https://springbranchlittles.com/img/events/2026-12-02-sbm-library-pinecone-gnomes-v2-800.jpg",
             "alt": "Illustration: White children (about 4 to 7 years old) and a white mom around a library craft table, gluing felt hats and fluffy beards onto pinecones to make tiny gnomes, pom-poms and glue sticks scattered about"
           },
           "title": "Pinecone Gnomes craft",
@@ -188,5 +164,5 @@
   ],
   "buttondownId": "em_0t9zvsek0c9s4byhfa8chwxsrt",
   "status": "draft",
-  "sentAt": "2026-11-24T00:45:55.655Z"
+  "sentAt": "2026-11-24T00:50:33.967Z"
 }
