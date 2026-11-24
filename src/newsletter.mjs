@@ -125,7 +125,7 @@ export function buildIssue(data, date, draft = loadDraft(date)) {
     });
   }
   // The story of the week stays short in the email: a picture, two or three sentences and a link.
-  const story = custom ? null : (draft.featureId && data.news.find((n) => n.id === draft.featureId)) || featuredStory(data, date);
+  const story = custom || (draft.hide || []).includes("story") ? null : (draft.featureId && data.news.find((n) => n.id === draft.featureId)) || featuredStory(data, date);
   if (story) {
     sections.push({
       heading: "Story of the week",
@@ -144,7 +144,7 @@ export function buildIssue(data, date, draft = loadDraft(date)) {
   }
 
   // Storytimes and other weekly programs: a compact list with no photos, after the picks.
-  // A draft can leave out sections for one week: { "hide": ["weekly"] }.
+  // A draft can leave out sections for one week: { "hide": ["story", "weekly"] }.
   const weekly = (draft.hide || []).includes("weekly") ? [] : weeklyPrograms(data, date);
   if (weekly.length) {
     sections.push({
