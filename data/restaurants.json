@@ -234,5 +234,26 @@
     "sources": [
       "https://www.theinfatuation.com/houston/guides/best-kid-friendly-restaurants-houston"
     ]
+  },
+  {
+    "address": "1035 Gessner Rd, Houston, TX 77055",
+    "price": "$$",
+    "tip": "Play areas vary by location, so call ahead if that's the draw.",
+    "area": "local",
+    "lastVerified": "2026-11-24",
+    "id": "mias-table-memorial-city",
+    "name": "Mia's Table – Memorial City",
+    "neighborhood": "Memorial City",
+    "url": "https://www.miastable.com/",
+    "perks": [
+      "kids-menu",
+      "play-area"
+    ],
+    "description": "A family-friendly American kitchen made with parents in mind: kids' meals, grown-up food you'll actually want, and a play area local parents rave about.",
+    "sources": [
+      "https://www.houstoniamag.com/businesses/mias-table",
+      "https://www.click2houston.com/food/2019/11/12/new-family-friendly-restaurant-mias-table-now-open-in-katy/",
+      "https://www.tdlr.texas.gov/TABS/Projects/TABS2019016379"
+    ]
   }
 ]

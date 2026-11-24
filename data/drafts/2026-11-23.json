@@ -2,7 +2,7 @@
   "subject": "Santa at CityCentre, a free Frozen night and Nutcracker music",
   "preheader": "Plus: a quiet week to rest, then a busy first weekend of December.",
   "intro": [
-    "No school this week (Nov 23\u201327), so enjoy the slow days. Saturday, Nov 28 brings Santa and two reindeer to CityCentre from 12 to 4 for free photos, and the next week has Nutcracker music for toddlers and pinecone gnomes at the Spring Branch Memorial library.",
+    "No school this week (Nov 23–27), so enjoy the slow days. Saturday, Nov 28 brings Santa and two reindeer to CityCentre from 12 to 4 for free photos, and the next week has Nutcracker music for toddlers and pinecone gnomes at the Spring Branch Memorial library.",
     "Mark Friday, Dec 4: Memorial Park's free Neighborhood Nights kicks off the holiday lights with a Frozen movie at 6 pm. Bring a blanket. The Arboretum's wreath workshop is Saturday, Dec 5, and tickets are needed."
   ],
   "picks": [
@@ -13,12 +13,15 @@
     "2026-12-05-arboretum-homemade-holidays"
   ],
   "restaurants": [
-    "feges-bbq-spring-branch",
-    "blue-agave-cantina",
-    "the-decoy-memorial"
+    "mias-table-memorial-city",
+    "tia-marias",
+    "recess-houston"
   ],
   "posts": [
     "winter-break-routine-little-kids",
     "newborn-holiday-visitors-rsv-flu-season"
+  ],
+  "hide": [
+    "weekly"
   ]
 }
