@@ -1,18 +1,30 @@
 {
-  "pulledAt": "2026-11-19T13:34:48.921Z",
+  "pulledAt": "2026-11-24T13:34:32.402Z",
   "subscribers": 115,
   "unconfirmed": 1,
   "issues": [
+    {
+      "date": "2026-11-24",
+      "subject": "Santa at CityCentre, a free Frozen night and Nutcracker music",
+      "recipients": 115,
+      "delivered": 115,
+      "opens": 75,
+      "clicks": 6,
+      "unsubscribes": 0,
+      "complaints": 0,
+      "openRate": "65.2%",
+      "clickRate": "5.2%"
+    },
     {
       "date": "2026-11-16",
       "subject": "Thanksgiving break is coming + a little holiday magic (Santa's number inside)",
       "recipients": 116,
       "delivered": 116,
-      "opens": 83,
+      "opens": 84,
       "clicks": 11,
       "unsubscribes": 1,
       "complaints": 0,
-      "openRate": "71.6%",
+      "openRate": "72.4%",
       "clickRate": "9.5%"
     },
     {
@@ -44,18 +56,6 @@
       "subject": "Halloween week: trick-or-treating, a library costume party and more (copy)",
       "recipients": 66,
       "delivered": 66,
-      "opens": 0,
-      "clicks": 0,
-      "unsubscribes": 0,
-      "complaints": 0,
-      "openRate": "0%",
-      "clickRate": "0%"
-    },
-    {
-      "date": "2026-10-26",
-      "subject": "Halloween week: trick-or-treating, a library costume party and more",
-      "recipients": 1,
-      "delivered": 1,
       "opens": 0,
       "clicks": 0,
       "unsubscribes": 0,
