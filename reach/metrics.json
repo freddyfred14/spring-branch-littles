@@ -213,5 +213,26 @@
     "issuesSent": 4,
     "upcomingEvents": 7,
     "guides": 4
+  },
+  {
+    "date": "2026-11-24",
+    "newsletterSubscribers": 115,
+    "newSubscribers7d": 0,
+    "newBySource7d": {},
+    "lastIssue": {
+      "subject": "Santa at CityCentre, a free Frozen night and Nutcracker music",
+      "sent": "2026-11-24T00:53:17.776934Z",
+      "recipients": 115,
+      "openRate": 65.2,
+      "clickRate": 5.2,
+      "unsubscribes": 0
+    },
+    "instagramFollowers": null,
+    "visits7d": null,
+    "topPages": null,
+    "topReferrers": null,
+    "issuesSent": 5,
+    "upcomingEvents": 8,
+    "guides": 4
   }
 ]

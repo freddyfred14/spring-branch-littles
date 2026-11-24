@@ -1,6 +1,6 @@
 # Spring Branch Littles: 90-day growth strategy
 
-Written 2026-10-25; updated 2026-11-17. Change only when our data says so.
+Written 2026-10-25; updated 2026-11-24. Change only when our data says so.
 
 ## Positioning
 
@@ -24,9 +24,9 @@ Day 0 = Oct 26, 2026 (first issue). **Reset 2026-11-10** from 250 / 550 / 900 (s
 **How we get to 400 (the math, Nov 10):** 116 now. One group post a week for 10 weeks at ~20 each: +200. Guides, forwards, Instagram and the `/thanks/` share prompt: +5–8 a week ≈ +50–80. Holiday and winter-break guides give the posts their hook. Ads, Nextdoor, partners and flyers are upside, not in the base.
 
 
-**History:** day 8 (Nov 3): 114, ~4 in 5 from Facebook links. **Nov 10 (day 15): reset 250/550/900 → 140/260/400**: no posts for two weeks, +2 that week; the new base assumes one group post a week (15–30 each, a guess) and no ads.
+**History:** day 8: 114, ~4 in 5 from Facebook links. Day 15: reset to 140/260/400 (no posts for two weeks). **Day 30 (Nov 24): 115, missed 140** (0 signups in 14 days, 1 unsubscribe).
 
-**Update 2026-11-17 (day 22): day 30 will miss (≈116–135 vs 140).** 0 signups in 7 days; weekly signups fell 11 → 3 → 1 → 0 with no posts, so **the baseline without posting is now zero**. Retention is excellent (67.2% opens on Nov 16, 0 unsubscribes in 4 issues): the product works; reach stops when posting stops. Not resetting day 60/90 yet: one 5-minute post a week from Nov 18 still reaches ~260 by Dec 24 if posts bring ~20. **Rule:** if no tagged signup by Dec 1, reset to a no-owner baseline and rank zero-owner-time growth (the `/thanks/` share prompt, guides, the newsletter forward line) above everything. Plans now ask for one 5-minute post that links our guides, and offer "reply December" as an honest opt-out.
+**Update 2026-11-17 (day 22): day 30 will miss (≈116–135 vs 140).** 0 signups in 7 days; weekly signups fell 11 → 3 → 1 → 0 with no posts, so **the baseline without posting is now zero**. Retention is excellent (67.2% opens on Nov 16, 0 unsubscribes in 4 issues): the product works; reach stops when posting stops. Not resetting day 60/90 yet: one 5-minute post a week from Nov 18 still reaches ~260 by Dec 24 if posts bring ~20. **Rule:** if no tagged signup by Dec 1, reset to a no-owner baseline and rank zero-owner-time growth (the `/thanks/` share prompt, guides, the newsletter forward line) above everything. Plans ask for one 5-minute post that links our guides and offer "December" or "pause" as honest opt-outs.
 
 ## Channel bets, ranked
 

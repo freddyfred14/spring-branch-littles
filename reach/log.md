@@ -2,6 +2,19 @@
 
 Newest first. The owner can add notes here too ("posted in X group, 15 signups").
 
+## 2026-11-24 · Tuesday full run · focus: day 30 missed; one last Sunday post before the zero-time switch
+- Metrics: **115 subscribers** (flat). 7d: **0 new** for the second straight week (`newBySource7d` empty), so the Sun Nov 22 `fb-holiday-1` post didn't go out. Nov 23 issue ("Santa at CityCentre, a free Frozen night and Nutcracker music", sent Sun 6:53 pm CST to 115): **65.2% opens, 5.2% clicks (lowest yet), 0 unsubs**, ~14 h after send. Nov 16 issue ended at 71.6% / 9.5%, 1 unsub. Visits, conversion and IG still null. 8 upcoming events, 4 guides. Owner logged nothing (no reply in four weeks).
+- **Day 30: 115 vs 140 target (missed by 25).** Recorded in `strategy.md` history (only change; 1,178 words). Kept the Dec 1 rule: no tagged signup by then → reset to a no-owner baseline. Not resetting early because Thanksgiving week is a fair reason for silence and Sun Nov 29 is the best slot before winter break.
+- Scored: no experiment ended. E13 gets its last slot (Sun Nov 29); E14 still 0 Google signups; E8 Reel moved to "whenever she's out in December".
+- Spotted: clicks fell 14.7% → 9.5% → 5.2% while Santa at CityCentre led three subject lines in a row, and the next draft leads with it again. Requested a subject-line rotation rule.
+- Guide: improved `holiday-events-santa-kids-spring-branch-memorial-2026` with the Dec 7 snow-slime hangout and the Dec 18 Hot Cocoa & a Movie, a registration tip, a new description (Nov 28–Dec 18) and expiry moved to Dec 19. Winter-break guide still waiting: only 2 dated events after Dec 5; asked the research agent for 8+ by Dec 8.
+- Blog ideas +3: holiday toy safety (button batteries, magnets, water beads), Houston cold mornings with babies (dressing, safe sleep, space heaters), the library over winter break.
+- Targets: no new entries (53, past the 50 goal).
+- Playbook v0.6: day-30 result, repeated-lead-event subject pitfall, set day-30 targets without owner posts, issue-5 data, unit economics.
+- Plan + kit: `plans/2026-11-24.md`, `kits/2026-11-24.md`. One to-do (~5 min, optional framing for Thanksgiving week): §1 post Sun Nov 29, 7–9 pm (`fb-holiday-1`, Dec 1/4/18 events + holiday guide). Optional: Santa Story Sat Nov 28 morning (`ig-story-santa`), backup text (`text-holiday`), Reel for later (`ig-holiday-guide`). Asked for a one-word reply: "posted", "December" or "pause".
+- Requests: `/thanks/` share prompt (top), subject-line rotation, guides line in the newsletter, winter-break research (Dec 19–Jan 4), source labels, visits and IG metrics.
+- `npm run check`: passes (14 warnings, all "never verified" listings for the research agent).
+
 ## 2026-11-20 · Friday pulse · focus: Sunday-night post before Thanksgiving break
 - Metrics: **115 subscribers** (−1: 0 new in 7d, 1 unsub). `newBySource7d` empty, so `fb-holiday-1` hasn't gone out. Nov 16 issue now **71.6% opens (best ever)**, 9.5% clicks, 1 unsub. 7 upcoming events, 4 guides. Owner logged nothing (four weeks without a reply).
 - Checked the source: the CityCentre URL slug says "nov-27", but the venue page confirms **Sat Nov 28, 12–4 pm**, so the listing and copy are right.
