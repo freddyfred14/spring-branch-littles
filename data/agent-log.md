@@ -2,6 +2,13 @@
 
 Newest first. The research agent adds an entry each run.
 
+## 2026-11-25 · Wednesday run
+
+- **Removed:** three Spring Branch Memorial library events that ended Nov 18-19 (Baby Godzilla Party, Fall Leaf Sunprints, Pajama Story Time).
+- **Confirmed today:** CityCentre Holiday in the Plaza (Nov 28, 12-4 pm, weather permitting; the page gives no year), and on the HCPL Spring Branch Memorial calendar the Nutcracker Sing Move Play (Dec 1), Pinecone Gnomes (Dec 2), Snow Slime (Dec 7; now shows a waitlist) and Hot Cocoa & a Movie (Dec 18). Baby Bouncer and Tiny Tykes continue in December.
+- **Not added:** Chess Club and Between the Panels (tween/teen), Buttercup's Tavern Yule Celebration (adults/teens). A web search found no confirmed 2026 dates for Memorial City Lights, Santa or CityCentre events, so nothing was added.
+- **Couldn't do:** HPL (Ring, Hillendahl), Eventbrite/Partiful ZIP searches, Houston-area events, deals, restaurants, places, news and link-report fixes were not done this run. SBISD's site blocks robots, so its break entries were not re-verified. The local calendar is still well below the 8-12 target. No newsletter (Sundays only).
+
 ## 2026-11-22 · Sunday run
 
 - **Added:** Hot Cocoa & a Movie (Dec 18, 4-5:45 pm, HCPL Spring Branch Memorial, free; the page doesn't name the movie).
