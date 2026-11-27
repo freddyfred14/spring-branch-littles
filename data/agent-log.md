@@ -2,6 +2,14 @@
 
 Newest first. The research agent adds an entry each run.
 
+## 2026-11-27 · Friday weekend check
+
+Friday weekend check: confirmed 1, updated 1, removed 0, added 0.
+
+- **CityCentre Holiday in the Plaza (Nov 28, 12-4):** page still shows it, no cancellation or rain plan, "weather permitting" with updates on Instagram. Added a storm heads-up to the description. The page gives no year.
+- **Weather:** Fox 26 (Nov 26) says dry Thanksgiving and Black Friday, storm chances return this weekend; timing unclear.
+- **Not confirmed:** The Bunny Hive Houston classes (schedule behind a booking widget; no closure notice). SBISD Thanksgiving break ends today; SBISD site blocks robots, not re-verified. Nothing else is dated Nov 27-29.
+
 ## 2026-11-25 · Wednesday run
 
 - **Removed:** three Spring Branch Memorial library events that ended Nov 18-19 (Baby Godzilla Party, Fall Leaf Sunprints, Pajama Story Time).
