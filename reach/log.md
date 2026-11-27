@@ -2,6 +2,15 @@
 
 Newest first. The owner can add notes here too ("posted in X group, 15 signups").
 
+## 2026-11-27 · Friday pulse · focus: Sunday-night December post (last E13 slot)
+- Metrics: **115 subscribers** (flat). 7d: **0 new** for the third straight week (`newBySource7d` empty). Nov 23 issue finished at **67.8% opens, 7% clicks, 0 unsubs**. Visits, conversion and IG still null. 8 upcoming events, 4 guides. Owner logged nothing (no reply in five weeks).
+- Checked the listings: Holiday in the Plaza still on Sat Nov 28, 12–4 pm, **weather permitting** (the research agent flagged weekend storms; no rain plan). Nothing else local dated Nov 28–29. Snow slime (Dec 7) now shows a waitlist; the holiday guide's registration tip still holds, so no guide change today.
+- Plan + kit: `plans/2026-11-27.md`, `kits/2026-11-27.md`. One to-do (~5 min): §1 post Sun Nov 29, 7–9 pm (`fb-holiday-1`; Dec 1 Nutcracker, Dec 2 gnome craft, Dec 4 Memorial Park + holiday guide). Optional: Santa Story Sat morning with a "check @citycentrehou first" note (`ig-story-santa`), backup text (`text-holiday`). One-word reply asked again; Dec 1 zero-time switch stands.
+- Spotted: the next newsletter draft still leads with Holiday in the Plaza, which will be over when it sends Sun Nov 29. Added to the open subject-line request.
+- E13: last slot noted; scored Tue Dec 1.
+- Requests: none new beyond the subject-line note.
+- `npm run check`: passes (20 warnings: 14 "never verified" listings plus 6 deals not verified in 30 days, all for the research agent).
+
 ## 2026-11-24 · Tuesday full run · focus: day 30 missed; one last Sunday post before the zero-time switch
 - Metrics: **115 subscribers** (flat). 7d: **0 new** for the second straight week (`newBySource7d` empty), so the Sun Nov 22 `fb-holiday-1` post didn't go out. Nov 23 issue ("Santa at CityCentre, a free Frozen night and Nutcracker music", sent Sun 6:53 pm CST to 115): **65.2% opens, 5.2% clicks (lowest yet), 0 unsubs**, ~14 h after send. Nov 16 issue ended at 71.6% / 9.5%, 1 unsub. Visits, conversion and IG still null. 8 upcoming events, 4 guides. Owner logged nothing (no reply in four weeks).
 - **Day 30: 115 vs 140 target (missed by 25).** Recorded in `strategy.md` history (only change; 1,178 words). Kept the Dec 1 rule: no tagged signup by then → reset to a no-owner baseline. Not resetting early because Thanksgiving week is a fair reason for silence and Sun Nov 29 is the best slot before winter break.
