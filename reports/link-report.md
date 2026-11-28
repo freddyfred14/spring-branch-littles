@@ -1,4 +1,4 @@
-# Link check: 9 of 55 need a look
+# Link check: 9 of 53 need a look
 
 | Verdict | Kind | Listing | Status | Page title | Mentions listing | Link (→ redirect) |
 |---|---|---|---|---|---|---|
@@ -7,13 +7,10 @@
 | WRONG PAGE? (doesn't mention it) | recurring | Baby Bouncers playtime | 200 | Events / Harris County Public Library / BiblioCommons | 33% | https://hcpl.bibliocommons.com/v2/events?q=Baby%20Bouncer |
 | WRONG PAGE? (doesn't mention it) | recurring | Toddler storytime | 200 | Houston Public Library - Visit us | 0% | https://calendar.houstonlibrary.org/ |
 | BROKEN (403) | restaurants | The Union Kitchen – Memorial | 403 |  | 0% | https://www.theunionkitchen.com/ |
+| BROKEN (403) | restaurants | Mia's Table – Memorial City | 403 |  | 0% | https://www.miastable.com/ |
 | BROKEN (403) | deals | Free kids' meal | 403 |  | 0% | https://www.theunionkitchen.com/ |
-| WRONG PAGE? (doesn't mention it) | deals | Free kids' meal | 200 | blackeyedpea.com | 0% | https://www.blackeyedpea.com/ |
+| BROKEN (UND_ERR_CONNECT_TIMEOUT) | deals | Free kids' meal | ERR |  | % | https://www.blackeyedpea.com/ |
 | WRONG PAGE? (doesn't mention it) | news | Greenside, a family-friendly spot with a kids' play structure, is coming to Memorial City | 200 | Client Challenge | 0% | https://www.houstonchronicle.com/business/real-estate/article/retail-mixed-use-new-development-houston-21118226.php |
-| WRONG PAGE? (doesn't mention it) | news | Heads-up: library storytimes can be canceled on short notice | 200 | Events / Harris County Public Library / BiblioCommons | 29% | https://hcpl.bibliocommons.com/v2/events?q=Tiny%20Tykes |
-| OK | events | Baby Godzilla Party (Baby Bouncer special) | 200 | Baby Godzilla Party! / Harris County Public Library / BiblioCommons | 100% | https://hcpl.bibliocommons.com/v2/events/6a7f8c5b3f18f80030bb3304 |
-| OK | events | Fall Leaf Sunprints | 200 | Fall Leaf Sunprints! / Harris County Public Library / BiblioCommons | 100% | https://hcpl.bibliocommons.com/v2/events/6ad12f62e9f71840dd720851 |
-| OK | events | Tiny Tykes Pajama Story Time | 200 | Tiny Tykes - Pajama Story Time / Harris County Public Library / BiblioCommons | 100% | https://hcpl.bibliocommons.com/v2/events/6a808068aafa6100295cccac |
 | OK | events | Holiday in the Plaza | 200 |  | 100% | https://www.citycentrehouston.com/event/nov-27-holiday-in-the-plaza |
 | OK | events | Classical Sing Move Play: Music of the Nutcracker | 200 | Classical Sing Move Play: Music of the Nutcracker / Harris County Public Library / BiblioC | 100% | https://hcpl.bibliocommons.com/v2/events/6aee52b530b4d5b2f42c13e5 |
 | OK | events | Pinecone Gnomes craft | 200 | Pinecone Gnomes / Harris County Public Library / BiblioCommons | 100% | https://hcpl.bibliocommons.com/v2/events/6aee4d870b801373af92678f |
@@ -21,14 +18,15 @@
 | OK | events | Mayor's Deck the Hall tree lighting | 200 | Reliant Presents Deck the Hall | 100% | https://cohips.houstontx.gov/deckthehall/index.html |
 | OK | events | Homemade Holidays wreath and ornament workshop | 200 | Homemade Holidays - Houston Arboretum & Nature Center | 80% | https://houstonarboretum.org/event/homemade-holidays/2026-12-05/1/ |
 | OK | events | Homeschool Hangout: Make Snow Slime | 200 | Homeschool Hangout: Make Snow Slime / Harris County Public Library / BiblioCommons | 100% | https://hcpl.bibliocommons.com/v2/events/6af366905ea4c386b3ed45dd |
+| OK | events | Hot Cocoa & a Movie | 200 | Hot Cocoa & a Movie / Harris County Public Library / BiblioCommons | 100% | https://hcpl.bibliocommons.com/v2/events/6aee4c0c938566ae4f57c07e |
 | OK | recurring | Hatchlings outdoor play for babies | 200 | Hatchlings - Houston Arboretum & Nature Center | 100% | https://houstonarboretum.org/event/hatchlings/2026-11-04/ |
 | OK | recurring | Tiny Tykes storytime | 200 | Events / Harris County Public Library / BiblioCommons | 67% | https://hcpl.bibliocommons.com/v2/events?q=Tiny%20Tykes |
 | OK | recurring | Stories & Crafts in the Cabin | 200 | Programs/ Edith Moore / Birds Houston | 100% | https://birdshouston.org/conservation/sanctuaries/edith-moore/programs.html |
 | OK | recurring | Tyke Hike at Arrowwood Pond | 200 | Tyke Hikes - Houston Arboretum & Nature Center | 50% | https://houstonarboretum.org/series/tyke-hikes/ |
 | OK | recurring | Grownup & me classes at The Bunny Hive | 200 | Houston | 100% | https://www.thebunnyhive.com/houston |
 | OK | places | Spring Branch Memorial Library | 200 | Spring Branch Memorial Branch Library / Harris County Public Library | 100% | https://hcpl.net/locations/sm/ |
-| OK (redirects) | places | Ring Neighborhood Library | 200 | HPL - Home - Visit Us at Houston Public Library | 100% | https://houstonlibrary.org/ → https://houstonlibrary.org/home |
-| OK (redirects) | places | Hillendahl Neighborhood Library | 200 | HPL - Home - Visit Us at Houston Public Library | 67% | https://houstonlibrary.org/ → https://houstonlibrary.org/home |
+| OK (redirects) | places | Ring Neighborhood Library | 200 | Houston Public Library - Home - Visit Us at Houston Public Library | 100% | https://houstonlibrary.org/ → https://houstonlibrary.org/home |
+| OK (redirects) | places | Hillendahl Neighborhood Library | 200 | Houston Public Library - Home - Visit Us at Houston Public Library | 67% | https://houstonlibrary.org/ → https://houstonlibrary.org/home |
 | OK (redirects) | places | Haden Park | 200 | Park Sites G - N / City of Houston eGovernment Center | 100% | https://www.houstontx.gov/parks/parksitesG-N.html → https://www.houstontx.gov/parks/parksitesg-n |
 | OK (redirects) | places | Agnes Moffitt Park | 200 | Park Sites G - N / City of Houston eGovernment Center | 100% | https://www.houstontx.gov/parks/parksitesG-N.html → https://www.houstontx.gov/parks/parksitesg-n |
 | OK | places | Freed Park | 200 | Freed Park | 100% | https://cp4.harriscountytx.gov/Explore/Parks/Precinct-4-Parks/freed-park |
@@ -55,5 +53,5 @@
 | OK (redirects) | deals | Free kids' meal | 200 | Home - Local Table | 50% | https://www.eatatlocaltable.com/ → https://eatatlocaltable.com/ |
 | OK | deals | Kids eat free | 200 | Pluckers Wing Bar | 50% | https://www.pluckers.com/ |
 | OK (redirects) | deals | Kids eat free | 200 | Home - Dish Society | 100% | https://www.dishsociety.com/ → https://dishsociety.com/ |
-| OK | deals | 50% off kids' meals | 200 | Family Friendly Burger Restaurant / Red Robin | 50% | https://www.redrobin.com/ |
+| OK | deals | 50% off kids' meals | 200 | Family Friendly Burger Restaurant / Red Robin | 100% | https://www.redrobin.com/ |
 | OK | news | Memorial Park's new Camp Logan Playground is under construction | 200 | Memorial Park previews new playground and visitor's center coming in 2027 - CultureMap Hou | 100% | https://houston.culturemap.com/news/city-life/memorial-groves-visitor-center-playground/ |
